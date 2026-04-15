@@ -17,10 +17,9 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-      // Detect active section
+      setScrolled(window.scrollY > 20);
       const sections = navLinks.map(l => l.href.slice(1));
-      for (const id of sections.reverse()) {
+      for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= 120) {
           setActiveSection(`#${id}`);
@@ -28,43 +27,49 @@ const Navbar = () => {
         }
       }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav className={`sticky top-0 z-50 bg-background/95 backdrop-blur-md transition-shadow ${scrolled ? "shadow-sm border-b border-border" : ""}`}>
-      <div className="container-narrow flex items-center justify-between h-[70px] px-4 md:px-8">
-        {/* Logo */}
+    <nav
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "glass-card !rounded-none shadow-lg border-b border-border/40"
+          : "bg-transparent"
+      }`}
+      style={scrolled ? { backdropFilter: "blur(20px)", background: "hsla(0, 0%, 100%, 0.85)" } : {}}
+    >
+      <div className="container-narrow flex items-center justify-between h-[72px] px-4 md:px-8">
         <a href="#home" className="flex items-center shrink-0">
           <img src={logo} alt="RelationshipVista" className="h-9 md:h-11 w-auto" />
         </a>
 
-        {/* Desktop Nav - matching AgentVista's centered links with active highlighting */}
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`text-[15px] font-medium transition-colors ${
+              className={`text-[15px] font-medium transition-all duration-200 relative ${
                 activeSection === link.href
                   ? "text-primary"
                   : "text-text-body hover:text-primary"
               }`}
             >
               {link.label}
+              {activeSection === link.href && (
+                <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary" />
+              )}
             </a>
           ))}
         </div>
 
-        {/* CTA - AgentVista style rounded button */}
         <div className="hidden md:flex items-center">
-          <a href="#contact" className="btn-cta text-sm px-5 py-2.5 rounded-full">
-            Book a Demo
+          <a href="#contact" className="btn-cta text-sm">
+            Book a Demo <ArrowRight className="h-4 w-4" />
           </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
           className="md:hidden p-2 text-text-heading"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -74,9 +79,8 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-background px-4 pb-4 shadow-lg">
+        <div className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border px-4 pb-4 shadow-xl">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -89,12 +93,8 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="btn-cta text-sm w-full justify-center mt-2 rounded-full"
-            onClick={() => setMobileOpen(false)}
-          >
-            Book a Demo
+          <a href="#contact" className="btn-cta text-sm w-full justify-center mt-3" onClick={() => setMobileOpen(false)}>
+            Book a Demo <ArrowRight className="h-4 w-4" />
           </a>
         </div>
       )}
