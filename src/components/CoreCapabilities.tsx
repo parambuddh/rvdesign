@@ -3,6 +3,8 @@ import {
   Filter, Smartphone, Eye, Navigation, LayoutTemplate,
 } from "lucide-react";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
+import RevealOnScroll from "./RevealOnScroll";
+import { useStaggerReveal } from "@/hooks/useScrollReveal";
 
 const capabilities = [
   {
@@ -53,48 +55,67 @@ const capabilities = [
 ];
 
 const CoreCapabilities = () => {
+  const { ref: listRef, visibleItems } = useStaggerReveal(capabilities.length);
+
   return (
-    <section id="features" className="section-padding section-alt">
-      <div className="container-narrow">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
-            Core Capabilities
-          </p>
-          <h2 className="text-3xl md:text-[38px] font-extrabold font-heading leading-tight">
-            From Scattered Data to Unified Insights
-          </h2>
-        </div>
+    <section id="features" className="section-padding section-alt relative overflow-hidden">
+      {/* Subtle gradient mesh */}
+      <div className="absolute inset-0 gradient-mesh opacity-50" />
 
-        {/* AgentVista pattern: Left mockup + Right feature list with numbered steps */}
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {/* Left: product mockup card - like AgentVista's command prompt card */}
-          <div className="bg-card rounded-2xl shadow-xl border border-border/50 overflow-hidden sticky top-24">
-            <div className="p-5 border-b border-border">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-destructive/60" />
-                <span className="w-3 h-3 rounded-full bg-yellow-400/60" />
-                <span className="w-3 h-3 rounded-full bg-primary/60" />
-                <span className="ml-3 text-xs text-text-muted font-medium">RelationshipVista Dashboard</span>
-              </div>
-            </div>
-            <img
-              src={heroDashboard}
-              alt="RelationshipVista features overview"
-              loading="lazy"
-              width={1200}
-              height={750}
-              className="w-full h-auto"
-            />
+      <div className="container-narrow relative z-10">
+        <RevealOnScroll>
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
+              Core Capabilities
+            </p>
+            <h2 className="text-3xl md:text-[38px] font-extrabold font-heading leading-tight mb-3">
+              From Scattered Data to Unified Insights
+            </h2>
+            <div className="section-divider mt-4" />
           </div>
+        </RevealOnScroll>
 
-          {/* Right: feature list - AgentVista pattern with icon + title + desc */}
-          <div className="space-y-2">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          {/* Left: Browser-frame mockup */}
+          <RevealOnScroll direction="left">
+            <div className="premium-card overflow-hidden sticky top-24 !border-border/40">
+              {/* Browser chrome */}
+              <div className="px-5 py-3.5 border-b border-border/60 flex items-center gap-3 bg-muted/30">
+                <div className="flex gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-destructive/60" />
+                  <span className="w-3 h-3 rounded-full" style={{ background: "hsl(45, 80%, 60%)" }} />
+                  <span className="w-3 h-3 rounded-full bg-primary/60" />
+                </div>
+                <div className="flex-1 mx-4">
+                  <div className="bg-background/60 rounded-md px-3 py-1 text-xs text-text-muted font-mono">
+                    salesforce.com/relationshipvista
+                  </div>
+                </div>
+              </div>
+              <img
+                src={heroDashboard}
+                alt="RelationshipVista features overview"
+                loading="lazy"
+                width={1200}
+                height={750}
+                className="w-full h-auto"
+              />
+            </div>
+          </RevealOnScroll>
+
+          {/* Right: feature list with staggered animation */}
+          <div ref={listRef} className="space-y-1.5">
             {capabilities.map((cap, i) => (
               <div
                 key={cap.title}
-                className="flex items-start gap-4 p-4 rounded-xl border border-transparent hover:border-primary/15 hover:bg-primary-light/50 transition-all duration-200 cursor-default group"
+                className="flex items-start gap-4 p-4 rounded-xl border border-transparent hover:border-primary/15 hover:bg-card transition-all duration-300 cursor-default group"
+                style={{
+                  opacity: visibleItems[i] ? 1 : 0,
+                  transform: visibleItems[i] ? "none" : "translateX(30px)",
+                  transition: `opacity 0.5s ease-out, transform 0.5s ease-out, background 0.3s, border-color 0.3s`,
+                }}
               >
-                <div className="icon-box group-hover:bg-primary/10 transition-colors">
+                <div className="icon-box">
                   <cap.icon className="h-5 w-5 text-primary" />
                 </div>
                 <div className="pt-0.5">
