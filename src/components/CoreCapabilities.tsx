@@ -2,6 +2,7 @@ import {
   Network, SlidersHorizontal, GitBranch, LayoutList,
   Filter, Smartphone, Eye, Navigation, LayoutTemplate,
 } from "lucide-react";
+import whatIsScreenshot from "@/assets/what-is-screenshot.jpg";
 
 const capabilities = [
   {
@@ -64,19 +65,36 @@ const CoreCapabilities = () => {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {capabilities.map((cap) => (
-            <div
-              key={cap.title}
-              className="bg-card rounded-xl p-6 lg:p-8 border border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
-            >
-              <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
-                <cap.icon className="h-6 w-6 text-primary" />
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          {/* Left: product mockup */}
+          <div className="rounded-2xl overflow-hidden shadow-xl border border-border/50 sticky top-24">
+            <img
+              src={whatIsScreenshot}
+              alt="RelationshipVista features overview"
+              loading="lazy"
+              width={1200}
+              height={750}
+              className="w-full h-auto"
+            />
+          </div>
+
+          {/* Right: feature list */}
+          <div className="space-y-1">
+            {capabilities.map((cap) => (
+              <div
+                key={cap.title}
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-background transition-colors group"
+              >
+                <div className="icon-box shrink-0 group-hover:bg-primary/10 transition-colors">
+                  <cap.icon className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold font-heading mb-1">{cap.title}</h3>
+                  <p className="text-sm text-text-body leading-relaxed">{cap.description}</p>
+                </div>
               </div>
-              <h3 className="text-lg font-bold font-heading mb-3">{cap.title}</h3>
-              <p className="text-sm text-text-body leading-relaxed">{cap.description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

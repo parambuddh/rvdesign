@@ -13,14 +13,14 @@ const steps = [
     step: "02",
     title: "Visualize Relationships",
     description: "RelationshipVista automatically maps all related records into an interactive view.",
-    details: ["Opportunities by Stage", "Connected Contacts & Roles", "Contracts & Assets", "Cases & Activities"],
+    details: ["Opportunities by Stage", "Connected Contacts", "Contracts & Assets", "Cases & Activities"],
   },
   {
     icon: SlidersHorizontal,
     step: "03",
     title: "Customize View",
     description: "Apply filters, groups, and customizations to focus on what matters.",
-    details: ["Filter Opportunities > $100K", "Filter Open Cases", "Group by Owner", "Sort by Date"],
+    details: ["Filter by Amount", "Filter by Status", "Group by Owner", "Sort by Date"],
   },
   {
     icon: Search,
@@ -44,16 +44,15 @@ const WorkflowSection = () => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((s, i) => (
-            <div key={s.step} className="relative">
-              {/* Connector line */}
-              {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-border -translate-x-1/2 z-0" />
-              )}
-              <div className="relative z-10 text-center">
-                <div className="w-20 h-20 rounded-2xl bg-accent mx-auto flex items-center justify-center mb-5">
-                  <s.icon className="h-8 w-8 text-primary" />
+        <div className="relative">
+          {/* Connector line */}
+          <div className="hidden lg:block absolute top-10 left-0 right-0 h-0.5 bg-border z-0" style={{ left: '12.5%', right: '12.5%' }} />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {steps.map((s) => (
+              <div key={s.step} className="relative z-10 text-center">
+                <div className="icon-box-lg mx-auto mb-5 shadow-sm border border-border/50">
+                  <s.icon className="h-7 w-7 text-primary" />
                 </div>
                 <span className="text-xs font-bold text-primary tracking-widest">STEP {s.step}</span>
                 <h3 className="text-lg font-bold font-heading mt-2 mb-3">{s.title}</h3>
@@ -62,15 +61,15 @@ const WorkflowSection = () => {
                   {s.details.map((d) => (
                     <span
                       key={d}
-                      className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium"
+                      className="text-xs px-3 py-1 rounded-full bg-accent text-accent-foreground font-medium"
                     >
                       {d}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

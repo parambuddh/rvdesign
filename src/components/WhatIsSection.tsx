@@ -6,7 +6,7 @@ const WhatIsSection = () => {
       <div className="container-narrow">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
-          <div className="rounded-xl overflow-hidden shadow-xl border border-border">
+          <div className="rounded-2xl overflow-hidden shadow-xl border border-border/50">
             <img
               src={whatIsScreenshot}
               alt="RelationshipVista intelligent relationship visualization interface showcasing multi-level hierarchy mapping and data exploration features"
@@ -41,7 +41,7 @@ const WhatIsSection = () => {
                 deeper, and make better-informed decisions — without writing a single line of code.
               </p>
             </div>
-            <p className="text-primary font-semibold italic text-lg">
+            <p className="text-primary font-semibold italic text-lg border-l-4 border-primary pl-4">
               "Visualize any relationship. Customize any view. Explore any hierarchy."
             </p>
           </div>
