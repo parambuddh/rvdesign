@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   Building2, TrendingUp, Contact, Headphones,
   Package, FileText, Handshake, Puzzle,
+  Zap, CheckCircle, BarChart3, Search,
 } from "lucide-react";
 
 const useCases = [
@@ -10,88 +11,88 @@ const useCases = [
     tab: "Account Management",
     description: "Visualize account hierarchies, parent-child relationships, and related contacts.",
     bullets: [
-      "Map multi-level account structures",
-      "Identify key contacts and their roles",
-      "Track related opportunities and contracts",
+      { icon: Zap, text: "Map multi-level account structures" },
+      { icon: CheckCircle, text: "Identify key contacts and their roles" },
+      { icon: BarChart3, text: "Track related opportunities and contracts" },
+      { icon: Search, text: "Query: 'Which divisions have the most open opportunities?'" },
     ],
-    example: "Which divisions have the most open opportunities?",
   },
   {
     icon: TrendingUp,
     tab: "Opportunity Pipeline",
     description: "Group opportunities by stage, source, or amount with visual hierarchy.",
     bullets: [
-      "Visualize sales pipeline at a glance",
-      "Group opportunities by decision stage",
-      "See forecasting clearly",
+      { icon: Zap, text: "Visualize sales pipeline at a glance" },
+      { icon: CheckCircle, text: "Group opportunities by decision stage" },
+      { icon: BarChart3, text: "See forecasting clearly across all deals" },
+      { icon: Search, text: "Show opportunities grouped by sales stage" },
     ],
-    example: "Show opportunities grouped by sales stage.",
   },
   {
     icon: Contact,
     tab: "Contact Mapping",
     description: "Explore contact hierarchies, report-to relationships, and multi-org networks.",
     bullets: [
-      "Map organizational hierarchies",
-      "See who reports to whom",
-      "Track contact roles and relationships",
+      { icon: Zap, text: "Map organizational hierarchies" },
+      { icon: CheckCircle, text: "See who reports to whom" },
+      { icon: BarChart3, text: "Track contact roles and relationships" },
+      { icon: Search, text: "Query: 'Show me all contacts under this account'" },
     ],
-    example: "Show me all contacts under this account.",
   },
   {
     icon: Headphones,
     tab: "Case Management",
     description: "Visualize case hierarchies, related contacts, and support chains.",
     bullets: [
-      "Filter cases by priority or status",
-      "See related cases and contacts",
-      "Track case resolution chains",
+      { icon: Zap, text: "Filter cases by priority or status" },
+      { icon: CheckCircle, text: "See related cases and contacts" },
+      { icon: BarChart3, text: "Track case resolution chains" },
+      { icon: Search, text: "Query: 'Which accounts have the most critical open cases?'" },
     ],
-    example: "Which accounts have the most critical open cases?",
   },
   {
     icon: Package,
     tab: "Asset Tracking",
     description: "Map assets, products, and contracts to accounts and customers.",
     bullets: [
-      "Visualize installed asset base",
-      "Track product relationships",
-      "Monitor contract coverage",
+      { icon: Zap, text: "Visualize installed asset base" },
+      { icon: CheckCircle, text: "Track product relationships" },
+      { icon: BarChart3, text: "Monitor contract coverage" },
+      { icon: Search, text: "Filter to show only high-value assets" },
     ],
-    example: "Filter to show only high-value assets.",
   },
   {
     icon: FileText,
     tab: "Contract Management",
     description: "See contracts, amendments, and license relationships visually.",
     bullets: [
-      "Group contracts by status or type",
-      "Map license allocations",
-      "Identify renewal opportunities",
+      { icon: Zap, text: "Group contracts by status or type" },
+      { icon: CheckCircle, text: "Map license allocations" },
+      { icon: BarChart3, text: "Identify renewal opportunities" },
+      { icon: Search, text: "Query: 'Which accounts have contracts expiring soon?'" },
     ],
-    example: "Which accounts have contracts expiring soon?",
   },
   {
     icon: Handshake,
     tab: "Partner Management",
     description: "Explore partner hierarchies, channel relationships, and reseller structures.",
     bullets: [
-      "Map partner networks",
-      "See territory assignments",
-      "Track partner relationships",
+      { icon: Zap, text: "Map partner networks" },
+      { icon: CheckCircle, text: "See territory assignments" },
+      { icon: BarChart3, text: "Track partner relationships" },
+      { icon: Search, text: "Visualize reseller organization structures" },
     ],
-    example: "Visualize reseller organization structures.",
   },
   {
     icon: Puzzle,
     tab: "Custom Objects",
     description: "Build custom visualizations for any object relationship in your org.",
     bullets: [
-      "Map project hierarchies",
-      "Visualize custom business structures",
-      "Explore custom lookup relationships",
+      { icon: Zap, text: "Map project hierarchies" },
+      { icon: CheckCircle, text: "Visualize custom business structures" },
+      { icon: BarChart3, text: "Explore custom lookup relationships" },
+      { icon: Search, text: "Show any custom object network" },
     ],
-    example: "Show any custom object network.",
   },
 ];
 
@@ -120,10 +121,10 @@ const UseCasesSection = () => {
             <button
               key={uc.tab}
               onClick={() => setActive(i)}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                 i === active
                   ? "bg-primary text-primary-foreground shadow-md"
-                  : "bg-muted text-text-body hover:bg-accent"
+                  : "bg-card text-text-body border border-border hover:border-primary/30 hover:text-primary"
               }`}
             >
               <uc.icon className="h-4 w-4" />
@@ -133,35 +134,31 @@ const UseCasesSection = () => {
         </div>
 
         {/* Content */}
-        <div className="bg-card rounded-2xl border border-border p-8 lg:p-12 shadow-sm">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-                  <current.icon className="h-5 w-5 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold font-heading">{current.tab}</h3>
+        <div className="grid lg:grid-cols-2 gap-10 items-start">
+          {/* Left: text */}
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="icon-box-lg">
+                <current.icon className="h-6 w-6 text-primary" />
               </div>
-              <p className="text-text-body mb-6 leading-relaxed">{current.description}</p>
-              <ul className="space-y-3 mb-6">
-                {current.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-3 text-sm text-text-body">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <div className="bg-accent/50 rounded-lg p-4 border border-primary/20">
-                <p className="text-sm text-primary font-medium italic">"{current.example}"</p>
-              </div>
+              <h3 className="text-2xl font-bold font-heading">{current.tab}</h3>
             </div>
+            <p className="text-text-body mb-8 leading-relaxed text-lg">{current.description}</p>
+            <div className="space-y-4">
+              {current.bullets.map((b) => (
+                <div key={b.text} className="flex items-start gap-3">
+                  <b.icon className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                  <p className="text-sm text-text-body leading-relaxed">{b.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-            {/* Placeholder visualization */}
-            <div className="bg-muted rounded-xl p-8 flex items-center justify-center min-h-[250px]">
-              <div className="text-center">
-                <current.icon className="h-16 w-16 text-primary/30 mx-auto mb-4" />
-                <p className="text-sm text-text-muted font-medium">{current.tab} Visualization</p>
-              </div>
+          {/* Right: placeholder visualization */}
+          <div className="bg-section-alt rounded-2xl p-10 flex items-center justify-center min-h-[320px] border border-border/50">
+            <div className="text-center">
+              <current.icon className="h-20 w-20 text-primary/20 mx-auto mb-4" />
+              <p className="text-base text-text-muted font-medium">{current.tab} Visualization</p>
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
-import logoIcon from "@/assets/logo-icon.png";
+import logo from "@/assets/logo.webp";
 
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Features", href: "#features" },
-  { label: "Use Cases", href: "#use-cases" },
   { label: "Benefits", href: "#benefits" },
+  { label: "Use Cases", href: "#use-cases" },
   { label: "Contact Us", href: "#contact" },
 ];
 
@@ -15,13 +15,10 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-      <div className="container-narrow flex items-center justify-between h-16 px-4 md:px-8">
+      <div className="container-narrow flex items-center justify-between h-16 md:h-[72px] px-4 md:px-8">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2">
-          <img src={logoIcon} alt="RelationshipVista" className="h-8 w-8" />
-          <span className="font-heading font-bold text-lg text-text-heading">
-            Relationship<span className="text-primary">Vista</span>
-          </span>
+        <a href="#home" className="flex items-center gap-2 shrink-0">
+          <img src={logo} alt="RelationshipVista" className="h-10 md:h-12 w-auto" />
         </a>
 
         {/* Desktop Nav */}
@@ -38,11 +35,8 @@ const Navbar = () => {
         </div>
 
         {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary-dark transition-colors"
-          >
+        <div className="hidden md:flex items-center">
+          <a href="#contact" className="btn-cta text-sm px-5 py-2.5">
             Book a Demo <ArrowRight className="h-4 w-4" />
           </a>
         </div>
@@ -72,7 +66,7 @@ const Navbar = () => {
           ))}
           <a
             href="#contact"
-            className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm w-full justify-center"
+            className="btn-cta text-sm w-full justify-center mt-2"
             onClick={() => setMobileOpen(false)}
           >
             Book a Demo <ArrowRight className="h-4 w-4" />

@@ -24,7 +24,7 @@ const ContactSection = () => {
           {/* Form */}
           <div className="lg:col-span-3">
             {submitted ? (
-              <div className="bg-accent rounded-xl p-8 text-center">
+              <div className="bg-accent rounded-2xl p-10 text-center border border-primary/20">
                 <p className="text-primary font-bold text-xl mb-2">Thank you!</p>
                 <p className="text-text-body">We'll get back to you shortly.</p>
               </div>
@@ -44,7 +44,7 @@ const ContactSection = () => {
                       required
                       value={form[key as keyof typeof form]}
                       onChange={(e) => setForm({ ...form, [key]: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
+                      className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary transition-colors"
                     />
                   </div>
                 ))}
@@ -54,56 +54,54 @@ const ContactSection = () => {
                     rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary transition-colors resize-none"
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary-dark transition-colors"
-                >
+                <button type="submit" className="btn-cta w-full justify-center">
                   Send Message
                 </button>
-                <p className="text-xs text-text-muted">
+                <p className="text-xs text-text-muted leading-relaxed">
                   We're committed to your privacy. RelationshipVista uses the information you provide
-                  to contact you about relevant content, products, and services.
+                  to contact you about relevant content, products, and services. You may unsubscribe
+                  from these communications at any time. For information, check out our Privacy Policy.
                 </p>
               </form>
             )}
           </div>
 
           {/* Contact Info */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6">
             <div>
               <h3 className="text-xl font-bold font-heading mb-2">Quick Contact</h3>
-              <p className="text-sm text-text-body">
+              <p className="text-sm text-text-body leading-relaxed">
                 Get in touch with a representative to see a demo or simply learn more about the product.
               </p>
             </div>
 
-            <div className="space-y-5">
-              <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <p className="text-sm text-text-body">
-                  2040 Martin Ave<br />
-                  Santa Clara, CA 95050<br />
-                  United States
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-primary shrink-0" />
-                <p className="text-sm text-text-body">1.669.777.6838</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-primary shrink-0" />
-                <p className="text-sm text-text-body">info@ardira.com</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <HelpCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <p className="text-sm text-text-body">
-                  For customer support, email us at<br />
-                  <span className="font-medium">support@ardira.com</span>
-                </p>
-              </div>
+            <div className="space-y-4">
+              {[
+                {
+                  icon: MapPin,
+                  content: (
+                    <>2040 Martin Ave<br />Santa Clara, CA 95050<br />United States</>
+                  ),
+                },
+                { icon: Phone, content: "1.669.777.6838" },
+                { icon: Mail, content: "info@ardira.com" },
+                {
+                  icon: HelpCircle,
+                  content: (
+                    <><span className="font-semibold">For customer support,</span> email us directly at<br /><span className="text-primary font-medium">support@ardira.com</span></>
+                  ),
+                },
+              ].map(({ icon: Icon, content }, i) => (
+                <div key={i} className="flex items-start gap-3 p-4 rounded-xl border border-border/60 bg-card">
+                  <div className="icon-box shrink-0">
+                    <Icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <p className="text-sm text-text-body leading-relaxed">{content}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

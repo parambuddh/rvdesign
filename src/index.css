@@ -7,45 +7,49 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 20%;
+    --foreground: 210 11% 25%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 20%;
+    --card-foreground: 210 11% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 20%;
+    --popover-foreground: 210 11% 25%;
 
-    --primary: 122 39% 49%;
+    /* Blue/teal primary like AgentVista */
+    --primary: 195 85% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 207 90% 54%;
-    --secondary-foreground: 0 0% 100%;
+    /* Green for CTAs */
+    --cta: 152 55% 45%;
+    --cta-foreground: 0 0% 100%;
+    --cta-dark: 152 55% 38%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 11% 25%;
 
-    --accent: 122 39% 95%;
-    --accent-foreground: 122 39% 30%;
+    --muted: 210 20% 97%;
+    --muted-foreground: 210 10% 55%;
+
+    --accent: 195 85% 95%;
+    --accent-foreground: 195 85% 35%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 122 39% 49%;
+    --border: 210 20% 92%;
+    --input: 210 20% 92%;
+    --ring: 195 85% 45%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Custom tokens */
-    --primary-dark: 122 39% 40%;
-    --section-alt: 0 0% 97.5%;
-    --text-heading: 0 0% 15%;
-    --text-body: 0 0% 30%;
-    --text-muted: 0 0% 55%;
-    --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
-    --shadow-card-hover: 0 8px 30px rgba(0,0,0,0.1);
-    --gradient-hero: linear-gradient(135deg, hsl(122 39% 95%) 0%, hsl(207 90% 95%) 100%);
-    --gradient-cta: linear-gradient(135deg, hsl(122 39% 49%) 0%, hsl(122 39% 40%) 100%);
+    /* Section backgrounds */
+    --section-alt: 210 25% 97.5%;
+    --section-hero: 200 40% 97%;
+
+    /* Text hierarchy */
+    --text-heading: 210 15% 18%;
+    --text-body: 210 10% 40%;
+    --text-muted: 210 8% 58%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -86,13 +90,43 @@
     background-color: hsl(var(--section-alt));
   }
 
+  .section-hero {
+    background-color: hsl(var(--section-hero));
+  }
+
   .container-narrow {
     @apply max-w-7xl mx-auto;
   }
 
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  .btn-cta {
+    background-color: hsl(var(--cta));
+    color: hsl(var(--cta-foreground));
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-base transition-all duration-200 shadow-sm;
+  }
+
+  .btn-cta:hover {
+    background-color: hsl(var(--cta-dark));
+    @apply shadow-md;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-base border-2 transition-all duration-200;
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary));
+  }
+
+  .btn-outline:hover {
+    background-color: hsl(var(--primary) / 0.08);
+  }
+
+  .icon-box {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center;
+    background-color: hsl(var(--accent));
+  }
+
+  .icon-box-lg {
+    @apply w-14 h-14 rounded-xl flex items-center justify-center;
+    background-color: hsl(var(--accent));
   }
 }
 
