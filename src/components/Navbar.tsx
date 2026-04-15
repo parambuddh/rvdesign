@@ -2,18 +2,22 @@ import { useState, useEffect } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import logo from "@/assets/logo.webp";
 
+import { Link, useLocation } from "react-router-dom";
+
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Features", href: "#features" },
-  { label: "Benefits", href: "#benefits" },
-  { label: "Use Cases", href: "#use-cases" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Features", href: "/#features" },
+  { label: "Benefits", href: "/#benefits" },
+  { label: "Use Cases", href: "/#use-cases" },
+  { label: "User Guide", href: "/user-guide" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("#home");
+  const [activeSection, setActiveSection] = useState("/");
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,22 +50,37 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`text-[15px] font-medium transition-all duration-200 relative ${
-                activeSection === link.href
-                  ? "text-primary"
-                  : "text-text-body hover:text-primary"
-              }`}
-            >
-              {link.label}
-              {activeSection === link.href && (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary" />
-              )}
-            </a>
-          ))}
+            {link.href.startsWith("/") && !link.href.includes("#") ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={`text-[15px] font-medium transition-all duration-200 relative ${
+                  location.pathname === link.href
+                    ? "text-primary"
+                    : "text-text-body hover:text-primary"
+                }`}
+              >
+                {link.label}
+                {location.pathname === link.href && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary" />
+                )}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`text-[15px] font-medium transition-all duration-200 relative ${
+                  activeSection === link.href
+                    ? "text-primary"
+                    : "text-text-body hover:text-primary"
+                }`}
+              >
+                {link.label}
+                {activeSection === link.href && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary" />
+                )}
+              </a>
+            )}
         </div>
 
         <div className="hidden md:flex items-center">
@@ -82,16 +101,29 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border px-4 pb-4 shadow-xl">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`block py-3 text-[15px] font-medium ${
-                activeSection === link.href ? "text-primary" : "text-text-body"
-              }`}
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </a>
+            link.href.startsWith("/") && !link.href.includes("#") ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={`block py-3 text-[15px] font-medium ${
+                  location.pathname === link.href ? "text-primary" : "text-text-body"
+                }`}
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`block py-3 text-[15px] font-medium ${
+                  activeSection === link.href ? "text-primary" : "text-text-body"
+                }`}
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </a>
+            )
           ))}
           <a href="#contact" className="btn-cta text-sm w-full justify-center mt-3" onClick={() => setMobileOpen(false)}>
             Book a Demo <ArrowRight className="h-4 w-4" />
