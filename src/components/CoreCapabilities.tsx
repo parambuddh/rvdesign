@@ -2,7 +2,7 @@ import {
   Network, SlidersHorizontal, GitBranch, LayoutList,
   Filter, Smartphone, Eye, Navigation, LayoutTemplate,
 } from "lucide-react";
-import whatIsScreenshot from "@/assets/what-is-screenshot.jpg";
+import heroDashboard from "@/assets/hero-dashboard.jpg";
 
 const capabilities = [
   {
@@ -56,20 +56,29 @@ const CoreCapabilities = () => {
   return (
     <section id="features" className="section-padding section-alt">
       <div className="container-narrow">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-14">
           <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
             Core Capabilities
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold font-heading">
+          <h2 className="text-3xl md:text-[38px] font-extrabold font-heading leading-tight">
             From Scattered Data to Unified Insights
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left: product mockup */}
-          <div className="rounded-2xl overflow-hidden shadow-xl border border-border/50 sticky top-24">
+        {/* AgentVista pattern: Left mockup + Right feature list with numbered steps */}
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          {/* Left: product mockup card - like AgentVista's command prompt card */}
+          <div className="bg-card rounded-2xl shadow-xl border border-border/50 overflow-hidden sticky top-24">
+            <div className="p-5 border-b border-border">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-destructive/60" />
+                <span className="w-3 h-3 rounded-full bg-yellow-400/60" />
+                <span className="w-3 h-3 rounded-full bg-primary/60" />
+                <span className="ml-3 text-xs text-text-muted font-medium">RelationshipVista Dashboard</span>
+              </div>
+            </div>
             <img
-              src={whatIsScreenshot}
+              src={heroDashboard}
               alt="RelationshipVista features overview"
               loading="lazy"
               width={1200}
@@ -78,19 +87,21 @@ const CoreCapabilities = () => {
             />
           </div>
 
-          {/* Right: feature list */}
-          <div className="space-y-1">
-            {capabilities.map((cap) => (
+          {/* Right: feature list - AgentVista pattern with icon + title + desc */}
+          <div className="space-y-2">
+            {capabilities.map((cap, i) => (
               <div
                 key={cap.title}
-                className="flex items-start gap-4 p-4 rounded-xl hover:bg-background transition-colors group"
+                className="flex items-start gap-4 p-4 rounded-xl border border-transparent hover:border-primary/15 hover:bg-primary-light/50 transition-all duration-200 cursor-default group"
               >
-                <div className="icon-box shrink-0 group-hover:bg-primary/10 transition-colors">
+                <div className="icon-box group-hover:bg-primary/10 transition-colors">
                   <cap.icon className="h-5 w-5 text-primary" />
                 </div>
-                <div>
-                  <h3 className="text-base font-bold font-heading mb-1">{cap.title}</h3>
-                  <p className="text-sm text-text-body leading-relaxed">{cap.description}</p>
+                <div className="pt-0.5">
+                  <h3 className="text-[15px] font-bold font-heading text-text-heading mb-1 group-hover:text-primary transition-colors">
+                    {cap.title}
+                  </h3>
+                  <p className="text-sm text-text-muted leading-relaxed">{cap.description}</p>
                 </div>
               </div>
             ))}
