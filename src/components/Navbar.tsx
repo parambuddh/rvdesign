@@ -50,7 +50,8 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-            {link.href.startsWith("/") && !link.href.includes("#") ? (
+          {navLinks.map((link) => (
+            link.href.startsWith("/") && !link.href.includes("#") ? (
               <Link
                 key={link.href}
                 to={link.href}
@@ -80,7 +81,8 @@ const Navbar = () => {
                   <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary" />
                 )}
               </a>
-            )}
+            )
+          ))}
         </div>
 
         <div className="hidden md:flex items-center">
