@@ -26,11 +26,12 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          light: "hsl(var(--primary-light))",
+          dark: "hsl(var(--primary-dark))",
         },
-        cta: {
-          DEFAULT: "hsl(var(--cta))",
-          foreground: "hsl(var(--cta-foreground))",
-          dark: "hsl(var(--cta-dark))",
+        "secondary-blue": {
+          DEFAULT: "hsl(var(--secondary-blue))",
+          light: "hsl(var(--secondary-blue-light))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -61,6 +62,7 @@ export default {
         "text-heading": "hsl(var(--text-heading))",
         "text-body": "hsl(var(--text-body))",
         "text-muted": "hsl(var(--text-muted))",
+        "text-light": "hsl(var(--text-light))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

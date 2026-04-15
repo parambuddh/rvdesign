@@ -4,6 +4,7 @@ import {
   Package, FileText, Handshake, Puzzle,
   Zap, CheckCircle, BarChart3, Search,
 } from "lucide-react";
+import heroDashboard from "@/assets/hero-dashboard.jpg";
 
 const useCases = [
   {
@@ -101,13 +102,13 @@ const UseCasesSection = () => {
   const current = useCases[active];
 
   return (
-    <section id="use-cases" className="section-padding">
+    <section id="use-cases" className="section-padding section-alt">
       <div className="container-narrow">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
             Use Cases
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
+          <h2 className="text-3xl md:text-[38px] font-extrabold font-heading leading-tight mb-4">
             Built for Every Team
           </h2>
           <p className="text-text-body text-lg">
@@ -115,16 +116,16 @@ const UseCasesSection = () => {
           </p>
         </div>
 
-        {/* Tabs */}
+        {/* AgentVista-style horizontal tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {useCases.map((uc, i) => (
             <button
               key={uc.tab}
               onClick={() => setActive(i)}
-              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 border ${
                 i === active
-                  ? "bg-primary text-primary-foreground shadow-md"
-                  : "bg-card text-text-body border border-border hover:border-primary/30 hover:text-primary"
+                  ? "bg-primary text-primary-foreground border-primary shadow-md"
+                  : "bg-card text-text-body border-border hover:border-primary/30 hover:text-primary"
               }`}
             >
               <uc.icon className="h-4 w-4" />
@@ -133,32 +134,36 @@ const UseCasesSection = () => {
           ))}
         </div>
 
-        {/* Content */}
-        <div className="grid lg:grid-cols-2 gap-10 items-start">
-          {/* Left: text */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="icon-box-lg">
-                <current.icon className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-2xl font-bold font-heading">{current.tab}</h3>
-            </div>
-            <p className="text-text-body mb-8 leading-relaxed text-lg">{current.description}</p>
-            <div className="space-y-4">
-              {current.bullets.map((b) => (
-                <div key={b.text} className="flex items-start gap-3">
-                  <b.icon className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                  <p className="text-sm text-text-body leading-relaxed">{b.text}</p>
+        {/* AgentVista-style content: left text + right image */}
+        <div className="bg-card rounded-2xl border border-border/60 shadow-sm overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-0">
+            {/* Left: text content */}
+            <div className="p-8 lg:p-10">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="icon-box-lg">
+                  <current.icon className="h-6 w-6 text-primary" />
                 </div>
-              ))}
+                <h3 className="text-2xl font-bold font-heading">{current.tab}</h3>
+              </div>
+              <p className="text-text-body mb-6 leading-relaxed">{current.description}</p>
+              <div className="space-y-3">
+                {current.bullets.map((b) => (
+                  <div key={b.text} className="flex items-start gap-3">
+                    <b.icon className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <p className="text-sm text-text-body leading-relaxed">{b.text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Right: placeholder visualization */}
-          <div className="bg-section-alt rounded-2xl p-10 flex items-center justify-center min-h-[320px] border border-border/50">
-            <div className="text-center">
-              <current.icon className="h-20 w-20 text-primary/20 mx-auto mb-4" />
-              <p className="text-base text-text-muted font-medium">{current.tab} Visualization</p>
+            {/* Right: image */}
+            <div className="bg-section-alt flex items-center justify-center p-6 lg:p-8 min-h-[300px]">
+              <img
+                src={heroDashboard}
+                alt={`${current.tab} visualization`}
+                loading="lazy"
+                className="rounded-xl shadow-lg border border-border/50 w-full h-auto"
+              />
             </div>
           </div>
         </div>

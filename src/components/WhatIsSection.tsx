@@ -9,7 +9,7 @@ const WhatIsSection = () => {
           <div className="rounded-2xl overflow-hidden shadow-xl border border-border/50">
             <img
               src={whatIsScreenshot}
-              alt="RelationshipVista intelligent relationship visualization interface showcasing multi-level hierarchy mapping and data exploration features"
+              alt="RelationshipVista intelligent relationship visualization interface"
               loading="lazy"
               width={1200}
               height={750}
@@ -18,14 +18,14 @@ const WhatIsSection = () => {
           </div>
 
           {/* Text */}
-          <div className="space-y-6">
+          <div className="space-y-5">
             <p className="text-sm font-semibold tracking-widest uppercase text-primary">
               What is RelationshipVista?
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight font-heading">
+            <h2 className="text-3xl md:text-[36px] font-bold leading-tight font-heading">
               The Intelligent Relationship Visualization Tool Built within Salesforce
             </h2>
-            <div className="space-y-4 text-text-body leading-relaxed">
+            <div className="space-y-4 text-text-body text-[15px] leading-relaxed">
               <p>
                 RelationshipVista is a powerful Lightning Web Component that lives natively
                 inside Salesforce. It lets you instantly visualize and navigate all related
@@ -41,7 +41,7 @@ const WhatIsSection = () => {
                 deeper, and make better-informed decisions — without writing a single line of code.
               </p>
             </div>
-            <p className="text-primary font-semibold italic text-lg border-l-4 border-primary pl-4">
+            <p className="text-primary font-semibold italic text-lg border-l-4 border-primary pl-4 mt-6">
               "Visualize any relationship. Customize any view. Explore any hierarchy."
             </p>
           </div>

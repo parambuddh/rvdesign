@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import logo from "@/assets/logo.webp";
 
@@ -12,32 +12,55 @@ const navLinks = [
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+      // Detect active section
+      const sections = navLinks.map(l => l.href.slice(1));
+      for (const id of sections.reverse()) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 120) {
+          setActiveSection(`#${id}`);
+          break;
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-      <div className="container-narrow flex items-center justify-between h-16 md:h-[72px] px-4 md:px-8">
+    <nav className={`sticky top-0 z-50 bg-background/95 backdrop-blur-md transition-shadow ${scrolled ? "shadow-sm border-b border-border" : ""}`}>
+      <div className="container-narrow flex items-center justify-between h-[70px] px-4 md:px-8">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 shrink-0">
-          <img src={logo} alt="RelationshipVista" className="h-10 md:h-12 w-auto" />
+        <a href="#home" className="flex items-center shrink-0">
+          <img src={logo} alt="RelationshipVista" className="h-9 md:h-11 w-auto" />
         </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Nav - matching AgentVista's centered links with active highlighting */}
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-text-body hover:text-primary transition-colors"
+              className={`text-[15px] font-medium transition-colors ${
+                activeSection === link.href
+                  ? "text-primary"
+                  : "text-text-body hover:text-primary"
+              }`}
             >
               {link.label}
             </a>
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA - AgentVista style rounded button */}
         <div className="hidden md:flex items-center">
-          <a href="#contact" className="btn-cta text-sm px-5 py-2.5">
-            Book a Demo <ArrowRight className="h-4 w-4" />
+          <a href="#contact" className="btn-cta text-sm px-5 py-2.5 rounded-full">
+            Book a Demo
           </a>
         </div>
 
@@ -53,12 +76,14 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-background px-4 pb-4">
+        <div className="md:hidden border-t border-border bg-background px-4 pb-4 shadow-lg">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="block py-3 text-sm font-medium text-text-body hover:text-primary"
+              className={`block py-3 text-[15px] font-medium ${
+                activeSection === link.href ? "text-primary" : "text-text-body"
+              }`}
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
@@ -66,10 +91,10 @@ const Navbar = () => {
           ))}
           <a
             href="#contact"
-            className="btn-cta text-sm w-full justify-center mt-2"
+            className="btn-cta text-sm w-full justify-center mt-2 rounded-full"
             onClick={() => setMobileOpen(false)}
           >
-            Book a Demo <ArrowRight className="h-4 w-4" />
+            Book a Demo
           </a>
         </div>
       )}

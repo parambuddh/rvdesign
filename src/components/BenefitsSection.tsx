@@ -4,32 +4,32 @@ const benefits = [
   {
     icon: Zap,
     title: "Accelerate data exploration",
-    description: "Navigate complex relationships in seconds instead of hours. Eliminate manual record-by-record exploration.",
+    description: "Go from record to complete relationship map in seconds using interactive visual exploration.",
   },
   {
     icon: Users,
     title: "Empower every team",
-    description: "Enable non-technical users to build custom relationship views and explore data independently using natural language.",
+    description: "Enable non-technical users to build, assign, and analyze relationships using natural language.",
   },
   {
     icon: Lightbulb,
     title: "Drive deeper insights",
-    description: "Uncover hidden connections and relationship patterns with visual data mapping across responses, cases, and conversations.",
+    description: "Uncover trends and connection patterns across responses, cases, and conversations with built-in visualization.",
   },
   {
     icon: CheckCircle,
-    title: "Reduce manual work",
-    description: "Stop chasing related records across tabs and list views — see everything in one place with automated visualization.",
+    title: "Close feedback loops faster",
+    description: "Let RelationshipVista detect urgency and trigger follow-ups or CRM actions in real time.",
   },
   {
     icon: Blocks,
-    title: "Support complex structures",
-    description: "Handle one-to-many, many-to-many, and custom junction object relationships seamlessly without any configuration.",
+    title: "Boost data quality and relevance",
+    description: "Dynamically explore relationships with AI-generated clarifying connections and recommendations.",
   },
   {
     icon: Shield,
     title: "Stay secure and compliant",
-    description: "100% native to Salesforce — real-time access, complete security compliance, and zero maintenance overhead.",
+    description: "100% native to Salesforce and designed to meet HIPAA, ISO, SOC, and GDPR standards.",
   },
 ];
 
@@ -37,17 +37,20 @@ const BenefitsSection = () => {
   return (
     <section id="benefits" className="section-padding section-alt">
       <div className="container-narrow">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-14">
           <h2 className="text-3xl md:text-[40px] font-extrabold font-heading leading-tight mb-4">
-            Built for Enterprise. Designed for Everyone.
+            Built for Enterprise. Designed for
+            <br />
+            Everyone.
           </h2>
           <p className="text-text-body text-lg leading-relaxed">
-            Not just a visualization tool. A relationship intelligence layer that powers
-            how your org understands data connections.
+            Not just a visualization tool. A relationship intelligence layer that turns every
+            connection into action inside Salesforce.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* AgentVista-style 3×2 grid with clean cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {benefits.map((b) => (
             <div
               key={b.title}
@@ -56,8 +59,8 @@ const BenefitsSection = () => {
               <div className="icon-box mb-5 group-hover:bg-primary/10 transition-colors">
                 <b.icon className="h-5 w-5 text-primary" />
               </div>
-              <h3 className="text-lg font-bold font-heading mb-3">{b.title}</h3>
-              <p className="text-sm text-text-body leading-relaxed">{b.description}</p>
+              <h3 className="text-lg font-bold font-heading mb-2.5">{b.title}</h3>
+              <p className="text-sm text-text-muted leading-relaxed">{b.description}</p>
             </div>
           ))}
         </div>
