@@ -28,6 +28,7 @@ export default {
           foreground: "hsl(var(--primary-foreground))",
           light: "hsl(var(--primary-light))",
           dark: "hsl(var(--primary-dark))",
+          glow: "hsl(var(--primary-glow))",
         },
         "secondary-blue": {
           DEFAULT: "hsl(var(--secondary-blue))",
