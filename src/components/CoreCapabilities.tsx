@@ -82,9 +82,9 @@ const CoreCapabilities = () => {
               {/* Browser chrome */}
               <div className="px-5 py-3.5 border-b border-border/60 flex items-center gap-3 bg-muted/30">
                 <div className="flex gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-red-400/70" />
-                  <span className="w-3 h-3 rounded-full bg-yellow-400/70" />
-                  <span className="w-3 h-3 rounded-full bg-green-400/70" />
+                  <span className="w-3 h-3 rounded-full bg-destructive/60" />
+                  <span className="w-3 h-3 rounded-full" style={{ background: "hsl(45, 80%, 60%)" }} />
+                  <span className="w-3 h-3 rounded-full bg-primary/60" />
                 </div>
                 <div className="flex-1 mx-4">
                   <div className="bg-background/60 rounded-md px-3 py-1 text-xs text-text-muted font-mono">
