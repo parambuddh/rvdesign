@@ -21,10 +21,6 @@ const faqItems = [
     a: "Yes. RelationshipVista supports all standard and custom objects in Salesforce. It visualizes lookup relationships, reverse lookups, and many-to-many relationships seamlessly.",
   },
   {
-    q: "Is RelationshipVista mobile-friendly?",
-    a: "Yes. The component is fully responsive and works across all devices — desktop, tablet, and mobile.",
-  },
-  {
     q: "How quickly can we get started?",
     a: "Installation is fast. Install the component from AppExchange, drop it on a record page, and you're ready to explore.",
   },

@@ -16,7 +16,7 @@ const HeroSection = () => {
             <RevealOnScroll delay={0}>
               <div className="pill-badge">
                 <span className="w-2 h-2 rounded-full bg-primary" style={{ animation: "pulse-glow 2s infinite" }} />
-                Powered by Salesforce Lightning
+                100% Native Salesforce
               </div>
             </RevealOnScroll>
 
