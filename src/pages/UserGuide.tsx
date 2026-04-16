@@ -458,8 +458,6 @@ const UserGuide = () => {
               </Accordion>
             </RevealOnScroll>
           </div>
-        </section>cordion>
-          </div>
         </section>
       </main>
 
