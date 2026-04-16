@@ -35,7 +35,7 @@ const HeroAnimation = () => {
   const animatedEdges = useMemo(() => edges.filter(([a,b]) => nodes[a].level !== nodes[b].level).slice(0, 8), []);
 
   return (
-    <div className="hero-anim-root relative w-full h-full overflow-hidden bg-transparent font-sans min-h-[400px]">
+    <div className="hero-anim-root relative w-full h-full overflow-visible bg-transparent font-sans min-h-[450px]">
       <style>{`
         .hero-anim-root {
           --forest: #0B3D2E;
@@ -53,8 +53,8 @@ const HeroAnimation = () => {
         .ha-scene { position:relative; z-index:1; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
         .ha-dashboard {
           position:relative;
-          width:clamp(300px, 100%, 1400px);
-          height:clamp(200px, 100%, 800px);
+          width:clamp(300px, 90%, 1400px);
+          height:clamp(200px, 80%, 800px);
           perspective:1200px;
         }
         .ha-dashboard-inner {

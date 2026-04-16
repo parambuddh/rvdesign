@@ -38,13 +38,7 @@ const Footer = () => {
             <div>
               <img src={logo} alt="RelationshipVista" className="h-10 w-auto mb-4" />
               <p className="text-sm leading-relaxed" style={{ color: "hsl(210, 8%, 50%)" }}>
-                The AI Copilot for Relationship Mapping & Visualization –
-                <br />
-                Natively Powered by Salesforce Lightning.
-              </p>
-            </div>
-
-            <div>
+                Transform scattered data into meaningful relationships that are easy to explore, understand, and act on.
               <h4 className="font-heading font-bold text-sm uppercase tracking-wider mb-5" style={{ color: "hsl(0, 0%, 92%)" }}>
                 Quick Links
               </h4>
