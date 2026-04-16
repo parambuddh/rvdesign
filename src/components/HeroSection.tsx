@@ -1,6 +1,7 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
 import heroDashboard from "@/assets/hero-dashboard.png";
 import RevealOnScroll from "./RevealOnScroll";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
@@ -22,9 +23,22 @@ const HeroSection = () => {
 
             <RevealOnScroll delay={0.1}>
               <h1 className="text-[36px] md:text-[44px] lg:text-[52px] font-extrabold leading-[1.1] font-heading tracking-tight">
-                <span className="green-underline">RelationshipVista</span>
+                <span className="relative inline-block z-10">
+                  RelationshipVista
+                  <svg className="absolute -bottom-2 left-0 w-full -z-10" viewBox="0 0 200 12" fill="none">
+                    <motion.path
+                      d="M2 10C50 6 150 6 198 10"
+                      stroke="hsl(var(--primary))" 
+                      strokeWidth="6"
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 0.8, ease: "easeInOut", delay: 0.3 }}
+                    />
+                  </svg>
+                </span>
                 <br />
-                <span className="gradient-text">
+                <span className="gradient-text mt-2 block">
                   for Intelligent Relationship Mapping & Visualization
                 </span>
               </h1>
