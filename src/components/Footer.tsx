@@ -36,7 +36,7 @@ const Footer = () => {
         <div className="container-narrow">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
             <div>
-              <img src={logo} alt="RelationshipVista" className="h-10 w-auto mb-4 brightness-[2]" />
+              <img src={logo} alt="RelationshipVista" className="h-10 w-auto mb-4" />
               <p className="text-sm leading-relaxed" style={{ color: "hsl(210, 8%, 50%)" }}>
                 The AI Copilot for Relationship Mapping & Visualization –
                 <br />

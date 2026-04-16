@@ -8,14 +8,7 @@ const WhatIsSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
           <RevealOnScroll direction="left" className="h-full relative w-full aspect-video lg:aspect-square">
-            <div className="relative group w-full h-full">
-              <div className="rounded-2xl overflow-hidden shadow-xl border border-border/30 transition-transform duration-500 group-hover:scale-[1.02] w-full h-full bg-white relative pt-8 pb-8">
-                <div className="absolute inset-0 z-0 opacity-5 pointer-events-none" />
-                <HeroAnimation />
-              </div>
-              {/* Decorative gradient behind iframe */}
-              <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-primary/5 to-secondary-blue/5 blur-xl" />
-            </div>
+            <HeroAnimation />
           </RevealOnScroll>
 
           {/* Text */}
