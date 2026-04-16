@@ -81,15 +81,13 @@ const UserGuide = () => {
               </div>
             </RevealOnScroll>
           </div>
-        </section>
-
-        {/* Guide Accordions Section */}
+        </sectio        {/* Guide Accordions Section */}
         <section className="px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
-              
-              {/* 1. Get Started (NEW) */}
-              <RevealOnScroll delay={0.1}>
+            <RevealOnScroll delay={0.3}>
+              <Accordion type="single" collapsible className="space-y-4">
+                
+                {/* 1. Get Started (NEW) */}
                 <AccordionItem value="get-started" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -115,10 +113,8 @@ const UserGuide = () => {
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 2. Key Features */}
-              <RevealOnScroll delay={0.15}>
+                {/* 2. Key Features */}
                 <AccordionItem value="key-features" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -150,10 +146,8 @@ const UserGuide = () => {
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 3. Why RelationshipVista? (NEW) */}
-              <RevealOnScroll delay={0.2}>
+                {/* 3. Why RelationshipVista? (NEW) */}
                 <AccordionItem value="why-rvc" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -182,10 +176,8 @@ const UserGuide = () => {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 4. Ardira RelationshipVista Component */}
-              <RevealOnScroll delay={0.25}>
+                {/* 4. Ardira RelationshipVista Component */}
                 <AccordionItem value="component-setup" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -207,10 +199,8 @@ const UserGuide = () => {
                     <p className="text-sm">After adding the component, ensure that you <strong>Save and Activate</strong> the page. If added to an Account record, it will immediately enable exploration of all related records.</p>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 5. RVC Component Properties (Expanded) */}
-              <RevealOnScroll delay={0.3}>
+                {/* 5. RVC Component Properties (Expanded) */}
                 <AccordionItem value="properties" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -247,10 +237,8 @@ const UserGuide = () => {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 6. Relationship Views ("R-Views") */}
-              <RevealOnScroll delay={0.35}>
+                {/* 6. Relationship Views ("R-Views") */}
                 <AccordionItem value="r-views" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -280,10 +268,8 @@ const UserGuide = () => {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 7. Sample Data (NEW) */}
-              <RevealOnScroll delay={0.4}>
+                {/* 7. Sample Data (NEW) */}
                 <AccordionItem value="sample-data" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -300,10 +286,8 @@ const UserGuide = () => {
                     </ol>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 8. Toolbar Actions (Expanded) */}
-              <RevealOnScroll delay={0.45}>
+                {/* 8. Toolbar Actions (Expanded) */}
                 <AccordionItem value="toolbar" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -332,10 +316,8 @@ const UserGuide = () => {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 9. Setup & Advanced Configuration (Expanded) */}
-              <RevealOnScroll delay={0.5}>
+                {/* 9. Setup & Advanced Configuration (Expanded) */}
                 <AccordionItem value="configuration" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -363,10 +345,8 @@ const UserGuide = () => {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 10. Creating Records (NEW) */}
-              <RevealOnScroll delay={0.55}>
+                {/* 10. Creating Records (NEW) */}
                 <AccordionItem value="create-records" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -384,10 +364,8 @@ const UserGuide = () => {
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 11. Use Cases (Full PDF Details) */}
-              <RevealOnScroll delay={0.6}>
+                {/* 11. Use Cases (Full PDF Details) */}
                 <AccordionItem value="use-cases" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -431,10 +409,8 @@ const UserGuide = () => {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 12. Icons & Styling (Full URL Format) */}
-              <RevealOnScroll delay={0.65}>
+                {/* 12. Icons & Branding (Full URL Format) */}
                 <AccordionItem value="styling" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -456,10 +432,8 @@ const UserGuide = () => {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
 
-              {/* 13. FAQ & Support */}
-              <RevealOnScroll delay={0.7}>
+                {/* 13. FAQ & Support */}
                 <AccordionItem value="faq" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -479,9 +453,10 @@ const UserGuide = () => {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </RevealOnScroll>
-
-            </Accordion>
+              </Accordion>
+            </RevealOnScroll>
+          </div>
+        </section>cordion>
           </div>
         </section>
       </main>

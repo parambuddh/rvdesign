@@ -51,10 +51,11 @@ const FAQSection = () => {
           </div>
         </RevealOnScroll>
 
-        <Accordion type="single" collapsible className="space-y-3">
-          {faqs.map((faq, i) => (
-            <RevealOnScroll key={i} delay={i * 0.05}>
+        <RevealOnScroll delay={0.2}>
+          <Accordion type="single" collapsible className="space-y-3">
+            {faqs.map((faq, i) => (
               <AccordionItem
+                key={i}
                 value={`faq-${i}`}
                 className="premium-card !rounded-xl px-6 data-[state=open]:!shadow-lg data-[state=open]:!border-primary/20 !transition-all overflow-hidden"
               >
@@ -65,9 +66,9 @@ const FAQSection = () => {
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
-            </RevealOnScroll>
-          ))}
-        </Accordion>
+            ))}
+          </Accordion>
+        </RevealOnScroll>
       </div>
     </section>
   );
