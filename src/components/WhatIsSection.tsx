@@ -1,4 +1,3 @@
-import whatIsScreenshot from "@/assets/what-is-screenshot.png";
 import RevealOnScroll from "./RevealOnScroll";
 
 const WhatIsSection = () => {
@@ -7,19 +6,17 @@ const WhatIsSection = () => {
       <div className="container-narrow">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
-          <RevealOnScroll direction="left">
-            <div className="relative group">
-              <div className="rounded-2xl overflow-hidden shadow-xl border border-border/30 transition-transform duration-500 group-hover:scale-[1.02]">
-                <img
-                  src={whatIsScreenshot}
-                  alt="RelationshipVista visualization interface"
-                  loading="lazy"
-                  width={1200}
-                  height={750}
-                  className="w-full h-auto"
+          <RevealOnScroll direction="left" className="h-full relative w-full aspect-video lg:aspect-square">
+            <div className="relative group w-full h-full">
+              <div className="rounded-2xl overflow-hidden shadow-xl border border-border/30 transition-transform duration-500 group-hover:scale-[1.02] w-full h-full bg-white">
+                <iframe
+                  src="/hero-animation.html"
+                  title="Interactive Map Demo"
+                  className="w-full h-full border-0 pointer-events-none"
+                  style={{ minHeight: "400px" }}
                 />
               </div>
-              {/* Decorative gradient behind image */}
+              {/* Decorative gradient behind iframe */}
               <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-primary/5 to-secondary-blue/5 blur-xl" />
             </div>
           </RevealOnScroll>
