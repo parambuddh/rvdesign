@@ -261,7 +261,7 @@ export default function FeaturesAnimation() {
                         const lines = n.label.split('\n');
 
                         return (
-                            <g key={`node-${nObj.id}`} style={{ transformOrigin: \`\${n.x}px \${n.y}px\`, animation: \`popIn 0.45s cubic-bezier(0.34,1.15,0.64,1) \${nObj.animDelay}ms both\` }}>
+                            <g key={`node-${nObj.id}`} style={{ transformOrigin: `${n.x}px ${n.y}px`, animation: `popIn 0.45s cubic-bezier(0.34,1.15,0.64,1) ${nObj.animDelay}ms both` }}>
                                 <circle cx={n.x} cy={n.y} r={n.r} fill={n.bg} stroke={n.border} strokeWidth={n.type === 'root' ? 2 : 1.2} filter={n.type === 'root' ? 'url(#shadow-md)' : 'url(#shadow-sm)'} />
                                 
                                 {n.type === 'root' || n.type === 'mid' ? (
