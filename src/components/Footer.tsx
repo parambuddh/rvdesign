@@ -37,8 +37,8 @@ const Footer = () => {
           <div className="flex gap-12 mb-10 justify-between">
             {/* Logo and Description */}
             <div style={{ width: "30%" }}>
-              <img src={logo} alt="RelationshipVista" className="h-16 w-auto mb-4 brightness-[2]" />
-              <p className="text-base leading-relaxed" style={{ color: "white" }}>
+              <img src={logo} alt="RelationshipVista" className="h-16 w-auto mb-4" />
+              <p className="text-base leading-relaxed" style={{ color: "hsl(210, 8%, 65%)" }}>
                 Turn complex relationships into clear, actionable insights your team can explore and understand instantly Natively within Salesforce.
               </p>
             </div>
