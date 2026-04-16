@@ -5,6 +5,7 @@ import {
   Zap, CheckCircle, BarChart3, Search,
 } from "lucide-react";
 import RevealOnScroll from "./RevealOnScroll";
+import CoreCapabilitiesAnimation from "./CoreCapabilitiesAnimation";
 
 const useCases = [
   {
@@ -65,6 +66,12 @@ const UseCasesSection = () => {
             <p className="text-muted-foreground text-base md:text-lg">
               From AI-powered survey creation to real-time sentiment analysis — AgentVista covers the entire feedback lifecycle.
             </p>
+          </div>
+        </RevealOnScroll>
+
+        <RevealOnScroll delay={100}>
+          <div className="max-w-4xl mx-auto mb-16 px-4 md:px-0">
+            <CoreCapabilitiesAnimation />
           </div>
         </RevealOnScroll>
 
