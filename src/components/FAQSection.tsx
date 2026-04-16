@@ -66,7 +66,7 @@ const FAQs = () => {
               <button 
                 type="button"
                 onClick={() => toggleFAQ(i)}
-                className="w-full text-left px-6 py-5 flex items-center justify-between hover:bg-sky-50/20 transition-colors group cursor-pointer touch-manipulation"
+                className="w-full text-left px-6 py-5 flex items-center justify-between hover:bg-sky-50/20 transition-colors group cursor-pointer touch-manipulation relative z-10 pointer-events-auto"
                 aria-expanded={activeIndex === i}
               >
                 <span className={cn(

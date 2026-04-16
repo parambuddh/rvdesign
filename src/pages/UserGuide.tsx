@@ -39,7 +39,7 @@ const GuideAccordionItem = ({
       <button 
         type="button"
         onClick={onClick}
-        className="w-full text-left px-6 py-5 flex items-center justify-between hover:bg-sky-50/20 transition-colors group cursor-pointer touch-manipulation"
+        className="w-full text-left px-6 py-5 flex items-center justify-between hover:bg-sky-50/20 transition-colors group cursor-pointer touch-manipulation relative z-10 pointer-events-auto"
       >
         <div className="flex items-center gap-3">
           <Icon className="h-5 w-5 text-primary" />
