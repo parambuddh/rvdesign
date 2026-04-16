@@ -3,34 +3,34 @@ import { ChevronDown } from "lucide-react";
 import RevealOnScroll from "./RevealOnScroll";
 import { cn } from "@/lib/utils";
 
-const faqs = [
+const faqItems = [
   {
     q: "Is RelationshipVista 100% native to Salesforce?",
-    a: "Yes. RelationshipVista is built as a Lightning Web Component that lives entirely within Salesforce. No external tools, integrations, or data syncing required. Everything runs natively, providing real-time access and complete security compliance.",
+    a: "Yes. RelationshipVista is built as a Lightning Web Component that lives entirely within Salesforce. No external tools, integrations, or data syncing required.",
   },
   {
     q: "Do I need technical skills to use RelationshipVista?",
-    a: "No. RelationshipVista is designed for everyone. Users can explore relationships, apply filters, and create custom views using an intuitive, visual interface. Your admins can configure the component, but end users need zero technical knowledge.",
+    a: "No. RelationshipVista is designed for everyone. Users can explore relationships, apply filters, and create custom views using an intuitive, visual interface.",
   },
   {
     q: "Can I customize the visualizations for my organization's needs?",
-    a: "Absolutely. You can create custom Relationship Views (R-Views) based on any fields in your objects. Filter, group, and organize relationships exactly how your team needs them. Or use pre-built configurations for common scenarios.",
+    a: "Absolutely. You can create custom Relationship Views (R-Views) based on any fields in your objects. Filter, group, and organize relationships exactly how your team needs them.",
   },
   {
     q: "Does RelationshipVista work with custom objects?",
-    a: "Yes. RelationshipVista supports all standard and custom objects in Salesforce. It visualizes lookup relationships, reverse lookups, and many-to-many relationships through junction objects seamlessly.",
+    a: "Yes. RelationshipVista supports all standard and custom objects in Salesforce. It visualizes lookup relationships, reverse lookups, and many-to-many relationships seamlessly.",
   },
   {
     q: "Is RelationshipVista mobile-friendly?",
-    a: "Yes. The component is fully responsive and works across all devices — desktop, tablet, and mobile. Your users can explore relationships wherever they are.",
+    a: "Yes. The component is fully responsive and works across all devices — desktop, tablet, and mobile.",
   },
   {
     q: "How quickly can we get started?",
-    a: "Installation is fast. Install the component from AppExchange, drop it on a record page, and you're ready to explore. No complex configuration needed, though customization options are available if you want them.",
+    a: "Installation is fast. Install the component from AppExchange, drop it on a record page, and you're ready to explore.",
   },
 ];
 
-const FAQSection = () => {
+const FAQs = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -55,7 +55,7 @@ const FAQSection = () => {
         </RevealOnScroll>
 
         <div className="space-y-4">
-          {faqs.map((faq, i) => (
+          {faqItems.map((faq, i) => (
             <div 
               key={i} 
               className={cn(
@@ -64,8 +64,9 @@ const FAQSection = () => {
               )}
             >
               <button 
+                type="button"
                 onClick={() => toggleFAQ(i)}
-                className="w-full text-left px-6 py-5 flex items-center justify-between hover:bg-sky-50/30 transition-colors group"
+                className="w-full text-left px-6 py-5 flex items-center justify-between hover:bg-sky-50/20 transition-colors group cursor-pointer touch-manipulation"
                 aria-expanded={activeIndex === i}
               >
                 <span className={cn(
@@ -85,7 +86,7 @@ const FAQSection = () => {
                 activeIndex === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
               )}>
                 <div className="overflow-hidden">
-                  <div className="px-6 pb-6 text-text-body leading-relaxed border-t border-sky-50 pt-4 text-[15px]">
+                  <div className="px-6 pb-6 text-text-body leading-relaxed border-t border-sky-50 pt-5 text-[15px]">
                     {faq.a}
                   </div>
                 </div>
@@ -98,4 +99,4 @@ const FAQSection = () => {
   );
 };
 
-export default FAQSection;
+export default FAQs;
