@@ -1,10 +1,7 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import RevealOnScroll from "./RevealOnScroll";
+import { cn } from "@/lib/utils";
 
 const faqs = [
   {
@@ -34,14 +31,20 @@ const faqs = [
 ];
 
 const FAQSection = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
   return (
-    <section className="section-padding section-alt relative overflow-hidden">
+    <section className="section-padding section-alt relative overflow-hidden" id="faq">
       <div className="absolute inset-0 gradient-mesh opacity-20" />
 
       <div className="container-narrow max-w-3xl relative z-10">
         <RevealOnScroll>
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-[38px] font-extrabold font-heading mb-4">
+            <h2 className="text-3xl md:text-[38px] font-extrabold font-heading mb-4 text-text-heading">
               Frequently Asked Questions
             </h2>
             <p className="text-text-body text-lg">
@@ -51,22 +54,45 @@ const FAQSection = () => {
           </div>
         </RevealOnScroll>
 
-        <Accordion type="single" collapsible className="space-y-3">
+        <div className="space-y-4">
           {faqs.map((faq, i) => (
-            <AccordionItem
-              key={i}
-              value={`faq-${i}`}
-              className="premium-card !rounded-xl overflow-hidden data-[state=open]:!shadow-lg data-[state=open]:!border-primary/20 !transition-all"
+            <div 
+              key={i} 
+              className={cn(
+                "premium-card bg-white border-sky-100 shadow-sm overflow-hidden transition-all duration-300",
+                activeIndex === i && "shadow-md border-primary/20"
+              )}
             >
-              <AccordionTrigger className="text-left font-semibold text-text-heading hover:text-primary px-6 py-5 text-[15px] hover:no-underline">
-                {faq.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-text-body leading-relaxed px-6 pb-5 text-[15px]">
-                {faq.a}
-              </AccordionContent>
-            </AccordionItem>
+              <button 
+                onClick={() => toggleFAQ(i)}
+                className="w-full text-left px-6 py-5 flex items-center justify-between hover:bg-sky-50/30 transition-colors group"
+                aria-expanded={activeIndex === i}
+              >
+                <span className={cn(
+                  "text-base md:text-[17px] font-bold text-text-heading group-hover:text-primary transition-colors pr-4",
+                  activeIndex === i && "text-primary"
+                )}>
+                  {faq.q}
+                </span>
+                <ChevronDown className={cn(
+                  "h-5 w-5 text-text-muted shrink-0 transition-transform duration-300",
+                  activeIndex === i && "rotate-180 text-primary"
+                )} />
+              </button>
+              
+              <div className={cn(
+                "grid transition-all duration-300 ease-in-out",
+                activeIndex === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              )}>
+                <div className="overflow-hidden">
+                  <div className="px-6 pb-6 text-text-body leading-relaxed border-t border-sky-50 pt-4 text-[15px]">
+                    {faq.a}
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
-        </Accordion>
+        </div>
       </div>
     </section>
   );
