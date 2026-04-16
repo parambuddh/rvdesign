@@ -1,0 +1,336 @@
+import React, { useMemo } from 'react';
+
+const levelColors: Record<number, string> = {
+  1: '#7FFF00',
+  2: '#4A7C9B',
+  3: '#1A7A56',
+  4: 'rgba(0,0,0,0.4)',
+  5: '#FEBC2E',
+};
+
+const nodes = [
+  {id:0,x:500,y:80,r:28,level:1,label:'Enterprise'},
+  {id:1,x:250,y:200,r:22,level:2}, {id:2,x:500,y:200,r:22,level:2}, {id:3,x:750,y:200,r:22,level:2},
+  {id:4,x:130,y:330,r:17,level:3}, {id:5,x:280,y:330,r:17,level:3}, {id:6,x:420,y:330,r:17,level:3}, {id:7,x:580,y:330,r:17,level:3}, {id:8,x:700,y:330,r:17,level:3}, {id:9,x:850,y:330,r:17,level:3},
+  {id:10,x:80,y:450,r:13,level:4}, {id:11,x:180,y:450,r:13,level:4}, {id:12,x:260,y:460,r:13,level:4}, {id:13,x:340,y:450,r:13,level:4}, {id:14,x:440,y:460,r:13,level:4}, {id:15,x:540,y:450,r:13,level:4}, {id:16,x:640,y:460,r:13,level:4}, {id:17,x:740,y:450,r:13,level:4}, {id:18,x:830,y:460,r:13,level:4}, {id:19,x:920,y:450,r:13,level:4},
+  {id:20,x:60,y:560,r:9,level:5}, {id:21,x:130,y:570,r:9,level:5}, {id:22,x:200,y:560,r:9,level:5}, {id:23,x:290,y:570,r:9,level:5}, {id:24,x:370,y:560,r:9,level:5}, {id:25,x:460,y:570,r:9,level:5}, {id:26,x:550,y:560,r:9,level:5}, {id:27,x:630,y:570,r:9,level:5}, {id:28,x:720,y:560,r:9,level:5}, {id:29,x:800,y:570,r:9,level:5}, {id:30,x:880,y:560,r:9,level:5}, {id:31,x:950,y:570,r:9,level:5},
+];
+
+const edges = [
+  [0,1],[0,2],[0,3], [1,4],[1,5],[2,6],[2,7],[3,8],[3,9],
+  [4,10],[4,11],[5,12],[5,13],[6,14],[6,15],[7,16],[7,17],[8,18],[9,19],        
+  [10,20],[10,21],[11,22],[12,23],[13,24],[14,25],[15,26],[16,27],[17,28],[18,29],[19,30],[19,31],
+  [1,2],[2,3],[5,6],[7,8],[12,14],[16,18]
+];
+
+const HeroAnimation = () => {
+  const particles = useMemo(() => Array.from({ length: 30 }).map((_, i) => ({
+    id: i,
+    left: Math.random() * 100 + '%',
+    top: Math.random() * 100 + '%',
+    animationDelay: Math.random() * 4 + 's',
+    animationDuration: (3 + Math.random() * 3) + 's',
+  })), []);
+
+  const animatedEdges = useMemo(() => edges.filter(([a,b]) => nodes[a].level !== nodes[b].level).slice(0, 8), []);
+
+  return (
+    <div className="hero-anim-root relative w-full h-full overflow-hidden bg-transparent font-sans min-h-[400px]">
+      <style>{`
+        .hero-anim-root {
+          --forest: #0B3D2E;
+          --forest-mid: #14563F;
+          --forest-light: #1A7A56;
+          --steel: #4A7C9B;
+          --steel-light: #6BA3C7;
+          --neon: #7FFF00;
+          --neon-soft: rgba(127,255,0,0.6);
+          --glass: rgba(255,255,255,0.85);
+          --glass-border: rgba(0,0,0,0.1);
+          --glass-strong: rgba(255,255,255,0.95);
+        }
+        
+        .ha-scene { position:relative; z-index:1; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+        .ha-dashboard {
+          position:relative;
+          width:clamp(300px, 100%, 1400px);
+          height:clamp(200px, 100%, 800px);
+          perspective:1200px;
+        }
+        .ha-dashboard-inner {
+          width:100%; height:100%;
+          transform:rotateX(4deg) rotateY(-2deg);
+          transform-style:preserve-3d;
+          position:relative;
+        }
+        .ha-glass-panel {
+          position:absolute;
+          background:var(--glass);
+          border:1px solid var(--glass-border);
+          border-radius:clamp(10px, 2vw, 20px);
+          backdrop-filter:blur(24px);
+          -webkit-backdrop-filter:blur(24px);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+          overflow:hidden;
+        }
+        .ha-glass-panel::before {
+          content:''; position:absolute; top:0; left:0; right:0; height:1px;
+          background:linear-gradient(90deg,transparent,rgba(255,255,255,0.8),transparent);
+        }
+
+        .ha-panel-main {
+          top:0; left:5%; width:90%; height:100%;
+          z-index:2;
+          animation:haFloatMain 6s ease-in-out infinite;
+        }
+        @keyframes haFloatMain { 0%,100%{transform:translateY(0) translateZ(0)} 50%{transform:translateY(-8px) translateZ(10px)} }
+
+        .ha-panel-bottom {
+          bottom:0; left:20%; width:clamp(250px, 45%, 400px); height:18%;
+          min-height:70px;
+          z-index:3;
+          transform:translateZ(20px);
+          animation:haFloatBottom 5s ease-in-out infinite;
+        }
+        @keyframes haFloatBottom { 0%,100%{transform:translateZ(20px) translateY(0)} 50%{transform:translateZ(20px) translateY(-6px)} }
+
+        .ha-panel-top-right {
+          top:-3%; right:clamp(1%, 4vw, 5%); width:clamp(160px, 28%, 220px); height:15%;
+          min-height:60px;
+          z-index:3;
+          transform:translateZ(15px);
+          animation:haFloatTopR 6.5s ease-in-out infinite;
+        }
+        @keyframes haFloatTopR { 0%,100%{transform:translateZ(15px) translateY(0)} 50%{transform:translateZ(15px) translateY(-10px)} }
+
+        .ha-node-map { width:100%; height:calc(100% - 40px); min-height: 250px; }
+        .ha-panel-header {
+          padding:clamp(6px, 1vw, 12px) clamp(10px, 1.5vw, 16px);
+          border-bottom:1px solid var(--glass-border);
+          display:flex; align-items:center; gap:8px;
+        }
+        .ha-dot { width:clamp(4px, 1vw, 8px); height:clamp(4px, 1vw, 8px); border-radius:50%; }
+        .ha-dot-r { background:#FF5F57; } .ha-dot-y { background:#FEBC2E; } .ha-dot-g { background:#28C840; }
+        .ha-panel-title {
+          font-size:clamp(8px, 1vw, 11px);
+          color:rgba(0,0,0,0.5);
+          letter-spacing:1px;
+          text-transform:uppercase;
+          margin-left:4px;
+        }
+
+        .ha-badge {
+          position:absolute;
+          background:var(--glass-strong);
+          border:1px solid var(--glass-border);
+          border-radius:clamp(8px, 1.5vw, 12px);
+          backdrop-filter:blur(16px);
+          padding:clamp(6px, 1vw, 10px) clamp(8px, 1.5vw, 16px);
+          display:flex; align-items:center; gap:clamp(6px, 1vw, 10px);
+          z-index:10;
+          animation:haBadgeFloat 5s ease-in-out infinite;
+          transform-style:preserve-3d;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+        }
+        .ha-badge-icon {
+          width:clamp(20px, 3vw, 32px); height:clamp(20px, 3vw, 32px);
+          border-radius:clamp(4px, 1vw, 8px);
+          display:flex; align-items:center; justify-content:center;
+        }
+        .ha-badge-icon svg { width: clamp(12px, 2vw, 16px); height: clamp(12px, 2vw, 16px); }
+        .ha-badge-icon.green { background:rgba(127,255,0,0.15); color:var(--forest-light); }
+        .ha-badge-icon.blue { background:rgba(74,124,155,0.25); color:var(--steel-light); }
+        .ha-badge-label { font-size:clamp(7px, 1vw, 10px); color:rgba(0,0,0,0.45); text-transform:uppercase; letter-spacing:1px; line-height: 1.2; }
+        .ha-badge-value { font-size:clamp(11px, 1.5vw, 16px); color:#0f172a; font-weight:600; line-height: 1.2; }
+
+        /* Responsive Badges */
+        .ha-badge-1 { top:12%; left:clamp(2%, 10vw, 20%); animation-delay:-1s; transform:translateZ(20px); }
+        .ha-badge-2 { bottom:18%; right:clamp(2%, 10vw, 20%); animation-delay:-3s; transform:translateZ(20px); }
+        .ha-badge-3 { top:35%; right:clamp(-2%, 8vw, 15%); animation-delay:-2s; transform:translateZ(30px); }
+        .ha-badge-4 { bottom:30%; left:clamp(-2%, 8vw, 15%); animation-delay:-4s; transform:translateZ(30px); }
+
+        @keyframes haBadgeFloat { 0%, 100%{ transform:translateY(0) translateZ(30px); } 50%{ transform:translateY(-8px) translateZ(30px); } }
+
+        .ha-gauge-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; height:calc(100% - 44px); padding:12px; }
+        .ha-gauge-ring { width:clamp(40px, 8vw, 80px); height:clamp(40px, 8vw, 80px); border-radius:50%; border:3px solid rgba(0,0,0,0.05); position:relative; display:flex; align-items:center; justify-content:center; }
+        .ha-gauge-ring::before {
+          content:''; position:absolute; top:-3px; left:-3px; right:-3px; bottom:-3px;
+          border-radius:50%; border:3px solid transparent; border-top-color:var(--forest-light); border-right-color:var(--forest-light);
+          animation:haSpin 3s linear infinite;
+        }
+        @keyframes haSpin { to{transform:rotate(360deg)} }
+        .ha-gauge-num { font-size:clamp(14px, 2vw, 22px); color:#0f172a; font-weight:700; }
+        .ha-gauge-label { font-size:clamp(7px, 1vw, 9px); color:rgba(0,0,0,0.5); margin-top:clamp(4px, 1vw, 8px); text-transform:uppercase; letter-spacing:1px; }
+
+        .ha-glow-orb { position:absolute; border-radius:50%; filter:blur(40px); opacity:0.1; pointer-events:none; z-index:0; }
+        .ha-glow-1 { width:300px; height:300px; background:var(--forest-light); top:10%; left:20%; animation:haOrbMove1 12s ease-in-out infinite; }
+        .ha-glow-2 { width:250px; height:250px; background:var(--steel); bottom:10%; right:15%; animation:haOrbMove2 15s ease-in-out infinite; }
+        @keyframes haOrbMove1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-30px)} }
+        @keyframes haOrbMove2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-50px,20px)} }
+
+        .ha-scanline {
+          position:absolute; top:0; left:0; width:100%; height:2px;
+          background:linear-gradient(90deg,transparent,rgba(127,255,0,0.3),transparent);
+          opacity:0.25; z-index:20; pointer-events:none;
+          animation:haScanDown 4s linear infinite;
+        }
+        @keyframes haScanDown { 0%{top:0} 100%{top:100%} }
+
+        .ha-particles { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
+        .ha-particle {
+          position:absolute; width:max(2px, 0.2vw); height:max(2px, 0.2vw);
+          background:var(--forest-light); border-radius:50%; opacity:0;
+          animation:haParticleFade 4s ease-in-out infinite;
+        }
+        @keyframes haParticleFade { 0%,100%{opacity:0;transform:translateY(0)} 50%{opacity:0.4;transform:translateY(-20px)} }
+
+        .ha-grid-floor {
+          position:absolute; bottom:-20%; left:-10%; width:120%; height:60%;
+          background: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+          background-size:clamp(20px, 4vw, 60px) clamp(20px, 4vw, 60px);
+          transform:perspective(500px) rotateX(60deg);
+          transform-origin:center bottom; opacity:0.8; z-index:0;
+          mask-image:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+          -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+      `}</style>
+
+      {/* Orbs & Particles */}
+      <div className="ha-glow-orb ha-glow-1" />
+      <div className="ha-glow-orb ha-glow-2" />
+      <div className="ha-particles">
+        {particles.map(p => (
+          <div key={p.id} className="ha-particle" style={{ left: p.left, top: p.top, animationDelay: p.animationDelay, animationDuration: p.animationDuration }} />
+        ))}
+      </div>
+
+      <div className="ha-scene">
+        <div className="ha-dashboard">
+          <div className="ha-grid-floor" />
+          <div className="ha-dashboard-inner">
+
+            {/* Main Panel */}
+            <div className="ha-glass-panel ha-panel-main">
+              <div className="ha-panel-header">
+                <span className="ha-dot ha-dot-r" /><span className="ha-dot ha-dot-y" /><span className="ha-dot ha-dot-g" />
+                <span className="ha-panel-title">Relationship Hierarchy Map</span>
+              </div>
+              <div className="ha-scanline" />
+              <svg className="ha-node-map" viewBox="0 0 1000 680" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <filter id="ha-glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                  {[1,2,3,4,5].map(level => (
+                    <radialGradient key={level} id={`ha-nodeGrad${level}`}>
+                      <stop offset="0%" stopColor={levelColors[level]} stopOpacity="0.9" />
+                      <stop offset="100%" stopColor={levelColors[level]} stopOpacity="0.3" />
+                    </radialGradient>
+                  ))}
+                  {edges.map(([a, b], i) => {
+                    const n1 = nodes[a], n2 = nodes[b];
+                    const isCross = a > 0 && Math.abs(a - b) === 1 && n1.level === n2.level;
+                    if (isCross) return null;
+                    return (
+                      <linearGradient key={i} id={`ha-lineGrad${i}`} x1={n1.x} y1={n1.y} x2={n2.x} y2={n2.y} gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor={levelColors[n1.level] || '#0f172a'} />
+                        <stop offset="100%" stopColor={levelColors[n2.level] || '#0f172a'} />
+                      </linearGradient>
+                    );
+                  })}
+                </defs>
+                
+                {/* Edges */}
+                {edges.map(([a,b], i) => {
+                  const n1 = nodes[a], n2 = nodes[b];
+                  const isCross = a > 0 && Math.abs(a - b) === 1 && n1.level === n2.level;
+                  return (
+                    <line key={i} x1={n1.x} y1={n1.y} x2={n2.x} y2={n2.y} 
+                      stroke={isCross ? 'rgba(74,124,155,0.15)' : `url(#ha-lineGrad${i})`} 
+                      strokeWidth={isCross ? "1" : "1.5"}
+                      strokeDasharray={isCross ? "4,4" : "none"}
+                      opacity={isCross ? "1" : "0.6"} />
+                  )
+                })}
+
+                {/* Animated Edge Pulses */}
+                {animatedEdges.map(([a,b], i) => (
+                  <circle key={`anim${i}`} r="4" fill="var(--forest-light)" filter="url(#ha-glow)" opacity="0.8">
+                     <animateMotion dur={`${2 + (i % 2)}s`} repeatCount="indefinite" begin={`${i * 0.5}s`} path={`M${nodes[a].x},${nodes[a].y} L${nodes[b].x},${nodes[b].y}`} />
+                  </circle>
+                ))}
+
+                {/* Nodes */}
+                {nodes.map(n => (
+                  <g key={n.id}>
+                    <circle cx={n.x} cy={n.y} r={n.r + 8} fill={levelColors[n.level] || '#0f172a'} opacity="0.05" filter="url(#ha-glow)" />
+                    <circle cx={n.x} cy={n.y} r={n.r} fill="rgba(255,255,255,0.5)" stroke={levelColors[n.level] || '#0f172a'} strokeWidth={n.level === 1 ? "2" : "1.5"} strokeOpacity="0.5" />
+                    <circle cx={n.x} cy={n.y} r={n.r * 0.45} fill={`url(#ha-nodeGrad${n.level})`}>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur={`${2 + n.level * 0.5}s`} repeatCount="indefinite" />
+                    </circle>
+                    {n.r > 15 && (
+                      <line x1={n.x - n.r*0.5} y1={n.y - n.r*0.3} x2={n.x + n.r*0.3} y2={n.y + n.r*0.5} stroke="rgba(255,255,255,0.8)" strokeWidth="1" />
+                    )}
+                  </g>
+                ))}
+              </svg>
+            </div>
+
+            {/* Bottom Panel */}
+            <div className="ha-glass-panel ha-panel-bottom">
+              <div style={{ display:'flex', alignItems:'center', height:'100%', padding:'0 clamp(10px, 2vw, 20px)', gap:'clamp(10px, 2vw, 20px)' }}>
+                <div className="ha-gauge-ring"><span className="ha-gauge-num">94</span></div>       
+                <div>
+                  <div className="ha-gauge-label">Connectivity Score</div>
+                  <div style={{ display:'flex', gap:'clamp(8px, 1.5vw, 16px)', marginTop:'clamp(4px, 1vw, 8px)' }}>
+                    <div>
+                      <span style={{ fontSize:'clamp(12px, 1.5vw, 18px)', color:'#0f172a', fontWeight:600 }}>2,847</span><br/>
+                      <span style={{ fontSize:'clamp(7px, 1vw, 9px)', color:'rgba(0,0,0,0.5)' }}>CONNECTIONS</span>
+                    </div>
+                    <div>
+                      <span style={{ fontSize:'clamp(12px, 1.5vw, 18px)', color:'var(--forest-light)', fontWeight:600 }}>156</span><br/>
+                      <span style={{ fontSize:'clamp(7px, 1vw, 9px)', color:'rgba(0,0,0,0.5)' }}>HIERARCHIES</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Top Right Panel */}
+            <div className="ha-glass-panel ha-panel-top-right">
+              <div style={{ display:'flex', alignItems:'center', height:'100%', padding:'0 clamp(8px, 1.5vw, 16px)', gap:'clamp(6px, 1vw, 12px)' }}>
+                <div style={{ width:'clamp(28px, 3vw, 40px)', height:'clamp(28px, 3vw, 40px)', borderRadius:'clamp(6px, 1vw, 10px)', background:'rgba(127,255,0,0.1)', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                  <svg width="clamp(14px, 2vw, 20px)" height="clamp(14px, 2vw, 20px)" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" fill="var(--forest-light)" opacity="0.8"/></svg>
+                </div>
+                <div>
+                  <div style={{ fontSize:'clamp(7px, 1vw, 9px)', color:'rgba(0,0,0,0.4)', textTransform:'uppercase', letterSpacing:'1px' }}>Health Score</div>
+                  <div style={{ fontSize:'clamp(14px, 2vw, 20px)', color:'#0f172a', fontWeight:700 }}>98.2<span style={{ fontSize:'clamp(8px, 1vw, 11px)', color:'var(--forest-light)' }}>%</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Badges */}
+          <div className="ha-badge ha-badge-1">
+            <div className="ha-badge-icon green"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" fill="currentColor"/><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" opacity="0.4"/></svg></div>
+            <div><div className="ha-badge-label">Connectivity</div><div className="ha-badge-value">98.7%</div></div>
+          </div>
+          <div className="ha-badge ha-badge-2">
+            <div className="ha-badge-icon blue"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor"/><rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/><rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/><rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.3"/></svg></div>
+            <div><div className="ha-badge-label">Hierarchy</div><div className="ha-badge-value">6 Levels</div></div>
+          </div>
+          <div className="ha-badge ha-badge-3">
+            <div className="ha-badge-icon green"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg></div>
+            <div><div className="ha-badge-label">Accounts</div><div className="ha-badge-value">1,247</div></div>
+          </div>
+          <div className="ha-badge ha-badge-4">
+            <div className="ha-badge-icon blue"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+            <div><div className="ha-badge-label">Sync Status</div><div className="ha-badge-value">Active</div></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HeroAnimation;
