@@ -2,7 +2,7 @@ import {
   Network, SlidersHorizontal, GitBranch, LayoutList,
   Filter, Smartphone, Eye, Navigation, LayoutTemplate,
 } from "lucide-react";
-import heroDashboard from "@/assets/hero-dashboard.jpg";
+import heroDashboard from "@/assets/hero-dashboard.png";
 import RevealOnScroll from "./RevealOnScroll";
 import { useStaggerReveal } from "@/hooks/useScrollReveal";
 

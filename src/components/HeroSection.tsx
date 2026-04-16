@@ -1,5 +1,5 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
-import heroDashboard from "@/assets/hero-dashboard.jpg";
+import heroDashboard from "@/assets/hero-dashboard.png";
 import RevealOnScroll from "./RevealOnScroll";
 
 const HeroSection = () => {
