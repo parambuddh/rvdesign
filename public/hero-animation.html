@@ -14,13 +14,13 @@
     --steel-light:#6BA3C7;
     --neon:#7FFF00;
     --neon-soft:rgba(127,255,0,0.6);
-    --glass:rgba(255,255,255,0.08);
-    --glass-border:rgba(255,255,255,0.15);
-    --glass-strong:rgba(255,255,255,0.12);
+    --glass:rgba(255,255,255,0.85);
+    --glass-border:rgba(0,0,0,0.1);
+    --glass-strong:rgba(255,255,255,0.95);
   }
   body{
     width:100vw;height:100vh;overflow:hidden;
-    background:#F8FAFC;
+    background:transparent;
     font-family:'Segoe UI',system-ui,sans-serif;
   }
   canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
@@ -43,7 +43,7 @@
   /* Glass panel */
   .glass-panel{
     position:absolute;
-    background:rgba(255,255,255,0.85);
+    background:var(--glass);
     border:1px solid var(--glass-border);
     border-radius:20px;
     backdrop-filter:blur(24px);
@@ -56,7 +56,7 @@
   }
   .glass-panel::before{
     content:'';position:absolute;top:0;left:0;right:0;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(0,0,0,0.1),transparent);
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
   }
   
   /* Main center panel */
@@ -116,7 +116,7 @@
   
   .panel-title{
     font-size:11px;
-    color:rgba(0,0,0,0.6);
+    color:rgba(255,255,255,0.5);
     letter-spacing:1.5px;
     text-transform:uppercase;
     margin-left:8px;
@@ -142,8 +142,8 @@
   }
   .badge-icon.green{background:rgba(127,255,0,0.15);color:var(--neon)}
   .badge-icon.blue{background:rgba(74,124,155,0.25);color:var(--steel-light)}
-  .badge-label{font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:1px}
-  .badge-value{font-size:16px;color:#000;font-weight:600}
+  .badge-label{font-size:10px;color:rgba(0,0,0,0.45);text-transform:uppercase;letter-spacing:1px}
+  .badge-value{font-size:16px;color:#0f172a;font-weight:600}
   
   .badge-1{top:12%;left:2%;animation-delay:-1s}
   .badge-2{bottom:18%;right:2%;animation-delay:-3s}
@@ -175,7 +175,7 @@
   }
   .metric-row:last-child{border:none}
   .metric-dot{width:6px;height:6px;border-radius:50%;margin-right:8px;display:inline-block}
-  .metric-name{font-size:10px;color:rgba(255,255,255,0.4);display:flex;align-items:center}
+  .metric-name{font-size:10px;color:rgba(0,0,0,0.4);display:flex;align-items:center}
   .metric-val{font-size:11px;color:rgba(255,255,255,0.7);font-weight:500}
   
   /* Connectivity gauge */
@@ -187,7 +187,7 @@
   .gauge-ring{
     width:80px;height:80px;
     border-radius:50%;
-    border:3px solid rgba(255,255,255,0.08);
+    border:3px solid rgba(255,255,255,0.85);
     position:relative;
     display:flex;align-items:center;justify-content:center;
   }
@@ -200,8 +200,8 @@
     animation:spin 3s linear infinite;
   }
   @keyframes spin{to{transform:rotate(360deg)}}
-  .gauge-num{font-size:22px;color:#000;font-weight:700}
-  .gauge-label{font-size:9px;color:rgba(255,255,255,0.4);margin-top:8px;text-transform:uppercase;letter-spacing:1px}
+  .gauge-num{font-size:22px;color:#0f172a;font-weight:700}
+  .gauge-label{font-size:9px;color:rgba(0,0,0,0.4);margin-top:8px;text-transform:uppercase;letter-spacing:1px}
   
   /* Glow effects */
   .glow-orb{
@@ -307,8 +307,8 @@
           <div>
             <div class="gauge-label">Connectivity Score</div>
             <div style="display:flex;gap:16px;margin-top:8px">
-              <div><span style="font-size:18px;color:#000;font-weight:600">2,847</span><br><span style="font-size:9px;color:rgba(255,255,255,0.35)">CONNECTIONS</span></div>
-              <div><span style="font-size:18px;color:var(--neon);font-weight:600">156</span><br><span style="font-size:9px;color:rgba(255,255,255,0.35)">HIERARCHIES</span></div>
+              <div><span style="font-size:18px;color:#0f172a;font-weight:600">2,847</span><br><span style="font-size:9px;color:rgba(0,0,0,0.35)">CONNECTIONS</span></div>
+              <div><span style="font-size:18px;color:var(--neon);font-weight:600">156</span><br><span style="font-size:9px;color:rgba(0,0,0,0.35)">HIERARCHIES</span></div>
             </div>
           </div>
         </div>
@@ -321,8 +321,8 @@
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" fill="var(--neon)" opacity="0.8"/></svg>
           </div>
           <div>
-            <div style="font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px">Health Score</div>
-            <div style="font-size:20px;color:#000;font-weight:700">98.2<span style="font-size:11px;color:var(--neon)">%</span></div>
+            <div style="font-size:9px;color:rgba(0,0,0,0.4);text-transform:uppercase;letter-spacing:1px">Health Score</div>
+            <div style="font-size:20px;color:#0f172a;font-weight:700">98.2<span style="font-size:11px;color:var(--neon)">%</span></div>
           </div>
         </div>
       </div>
@@ -443,7 +443,7 @@ const levelColors={
   1:'#7FFF00',
   2:'#4A7C9B',
   3:'#1A7A56',
-  4:'rgba(255,255,255,0.4)',
+  4:'rgba(0,0,0,0.4)',
   5:'#FEBC2E',
 };
 
@@ -502,10 +502,10 @@ edges.forEach(([a,b],i)=>{
     lg.setAttribute('gradientUnits','userSpaceOnUse');
     const s1=document.createElementNS(ns,'stop');
     s1.setAttribute('offset','0%');
-    s1.setAttribute('stop-color',levelColors[n1.level]||'#fff');
+    s1.setAttribute('stop-color',levelColors[n1.level]||'#0f172a');
     const s2=document.createElementNS(ns,'stop');
     s2.setAttribute('offset','100%');
-    s2.setAttribute('stop-color',levelColors[n2.level]||'#fff');
+    s2.setAttribute('stop-color',levelColors[n2.level]||'#0f172a');
     lg.appendChild(s1);lg.appendChild(s2);
     defs.appendChild(lg);
   }
@@ -539,7 +539,7 @@ nodes.forEach(n=>{
   const glow=document.createElementNS(ns,'circle');
   glow.setAttribute('cx',n.x);glow.setAttribute('cy',n.y);
   glow.setAttribute('r',n.r+8);
-  glow.setAttribute('fill',levelColors[n.level]||'#fff');
+  glow.setAttribute('fill',levelColors[n.level]||'#0f172a');
   glow.setAttribute('opacity','0.08');
   glow.setAttribute('filter','url(#glow)');
   g.appendChild(glow);
@@ -549,7 +549,7 @@ nodes.forEach(n=>{
   outer.setAttribute('cx',n.x);outer.setAttribute('cy',n.y);
   outer.setAttribute('r',n.r);
   outer.setAttribute('fill','rgba(255,255,255,0.04)');
-  outer.setAttribute('stroke',levelColors[n.level]||'#fff');
+  outer.setAttribute('stroke',levelColors[n.level]||'#0f172a');
   outer.setAttribute('stroke-width',n.level===1?'2':'1.5');
   outer.setAttribute('stroke-opacity','0.5');
   g.appendChild(outer);
@@ -585,3 +585,4 @@ function createPulse(level){
 </script>
 </body>
 </html>
+
