@@ -66,7 +66,7 @@ const CoreCapabilities = () => {
         <RevealOnScroll>
           <div className="text-center max-w-3xl mx-auto mb-14">
             <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
-              Core Capabilities
+              Features
             </p>
             <h2 className="text-3xl md:text-[38px] font-extrabold font-heading leading-tight mb-3">
               From Scattered Data to Unified Insights
