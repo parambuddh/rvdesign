@@ -2,7 +2,7 @@ import {
   Network, SlidersHorizontal, GitBranch, LayoutList,
   Filter, Smartphone, Eye, Navigation, LayoutTemplate,
 } from "lucide-react";
-import heroDashboard from "@/assets/hero-dashboard.png";
+import featuresImage from "@/assets/features-image.png";
 import RevealOnScroll from "./RevealOnScroll";
 import { useStaggerReveal } from "@/hooks/useScrollReveal";
 
@@ -75,10 +75,10 @@ const CoreCapabilities = () => {
           </div>
         </RevealOnScroll>
 
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Left: Browser-frame mockup */}
-          <RevealOnScroll direction="left">
-            <div className="premium-card overflow-hidden sticky top-24 !border-border/40">
+          <RevealOnScroll direction="left" className="h-full relative">
+            <div className="premium-card overflow-hidden sticky top-28 !border-border/40 shadow-xl">
               {/* Browser chrome */}
               <div className="px-5 py-3.5 border-b border-border/60 flex items-center gap-3 bg-muted/30">
                 <div className="flex gap-1.5">
@@ -87,24 +87,24 @@ const CoreCapabilities = () => {
                   <span className="w-3 h-3 rounded-full bg-primary/60" />
                 </div>
                 <div className="flex-1 mx-4">
-                  <div className="bg-background/60 rounded-md px-3 py-1 text-xs text-text-muted font-mono">
-                    salesforce.com/relationshipvista
+                  <div className="bg-background/60 rounded-md px-3 py-1 text-xs text-text-muted font-mono text-center">
+                    salesforce.com/relationshipvista/features
                   </div>
                 </div>
               </div>
               <img
-                src={heroDashboard}
+                src={featuresImage}
                 alt="RelationshipVista features overview"
                 loading="lazy"
                 width={1200}
                 height={750}
-                className="w-full h-auto"
+                className="w-full h-auto object-cover"
               />
             </div>
           </RevealOnScroll>
 
           {/* Right: feature list with staggered animation */}
-          <div ref={listRef} className="space-y-1.5">
+          <div ref={listRef} className="space-y-3 py-4 lg:py-12">
             {capabilities.map((cap, i) => (
               <div
                 key={cap.title}
