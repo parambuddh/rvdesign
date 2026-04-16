@@ -54,11 +54,11 @@ const capabilities = [
   },
 ];
 
-const CoreCapabilities = () => {
+const FeaturesSection = () => {
   const { ref: listRef, visibleItems } = useStaggerReveal(capabilities.length);
 
   return (
-    <section id="features" className="section-padding section-alt relative overflow-hidden">
+    <section id="features" className="section-padding section-alt relative">
       {/* Subtle gradient mesh */}
       <div className="absolute inset-0 gradient-mesh opacity-50" />
 
@@ -133,4 +133,4 @@ const CoreCapabilities = () => {
   );
 };
 
-export default CoreCapabilities;
+export default FeaturesSection;
