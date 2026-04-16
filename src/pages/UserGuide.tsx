@@ -81,7 +81,9 @@ const UserGuide = () => {
               </div>
             </RevealOnScroll>
           </div>
-        </sectio        {/* Guide Accordions Section */}
+        </section>
+
+        {/* Guide Accordions Section */}
         <section className="px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
             <RevealOnScroll delay={0.3}>
