@@ -69,6 +69,7 @@ const BenefitsSection = () => {
                 transition: `opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.5s, border-color 0.5s`,
               }}
             >
+              <div className="absolute top-0 left-0 right-0 h-1 bg-[#49983E] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left will-change-transform" />
               <div className="icon-box mb-5">
                 <b.icon className="h-5 w-5 text-primary" />
               </div>
