@@ -27,9 +27,9 @@ const WhatIsSection = () => {
           {/* Text */}
           <div className="space-y-5">
             <RevealOnScroll>
-              <p className="text-sm font-semibold tracking-widest uppercase text-primary">
+              <div className="pill-badge">
                 What is RelationshipVista?
-              </p>
+              </div>
             </RevealOnScroll>
             <RevealOnScroll delay={0.1}>
               <h2 className="text-3xl md:text-[36px] font-bold leading-tight font-heading">

@@ -3,7 +3,7 @@ import RevealOnScroll from "./RevealOnScroll";
 
 const CTASection = () => {
   return (
-    <section className="section-padding relative overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(113, 42%, 42%), hsl(113, 42%, 35%), hsl(113, 50%, 30%))" }}>
+    <section className="py-12 md:py-16 lg:py-20 px-4 md:px-8 relative overflow-hidden" style={{ background: "linear-gradient(90deg, #4D9A3F 0%, #49983E 30%, #2a8b7e 70%, #1a9b8e 100%)" }}>
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute w-[600px] h-[600px] rounded-full -top-60 -left-60 bg-white/10 blur-3xl" />
@@ -16,9 +16,9 @@ const CTASection = () => {
 
       <div className="container-narrow text-center max-w-3xl mx-auto relative z-10">
         <RevealOnScroll>
-          <p className="text-sm font-semibold tracking-widest uppercase text-primary-foreground/50 mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-4" style={{ background: "rgba(255, 255, 255, 0.15)", color: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(255, 255, 255, 0.2)" }}>
             Get Started
-          </p>
+          </div>
         </RevealOnScroll>
         <RevealOnScroll delay={0.1}>
           <h2 className="text-3xl md:text-[42px] font-extrabold font-heading text-primary-foreground mb-6 leading-tight">
@@ -26,13 +26,9 @@ const CTASection = () => {
           </h2>
         </RevealOnScroll>
         <RevealOnScroll delay={0.2}>
-          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-4 leading-relaxed">
+          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-8 leading-relaxed">
             See RelationshipVista in action. Transform how your org explores and
             understands data connections.
-          </p>
-          <p className="text-sm text-primary-foreground/50 max-w-xl mx-auto mb-8">
-            Get instant access to interactive relationship mapping, simplified hierarchy
-            exploration, and visual data insights — all natively within Salesforce.
           </p>
         </RevealOnScroll>
         <RevealOnScroll delay={0.3}>
@@ -43,12 +39,6 @@ const CTASection = () => {
               style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.15)" }}
             >
               Book a Demo <ArrowRight className="h-5 w-5" />
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-primary-foreground/30 text-primary-foreground font-semibold text-base hover:bg-primary-foreground/10 transition-all hover:-translate-y-0.5"
-            >
-              View on AppExchange <ExternalLink className="h-4 w-4" />
             </a>
           </div>
         </RevealOnScroll>
