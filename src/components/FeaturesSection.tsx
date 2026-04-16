@@ -2,9 +2,9 @@ import {
   Network, SlidersHorizontal, GitBranch, LayoutList,
   Filter, Smartphone, Eye, Navigation, LayoutTemplate,
 } from "lucide-react";
-import featuresImage from "@/assets/features-image.png";
 import RevealOnScroll from "./RevealOnScroll";
 import { useStaggerReveal } from "@/hooks/useScrollReveal";
+import FeaturesAnimation from "./FeaturesAnimation";
 
 const capabilities = [
   {
@@ -92,14 +92,7 @@ const FeaturesSection = () => {
                   </div>
                 </div>
               </div>
-              <img
-                src={featuresImage}
-                alt="RelationshipVista features overview"
-                loading="lazy"
-                width={1200}
-                height={750}
-                className="w-full h-auto object-cover"
-              />
+              <FeaturesAnimation />
             </div>
           </RevealOnScroll>
 
