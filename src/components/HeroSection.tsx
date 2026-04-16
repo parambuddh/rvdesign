@@ -25,15 +25,21 @@ const HeroSection = () => {
               <h1 className="text-[36px] md:text-[44px] lg:text-[52px] font-extrabold leading-[1.1] font-heading tracking-tight">
                 <span className="relative inline-block z-10">
                   RelationshipVista
-                  <svg className="absolute -bottom-2 left-0 w-full -z-10" viewBox="0 0 200 12" fill="none">
+                  <svg className="absolute -bottom-1 left-0 w-full -z-10 overflow-visible" viewBox="0 0 200 16" fill="none" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="hsl(var(--primary))" />
+                        <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
+                      </linearGradient>
+                    </defs>
                     <motion.path
-                      d="M2 10C50 6 150 6 198 10"
-                      stroke="hsl(var(--primary))" 
-                      strokeWidth="6"
+                      d="M0 12C60 6 140 6 200 12"
+                      stroke="url(#hero-gradient)" 
+                      strokeWidth="12"
                       strokeLinecap="round"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 0.8, ease: "easeInOut", delay: 0.3 }}
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 1 }}
+                      transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
                     />
                   </svg>
                 </span>
