@@ -39,6 +39,10 @@ const Footer = () => {
               <img src={logo} alt="RelationshipVista" className="h-10 w-auto mb-4" />
               <p className="text-sm leading-relaxed" style={{ color: "hsl(210, 8%, 50%)" }}>
                 Transform scattered data into meaningful relationships that are easy to explore, understand, and act on.
+              </p>
+            </div>
+
+            <div>
               <h4 className="font-heading font-bold text-sm uppercase tracking-wider mb-5" style={{ color: "hsl(0, 0%, 92%)" }}>
                 Quick Links
               </h4>
