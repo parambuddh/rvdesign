@@ -55,18 +55,18 @@ const FAQs = () => {
             <div 
               key={i} 
               className={cn(
-                "premium-card bg-white border-sky-100 shadow-sm overflow-hidden transition-all duration-300",
-                activeIndex === i && "shadow-md border-primary/20"
+                "bg-white rounded-2xl border border-sky-100 overflow-hidden transition-all duration-300",
+                activeIndex === i && "border-primary/20"
               )}
             >
               <button 
                 type="button"
                 onClick={() => toggleFAQ(i)}
-                className="w-full text-left px-6 py-5 flex items-center justify-between hover:bg-sky-50/20 transition-colors group cursor-pointer touch-manipulation relative z-10 pointer-events-auto"
+                className="w-full text-left px-6 py-5 flex items-center justify-between group cursor-pointer touch-manipulation relative z-10 pointer-events-auto"
                 aria-expanded={activeIndex === i}
               >
                 <span className={cn(
-                  "text-base md:text-[17px] font-bold text-text-heading group-hover:text-primary transition-colors pr-4",
+                  "text-base md:text-[17px] font-bold text-text-heading pr-4",
                   activeIndex === i && "text-primary"
                 )}>
                   {faq.q}
