@@ -86,11 +86,40 @@ const UserGuide = () => {
         {/* Guide Accordions Section */}
         <section className="px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
-            <RevealOnScroll delay={0.3}>
-              <Accordion type="single" collapsible className="space-y-4">
-                
-                {/* 1. Key Features */}
-                <AccordionItem value="key-features" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm pointer-events-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              
+              {/* 1. Get Started (NEW) */}
+              <RevealOnScroll delay={0.1}>
+                <AccordionItem value="get-started" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <div className="flex items-center gap-3">
+                      <Laptop className="h-5 w-5 text-primary" />
+                      <span className="text-lg font-bold text-text-heading">Get Started</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-4">
+                    <p>Installing RelationshipVista is the first step toward gaining deep visibility into your Salesforce data mapping.</p>
+                    <ul className="space-y-3 list-none pl-0">
+                      <li className="flex gap-3 items-start">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-primary">1</div>
+                        <span>Click <strong>Get It Now</strong> on AppExchange or use the package link provided by Ardira.</span>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-primary">2</div>
+                        <span>When installing, select <strong>Install for All Users</strong> to ensure your entire team can benefit from relationship mapping.</span>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-primary">3</div>
+                        <span>Once installed, follow the "Ardira RelationshipVista Component" setup steps below to add it to your record pages.</span>
+                      </li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </RevealOnScroll>
+
+              {/* 2. Key Features */}
+              <RevealOnScroll delay={0.15}>
+                <AccordionItem value="key-features" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <Layout className="h-5 w-5 text-primary" />
@@ -98,135 +127,183 @@ const UserGuide = () => {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed">
-                    <ul className="grid gap-4 list-none pl-0">
+                    <ul className="grid md:grid-cols-2 gap-4 list-none pl-0">
                       {[
                         "Rich, interactive and engaging visualization of your data map.",
                         "Embed data maps directly into standard and custom object record details.",
                         "Map relationships of multiple records across your org onto a single canvas!",
-                        "Visualize related records One-to-one, One-to-many, and Many-to-many relationships built using lookup and reverse lookup relationships including junction objects.",
-                        "Visualize relationship with explorer (indented tree) layout and graphical tree layout.",
-                        "Visualize records of specific objects; filter out unimportant related records.",
-                        "Group your related records using any field e.g. group opportunities by stage.",
-                        "Configure filters to limit what children records are visible under a parent record.",
-                        "Navigate across the hierarchy by clicking record and group nodes.",
-                        "Quickly view record data in a compact layout on mouse hover.",
-                        "Navigate to a record detail by clicking the record link.",
-                        "Right-to-Left Language Compatible",
-                        "Language Translation Support"
+                        "Visualize One-to-one, One-to-many, and Junction relationships.",
+                        "Explorer (indented tree) and Graphical Tree layouts.",
+                        "Filter out unimportant related records dynamically.",
+                        "Group related records using any field (e.g., Opportunities by Stage).",
+                        "Configure record-level limits for parent-child displays.",
+                        "Navigate hierarchy by clicking record and group nodes.",
+                        "Quick-view record data in compact layout on mouse hover.",
+                        "Full Right-to-Left (RTL) and Translation support.",
+                        "Navigate directly to Salesforce record details via clean links."
                       ].map((item, i) => (
                         <li key={i} className="flex gap-3 items-start">
                           <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                          <span>{item}</span>
+                          <span className="text-sm">{item}</span>
                         </li>
                       ))}
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-                {/* 2. Use Cases */}
-                <AccordionItem value="use-cases" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
+              {/* 3. Why RelationshipVista? (NEW) */}
+              <RevealOnScroll delay={0.2}>
+                <AccordionItem value="why-rvc" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
-                      <Layers className="h-5 w-5 text-primary" />
-                      <span className="text-lg font-bold text-text-heading">Use Cases</span>
+                      <ArrowRight className="h-5 w-5 text-primary" />
+                      <span className="text-lg font-bold text-text-heading">Why RelationshipVista?</span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-6">
-                    <div className="grid gap-4">
+                    <div className="grid gap-4 md:grid-cols-2">
                       <div className="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
-                        <p className="font-semibold text-text-heading mb-2">Hierarchical Visualization</p>
-                        <p className="text-sm">Visualize various hierarchical records such as User Hierarchy, Account Hierarchy, Contact Hierarchy, Asset Hierarchy, and Case Hierarchy.</p>
+                        <p className="font-bold text-text-heading mb-1 text-base">Optimized Data Navigation</p>
+                        <p className="text-xs">Eliminates tab fatigue by consolidating multiple Related Lists into a single 360-degree interactive view.</p>
                       </div>
                       <div className="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
-                        <p className="font-semibold text-text-heading mb-2">Data Segmentation</p>
-                        <p className="text-sm">Visualize an account’s opportunities grouped by stage, lead source and $ value. Quickly navigate to opportunity contacts.</p>
+                        <p className="font-bold text-text-heading mb-1 text-base">Increased Productivity</p>
+                        <p className="text-xs">Inline record actions and dynamic segmentation allow users to focus only on actionable data.</p>
                       </div>
                       <div className="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
-                        <p className="font-semibold text-text-heading mb-2">Advanced Filtering</p>
-                        <p className="text-sm">Filter the records with the object's fields. For example, filter to show the opportunity whose amount is greater than $10000.</p>
+                        <p className="font-bold text-text-heading mb-1 text-base">Salesforce Security</p>
+                        <p className="text-xs">Inherits existing Security Models, including OLS, FLS, and Sharing Rules natively.</p>
                       </div>
                       <div className="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
-                        <p className="font-semibold text-text-heading mb-2">Quick Navigation</p>
-                        <p className="text-sm">Quickly locate an Account’s Contracts, Products, Orders, Cases and more right in an account record page.</p>
+                        <p className="font-bold text-text-heading mb-1 text-base">Scalability</p>
+                        <p className="text-xs">Manages high record volumes efficiently using performance-stable record limits.</p>
                       </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-                {/* 3. Ardira RelationshipVista Component */}
+              {/* 4. Ardira RelationshipVista Component */}
+              <RevealOnScroll delay={0.25}>
                 <AccordionItem value="component-setup" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <Box className="h-5 w-5 text-primary" />
-                      <span className="text-lg font-bold text-text-heading">Ardira RelationshipVista Component</span>
+                      <span className="text-lg font-bold text-text-heading">Component Setup</span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-4">
-                    <p>To begin using RelationshipVista, open the record detail page in edit mode, create a custom tab, and add the <strong>Ardira RelationshipVista</strong> component to the page. You can name the tab as needed (for example, RelationshipVista).</p>
-                    <p>The component is not restricted to a custom tab, you can place it anywhere on the record page based on your layout preference.</p>
-                    <div className="p-4 bg-primary/5 border border-primary/10 rounded-xl">
-                      <p className="text-sm font-medium">After adding the component, ensure that you <strong>save and activate</strong> the page. For example, if added to an Account record page, it will enable you to explore all records related to that account.</p>
+                    <p>To begin using RelationshipVista, open the record detail page in <strong>Edit Page</strong> mode. You can then add the <strong>Ardira RelationshipVista</strong> component to any tab or section.</p>
+                    <div className="bg-sky-50 p-4 rounded-xl border border-sky-100 flex gap-4">
+                      <div className="shrink-0 h-10 w-10 bg-white rounded-lg flex items-center justify-center border border-sky-200 shadow-sm">
+                        <Settings className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-text-heading">Pro Tip</p>
+                        <p className="text-xs">Create a dedicated "RelationshipVista" tab to give your team a focused area for hierarchy exploration without cluttering the main record view.</p>
+                      </div>
                     </div>
+                    <p className="text-sm">After adding the component, ensure that you <strong>Save and Activate</strong> the page. If added to an Account record, it will immediately enable exploration of all related records.</p>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-                {/* 4. RVC Component Properties */}
+              {/* 5. RVC Component Properties (Expanded) */}
+              <RevealOnScroll delay={0.3}>
                 <AccordionItem value="properties" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <Settings className="h-5 w-5 text-primary" />
-                      <span className="text-lg font-bold text-text-heading">RVC Component Properties</span>
+                      <span className="text-lg font-bold text-text-heading">Component Properties</span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-6">
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">Record Id</h4>
-                      <p className="text-sm">This represents the record whose relationships will be displayed. When the component is added to a record page, the Record Id is automatically populated, so no manual input is required.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">Use Configuration</h4>
-                      <p className="text-sm">When a specific view configuration name is provided, the component renders exclusively using that configuration. (Note: If any view is pinned, it overrides this setting and displays the pinned view in read-only mode.)</p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">Allow Users to Update View Configuration</h4>
-                      <p className="text-sm">When enabled, users can create and modify their own view configurations. If disabled, users will not have permission to create or edit any configurations.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">Show</h4>
-                      <p className="text-sm">Determines which records are displayed: "My Records" (owned by the current user) or "All Records" (accessible to the user).</p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">Visible Records Limit</h4>
-                      <p className="text-sm">Defines the maximum number of child records displayed under a parent record. Additional records can be viewed by clicking the "View n more..." option.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">View Layout</h4>
-                      <p className="text-sm">Choose from: <strong>All</strong> (switch between layouts), <strong>Explorer</strong> (indented hierarchy), or <strong>Tree</strong> (graphical structure).</p>
+                    <div className="grid gap-6">
+                      <div className="border-l-4 border-primary/30 pl-4">
+                        <h4 className="font-bold text-text-heading mb-1">Record Id</h4>
+                        <p className="text-sm">Automatically populated. Represents the root record whose relationships will be displayed.</p>
+                      </div>
+                      <div className="border-l-4 border-primary/30 pl-4">
+                        <h4 className="font-bold text-text-heading mb-1">Use Configuration</h4>
+                        <p className="text-sm">Name of a specific view configuration to force the component to render in that mode (overrides selection unless pinned).</p>
+                      </div>
+                      <div className="border-l-4 border-primary/30 pl-4">
+                        <h4 className="font-bold text-text-heading mb-1">Show Objects</h4>
+                        <p className="text-sm">Comma-separated list of object API names to restrict which related objects appear in the visualization.</p>
+                      </div>
+                      <div className="border-l-4 border-primary/30 pl-4">
+                        <h4 className="font-bold text-text-heading mb-1">Visible Records Limit</h4>
+                        <p className="text-sm">Defines the max child records shown per parent. Users click "View n more..." to see others.</p>
+                      </div>
+                      <div className="border-l-4 border-primary/30 pl-4">
+                        <h4 className="font-bold text-text-heading mb-1">View Layout</h4>
+                        <p className="text-sm">Choose <strong>All</strong> (selectable), <strong>Explorer</strong> (indented tree), or <strong>Tree</strong> (graphical map).</p>
+                      </div>
+                      <div className="border-l-4 border-primary/30 pl-4">
+                        <h4 className="font-bold text-text-heading mb-1">Width & Height</h4>
+                        <p className="text-sm">Define exact dimensions (px, %) or set to "auto" for dynamic resizing based on container.</p>
+                      </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-                {/* 5. Relationship Views ("R-Views") */}
+              {/* 6. Relationship Views ("R-Views") */}
+              <RevealOnScroll delay={0.35}>
                 <AccordionItem value="r-views" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <Layout className="h-5 w-5 text-primary" />
-                      <span className="text-lg font-bold text-text-heading">Relationship Views ("R-Views")</span>
+                      <span className="text-lg font-bold text-text-heading">Relationship Views (R-Views)</span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-4">
-                    <p>Relationship Views (R-Views) allow you to tailor how related records are displayed, helping you focus on the most relevant data. Managing R-Views is similar to working with Salesforce List Views.</p>
-                    <p>With R-View configurations, you can define each node in the hierarchy by:</p>
-                    <ul className="grid gap-2 text-sm italic list-inside list-disc">
-                      <li>Restricting which types of records are shown</li>
-                      <li>Applying filters to refine results</li>
-                      <li>Grouping records based on object fields</li>
-                      <li>Sorting records based on object fields</li>
+                    <p>Relationship Views (R-Views) allow you to tailor how related records are displayed. Managing R-Views is similar to working with Salesforce List Views.</p>
+                    <p>Within any R-View Configuration, you can customize:</p>
+                    <ul className="grid gap-2 text-sm italic list-inside list-disc opacity-80 pl-4">
+                      <li>Restriction of record types shown</li>
+                      <li>Advanced filter logic (e.g., Status = 'Active')</li>
+                      <li>Grouping logic based on any field</li>
+                      <li>Custom sorting directions</li>
                     </ul>
+
+                    <div className="mt-6 p-5 bg-primary/5 rounded-2xl border border-primary/10">
+                      <h4 className="font-bold text-text-heading mb-3 text-base">How to Create a New R-View</h4>
+                      <ol className="space-y-3 list-decimal list-inside text-sm">
+                        <li>Click the <strong>Settings (⚙️)</strong> icon in the toolbar.</li>
+                        <li>Select <strong>New</strong> to open the Configuration Properties modal.</li>
+                        <li>Give your view a <strong>Name</strong> and set the <strong>Sharing Setting</strong> (Only Me or All Users).</li>
+                        <li>Optionally check <strong>Pinned</strong> to make it your default view.</li>
+                        <li>Once created, click <strong>Edit</strong> from the settings menu to configure specific object nodes, filters, and sorting.</li>
+                      </ol>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-                {/* 6. Toolbar Actions */}
+              {/* 7. Sample Data (NEW) */}
+              <RevealOnScroll delay={0.4}>
+                <AccordionItem value="sample-data" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <div className="flex items-center gap-3">
+                      <Box className="h-5 w-5 text-primary" />
+                      <span className="text-lg font-bold text-text-heading">Sample Data</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-4">
+                    <p>When testing RVC in a sandbox or test environment, you can quickly load sample data to explore functionality.</p>
+                    <ol className="space-y-3 list-decimal list-inside text-sm">
+                      <li>Navigate to the <strong>RelationshipVista Getting Started</strong> tab from the App Launcher.</li>
+                      <li>Click the <strong>Load Sample Data</strong> button.</li>
+                      <li>This adds sample records across various objects, allowing you to see complex hierarchies in action without manual entry.</li>
+                    </ol>
+                  </AccordionContent>
+                </AccordionItem>
+              </RevealOnScroll>
+
+              {/* 8. Toolbar Actions (Expanded) */}
+              <RevealOnScroll delay={0.45}>
                 <AccordionItem value="toolbar" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -235,133 +312,176 @@ const UserGuide = () => {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-6">
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">1. Expand All</h4>
-                      <p className="text-sm text-text-muted">Quickly expand the entire relationship hierarchy starting from the root node. Expansion respects the Visible Records Limit.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">2. Collapse All</h4>
-                      <p className="text-sm text-text-muted">Resets the relationship view by collapsing all expanded nodes. Only the root node remains visible.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">3. Two-Panel Layout</h4>
-                      <p className="text-sm text-text-muted">Divide the interface into two sections: Left panel for hierarchy and Right panel for record details or list views. Users can edit records directly in the right panel.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">4. Full Screen</h4>
-                      <p className="text-sm text-text-muted">Displays the RelationshipVista component in immersive full-screen mode.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">5. Explorer vs Tree View</h4>
-                      <p className="text-sm text-text-muted">Switch between an indented, hierarchical list (Explorer) and a graphical connected nodes map (Tree).</p>
+                    <div className="grid gap-4">
+                      <div className="p-4 bg-sky-50/30 rounded-lg">
+                        <span className="font-bold text-text-heading block mb-1">1. Expand/Collapse All</span>
+                        <p className="text-xs">Instantly open or close every level of the hierarchy while respecting the Visible Records Limit.</p>
+                      </div>
+                      <div className="p-4 bg-sky-50/30 rounded-lg">
+                        <span className="font-bold text-text-heading block mb-1">2. Two-Panel Layout</span>
+                        <p className="text-xs">Divide the screen: Left panel for hierarchy, Right panel for record details. Edit records directly in the right panel.</p>
+                      </div>
+                      <div className="p-4 bg-sky-50/30 rounded-lg">
+                        <span className="font-bold text-text-heading block mb-1">3. Full Screen</span>
+                        <p className="text-xs">Immersive mode for complex map analysis without distraction from standard Salesforce headers.</p>
+                      </div>
+                      <div className="p-4 bg-sky-50/30 rounded-lg">
+                        <span className="font-bold text-text-heading block mb-1">4. Explorer vs Tree View</span>
+                        <p className="text-xs">Quick-toggle between an indented list view and a graphical connected interactive map.</p>
+                      </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-                {/* 7. Setup & Advanced Configuration */}
+              {/* 9. Setup & Advanced Configuration (Expanded) */}
+              <RevealOnScroll delay={0.5}>
                 <AccordionItem value="configuration" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <Settings className="h-5 w-5 text-primary" />
-                      <span className="text-lg font-bold text-text-heading">Setup & Configuration</span>
+                      <span className="text-lg font-bold text-text-heading">Advanced Configuration</span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-6">
                     <div>
-                      <h4 className="font-bold text-text-heading mb-2 italic underline underline-offset-4">Root Node Configuration</h4>
-                      <p className="text-sm mb-2">Control how the primary record is displayed:</p>
-                      <ul className="text-xs space-y-1 list-inside list-disc opacity-80">
-                        <li>Object API Name: Displays root type.</li>
-                        <li>Label Field: Select the field used for the display label.</li>
-                        <li>Auto Expand: Automatically show children on load.</li>
-                        <li>Show Objects: Set which child objects appear.</li>
+                      <h4 className="font-bold text-text-heading mb-2 italic">Root Node Settings</h4>
+                      <ul className="text-xs space-y-1 list-inside list-disc opacity-80 pl-4">
+                        <li><strong>Record Node Label:</strong> Select field used for display name.</li>
+                        <li><strong>Auto Expand:</strong> Automatically show child records on load.</li>
+                        <li><strong>Show Objects:</strong> Define which child object types should appear.</li>
                       </ul>
                     </div>
                     <div className="h-px bg-sky-100" />
                     <div>
-                      <h4 className="font-bold text-text-heading mb-2 italic underline underline-offset-4">Object Node Configuration</h4>
-                      <p className="text-sm mb-2">Configure each node in the hierarchy:</p>
-                      <ul className="text-xs space-y-1 list-inside list-disc opacity-80">
-                        <li>Object Node Label: Customize the display name.</li>
-                        <li>Cascade Auto Expand: Expand one additional level beyond records.</li>
-                        <li>Record Icon URL: Specify SLDS icons using standard format.</li>
-                        <li>Filter & Sort: Apply filters (e.g., Amount {'>'} 10k) and sort directions.</li>
+                      <h4 className="font-bold text-text-heading mb-2 italic">Junction Objects</h4>
+                      <p className="text-sm mb-2 text-text-heading font-medium">Native Many-to-Many Support</p>
+                      <ul className="text-xs space-y-2 list-inside list-disc opacity-80 pl-4">
+                        <li><strong>Display Record Node:</strong> Hide technical junction IDs to show the direct relationship between entities (e.g., Account to Contact via Relationship record).</li>
+                        <li><strong>Cascade Auto Expand:</strong> Especially useful for junction objects to skip empty layers and show direct connections immediately.</li>
                       </ul>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-                {/* 8. Advanced Features */}
-                <AccordionItem value="advanced-features" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
+              {/* 10. Creating Records (NEW) */}
+              <RevealOnScroll delay={0.55}>
+                <AccordionItem value="create-records" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <Layers className="h-5 w-5 text-primary" />
-                      <span className="text-lg font-bold text-text-heading">Advanced Features</span>
+                      <span className="text-lg font-bold text-text-heading">Creating Records from Nodes</span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-6">
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">Creating Records from Nodes</h4>
-                      <p className="text-sm">Create records directly from the hierarchy by clicking the "+" icon next to an Object Node. In Two-Panel mode, the form appears on the right; otherwise, it opens in a modal.</p>
+                  <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-4">
+                    <p>Accelerate your workflow by creating new records directly within the relationship map hierarchy.</p>
+                    <ul className="text-sm space-y-2 list-inside list-disc opacity-80 pl-4">
+                      <li>Click the <strong>"+"</strong> icon next to any Object Node.</li>
+                      <li>In <strong>Two-Panel mode</strong>, the creation form appears in the right sidebar.</li>
+                      <li>In <strong>Normal mode</strong>, the form opens in a standard Salesforce modal window.</li>
+                      <li>Requires standard Salesforce "Create" permissions for that object.</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </RevealOnScroll>
+
+              {/* 11. Use Cases (Full PDF Details) */}
+              <RevealOnScroll delay={0.6}>
+                <AccordionItem value="use-cases" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <div className="flex items-center gap-3">
+                      <Layers className="h-5 w-5 text-primary" />
+                      <span className="text-lg font-bold text-text-heading">Detailed Use Cases</span>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-text-heading mb-2">Junction Object Support</h4>
-                      <p className="text-sm">RelationshipVista supports complex junction objects (like Account Contact Relationship) with automatic ID representation and intermediate node management.</p>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-8">
+                    
+                    {/* Use Case 1 */}
+                    <div className="space-y-4">
+                      <div className="pill-badge bg-primary/5 text-primary border-primary/10">Scenario 1: Sales ROI Audit</div>
+                      <p className="font-bold text-text-heading">VP Analysis of Pipeline Drivers</p>
+                      <p className="text-sm">Identify which lead sources (Web, Referral, etc.) are driving the most revenue for a specific account, sorted by deal size.</p>
+                      <div className="bg-sky-50/50 p-4 rounded-xl border border-sky-100 text-xs">
+                        <strong>Outcome:</strong> VP visualizes all "Closed Won" Opportunities grouped by Lead Source and sorted by Amount directly from the Account page, eliminating the need for manual reports.
+                      </div>
                     </div>
+
+                    <div className="h-px bg-sky-100" />
+
+                    {/* Use Case 2 */}
+                    <div className="space-y-4">
+                      <div className="pill-badge bg-primary/5 text-primary border-primary/10">Scenario 2: CSM Risk Analysis</div>
+                      <p className="font-bold text-text-heading">Customer Success Impact Mapping</p>
+                      <p className="text-sm">Before a renewal (Opportunity), identify if there are any critical Support Cases open for the same account to fix issues before the pitch.</p>
+                      <div className="bg-sky-50/50 p-4 rounded-xl border border-sky-100 text-xs">
+                        <strong>Outcome:</strong> CSM sees a connected view of Cases, Contacts, and Opportunities in one map. Spot risks immediately and take action before asking for a renewal.
+                      </div>
+                    </div>
+
+                    <div className="h-px bg-sky-100" />
+
                     <div>
-                      <h4 className="font-bold text-text-heading mb-2">RTL & Translation Support</h4>
-                      <p className="text-sm">Full support for Right-to-Left (RTL) layouts for languages like Hebrew and Arabic. The component automatically adjusts visual orientation.</p>
+                      <h4 className="font-bold text-text-heading mb-2 text-base">Other Common Scenarios</h4>
+                      <ul className="text-sm space-y-2 list-inside list-disc opacity-80">
+                        <li><strong>Global Hierarchy:</strong> User, Account, and Asset hierarchy exploration.</li>
+                        <li><strong>Data Segmentation:</strong> Opportunities grouped by Stage or Lead Source.</li>
+                        <li><strong>Quick Navigation:</strong> Instant access to Contracts, Orders, and Cases from an Account view.</li>
+                      </ul>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-                {/* 9. Icons & Styling */}
+              {/* 12. Icons & Styling (Full URL Format) */}
+              <RevealOnScroll delay={0.65}>
                 <AccordionItem value="styling" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <Image className="h-5 w-5 text-primary" />
-                      <span className="text-lg font-bold text-text-heading">Icons & Styling</span>
+                      <span className="text-lg font-bold text-text-heading">Icons & Branding</span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-6">
                     <div className="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
-                      <h4 className="font-bold text-text-heading mb-2">Custom record icons</h4>
-                      <ol className="text-sm space-y-2 list-decimal list-inside">
-                        <li>Visit the <a href="https://www.lightningdesignsystem.com/icons/" target="_blank" rel="noreferrer" className="text-primary underline">SLDS Icon Library</a>.</li>
-                        <li>Copy the icon name.</li>
-                        <li>Format as <code>/_slds/icons/category-sprite/svg/symbols.svg#name</code>.</li>
-                      </ol>
+                      <h4 className="font-bold text-text-heading mb-2">SLDS Custom Icon Format</h4>
+                      <p className="text-xs mb-3">To use standard Salesforce icons, copy the icon name from the SLDS site and use this format:</p>
+                      <div className="bg-white p-3 rounded border border-sky-200 font-mono text-xs overflow-x-auto whitespace-nowrap">
+                        /_slds/icons/category-sprite/svg/symbols.svg#icon_name
+                      </div>
                     </div>
                     <div className="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
-                      <h4 className="font-bold text-text-heading mb-2">Background Color</h4>
-                      <p className="text-sm">Obtain a HEX code using browser developer tools and paste it into the "Record Icon Background Color" field to match your theme.</p>
+                      <h4 className="font-bold text-text-heading mb-2">Custom Background Colors</h4>
+                      <p className="text-xs">Match your branding by using any HEX color code (e.g., #4D9A3F) in the "Record Icon Background Color" field within a Node Configuration.</p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-                {/* 10. Frequently Asked Questions */}
+              {/* 13. FAQ & Support */}
+              <RevealOnScroll delay={0.7}>
                 <AccordionItem value="faq" className="premium-card bg-white border-sky-100 px-6 py-2 shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <HelpCircle className="h-5 w-5 text-primary" />
-                      <span className="text-lg font-bold text-text-heading">Have Questions?</span>
+                      <span className="text-lg font-bold text-text-heading">Questions & Support</span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-6 text-text-body leading-relaxed space-y-4">
-                    <p>For any questions related to RelationshipVista and how to configure visually your Salesforce records' backgrounds & hierarchies, feel free to contact us.</p>
-                    <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                    <p>Our team is dedicated to ensuring you get the most out of your Salesforce data visualization.</p>
+                    <div className="flex flex-col sm:flex-row gap-4 mt-2">
                       <a href="mailto:support@ardira.com" className="btn-cta text-sm py-2 px-6">
                         Email Support <ArrowRight className="h-4 w-4" />
                       </a>
-                      <Link to="#contact" className="btn-outline text-sm py-2 px-6">
+                      <a href="https://www.ardira.com/contact" target="_blank" rel="noreferrer" className="btn-outline text-sm py-2 px-6">
                         Contact Sales
-                      </Link>
+                      </a>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+              </RevealOnScroll>
 
-              </Accordion>
-            </RevealOnScroll>
+            </Accordion>
           </div>
         </section>
       </main>
