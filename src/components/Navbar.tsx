@@ -55,7 +55,7 @@ const Navbar = () => {
             <img src={logo} alt="RelationshipVista" className={`transition-all duration-500 w-auto ${isScrolled ? 'h-8 md:h-9' : 'h-9 md:h-11'}`} />
           </a>
 
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center justify-end gap-1 ml-auto">
             {navLinks.map((link) => (
               link.href.startsWith("/") && !link.href.includes("#") ? (
                 <Link
@@ -87,9 +87,7 @@ const Navbar = () => {
                 </a>
               )
             ))}
-          </div>
 
-          <div className="hidden lg:flex items-center">
             <a 
               href="#contact" 
               className={`ml-4 flex items-center gap-2 bg-primary text-primary-foreground rounded-full font-semibold overflow-hidden shadow-md hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 ${

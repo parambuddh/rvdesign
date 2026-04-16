@@ -219,9 +219,9 @@
     left: 0;
     bottom: -4px;
     width: 100%;
-    height: 3px;
+    height: 4px;
     border-radius: 2px;
-    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary-blue)));
+    background: hsl(var(--primary));
   }
 
   /* Section divider */
@@ -249,8 +249,8 @@
 
 @keyframes blob-float {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
+  33% { transform: translate(15px, -15px) scale(1.05); }
+  66% { transform: translate(-10px, 10px) scale(0.95); }
 }
 
 @keyframes pulse-glow {

@@ -83,7 +83,7 @@ const HeroSection = () => {
               </div>
               <div
                 className="absolute -bottom-4 -left-4 glass-card shadow-xl px-5 py-3 hidden lg:block"
-                style={{ animation: "blob-float 6s ease-in-out infinite", animationDelay: "-3s" }}
+                style={{ animation: "blob-float 12s ease-in-out infinite", animationDelay: "-6s" }}
               >
                 <p className="text-sm font-bold text-primary">Hierarchy: 5 Levels</p>
                 <p className="text-xs text-text-muted">Real-time visualization</p>
