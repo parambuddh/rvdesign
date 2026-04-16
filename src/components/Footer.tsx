@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "@/assets/logo.webp";
 import { Link } from "react-router-dom";
 import { Globe, Mail, Phone, ArrowUp } from "lucide-react";
@@ -32,45 +32,48 @@ const Footer = () => {
         <ArrowUp className="h-5 w-5" />
       </button>
 
-      <footer style={{ background: "linear-gradient(180deg, hsl(210, 14%, 16%), hsl(210, 14%, 12%))" }} className="section-padding !py-14">
+      <footer style={{ background: "linear-gradient(180deg, hsl(210, 14%, 16%), hsl(210, 14%, 12%))" }} className="section-padding !py-10 !pb-6">
         <div className="container-narrow">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div>
-              <img src={logo} alt="RelationshipVista" className="h-10 w-auto mb-4 brightness-[2]" />
-              <p className="text-sm leading-relaxed" style={{ color: "hsl(210, 8%, 50%)" }}>
-                The AI Copilot for Relationship Mapping & Visualization –
-                <br />
-                Natively Powered by Salesforce Lightning.
+          <div className="flex gap-12 mb-10 justify-between">
+            {/* Logo and Description */}
+            <div style={{ width: "30%" }}>
+              <img src={logo} alt="RelationshipVista" className="h-16 w-auto mb-4 brightness-[2]" />
+              <p className="text-base leading-relaxed" style={{ color: "white" }}>
+                Turn complex relationships into clear, actionable insights your team can explore and understand instantly Natively within Salesforce.
               </p>
             </div>
 
-            <div>
-              <h4 className="font-heading font-bold text-sm uppercase tracking-wider mb-5" style={{ color: "hsl(0, 0%, 92%)" }}>
+            {/* Quick Links */}
+            <div style={{ width: "12%" }}>
+              <h4 className="font-heading font-bold text-lg tracking-wider mb-5" style={{ color: "white" }}>
                 Quick Links
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {[
                   { label: "Home", href: "/" },
                   { label: "Features", href: "/#features" },
                   { label: "Benefits", href: "/#benefits" },
                   { label: "Use Cases", href: "/#use-cases" },
-                  { label: "User Guide", href: "/user-guide" },
                   { label: "Contact Us", href: "/#contact" },
                 ].map((link) => (
                   <li key={link.label}>
                     {link.href.startsWith("/") && !link.href.includes("#") ? (
                       <Link
                         to={link.href}
-                        className="text-sm transition-colors hover:text-primary"
-                        style={{ color: "hsl(210, 8%, 50%)" }}
+                        className="text-base transition-colors"
+                        style={{ color: "hsl(210, 8%, 65%)" }}
+                        onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"}
+                        onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}
                       >
                         {link.label}
                       </Link>
                     ) : (
                       <a
                         href={link.href}
-                        className="text-sm transition-colors hover:text-primary"
-                        style={{ color: "hsl(210, 8%, 50%)" }}
+                        className="text-base transition-colors"
+                        style={{ color: "hsl(210, 8%, 65%)" }}
+                        onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"}
+                        onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}
                       >
                         {link.label}
                       </a>
@@ -80,34 +83,59 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div>
-              <h4 className="font-heading font-bold text-sm uppercase tracking-wider mb-5" style={{ color: "hsl(0, 0%, 92%)" }}>
+            {/* Contact Info */}
+            <div style={{ width: "21%" }}>
+              <h4 className="font-heading font-bold text-lg tracking-wider mb-5" style={{ color: "white" }}>
                 Contact Info
               </h4>
               <ul className="space-y-3">
-                {[
-                  { icon: Globe, text: "www.relationshipvista.com" },
-                  { icon: Mail, text: "info@ardira.com" },
-                  { icon: Phone, text: "1.669.777.6838" },
-                ].map(({ icon: Icon, text }, i) => (
-                  <li key={i} className="flex items-center gap-2.5 text-sm" style={{ color: "hsl(210, 8%, 50%)" }}>
-                    <Icon className="h-4 w-4 shrink-0" /> {text}
-                  </li>
-                ))}
+                <li className="flex items-center gap-2.5 text-base">
+                  <a
+                    href="https://www.relationshipvista.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 transition-colors"
+                    style={{ color: "hsl(210, 8%, 65%)" }}
+                    onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"}
+                    onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}
+                  >
+                    <Globe className="h-4 w-4 shrink-0" /> www.relationshipvista.com
+                  </a>
+                </li>
+                <li className="flex items-center gap-2.5 text-base">
+                  <a
+                    href="mailto:support@ardira.com"
+                    className="flex items-center gap-2.5 transition-colors"
+                    style={{ color: "hsl(210, 8%, 65%)" }}
+                    onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"}
+                    onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}
+                  >
+                    <Mail className="h-4 w-4 shrink-0" /> support@ardira.com
+                  </a>
+                </li>
+                <li className="flex items-center gap-2.5 text-base">
+                  <a
+                    href="tel:+16697776838"
+                    className="flex items-center gap-2.5 transition-colors"
+                    style={{ color: "hsl(210, 8%, 65%)" }}
+                    onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"}
+                    onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}
+                  >
+                    <Phone className="h-4 w-4 shrink-0" /> 1.669.777.6838
+                  </a>
+                </li>
               </ul>
-              <p className="text-xs mt-4" style={{ color: "hsl(210, 8%, 40%)" }}>
-                For customer support, email support@ardira.com
-              </p>
             </div>
           </div>
 
-          <div className="mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4" style={{ borderTop: "1px solid hsl(210, 8%, 22%)" }}>
-            <p className="text-xs" style={{ color: "hsl(210, 8%, 38%)" }}>
-              © 2026 Ardira Corporation. All Rights Reserved.
+          {/* Footer Bottom */}
+          <div className="mt-6 pt-3 flex flex-col sm:flex-row justify-between items-center gap-4" style={{ borderTop: "1px solid hsl(210, 8%, 22%)" }}>
+            <p className="text-sm" style={{ color: "hsl(210, 8%, 65%)" }}>
+              © {new Date().getFullYear()} RelationshipVista. All Rights Reserved.
             </p>
-            <div className="flex items-center gap-4 text-xs" style={{ color: "hsl(210, 8%, 38%)" }}>
-              <a href="#" className="hover:text-primary transition-colors">Terms of Use</a>
-              <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <div className="flex items-center gap-4 text-sm" style={{ color: "hsl(210, 8%, 65%)" }}>
+              <a href="#" className="transition-colors" style={{ color: "hsl(210, 8%, 65%)" }} onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"} onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}>Terms of Use</a>
+              <a href="#" className="transition-colors" style={{ color: "hsl(210, 8%, 65%)" }} onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"} onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}>Privacy Policy</a>
             </div>
           </div>
         </div>
