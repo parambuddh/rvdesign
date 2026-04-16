@@ -25,7 +25,7 @@ const HeroSection = () => {
               <h1 className="text-[36px] md:text-[44px] lg:text-[52px] font-extrabold leading-[1.1] font-heading tracking-tight">
                 <span className="relative inline-block z-10">
                   RelationshipVista
-                  <svg className="absolute -bottom-1 left-0 w-full -z-10 overflow-visible" viewBox="0 0 200 16" fill="none" preserveAspectRatio="none">
+                  <svg className="absolute -bottom-2 left-0 w-[102%] -translate-x-[1%] -z-10 overflow-visible" viewBox="0 0 200 24" fill="none" preserveAspectRatio="none">
                     <defs>
                       <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stopColor="hsl(var(--primary))" />
@@ -33,9 +33,9 @@ const HeroSection = () => {
                       </linearGradient>
                     </defs>
                     <motion.path
-                      d="M0 12C60 6 140 6 200 12"
+                      d="M6 18 Q 100 8 194 18"
                       stroke="url(#hero-gradient)" 
-                      strokeWidth="12"
+                      strokeWidth="16"
                       strokeLinecap="round"
                       initial={{ pathLength: 0, opacity: 0 }}
                       animate={{ pathLength: 1, opacity: 1 }}
