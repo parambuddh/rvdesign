@@ -1,4 +1,4 @@
-import whatIsScreenshot from "@/assets/what-is-screenshot.jpg";
+import whatIsScreenshot from "@/assets/what-is-screenshot.png";
 import RevealOnScroll from "./RevealOnScroll";
 
 const WhatIsSection = () => {
