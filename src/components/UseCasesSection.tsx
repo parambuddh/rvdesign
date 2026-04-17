@@ -7,12 +7,13 @@ import {
 } from "lucide-react";
 
 // The complete relationship network dataset
+// The complete relationship network dataset
 const useCases = [
   { id: 0, parent: null, x: 100, y: 250, icon: Building2, label: "Accounts", title: "Account Management", desc: "Visualize complex master-detail account hierarchies, parent-child structures, and all related contacts in a single view." },
   
   { id: 1, parent: 0, x: 380, y: 150, icon: TrendingUp, label: "Opportunities", title: "Opportunity Pipeline", desc: "Group and explore opportunities by stage, source, or amount. Spot roadblocks early with a clear visual sales pipeline hierarchy." },
-  { id: 2, parent: 0, x: 380, y: 300, icon: Contact, label: "Contacts", title: "Contact Mapping", desc: "Map out who reports to whom. Uncover hidden decision-makers and key influencers across multi-org networks." },
-  { id: 3, parent: 0, x: 380, y: 400, icon: Headphones, label: "Cases", title: "Case Management", desc: "Accelerate resolution times by visualizing case histories, related escalations, and support chains at a glance." },
+  { id: 2, parent: 0, x: 380, y: 250, icon: Contact, label: "Contacts", title: "Contact Mapping", desc: "Map out who reports to whom. Uncover hidden decision-makers and key influencers across multi-org networks." },
+  { id: 3, parent: 0, x: 380, y: 350, icon: Headphones, label: "Cases", title: "Case Management", desc: "Accelerate resolution times by visualizing case histories, related escalations, and support chains at a glance." },
 
   { id: 4, parent: 1, x: 680, y: 100, icon: Package, label: "Assets", title: "Asset Tracking", desc: "Connect the dots between physical assets, software products, and active contracts assigned to your accounts." },
   { id: 5, parent: 1, x: 680, y: 200, icon: FileText, label: "Contracts", title: "Contract Management", desc: "See the exact relationships between master service agreements, amendments, and software license dependencies." },
@@ -63,9 +64,6 @@ export default function UseCasesSection() {
   return (
     <section id="use-cases" className="py-24 bg-background relative overflow-hidden font-sans border-t border-border/40">
       
-      {/* Subtle Data-Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
       {/* Floating Glares */}
       <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
