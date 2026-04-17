@@ -1,10 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import RevealOnScroll from "./RevealOnScroll";
 import {
   Accordion,
   AccordionContent,
@@ -49,7 +44,12 @@ const FAQs = () => {
       <div className="absolute inset-0 gradient-mesh opacity-20" />
 
       <div className="container-narrow max-w-3xl relative z-10">
-        <RevealOnScroll>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-[38px] font-extrabold font-heading mb-4 text-text-heading">
               Frequently Asked Questions
@@ -59,7 +59,7 @@ const FAQs = () => {
             </p>
             <div className="section-divider mt-6 mx-auto" />
           </div>
-        </RevealOnScroll>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -114,4 +114,3 @@ const FAQs = () => {
 };
 
 export default FAQs;
-

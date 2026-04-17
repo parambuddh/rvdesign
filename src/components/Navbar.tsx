@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, ArrowUp } from "lucide-react";
 import logo from "@/assets/logo.webp";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -18,11 +18,14 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("/");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+      setShowScrollTop(currentScrollY > 300);
       const sections = navLinks.map(l => l.href.slice(1));
       for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
@@ -153,6 +156,30 @@ const Navbar = () => {
               </div>
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Scroll to Top Button - Fixed Position (ported from ComplianceVista) */}
+      <AnimatePresence>
+        {isScrolled && showScrollTop && (
+          <motion.button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300"
+            style={{
+              background: "linear-gradient(135deg, hsl(113, 42%, 42%), hsl(113, 42%, 35%))",
+              boxShadow: "0 4px 20px hsl(113, 42%, 42%, 0.4)",
+              color: "white",
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            <ArrowUp className="h-5 w-5" />
+          </motion.button>
         )}
       </AnimatePresence>
     </motion.header>

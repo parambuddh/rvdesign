@@ -1,6 +1,5 @@
 import { Monitor, Network, SlidersHorizontal, Search, ChevronRight } from "lucide-react";
-import RevealOnScroll from "./RevealOnScroll";
-import { useStaggerReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
 
 const steps = [
   {
@@ -34,12 +33,15 @@ const steps = [
 ];
 
 const WorkflowSection = () => {
-  const { ref, visibleItems } = useStaggerReveal(steps.length);
-
   return (
     <section className="section-padding relative overflow-hidden">
       <div className="container-narrow">
-        <RevealOnScroll>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="text-center max-w-3xl mx-auto mb-14">
             <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
               How It Works
@@ -49,19 +51,19 @@ const WorkflowSection = () => {
             </h2>
             <div className="section-divider mt-4" />
           </div>
-        </RevealOnScroll>
+        </motion.div>
 
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((s, i) => (
-            <div key={s.step} className="relative">
-              <div
-                className="premium-card p-6 text-center h-full"
-                style={{
-                  opacity: visibleItems[i] ? 1 : 0,
-                  transform: visibleItems[i] ? "none" : "translateY(30px)",
-                  transition: `opacity 0.6s ease-out, transform 0.6s ease-out`,
-                }}
-              >
+            <motion.div
+              key={s.step}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="relative"
+            >
+              <div className="premium-card p-6 text-center h-full">
                 <div className="step-number mx-auto mb-4">{s.step}</div>
                 <div className="icon-box-lg mx-auto mb-4">
                   <s.icon className="h-6 w-6 text-primary" />
@@ -82,7 +84,7 @@ const WorkflowSection = () => {
                   <ChevronRight className="h-5 w-5" />
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

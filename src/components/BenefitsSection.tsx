@@ -1,6 +1,5 @@
 import { Zap, Users, Lightbulb, CheckCircle, Blocks, Shield } from "lucide-react";
-import RevealOnScroll from "./RevealOnScroll";
-import { useStaggerReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
 
 const benefits = [
   {
@@ -36,14 +35,17 @@ const benefits = [
 ];
 
 const BenefitsSection = () => {
-  const { ref, visibleItems } = useStaggerReveal(benefits.length);
-
   return (
     <section id="benefits" className="section-padding section-alt relative overflow-hidden">
       <div className="absolute inset-0 gradient-mesh opacity-30" />
 
       <div className="container-narrow relative z-10">
-        <RevealOnScroll>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="text-center max-w-3xl mx-auto mb-14">
             <h2 className="text-3xl md:text-[40px] font-extrabold font-heading leading-tight mb-4">
               Built for Enterprise. Designed for
@@ -56,18 +58,17 @@ const BenefitsSection = () => {
             </p>
             <div className="section-divider mt-6" />
           </div>
-        </RevealOnScroll>
+        </motion.div>
 
-        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {benefits.map((b, i) => (
-            <div
+            <motion.div
               key={b.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
               className="premium-card p-7 group"
-              style={{
-                opacity: visibleItems[i] ? 1 : 0,
-                transform: visibleItems[i] ? "none" : "translateY(30px)",
-                transition: `opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.5s, border-color 0.5s`,
-              }}
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#49983E] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left will-change-transform" />
               <div className="icon-box mb-5">
@@ -75,7 +76,7 @@ const BenefitsSection = () => {
               </div>
               <h3 className="text-lg font-bold font-heading mb-2.5 group-hover:text-primary transition-colors">{b.title}</h3>
               <p className="text-sm text-text-muted leading-relaxed">{b.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

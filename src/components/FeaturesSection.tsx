@@ -2,8 +2,7 @@ import {
   Network, SlidersHorizontal, GitBranch, LayoutList,
   Filter, Smartphone, Eye, Navigation, LayoutTemplate,
 } from "lucide-react";
-import RevealOnScroll from "./RevealOnScroll";
-import { useStaggerReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
 import FeaturesAnimation from "./FeaturesAnimation";
 
 const capabilities = [
@@ -55,15 +54,18 @@ const capabilities = [
 ];
 
 const FeaturesSection = () => {
-  const { ref: listRef, visibleItems } = useStaggerReveal(capabilities.length);
-
   return (
     <section id="features" className="section-padding section-alt relative">
       {/* Subtle gradient mesh */}
       <div className="absolute inset-0 gradient-mesh opacity-50" />
 
       <div className="container-narrow relative z-10">
-        <RevealOnScroll>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="text-center max-w-3xl mx-auto mb-14">
             <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
               Features
@@ -73,11 +75,17 @@ const FeaturesSection = () => {
             </h2>
             <div className="section-divider mt-4" />
           </div>
-        </RevealOnScroll>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Left: Browser-frame mockup */}
-          <RevealOnScroll direction="left" className="h-full relative">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="h-full relative"
+          >
             <div className="premium-card overflow-hidden sticky top-28 !border-border/40 shadow-xl">
               {/* Browser chrome */}
               <div className="px-5 py-3.5 border-b border-border/60 flex items-center gap-3 bg-muted/30">
@@ -94,19 +102,18 @@ const FeaturesSection = () => {
               </div>
               <FeaturesAnimation />
             </div>
-          </RevealOnScroll>
+          </motion.div>
 
           {/* Right: feature list with staggered animation */}
-          <div ref={listRef} className="space-y-3 py-4 lg:py-12">
+          <div className="space-y-3 py-4 lg:py-12">
             {capabilities.map((cap, i) => (
-              <div
+              <motion.div
                 key={cap.title}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.06 }}
                 className="flex items-start gap-4 p-4 rounded-xl border border-transparent hover:border-primary/15 hover:bg-card transition-all duration-300 cursor-default group"
-                style={{
-                  opacity: visibleItems[i] ? 1 : 0,
-                  transform: visibleItems[i] ? "none" : "translateX(30px)",
-                  transition: `opacity 0.5s ease-out, transform 0.5s ease-out, background 0.3s, border-color 0.3s`,
-                }}
               >
                 <div className="icon-box">
                   <cap.icon className="h-5 w-5 text-primary" />
@@ -117,7 +124,7 @@ const FeaturesSection = () => {
                   </h3>
                   <p className="text-sm text-text-muted leading-relaxed">{cap.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

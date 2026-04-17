@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { toast } from "sonner";
-import RevealOnScroll from "./RevealOnScroll";
+import { motion } from "framer-motion";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -84,7 +84,12 @@ const ContactSection = () => {
       <div className="absolute inset-0 gradient-mesh opacity-20" />
 
       <div className="container-narrow relative z-10 px-4 sm:px-6">
-        <RevealOnScroll>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-[38px] font-extrabold font-heading mb-4 text-text-heading">Get in Touch</h2>
             <p className="text-text-body text-lg">
@@ -92,13 +97,19 @@ const ContactSection = () => {
             </p>
             <div className="section-divider mt-6" />
           </div>
-        </RevealOnScroll>
+        </motion.div>
 
         {/* Two Column Layout - Form Left (Sticky), Info + Map Right (Fixed Height) */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-10 max-w-6xl mx-auto items-start">
           
           {/* Form - Left Side - Sticky Position, Static Size */}
-          <RevealOnScroll className="h-full">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="h-full"
+          >
             <form
               ref={formRef}
               onSubmit={handleSubmit}
@@ -151,10 +162,15 @@ const ContactSection = () => {
                 We're committed to your privacy. RelationshipVista uses the information you provide to contact you about relevant content, products, and services.
               </p>
             </form>
-          </RevealOnScroll>
+          </motion.div>
 
           {/* Right Side - Info + Map (Fixed Height matching form, Scrolls silently) */}
-          <RevealOnScroll direction="right">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
             <div
               className="flex flex-col gap-6 md:overflow-y-auto overflow-hidden scrollbar-hide premium-card p-6 md:p-8 !border-border/40"
               style={{ maxHeight: rightSideHeight }}
@@ -224,7 +240,7 @@ const ContactSection = () => {
                 />
               </div>
             </div>
-          </RevealOnScroll>
+          </motion.div>
         </div>
       </div>
     </section>

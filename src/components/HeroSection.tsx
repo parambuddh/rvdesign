@@ -1,6 +1,5 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
 import heroDashboard from "@/assets/hero-dashboard.png";
-import RevealOnScroll from "./RevealOnScroll";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
@@ -14,14 +13,22 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Text */}
           <div className="space-y-6">
-            <RevealOnScroll delay={0}>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0 }}
+            >
               <div className="pill-badge">
                 <span className="w-2 h-2 rounded-full bg-primary" style={{ animation: "pulse-glow 2s infinite" }} />
                 100% Native Salesforce
               </div>
-            </RevealOnScroll>
+            </motion.div>
 
-            <RevealOnScroll delay={0.1}>
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+            >
               <h1 className="text-[36px] md:text-[44px] lg:text-[52px] font-extrabold leading-[1.1] font-heading tracking-tight">
                 <span className="relative inline-block z-10">
                   RelationshipVista
@@ -48,25 +55,37 @@ const HeroSection = () => {
                   for Intelligent Relationship Mapping & Visualization
                 </span>
               </h1>
-            </RevealOnScroll>
+            </motion.div>
 
-            <RevealOnScroll delay={0.2}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <p className="text-xl md:text-[22px] font-semibold text-text-heading leading-snug">
                 Interactive Data Exploration for
                 <br />
                 Account Hierarchies & Connected Records.
               </p>
-            </RevealOnScroll>
+            </motion.div>
 
-            <RevealOnScroll delay={0.3}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               <p className="text-base text-text-light leading-relaxed max-w-lg">
                 See deeper insights into your account hierarchies, opportunity
                 pipelines, and connected records — all within Salesforce.
                 No code required.
               </p>
-            </RevealOnScroll>
+            </motion.div>
 
-            <RevealOnScroll delay={0.4}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               <div className="flex flex-wrap gap-4 pt-2">
                 <a href="#contact" className="btn-cta">
                   Book a Demo <ArrowRight className="h-5 w-5" />
@@ -75,11 +94,15 @@ const HeroSection = () => {
                   View on AppExchange <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
-            </RevealOnScroll>
+            </motion.div>
           </div>
 
           {/* Hero Image with glassmorphism floating cards */}
-          <RevealOnScroll delay={0.2} direction="right">
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/30 relative">
                 <img
@@ -109,7 +132,7 @@ const HeroSection = () => {
                 <p className="text-xs text-text-muted">Real-time visualization</p>
               </div>
             </div>
-          </RevealOnScroll>
+          </motion.div>
         </div>
       </div>
     </section>
