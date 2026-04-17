@@ -119,37 +119,7 @@ const HeroAnimation = () => {
           margin-left:4px;
         }
 
-        .ha-badge {
-          position:absolute;
-          background:var(--glass-strong);
-          border:1px solid var(--glass-border);
-          border-radius:clamp(8px, 1.5vw, 12px);
-          backdrop-filter:blur(16px);
-          padding:clamp(6px, 1vw, 10px) clamp(8px, 1.5vw, 16px);
-          display:flex; align-items:center; gap:clamp(6px, 1vw, 10px);
-          z-index:10;
-          animation:haBadgeFloat 5s ease-in-out infinite;
-          transform-style:preserve-3d;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-        }
-        .ha-badge-icon {
-          width:clamp(20px, 3vw, 32px); height:clamp(20px, 3vw, 32px);
-          border-radius:clamp(4px, 1vw, 8px);
-          display:flex; align-items:center; justify-content:center;
-        }
-        .ha-badge-icon svg { width: clamp(12px, 2vw, 16px); height: clamp(12px, 2vw, 16px); }
-        .ha-badge-icon.green { background:rgba(127,255,0,0.15); color:var(--forest-light); }
-        .ha-badge-icon.blue { background:rgba(74,124,155,0.25); color:var(--steel-light); }
-        .ha-badge-label { font-size:clamp(7px, 1vw, 10px); color:rgba(0,0,0,0.45); text-transform:uppercase; letter-spacing:1px; line-height: 1.2; }
-        .ha-badge-value { font-size:clamp(11px, 1.5vw, 16px); color:#0f172a; font-weight:600; line-height: 1.2; }
 
-        /* Responsive Badges */
-        .ha-badge-1 { top:12%; left:clamp(2%, 10vw, 20%); animation-delay:-1s; transform:translateZ(20px); }
-        .ha-badge-2 { bottom:18%; right:clamp(2%, 10vw, 20%); animation-delay:-3s; transform:translateZ(20px); }
-        .ha-badge-3 { top:35%; right:clamp(-2%, 8vw, 15%); animation-delay:-2s; transform:translateZ(30px); }
-        .ha-badge-4 { bottom:30%; left:clamp(-2%, 8vw, 15%); animation-delay:-4s; transform:translateZ(30px); }
-
-        @keyframes haBadgeFloat { 0%, 100%{ transform:translateY(0) translateZ(30px); } 50%{ transform:translateY(-8px) translateZ(30px); } }
 
         .ha-gauge-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; height:calc(100% - 44px); padding:12px; }
         .ha-gauge-ring { width:clamp(40px, 8vw, 80px); height:clamp(40px, 8vw, 80px); border-radius:50%; border:3px solid rgba(0,0,0,0.05); position:relative; display:flex; align-items:center; justify-content:center; }
@@ -309,23 +279,7 @@ const HeroAnimation = () => {
 
           </div>
 
-          {/* Badges */}
-          <div className="ha-badge ha-badge-1">
-            <div className="ha-badge-icon green"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" fill="currentColor"/><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" opacity="0.4"/></svg></div>
-            <div><div className="ha-badge-label">Connectivity</div><div className="ha-badge-value">98.7%</div></div>
-          </div>
-          <div className="ha-badge ha-badge-2">
-            <div className="ha-badge-icon blue"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor"/><rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/><rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/><rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.3"/></svg></div>
-            <div><div className="ha-badge-label">Hierarchy</div><div className="ha-badge-value">6 Levels</div></div>
-          </div>
-          <div className="ha-badge ha-badge-3">
-            <div className="ha-badge-icon green"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg></div>
-            <div><div className="ha-badge-label">Accounts</div><div className="ha-badge-value">1,247</div></div>
-          </div>
-          <div className="ha-badge ha-badge-4">
-            <div className="ha-badge-icon blue"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
-            <div><div className="ha-badge-label">Sync Status</div><div className="ha-badge-value">Active</div></div>
-          </div>
+
 
         </div>
       </div>
