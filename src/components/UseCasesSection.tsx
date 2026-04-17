@@ -8,15 +8,15 @@ import {
 
 // The complete relationship network dataset
 const useCases = [
-  { id: 0, parent: null, x: 120, y: 250, icon: Building2, label: "Accounts", title: "Account Management", desc: "Visualize complex master-detail account hierarchies, parent-child structures, and all related contacts in a single view." },
+  { id: 0, parent: null, x: 100, y: 250, icon: Building2, label: "Accounts", title: "Account Management", desc: "Visualize complex master-detail account hierarchies, parent-child structures, and all related contacts in a single view." },
   
-  { id: 1, parent: 0, x: 400, y: 100, icon: TrendingUp, label: "Opportunities", title: "Opportunity Pipeline", desc: "Group and explore opportunities by stage, source, or amount. Spot roadblocks early with a clear visual sales pipeline hierarchy." },
-  { id: 2, parent: 0, x: 400, y: 250, icon: Contact, label: "Contacts", title: "Contact Mapping", desc: "Map out who reports to whom. Uncover hidden decision-makers and key influencers across multi-org networks." },
-  { id: 3, parent: 0, x: 400, y: 400, icon: Headphones, label: "Cases", title: "Case Management", desc: "Accelerate resolution times by visualizing case histories, related escalations, and support chains at a glance." },
+  { id: 1, parent: 0, x: 380, y: 150, icon: TrendingUp, label: "Opportunities", title: "Opportunity Pipeline", desc: "Group and explore opportunities by stage, source, or amount. Spot roadblocks early with a clear visual sales pipeline hierarchy." },
+  { id: 2, parent: 0, x: 380, y: 300, icon: Contact, label: "Contacts", title: "Contact Mapping", desc: "Map out who reports to whom. Uncover hidden decision-makers and key influencers across multi-org networks." },
+  { id: 3, parent: 0, x: 380, y: 400, icon: Headphones, label: "Cases", title: "Case Management", desc: "Accelerate resolution times by visualizing case histories, related escalations, and support chains at a glance." },
 
-  { id: 4, parent: 1, x: 680, y: 40, icon: Package, label: "Assets", title: "Asset Tracking", desc: "Connect the dots between physical assets, software products, and active contracts assigned to your accounts." },
-  { id: 5, parent: 1, x: 680, y: 160, icon: FileText, label: "Contracts", title: "Contract Management", desc: "See the exact relationships between master service agreements, amendments, and software license dependencies." },
-  { id: 6, parent: 2, x: 680, y: 250, icon: GitBranch, label: "Partners", title: "Partner Management", desc: "Explore extensive partner hierarchies, channel distribution relationships, and complex tiered reseller structures." },
+  { id: 4, parent: 1, x: 680, y: 100, icon: Package, label: "Assets", title: "Asset Tracking", desc: "Connect the dots between physical assets, software products, and active contracts assigned to your accounts." },
+  { id: 5, parent: 1, x: 680, y: 200, icon: FileText, label: "Contracts", title: "Contract Management", desc: "See the exact relationships between master service agreements, amendments, and software license dependencies." },
+  { id: 6, parent: 2, x: 680, y: 300, icon: GitBranch, label: "Partners", title: "Partner Management", desc: "Explore extensive partner hierarchies, channel distribution relationships, and complex tiered reseller structures." },
   { id: 7, parent: 3, x: 680, y: 400, icon: Database, label: "Custom", title: "Custom Objects", desc: "Don't settle for standard objects. Build stunning visual maps for absolutely any custom object relationship in your org." },
 ];
 
@@ -53,7 +53,7 @@ export default function UseCasesSection() {
       const current = useCases.find(u => u.id === currentId);
       currentId = current && current.parent !== null ? current.parent : null;
     }
-    return path; // e.g. [4, 1, 0]
+    return path; 
   };
 
   const activePath = getPathToRoot(activeId);
@@ -123,6 +123,17 @@ export default function UseCasesSection() {
                            <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
                            <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="1" />
                         </linearGradient>
+                        <style>
+                          {`
+                            @keyframes smoothFlowStream {
+                              0% { stroke-dashoffset: 18; }
+                              100% { stroke-dashoffset: 0; }
+                            }
+                            .flow-stream { 
+                              animation: smoothFlowStream 0.8s linear infinite; 
+                            }
+                          `}
+                        </style>
                       </defs>
 
                       {useCases.map(node => {
@@ -132,9 +143,14 @@ export default function UseCasesSection() {
 
                          const isActiveEdge = activePath.includes(node.id) && activePath.includes(p.id);
 
-                         // Smooth Bezier Curve logic connecting nodes perfectly
-                         const cpX = p.x + (node.x - p.x) / 2;
-                         const pathData = `M ${p.x} ${p.y} C ${cpX} ${p.y}, ${cpX} ${node.y}, ${node.x} ${node.y}`;
+                         // Seamless connection points (stops line from piercing icon backgrounds)
+                         // Icon radius is approx 24px (w-12 h-12 = 48x48)
+                         const startX = p.x + 24;
+                         const endX = node.x - 24;
+                         
+                         // Smooth Bezier S-Curve logic connecting explicit node borders
+                         const cpX = startX + (endX - startX) / 2;
+                         const pathData = `M ${startX} ${p.y} C ${cpX} ${p.y}, ${cpX} ${node.y}, ${endX} ${node.y}`;
 
                          return (
                            <g key={`edge-${node.id}`}>
@@ -151,16 +167,7 @@ export default function UseCasesSection() {
                               {/* Glowing Active Line Overlay */}
                               {isActiveEdge && (
                                  <>
-                                   {/* The glow */}
-                                   <path 
-                                      d={pathData}
-                                      fill="none"
-                                      stroke="hsl(var(--primary))"
-                                      className="opacity-20"
-                                      strokeWidth="8"
-                                      style={{ transition: "stroke 0.5s ease" }}
-                                   />
-                                   {/* Standard solid line */}
+                                   {/* Solid Active Edge */}
                                    <path 
                                       d={pathData}
                                       fill="none"
@@ -169,10 +176,16 @@ export default function UseCasesSection() {
                                       strokeWidth="2.5"
                                       style={{ transition: "all 0.5s ease" }}
                                    />
-                                   {/* Futuristic Data Packets traveling the line */}
-                                   <circle r="3" fill="hsl(var(--primary))">
-                                     <animateMotion dur="2.5s" repeatCount="indefinite" path={pathData} />
-                                   </circle>
+                                   {/* Smooth Continuous Flowing Data Stream Layer */}
+                                   <path 
+                                     d={pathData}
+                                     fill="none"
+                                     stroke="hsl(var(--primary))"
+                                     strokeWidth="5"
+                                     strokeDasharray="8 10"
+                                     strokeLinecap="round"
+                                     className="opacity-40 flow-stream"
+                                   />
                                  </>
                               )}
                            </g>
