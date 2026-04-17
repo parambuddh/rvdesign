@@ -107,8 +107,8 @@ const Footer = () => {
             © {new Date().getFullYear()} RelationshipVista. All Rights Reserved.
           </p>
           <div className="flex items-center gap-4 text-sm" style={{ color: "hsl(210, 8%, 65%)" }}>
-            <a href="#" className="transition-colors" style={{ color: "hsl(210, 8%, 65%)" }} onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"} onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}>Terms of Use</a>
-            <a href="#" className="transition-colors" style={{ color: "hsl(210, 8%, 65%)" }} onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"} onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}>Privacy Policy</a>
+            <Link to="/terms-of-use" className="transition-colors" style={{ color: "hsl(210, 8%, 65%)" }} onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"} onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}>Terms of Use</Link>
+            <Link to="/privacy-policy" className="transition-colors" style={{ color: "hsl(210, 8%, 65%)" }} onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(113, 42%, 60%)"} onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = "hsl(210, 8%, 65%)"}>Privacy Policy</Link>
           </div>
         </div>
       </div>
