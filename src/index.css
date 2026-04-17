@@ -291,7 +291,6 @@ img, iframe, video {
   /* Background stability - ensure absolute elements have strict containment */
   .gradient-mesh {
     contain: strict;
-    pointer-events: none;
   }
 }
 
