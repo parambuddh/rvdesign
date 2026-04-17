@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Menu, X, ArrowRight, ArrowUp } from "lucide-react";
 import logo from "@/assets/logo.webp";
 import { motion, AnimatePresence } from "framer-motion";
-
 import { Link, useLocation } from "react-router-dom";
+import CalendlyModal from "./CalendlyModal";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -19,6 +19,7 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("/");
   const [isScrolled, setIsScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -91,14 +92,14 @@ const Navbar = () => {
               )
             ))}
 
-            <a 
-              href="#contact" 
-              className={`ml-4 flex items-center gap-2 bg-primary text-primary-foreground rounded-full font-semibold overflow-hidden shadow-md hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 ${
+            <button
+              onClick={() => setIsCalendlyOpen(true)}
+              className={`ml-4 flex items-center gap-2 bg-primary text-primary-foreground rounded-full font-semibold overflow-hidden shadow-md hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer ${
                 isScrolled ? "px-5 py-2 text-xs" : "px-6 py-2.5 text-sm"
               }`}
             >
               Book Demo <ArrowRight className="h-4 w-4" />
-            </a>
+            </button>
           </div>
 
           <button
@@ -146,20 +147,19 @@ const Navbar = () => {
                 )
               ))}
               <div className="pt-4 mt-2 border-t border-slate-100">
-                <a 
-                  href="#contact" 
-                  className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-primary-foreground rounded-xl font-semibold shadow-md"
-                  onClick={() => setMobileOpen(false)}
+                <button
+                  onClick={() => { setMobileOpen(false); setIsCalendlyOpen(true); }}
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-primary-foreground rounded-xl font-semibold shadow-md cursor-pointer"
                 >
                   Book Demo <ArrowRight className="h-4 w-4" />
-                </a>
+                </button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Scroll to Top Button - Fixed Position (ported from ComplianceVista) */}
+      {/* Scroll to Top Button */}
       <AnimatePresence>
         {isScrolled && showScrollTop && (
           <motion.button
@@ -182,6 +182,8 @@ const Navbar = () => {
           </motion.button>
         )}
       </AnimatePresence>
+
+      <CalendlyModal isOpen={isCalendlyOpen} onClose={() => setIsCalendlyOpen(false)} />
     </motion.header>
   );
 };

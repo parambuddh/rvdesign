@@ -2,11 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import { useRecaptcha } from "@/hooks/useRecaptcha";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { loadRecaptcha, executeRecaptcha } = useRecaptcha();
 
   const formRef = useRef<HTMLFormElement>(null);
   const [rightSideHeight, setRightSideHeight] = useState<string>("auto");
@@ -55,14 +57,40 @@ const ContactSection = () => {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    
-    // Simulate network request
-    setTimeout(() => {
-        setIsSubmitting(false);
-        toast.success("Thank you! We'll be in touch shortly.");
-        setForm({ name: "", email: "", phone: "", message: "" });
-        setErrors({});
-    }, 1200);   
+    try {
+      // Execute reCAPTCHA V3
+      const token = await executeRecaptcha("contact_form");
+
+      // Send form data to PHP backend
+      const API_URL = import.meta.env.VITE_CONTACT_API_URL || '/api/contact.php';
+
+      const payload = {
+        ...form,
+        recaptcha_token: token,
+        source_url: window.location.href
+      };
+
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to send message");
+      }
+
+      toast.success("Thank you! We'll be in touch shortly.");
+      setForm({ name: "", email: "", phone: "", message: "" });
+      setErrors({});
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass = (name: string) =>
@@ -119,7 +147,7 @@ const ContactSection = () => {
                 <label className="block text-sm font-semibold text-text-heading mb-1.5">
                     Your Name <span className="text-destructive">*</span>
                 </label>
-                <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass("name")} placeholder="John Doe" />
+                <input type="text" value={form.name} onFocus={loadRecaptcha} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass("name")} placeholder="John Doe" />
                 {errors.name && <p className="text-xs text-destructive mt-1 font-medium">{errors.name}</p>}
               </div>
 
@@ -127,7 +155,7 @@ const ContactSection = () => {
                 <label className="block text-sm font-semibold text-text-heading mb-1.5">
                     Your Email <span className="text-destructive">*</span>
                 </label>
-                <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass("email")} placeholder="john@company.com" />
+                <input type="email" value={form.email} onFocus={loadRecaptcha} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass("email")} placeholder="john@company.com" />
                 {errors.email && <p className="text-xs text-destructive mt-1 font-medium">{errors.email}</p>}
               </div>
 
@@ -135,7 +163,7 @@ const ContactSection = () => {
                 <label className="block text-sm font-semibold text-text-heading mb-1.5">
                     Phone <span className="text-destructive">*</span>
                 </label>
-                <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass("phone")} placeholder="Enter your phone number" />
+                <input type="tel" value={form.phone} onFocus={loadRecaptcha} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass("phone")} placeholder="Enter your phone number" />
                 {errors.phone && <p className="text-xs text-destructive mt-1 font-medium">{errors.phone}</p>}
               </div>
 
@@ -143,7 +171,7 @@ const ContactSection = () => {
                 <label className="block text-sm font-semibold text-text-heading mb-1.5">
                     Your Message
                 </label>
-                <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputClass("message")} resize-none h-32 md:h-40`} placeholder="Tell us about your needs..." />
+                <textarea value={form.message} onFocus={loadRecaptcha} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputClass("message")} resize-none h-32 md:h-40`} placeholder="Tell us about your needs..." />
                 {errors.message && <p className="text-xs text-destructive mt-1 font-medium">{errors.message}</p>}
               </div>
 
@@ -158,8 +186,11 @@ const ContactSection = () => {
                 </button>
               </div>
 
+              {/* reCAPTCHA Badge Notice */}
               <p className="text-xs text-text-muted text-center mt-3 leading-relaxed">
-                We're committed to your privacy. RelationshipVista uses the information you provide to contact you about relevant content, products, and services.
+                This site is protected by reCAPTCHA and the Google
+                <br />
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Terms of Service</a> apply.
               </p>
             </form>
           </motion.div>

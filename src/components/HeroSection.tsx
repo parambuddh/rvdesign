@@ -1,8 +1,12 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
 import heroDashboard from "@/assets/hero-dashboard.png";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import CalendlyModal from "./CalendlyModal";
 
 const HeroSection = () => {
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+
   return (
     <section id="home" className="section-padding relative overflow-hidden gradient-mesh">
       {/* Animated gradient blobs */}
@@ -87,9 +91,12 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="flex flex-wrap gap-4 pt-2">
-                <a href="#contact" className="btn-cta">
+                <button
+                  onClick={() => setIsCalendlyOpen(true)}
+                  className="btn-cta"
+                >
                   Book a Demo <ArrowRight className="h-5 w-5" />
-                </a>
+                </button>
                 <a href="#" className="btn-outline">
                   View on AppExchange <ExternalLink className="h-4 w-4" />
                 </a>
@@ -135,6 +142,8 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+
+      <CalendlyModal isOpen={isCalendlyOpen} onClose={() => setIsCalendlyOpen(false)} />
     </section>
   );
 };

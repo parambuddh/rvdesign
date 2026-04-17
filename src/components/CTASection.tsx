@@ -1,7 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import CalendlyModal from "./CalendlyModal";
 
 const CTASection = () => {
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+
   return (
     <section className="py-12 md:py-16 lg:py-20 px-4 md:px-8 relative overflow-hidden" style={{ background: "linear-gradient(90deg, #4D9A3F 0%, #49983E 30%, #2a8b7e 70%, #1a9b8e 100%)" }}>
       {/* Animated background elements */}
@@ -53,16 +57,18 @@ const CTASection = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-background text-primary font-bold text-base hover:bg-background/90 transition-all shadow-xl hover:-translate-y-1"
+            <button
+              onClick={() => setIsCalendlyOpen(true)}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-background text-primary font-bold text-base hover:bg-background/90 transition-all shadow-xl hover:-translate-y-1 cursor-pointer"
               style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.15)" }}
             >
               Book a Demo <ArrowRight className="h-5 w-5" />
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>
+
+      <CalendlyModal isOpen={isCalendlyOpen} onClose={() => setIsCalendlyOpen(false)} />
     </section>
   );
 };
