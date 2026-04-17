@@ -1,12 +1,18 @@
 import { useState, useCallback } from 'react';
 
-// IMPORTANT: Replace with your actual reCAPTCHA v3 site key
-const RECAPTCHA_SITE_KEY = "6LdpZq4sAAAAACc87ym0oRUjKpiJ5nIsi_LWPxTh";
+// Use environment variable for reCAPTCHA site key
+// Set VITE_RECAPTCHA_SITE_KEY in your Vercel Environment Variables
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";
 
 export const useRecaptcha = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const loadRecaptcha = useCallback(() => {
+    if (!RECAPTCHA_SITE_KEY) {
+      console.warn("reCAPTCHA site key is not configured. Set VITE_RECAPTCHA_SITE_KEY in your environment.");
+      return;
+    }
+
     if (isLoaded || document.querySelector(`script[src*="recaptcha/api.js"]`)) {
       if (window.grecaptcha) setIsLoaded(true);
       return;
@@ -25,6 +31,10 @@ export const useRecaptcha = () => {
   }, [isLoaded]);
 
   const executeRecaptcha = async (action: string): Promise<string | null> => {
+    if (!RECAPTCHA_SITE_KEY) {
+      console.warn("reCAPTCHA site key is not configured");
+      return null;
+    }
     if (!window.grecaptcha) {
       console.warn("reCAPTCHA has not loaded yet");
       return null;

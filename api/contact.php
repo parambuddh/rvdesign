@@ -53,13 +53,13 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 // --- SMTP Credentials ---
 // Set these as Vercel Environment Variables: SMTP_USER and SMTP_PASS
-$smtpUser = getenv('SMTP_USER') ?: 'zeon6080@gmail.com';
-$smtpPass = getenv('SMTP_PASS') ?: 'jtwb crev jxzb vvoe';
+$smtpUser = getenv('SMTP_USER') ?: 'parambuddh26@gmail.com';
+$smtpPass = getenv('SMTP_PASS') ?: '';
 
 $logoUrl = "https://www.relationshipvista.com/logo.webp"; // RelationshipVista logo
 
 // Send the "Sales Team" email to recipients
-$testRecipients = ['parambuddh26@gmail.com', 'gajeramilan518@gmail.com'];
+$recipient = 'parambuddh26@gmail.com';
 $subjectSales = "New Inquiry from RelationshipVista website";
 $subjectProspect = "Thank You for contacting RelationshipVista";
 
@@ -161,7 +161,7 @@ function sendMail($to, $cc, $subject, $body, $smtpUser, $smtpPass, $replyToEmail
 $errors = [];
 
 // 1. Send internal copy to Sales Team
-$salesResult = sendMail($testRecipients[0], $testRecipients[1], $subjectSales, $salesBody, $smtpUser, $smtpPass, $email);
+$salesResult = sendMail($recipient, null, $subjectSales, $salesBody, $smtpUser, $smtpPass, $email);
 if ($salesResult !== true) {
     $errors[] = "Sales email failed: " . $salesResult;
 }

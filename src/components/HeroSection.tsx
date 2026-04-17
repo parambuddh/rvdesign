@@ -3,9 +3,11 @@ import heroDashboard from "@/assets/hero-dashboard.png";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import CalendlyModal from "./CalendlyModal";
+import GetNowModal from "./GetNowModal";
 
 const HeroSection = () => {
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  const [isGetNowOpen, setIsGetNowOpen] = useState(false);
 
   return (
     <section id="home" className="section-padding relative overflow-hidden gradient-mesh">
@@ -97,9 +99,12 @@ const HeroSection = () => {
                 >
                   Book a Demo <ArrowRight className="h-5 w-5" />
                 </button>
-                <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000FZcqBUAT" target="_blank" rel="noopener noreferrer" className="btn-outline">
+                <button
+                  onClick={() => setIsGetNowOpen(true)}
+                  className="btn-outline"
+                >
                   View on AppExchange <ExternalLink className="h-4 w-4" />
-                </a>
+                </button>
               </div>
             </motion.div>
           </div>
@@ -144,6 +149,7 @@ const HeroSection = () => {
       </div>
 
       <CalendlyModal isOpen={isCalendlyOpen} onClose={() => setIsCalendlyOpen(false)} />
+      <GetNowModal isOpen={isGetNowOpen} onClose={() => setIsGetNowOpen(false)} />
     </section>
   );
 };
