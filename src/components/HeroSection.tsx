@@ -97,7 +97,7 @@ const HeroSection = () => {
                 >
                   Book a Demo <ArrowRight className="h-5 w-5" />
                 </button>
-                <a href="#" className="btn-outline">
+                <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000FZcqBUAT" target="_blank" rel="noopener noreferrer" className="btn-outline">
                   View on AppExchange <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
