@@ -93,8 +93,8 @@ export default function UseCasesAnimation() {
                 marginTop: '-22px',
                 borderRadius: '50%',
                 backgroundColor: node.bg,
-                border: \`1.5px solid \${node.border}\`,
-                transform: \`translate(\${x}px, \${y}px) rotate(\${-rotation}deg)\`, // Counter-rotate to stay upright
+                border: `1.5px solid ${node.border}`,
+                transform: `translate(${x}px, ${y}px) rotate(${-rotation}deg)`, // Counter-rotate to stay upright
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -103,7 +103,7 @@ export default function UseCasesAnimation() {
                 <node.icon style={{ color: node.color, width: '20px', height: '20px' }} />
                 
                 {/* Ping animation wrapper */}
-                <div className="absolute inset-0 rounded-full border-2 border-transparent" style={{ borderColor: node.color, opacity: 0.2, animation: \`ping 3s cubic-bezier(0, 0, 0.2, 1) infinite \${i * 0.5}s\` }}></div>
+                <div className="absolute inset-0 rounded-full border-2 border-transparent" style={{ borderColor: node.color, opacity: 0.2, animation: `ping 3s cubic-bezier(0, 0, 0.2, 1) infinite ${i * 0.5}s` }}></div>
             </div>
           )
         })}
@@ -122,14 +122,14 @@ export default function UseCasesAnimation() {
       <div className="absolute bottom-4 left-4 w-2 h-2 rounded-full bg-slate-200"></div>
       <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-slate-200"></div>
 
-      <style dangerouslySetInnerHTML={{__html: \`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes ping {
             75%, 100% {
                 transform: scale(1.8);
                 opacity: 0;
             }
         }
-      \`}} />
+      `}} />
     </div>
   );
 }
