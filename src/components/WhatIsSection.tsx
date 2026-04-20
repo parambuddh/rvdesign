@@ -3,7 +3,7 @@ import HeroAnimation from "./HeroAnimation";
 
 const WhatIsSection = () => {
   return (
-    <section className="section-padding">
+    <section id="overview" className="section-padding">
       <div className="container-narrow">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}

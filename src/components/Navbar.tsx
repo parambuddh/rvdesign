@@ -7,10 +7,10 @@ import CalendlyModal from "./CalendlyModal";
 
 const navLinks = [
   { label: "Home", href: "/" },
+  { label: "Overview", href: "/#overview" },
   { label: "Features", href: "/#features" },
   { label: "Benefits", href: "/#benefits" },
   { label: "Use Cases", href: "/#use-cases" },
-  { label: "User Guide", href: "/user-guide" },
   { label: "Contact Us", href: "/#contact" },
 ];
 
