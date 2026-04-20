@@ -244,43 +244,10 @@ const HeroAnimation = () => {
               </svg>
             </div>
 
-            {/* Bottom Panel */}
-            <div className="ha-glass-panel ha-panel-bottom">
-              <div style={{ display:'flex', alignItems:'center', height:'100%', padding:'0 clamp(10px, 2vw, 20px)', gap:'clamp(10px, 2vw, 20px)' }}>
-                <div className="ha-gauge-ring"><span className="ha-gauge-num">94</span></div>       
-                <div>
-                  <div className="ha-gauge-label">Connectivity Score</div>
-                  <div style={{ display:'flex', gap:'clamp(8px, 1.5vw, 16px)', marginTop:'clamp(4px, 1vw, 8px)' }}>
-                    <div>
-                      <span style={{ fontSize:'clamp(12px, 1.5vw, 18px)', color:'#0f172a', fontWeight:600 }}>2,847</span><br/>
-                      <span style={{ fontSize:'clamp(7px, 1vw, 9px)', color:'rgba(0,0,0,0.5)' }}>CONNECTIONS</span>
-                    </div>
-                    <div>
-                      <span style={{ fontSize:'clamp(12px, 1.5vw, 18px)', color:'var(--forest-light)', fontWeight:600 }}>156</span><br/>
-                      <span style={{ fontSize:'clamp(7px, 1vw, 9px)', color:'rgba(0,0,0,0.5)' }}>HIERARCHIES</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            {/* Top Right Panel */}
-            <div className="ha-glass-panel ha-panel-top-right">
-              <div style={{ display:'flex', alignItems:'center', height:'100%', padding:'0 clamp(8px, 1.5vw, 16px)', gap:'clamp(6px, 1vw, 12px)' }}>
-                <div style={{ width:'clamp(28px, 3vw, 40px)', height:'clamp(28px, 3vw, 40px)', borderRadius:'clamp(6px, 1vw, 10px)', background:'rgba(127,255,0,0.1)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                  <svg width="clamp(14px, 2vw, 20px)" height="clamp(14px, 2vw, 20px)" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" fill="var(--forest-light)" opacity="0.8"/></svg>
-                </div>
-                <div>
-                  <div style={{ fontSize:'clamp(7px, 1vw, 9px)', color:'rgba(0,0,0,0.4)', textTransform:'uppercase', letterSpacing:'1px' }}>Health Score</div>
-                  <div style={{ fontSize:'clamp(14px, 2vw, 20px)', color:'#0f172a', fontWeight:700 }}>98.2<span style={{ fontSize:'clamp(8px, 1vw, 11px)', color:'var(--forest-light)' }}>%</span></div>
-                </div>
-              </div>
-            </div>
+
 
           </div>
-
-
-
         </div>
       </div>
     </div>
