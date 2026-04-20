@@ -111,8 +111,8 @@ export default function UseCasesSection() {
              </div>
 
              {/* Graph Canvas */}
-             <div className="w-full overflow-x-auto custom-scrollbar bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent">
-                <div className="w-[800px] xl:w-full min-w-[750px] relative aspect-[16/10] mx-auto overflow-hidden">
+             <div className="w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent">
+                <div className="w-full relative aspect-[16/10] mx-auto overflow-hidden">
                    
                    {/* Connections SVG Layer */}
                    <svg viewBox="0 0 800 500" className="absolute inset-0 w-full h-full pointer-events-none z-0">
