@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import logoIcon from "@/assets/logo-icon.webp";
 import './RVUserGuide.css';
 
 /* ═══════════════════════════════════════════════════════════════
