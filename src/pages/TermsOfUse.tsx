@@ -24,7 +24,7 @@ const TermsOfUse = () => {
     <>
       <Navbar />
       <main className="min-h-screen pt-24 md:pt-32 pb-12 md:pb-16 bg-gradient-to-b from-surface-light to-background">
-        <div className="container max-w-4xl md:max-w-6xl px-4 md:px-6">`n          <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-primary font-medium hover:underline transition-all">`n            <ArrowLeft className="w-4 h-4 mr-2" /> Go Back`n          </button>
+        <div className="container max-w-4xl md:max-w-6xl px-4 md:px-6">          <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-primary font-medium hover:underline transition-all">            <ArrowLeft className="w-4 h-4 mr-2" /> Go Back          </button>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
