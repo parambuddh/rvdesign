@@ -1031,19 +1031,13 @@ const RVUserGuide = () => {
 
       </main>
 
-      {/* ── BACK TO TOP ── */}
-      <button
-        className={`rv-back-top ${showBackTop ? 'visible' : ''}`}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        aria-label="Back to top"
-      >
-        ↑
-      </button>
+
       </div>
       <Footer />
     </div>
   );
 };
 export default RVUserGuide;
+
 
 
