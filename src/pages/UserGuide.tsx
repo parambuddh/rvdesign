@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import logoIcon from "@/assets/logo-icon.webp";
 import './RVUserGuide.css';
 
 /* ═══════════════════════════════════════════════════════════════
@@ -119,15 +118,7 @@ const RVUserGuide = () => {
 
       {/* ── SIDEBAR ── */}
       <nav className={`rv-sidebar ${sidebarOpen ? 'open' : ''}`}>
-        <div className="rv-sidebar-header">
-          <div className="rv-sidebar-logo">
-            <img src={logoIcon} alt="RV Logo" className="w-10 h-10 object-contain" />
-            <div className="rv-sidebar-logo-text">
-              <span className="rv-sidebar-logo-title">RelationshipVista</span>
-              <span className="rv-sidebar-logo-sub">User Guide</span>
-            </div>
-          </div>
-        </div>
+        
 
         {tocSections.map(section => (
           <div className="rv-nav-group" key={section.id}>
@@ -1039,6 +1030,8 @@ const RVUserGuide = () => {
   );
 };
 export default RVUserGuide;
+
+
 
 
 
