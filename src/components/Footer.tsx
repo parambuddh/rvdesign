@@ -21,8 +21,10 @@ const Footer = () => {
               >
                 <img src={logo} alt="RelationshipVista" className="h-10 sm:h-12 w-auto" loading="lazy" decoding="async" width={180} height={48} />
               </Link>
-              <p className="text-sm leading-relaxed max-w-xs text-justify" style={{ color: "hsl(210, 8%, 65%)" }}>
-                Turn complex relationships into clear, actionable insights your team can explore and understand instantly Natively within Salesforce.
+              <p className="text-sm leading-relaxed max-w-xs text-left" style={{ color: "hsl(210, 8%, 65%)" }}>
+                Turn complex relationships into<br />
+                clear, actionable insights natively<br />
+                within Salesforce.
               </p>
             </div>
 
@@ -35,7 +37,7 @@ const Footer = () => {
                 <h3 className="font-bold text-white mb-4 sm:mb-6 text-sm sm:text-base tracking-wider font-heading">Quick Links</h3>
                 <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
                   {[
-                    { label: "Home", href: "#home" },
+
                     { label: "Overview", href: "#overview" },
                     { label: "Features", href: "#features" },
                     { label: "Benefits", href: "#benefits" },
