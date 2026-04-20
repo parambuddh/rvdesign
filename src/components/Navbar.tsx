@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { Menu, X, ArrowUp, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowUp, ArrowRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.webp";
 import CalendlyModal from "./CalendlyModal";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
   { label: "Overview", href: "#overview" },
   { label: "Features", href: "#features" },
   { label: "Benefits", href: "#benefits" },
@@ -148,15 +153,38 @@ const Navbar = () => {
                     layoutId="nav-indicator"
                     className={`absolute bottom-0 left-2 right-2 h-0.5 rounded-full ${isOverColoredSection && scrolled ? "bg-white" : "bg-primary"}`}
                   />
-                )}
-              </button>
-            ))}
+                )}               </button>
+              ))}
 
-            <button
-              onClick={() => setIsCalendlyOpen(true)}
-              className="btn-cta text-sm sm:text-base px-6 sm:px-7 ml-4 cursor-pointer"
-            >
-              Book a Demo <ArrowRight className="h-5 w-5" />
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  className={`relative px-4 py-2 text-[15px] font-medium 
+rounded-lg transition-all duration-300 flex items-center gap-1 ${
+                    isOverColoredSection && scrolled ? "text-white/80 hover:text-white" : "text-slate-800 hover:bg-slate-800/5"
+                  }`}
+                >
+                  Resources <ChevronDown className="h-4 w-4 opacity-50" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56 bg-white shadow-xl border border-primary/10 rounded-xl p-2 z-[9999]">
+                  <DropdownMenuItem asChild className="cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors focus:bg-sky-50 outline-none rounded-lg focus:text-primary">
+                    <Link to="/user-guide" className="w-full">
+                      User Guide
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild className="cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors focus:bg-sky-50 outline-none rounded-lg focus:text-primary">
+                    <Link to="/installation-guide" className="w-full">
+                      Installation Guide
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <button
+                onClick={() => setIsCalendlyOpen(true)}
+                className="btn-cta text-sm sm:text-base px-6 h-10 ml-4 
+cursor-pointer"
+              >
+                Book Demo <ArrowRight className="h-5 w-5" />
             </button>
           </div>
 
@@ -199,15 +227,44 @@ const Navbar = () => {
                       : "text-slate-700 hover:bg-slate-50"
                   }`}
                 >
-                  {link.label}
-                </motion.button>
-              ))}
-              <div className="pt-4 mt-2 border-t border-slate-100">
-                <button
-                  onClick={() => { setMobileOpen(false); setIsCalendlyOpen(true); }}
-                  className="btn-cta w-full flex justify-center text-sm sm:text-base cursor-pointer"
+                  {link.label}               </motion.button>
+                ))}
+                
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navLinks.length * 0.05 }}
+                    className="block w-full text-left px-4 py-2 border-t border-slate-100 pt-4 mt-2 text-[15px] font-bold text-slate-800"
                 >
-                  Book a Demo <ArrowRight className="h-5 w-5" />
+                  Resources
+                </motion.div>
+                <div className="flex flex-col pl-4">
+                  <motion.button
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: (navLinks.length + 1) * 0.05 }}
+                      onClick={() => { setMobileOpen(false); navigate("/user-guide"); }}
+                      className="block w-full text-left px-4 py-2 hover:bg-slate-50 rounded-xl text-[15px] font-medium text-slate-600 focus:text-primary transition-colors"
+                  >
+                    User Guide
+                  </motion.button>
+                  <motion.button
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: (navLinks.length + 2) * 0.05 }}
+                      onClick={() => { setMobileOpen(false); navigate("/installation-guide"); }}
+                      className="block w-full text-left px-4 py-2 hover:bg-slate-50 rounded-xl text-[15px] font-medium text-slate-600 focus:text-primary transition-colors"
+                  >
+                    Installation Guide
+                  </motion.button>
+                </div>
+
+                <div className="pt-4 mt-2 border-t border-slate-100">
+                  <button
+                    onClick={() => { setMobileOpen(false); setIsCalendlyOpen(true); }}
+                    className="btn-cta w-full flex justify-center text-sm sm:text-base cursor-pointer !h-10 items-center"
+                  >
+                    Book Demo <ArrowRight className="h-5 w-5 ml-1" />
                 </button>
               </div>
             </div>
@@ -245,6 +302,9 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
 
 
 

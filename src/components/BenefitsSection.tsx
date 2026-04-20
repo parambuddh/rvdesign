@@ -26,12 +26,7 @@ const benefits = [
     icon: Blocks,
     title: "Boost data quality and relevance",
     description: "Dynamically explore relationships with AI-generated clarifying connections and recommendations.",
-  },
-  {
-    icon: Shield,
-    title: "Stay secure and compliant",
-    description: "100% native to Salesforce and designed to meet HIPAA, ISO, SOC, and GDPR standards.",
-  },
+  }
 ];
 
 const BenefitsSection = () => {
@@ -63,7 +58,7 @@ const BenefitsSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="flex flex-wrap justify-center gap-5">
           {benefits.map((b, i) => (
             <motion.div
               key={b.title}
@@ -71,7 +66,7 @@ const BenefitsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="premium-card p-7 group"
+              className="premium-card p-7 group w-full sm:w-[calc(50%-1.25rem)] lg:w-[calc(33.333%-1.25rem)]"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#49983E] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left will-change-transform" />
               <div className="icon-box mb-5">

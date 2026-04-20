@@ -21,7 +21,7 @@ const Footer = () => {
               >
                 <img src={logo} alt="RelationshipVista" className="h-10 sm:h-12 w-auto" loading="lazy" decoding="async" width={180} height={48} />
               </Link>
-              <p className="text-sm leading-relaxed max-w-xs text-left" style={{ color: "hsl(210, 8%, 65%)" }}>
+              <p className="text-sm leading-relaxed max-w-xs text-justify" style={{ color: "hsl(210, 8%, 65%)" }}>
                 Turn complex relationships into clear, actionable insights your team can explore and understand instantly Natively within Salesforce.
               </p>
             </div>
@@ -151,5 +151,6 @@ const Footer = () => {
 };
 
 export default Footer;
+
 
 
