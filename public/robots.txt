@@ -1,4 +1,10 @@
+# RelationshipVista - robots.txt
+# https://www.relationshipvista.com
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Crawl-delay: 1
 
+# Sitemap location
 Sitemap: https://www.relationshipvista.com/sitemap.xml

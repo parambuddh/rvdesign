@@ -119,9 +119,10 @@ const HeroSection = () => {
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/30 relative">
                 <img
                   src={heroDashboard}
-                  alt="Interactive Relationship Mapping with RelationshipVista"
+                  alt="Interactive Relationship Mapping with RelationshipVista — Salesforce account hierarchy visualization dashboard"
                   width={1280}
                   height={800}
+                  fetchPriority="high"
                   className="w-full h-auto"
                 />
                 {/* Glassmorphism overlay gradient */}

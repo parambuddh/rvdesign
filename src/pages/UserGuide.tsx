@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -71,6 +71,31 @@ const Guide = () => {
   const toggleSection = (id: string) => {
     setOpenSection(openSection === id ? null : id);
   };
+
+  // SEO: Set per-page canonical URL, title, and meta description
+  useEffect(() => {
+    document.title = "User Guide — RelationshipVista | Salesforce Relationship Mapping";
+    
+    // Set canonical
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', 'https://www.relationshipvista.com/user-guide');
+
+    // Set meta description
+    let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
+    if (metaDesc) {
+      metaDesc.setAttribute('content', 'Complete user guide for RelationshipVista — learn how to configure, visualize, and analyze Salesforce relationship hierarchies with interactive data maps.');
+    }
+
+    return () => {
+      document.title = "RelationshipVista — Intelligent Relationship Mapping & Visualization | Salesforce";
+      if (canonical) canonical.setAttribute('href', 'https://www.relationshipvista.com/');
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-sky-50/30 font-body">

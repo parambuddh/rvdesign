@@ -9,10 +9,30 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ status: 'error', message: 'Method not allowed' });
 
-  const { name, email, phone, message, source_url } = req.body || {};
+  const { name, email, phone, message, source_url, recaptcha_token } = req.body || {};
 
   if (!name || !email || !phone) {
     return res.status(400).json({ status: 'error', message: 'Name, email, and phone are required.' });
+  }
+
+  // 1. Verify reCAPTCHA token
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  if (secretKey \u0026\u0026 recaptcha_token) {
+    try {
+      const verifyRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${secretKey}\u0026response=${recaptcha_token}`,
+      });
+      const verifyData = await verifyRes.json();
+      
+      if (!verifyData.success || verifyData.score \u003c 0.5) {
+        return res.status(400).json({ status: 'error', message: 'reCAPTCHA verification failed. Please try again.' });
+      }
+    } catch (error) {
+      console.error("reCAPTCHA verification error:", error);
+      // We continue if the verification API is down, but log it
+    }
   }
 
   const smtpUser = process.env.SMTP_USER || 'parambuddh26@gmail.com';

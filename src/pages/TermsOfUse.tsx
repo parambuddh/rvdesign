@@ -9,6 +9,26 @@ const TermsOfUse = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // SEO: Set per-page canonical URL and title
+    document.title = "Terms of Use — RelationshipVista";
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', 'https://www.relationshipvista.com/terms-of-use');
+
+    let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
+    if (metaDesc) {
+      metaDesc.setAttribute('content', 'Terms of Use for the RelationshipVista website — published and operated by Ardira Corporation.');
+    }
+
+    return () => {
+      document.title = "RelationshipVista — Intelligent Relationship Mapping & Visualization | Salesforce";
+      if (canonical) canonical.setAttribute('href', 'https://www.relationshipvista.com/');
+    };
   }, []);
 
   useEffect(() => {

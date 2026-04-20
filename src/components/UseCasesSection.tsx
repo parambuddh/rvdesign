@@ -68,7 +68,7 @@ export default function UseCasesSection() {
       <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container mx-auto px-4 relative z-20 mb-8 lg:mb-12 text-center">
+      <div className="container-narrow relative z-20 mb-8 lg:mb-12 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -87,7 +87,7 @@ export default function UseCasesSection() {
         </motion.div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-30">
+      <div className="container-narrow relative z-30">
         <div className="flex flex-col xl:flex-row gap-8 lg:gap-12 items-center">
           
           {/* LEFT: INTERACTIVE NETWORK GRAPH UI */}

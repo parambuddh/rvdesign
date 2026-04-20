@@ -56,7 +56,7 @@ const Navbar = () => {
       >
         <nav className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? 'h-16' : 'h-20'}`}>
           <a href="#home" className="flex items-center gap-2 transition-all duration-500">
-            <img src={logo} alt="RelationshipVista" className={`transition-all duration-500 w-auto ${isScrolled ? 'h-8 md:h-9' : 'h-9 md:h-11'}`} />
+            <img src={logo} alt="RelationshipVista Logo" decoding="async" className={`transition-all duration-500 w-auto ${isScrolled ? 'h-8 md:h-9' : 'h-9 md:h-11'}`} />
           </a>
 
           <div className="hidden lg:flex items-center justify-end gap-1 ml-auto">

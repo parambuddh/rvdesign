@@ -88,7 +88,7 @@
 
 @layer components {
   .section-padding {
-    @apply py-16 md:py-20 lg:py-28 px-4 md:px-8;
+    @apply py-16 md:py-20 lg:py-28;
   }
 
   .section-alt {
@@ -100,7 +100,7 @@
   }
 
   .container-narrow {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto px-4 md:px-8;
   }
 
   /* Premium CTA button with glow */
