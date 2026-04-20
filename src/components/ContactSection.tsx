@@ -119,6 +119,9 @@ const ContactSection = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center max-w-3xl mx-auto mb-12">
+            <p className="text-sm font-bold tracking-widest uppercase gradient-text mb-3 inline-block">
+              Contact
+            </p>
             <h2 className="text-3xl md:text-[38px] font-extrabold font-heading mb-4 text-text-heading">Get in Touch</h2>
             <p className="text-text-body text-lg">
               Have questions or want to learn more? Reach out and we'll get back to you promptly.

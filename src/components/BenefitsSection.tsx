@@ -47,6 +47,9 @@ const BenefitsSection = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center max-w-3xl mx-auto mb-14">
+            <p className="text-sm font-bold tracking-widest uppercase gradient-text mb-3 inline-block">
+              Benefits
+            </p>
             <h2 className="text-3xl md:text-[40px] font-extrabold font-heading leading-tight mb-4">
               Built for Enterprise. Designed for
               <br />

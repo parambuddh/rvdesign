@@ -1,7 +1,8 @@
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, BookOpen, Download } from "lucide-react";
 import heroDashboard from "@/assets/hero-dashboard.png";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import CalendlyModal from "./CalendlyModal";
 import GetNowModal from "./GetNowModal";
 
@@ -106,6 +107,32 @@ const HeroSection = () => {
                   View on AppExchange <ExternalLink className="h-4 w-4" />
                 </button>
               </div>
+
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="flex flex-wrap gap-6 pt-4"
+              >
+                <Link 
+                  to="/user-guide" 
+                  className="flex items-center gap-2 text-sm font-semibold text-text-muted hover:text-primary transition-colors group"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <BookOpen className="h-4 w-4" />
+                  </div>
+                  User Guide
+                </Link>
+                <Link 
+                  to="/installation-guide" 
+                  className="flex items-center gap-2 text-sm font-semibold text-text-muted hover:text-primary transition-colors group"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <Download className="h-4 w-4" />
+                  </div>
+                  Installation Guide
+                </Link>
+              </motion.div>
             </motion.div>
           </div>
 

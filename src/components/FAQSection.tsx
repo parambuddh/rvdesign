@@ -51,6 +51,9 @@ const FAQs = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center mb-12">
+            <p className="text-sm font-bold tracking-widest uppercase gradient-text mb-3 inline-block">
+              FAQ
+            </p>
             <h2 className="text-3xl md:text-[38px] font-extrabold font-heading mb-4 text-text-heading">
               Frequently Asked Questions
             </h2>

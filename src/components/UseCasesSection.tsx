@@ -73,10 +73,10 @@ export default function UseCasesSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
-            Core Capabilities
+          <p className="text-sm font-bold tracking-widest uppercase gradient-text mb-3 inline-block">
+            Use Cases
           </p>
           <h2 className="text-3xl md:text-[40px] font-extrabold font-heading leading-tight mb-4 text-slate-900">
             Interactive Relationship <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">Mapping</span>

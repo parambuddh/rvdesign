@@ -67,7 +67,7 @@ const FeaturesSection = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
+            <p className="text-sm font-bold tracking-widest uppercase gradient-text mb-3 inline-block">
               Features
             </p>
             <h2 className="text-3xl md:text-[38px] font-extrabold font-heading leading-tight mb-3">
@@ -77,7 +77,7 @@ const FeaturesSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+        <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-16">
           {/* Left: Browser-frame mockup */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}

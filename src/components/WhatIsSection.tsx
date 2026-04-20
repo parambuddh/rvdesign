@@ -23,18 +23,11 @@ const WhatIsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="pill-badge">
-                What is RelationshipVista?
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
+              <p className="text-sm font-bold tracking-widest uppercase gradient-text mb-3 inline-block">
+                Overview
+              </p>
               <h2 className="text-3xl md:text-[36px] font-bold leading-tight font-heading">
                 The Intelligent Relationship Visualization Tool Built within Salesforce
               </h2>
