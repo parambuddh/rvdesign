@@ -11,26 +11,6 @@ const TermsOfUse = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // SEO: Set per-page canonical URL and title
-    document.title = "Terms of Use — RelationshipVista";
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', 'https://www.relationshipvista.com/terms-of-use');
-
-    let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
-    if (metaDesc) {
-      metaDesc.setAttribute('content', 'Terms of Use for the RelationshipVista website — published and operated by Ardira Corporation.');
-    }
-
-    return () => {
-      document.title = "RelationshipVista — Intelligent Relationship Mapping & Visualization | Salesforce";
-      if (canonical) canonical.setAttribute('href', 'https://www.relationshipvista.com/');
-    };
   }, []);
 
   useEffect(() => {
@@ -40,15 +20,11 @@ const TermsOfUse = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
   return (
     <>
       <Navbar />
       <main className="min-h-screen pt-24 md:pt-32 pb-12 md:pb-16 bg-gradient-to-b from-surface-light to-background">
-        <div className="container max-w-4xl md:max-w-6xl px-4 md:px-6">
-          <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-primary font-medium hover:underline transition-all">
-            <ArrowLeft className="w-4 h-4 mr-2" /> Go Back
-          </button>
+        <div className="container max-w-4xl md:max-w-6xl px-4 md:px-6">`n          <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-primary font-medium hover:underline transition-all">`n            <ArrowLeft className="w-4 h-4 mr-2" /> Go Back`n          </button>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -76,7 +52,7 @@ const TermsOfUse = () => {
             <div className="prose prose-invert max-w-none space-y-6 md:space-y-8 text-justify">
               <section className="space-y-4">
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                  The website located at www.relationshipvista.com, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("RelationshipVista", "the Company," "we," "us," and "our"). These Terms of Use (the "Terms") govern your access to and use of the Website.
+                  The website located at www.RelationshipVista.com, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("RelationshipVista", "the Company," "we," "us," and "our"). These Terms of Use (the "Terms") govern your access to and use of the Website.
                 </p>
               </section>
 
@@ -212,7 +188,7 @@ const TermsOfUse = () => {
 
               <section className="space-y-4">
                 <h2 className="text-2xl font-bold text-foreground">Contact Us</h2>
-                <div className="bg-secondary-blue/10 border-l-4 border-primary rounded-r-xl p-4 space-y-2">
+                <div className="glass-strong rounded-xl p-4 space-y-2">
                   <p className="text-muted-foreground">
                     For questions about these Terms of Use, please contact us at:
                   </p>
@@ -259,3 +235,5 @@ const TermsOfUse = () => {
 };
 
 export default TermsOfUse;
+
+

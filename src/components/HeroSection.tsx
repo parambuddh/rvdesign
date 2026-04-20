@@ -1,5 +1,5 @@
 import { ArrowRight, ExternalLink, BookOpen, Download } from "lucide-react";
-import heroDashboard from "@/assets/hero-dashboard.png";
+import heroDashboard from "@/assets/hero-dashboard.webp";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -185,3 +185,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+

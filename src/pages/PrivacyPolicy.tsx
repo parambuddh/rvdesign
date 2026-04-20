@@ -11,26 +11,6 @@ const PrivacyPolicy = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // SEO: Set per-page canonical URL and title
-    document.title = "Privacy Policy — RelationshipVista";
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', 'https://www.relationshipvista.com/privacy-policy');
-
-    let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
-    if (metaDesc) {
-      metaDesc.setAttribute('content', 'Privacy Policy for the RelationshipVista website — how Ardira Corporation collects, uses, and protects your personal information.');
-    }
-
-    return () => {
-      document.title = "RelationshipVista — Intelligent Relationship Mapping & Visualization | Salesforce";
-      if (canonical) canonical.setAttribute('href', 'https://www.relationshipvista.com/');
-    };
   }, []);
 
   useEffect(() => {
@@ -40,15 +20,11 @@ const PrivacyPolicy = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
   return (
     <>
       <Navbar />
       <main className="min-h-screen pt-24 md:pt-32 pb-12 md:pb-16 bg-gradient-to-b from-surface-light to-background">
-        <div className="container max-w-4xl md:max-w-6xl px-4 md:px-6">
-          <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-primary font-medium hover:underline transition-all">
-            <ArrowLeft className="w-4 h-4 mr-2" /> Go Back
-          </button>
+        <div className="container max-w-4xl md:max-w-6xl px-4 md:px-6">`n          <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-primary font-medium hover:underline transition-all">`n            <ArrowLeft className="w-4 h-4 mr-2" /> Go Back`n          </button>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -65,10 +41,10 @@ const PrivacyPolicy = () => {
               <section className="space-y-4">
                 <h2 className="text-xl md:text-2xl font-bold text-foreground">Privacy Notice</h2>
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                  The website located at www.relationshipvista.com, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("RelationshipVista," "the Company," "we," "us," and "our"). RelationshipVista respects your privacy and is committed to protecting your privacy through our compliance with this website privacy policy (the "Policy"). This Policy should be read in conjunction with our website{" "}
-                  <Link to="/terms-of-use" className="text-primary hover:underline">
+                  The website located at www.RelationshipVista.com, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("RelationshipVista," "the Company," "we," "us," and "our"). RelationshipVista respects your privacy and is committed to protecting your privacy through our compliance with this website privacy policy (the "Policy"). This Policy should be read in conjunction with our website{" "}
+                  <a href="/terms-of-use" className="text-primary hover:underline">
                     Terms of Use
-                  </Link>
+                  </a>
                   , into which this Policy is incorporated by reference.
                 </p>
               </section>
@@ -76,7 +52,7 @@ const PrivacyPolicy = () => {
               <section className="space-y-4">
                 <h2 className="text-xl md:text-2xl font-bold text-foreground">This Policy Describes:</h2>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground text-sm md:text-base">
-                  <li>The types of information we collect from you or that you may provide when you visit our website available at: relationshipvista.com ("our Website")</li>
+                  <li>The types of information we collect from you or that you may provide when you visit our website available at: RelationshipVista.com ("our Website")</li>
                   <li>Our practices for collecting, using, maintaining, protecting, and disclosing that information</li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mt-4">
@@ -294,7 +270,7 @@ const PrivacyPolicy = () => {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   We value your opinions and welcome your feedback. To contact us about this Policy or your Personal Information, please contact us at:
                 </p>
-                <div className="bg-secondary-blue/10 border-l-4 border-primary rounded-r-xl p-4 space-y-3">
+                <div className="glass-strong rounded-xl p-4 space-y-3">
                   <p className="text-foreground font-semibold">Legal Department</p>
                   <p className="text-muted-foreground">Ardira Corporation</p>
                   <p className="text-muted-foreground">
@@ -340,3 +316,5 @@ const PrivacyPolicy = () => {
 };
 
 export default PrivacyPolicy;
+
+

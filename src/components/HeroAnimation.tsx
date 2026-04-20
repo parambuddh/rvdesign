@@ -35,7 +35,7 @@ const HeroAnimation = () => {
   const animatedEdges = useMemo(() => edges.filter(([a,b]) => nodes[a].level !== nodes[b].level).slice(0, 8), []);
 
   return (
-    <div className="hero-anim-root relative w-full h-full overflow-visible bg-transparent font-sans min-h-[450px]">
+    <div className="hero-anim-root relative w-full h-auto overflow-visible bg-transparent font-sans">
       <style>{`
         .hero-anim-root {
           --forest: #0B3D2E;
