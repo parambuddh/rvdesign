@@ -164,27 +164,15 @@ export default function UseCasesSection() {
 
                               {/* Glowing Active Line Overlay */}
                               {isActiveEdge && (
-                                 <>
-                                   {/* Solid Active Edge */}
-                                   <path 
-                                      d={pathData}
-                                      fill="none"
-                                      stroke="url(#activeEdgeGradient)"
-                                      className="opacity-100"
-                                      strokeWidth="2.5"
-                                      style={{ transition: "all 0.5s ease" }}
-                                   />
-                                   {/* Smooth Continuous Flowing Data Stream Layer */}
-                                   <path 
-                                     d={pathData}
-                                     fill="none"
-                                     stroke="hsl(var(--primary))"
-                                     strokeWidth="5"
-                                     strokeDasharray="8 10"
-                                     strokeLinecap="round"
-                                     className="opacity-40 flow-stream"
-                                   />
-                                 </>
+                                 <path 
+                                    d={pathData}
+                                    fill="none"
+                                    stroke="hsl(var(--primary))"
+                                    className="opacity-100"
+                                    strokeWidth="1.5"
+                                    strokeDasharray="6 6"
+                                    style={{ transition: "all 0.5s ease" }}
+                                 />
                               )}
                            </g>
                          )
