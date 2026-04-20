@@ -1,302 +1,1049 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Link } from "react-router-dom";
-import { ArrowRight, Info, Settings, Layout, Layers, Box, CheckCircle2, HelpCircle, Laptop, Image as ImageIcon, ChevronDown } from "lucide-react";
-import RevealOnScroll from "@/components/RevealOnScroll";
-import { cn } from "@/lib/utils";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import './RVUserGuide.css';
 
-/** 
- * ROBUST GUIDE ACCORDION 
- * This version uses native React state to guarantee clickability.
- */
-const GuideAccordionItem = ({ 
-  title, 
-  icon: Icon, 
-  children, 
-  isOpen, 
-  onClick 
-}: { 
-  title: string; 
-  icon: any; 
-  children: React.ReactNode; 
-  isOpen: boolean; 
-  onClick: () => void;
-}) => {
-  return (
-    <div className={cn(
-      "premium-card bg-white border-sky-100 shadow-sm overflow-hidden transition-all duration-300",
-      isOpen && "shadow-md border-primary/20"
-    )}>
-      <button 
-        type="button"
-        onClick={onClick}
-        className="w-full text-left px-6 py-5 flex items-center justify-between hover:bg-sky-50/20 transition-colors group cursor-pointer touch-manipulation relative z-10 pointer-events-auto"
-      >
-        <div className="flex items-center gap-3">
-          <Icon className="h-5 w-5 text-primary" />
-          <span className="text-lg font-bold text-text-heading group-hover:text-primary transition-colors">{title}</span>
-        </div>
-        <ChevronDown className={cn(
-          "h-5 w-5 text-text-muted transition-transform duration-300",
-          isOpen && "rotate-180 text-primary"
-        )} />
-      </button>
-      
-      <div className={cn(
-        "grid transition-all duration-300 ease-in-out",
-        isOpen ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0"
-      )}>
-        <div className="overflow-hidden">
-          <div className="px-6 pb-6 text-text-body leading-relaxed border-t border-sky-50 pt-5">
-            {children}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+/* ═══════════════════════════════════════════════════════════════
+   Image helper – all images extracted from the docx live in
+   /public/images/imageN.png and are served as /images/imageN.png
+   ═══════════════════════════════════════════════════════════════ */
+const img = (n: number) => `/images/image${n}.png`;
 
-const Guide = () => {
-  const [openSection, setOpenSection] = useState<string | null>(null);
+/* ─── Reusable sub-components ─── */
+const Img = ({ n, className }: { n: number; className?: string }) => (
+  <div className={`rv-image-wrapper ${className || ''}`}>
+    <img src={img(n)} alt={`Figure ${n}`} loading="lazy" />
+  </div>
+);
 
-  const toggleSection = (id: string) => {
-    setOpenSection(openSection === id ? null : id);
-  };
+const Note = ({ children }: { children: React.ReactNode }) => (
+  <div className="rv-note">
+    <div className="rv-note-label">📌 Note</div>
+    {children}
+  </div>
+);
 
-  // SEO: Set per-page canonical URL, title, and meta description
+const Tip = ({ children }: { children: React.ReactNode }) => (
+  <div className="rv-tip">
+    <div className="rv-tip-label">💡 Tip</div>
+    {children}
+  </div>
+);
+
+/* ─── Table of Contents data ─── */
+const tocSections = [
+  { id: 'introduction', label: 'Introduction' },
+  { id: 'component', label: 'RVC Component' },
+  { id: 'properties', label: 'Component Properties' },
+  { id: 'r-views', label: 'Relationship Views (R-Views)', children: [
+    { id: 'sample-data', label: 'Sample Data' },
+    { id: 'toolbar', label: 'Toolbar Actions' },
+    { id: 'r-view-config', label: 'R-View Configuration' },
+    { id: 'root-node', label: 'Root Node Configuration' },
+    { id: 'object-node', label: 'Object Node Configuration' },
+    { id: 'junction-object', label: 'Junction Object' },
+  ]},
+  { id: 'features', label: 'Features', children: [
+    { id: 'create-records', label: 'Creating Records' },
+    { id: 'restrict-view', label: 'Restricting View Selector' },
+    { id: 'configure-views', label: 'Configuring User Views' },
+    { id: 'default-view', label: 'Default View' },
+    { id: 'user-views', label: 'User-Created Views' },
+    { id: 'action-icons', label: 'Action Icons & Permissions' },
+    { id: 'rtl', label: 'RTL Language Support' },
+  ]},
+  { id: 'howto-rview', label: 'How to Create R-View' },
+  { id: 'change-icons', label: 'Change Record Icons' },
+  { id: 'icon-bg-color', label: 'Icon Background Color' },
+  { id: 'why-rvc', label: 'Why RVC?' },
+  { id: 'use-cases', label: 'Use Cases', children: [
+    { id: 'usecase1', label: 'Sales Leadership' },
+    { id: 'usecase2', label: 'Case Impact Analysis' },
+  ]},
+  { id: 'contact', label: 'Have Questions?' },
+];
+
+/* ═══════════════════════════════════════════════════════════════ */
+const RVUserGuide = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('introduction');
+  const [showBackTop, setShowBackTop] = useState(false);
+
+  /* ── Intersection observer to highlight active TOC item ── */
   useEffect(() => {
-    document.title = "User Guide — RelationshipVista | Salesforce Relationship Mapping";
-    
-    // Set canonical
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', 'https://www.relationshipvista.com/user-guide');
-
-    // Set meta description
-    let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
-    if (metaDesc) {
-      metaDesc.setAttribute('content', 'Complete user guide for RelationshipVista — learn how to configure, visualize, and analyze Salesforce relationship hierarchies with interactive data maps.');
-    }
-
-    return () => {
-      document.title = "RelationshipVista — Intelligent Relationship Mapping & Visualization | Salesforce";
-      if (canonical) canonical.setAttribute('href', 'https://www.relationshipvista.com/');
-    };
+    const ids = tocSections.flatMap(s => [s.id, ...(s.children?.map(c => c.id) || [])]);
+    const visibleSections = new Map<string, IntersectionObserverEntry>();
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          visibleSections.set(entry.target.id, entry);
+        });
+        // Find the topmost visible section
+        let topSection = '';
+        let topY = Infinity;
+        visibleSections.forEach((entry, id) => {
+          if (entry.isIntersecting && entry.boundingClientRect.top < topY) {
+            topY = entry.boundingClientRect.top;
+            topSection = id;
+          }
+        });
+        if (topSection) setActiveSection(topSection);
+      },
+      { rootMargin: '-20px 0px -60% 0px', threshold: [0, 0.1, 0.25, 0.5] }
+    );
+    ids.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    return () => observer.disconnect();
   }, []);
 
+  /* ── Show / hide "back to top" button ── */
+  useEffect(() => {
+    const onScroll = () => setShowBackTop(window.scrollY > 500);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setSidebarOpen(false);
+  };
+
+  /* ════════════════════════════════════════════════════════════ */
   return (
-    <div className="min-h-screen bg-sky-50/30 font-body">
+    <div className="min-h-screen flex flex-col w-full bg-background mt-20">
       <Navbar />
+      <div className="rv-guide flex-grow">
 
-      <main className="pt-24 pb-20">
-        <section className="px-4 md:px-8 py-12 md:py-16">
-          <div className="max-w-4xl mx-auto">
-            <RevealOnScroll delay={0}>
-              <Breadcrumb className="mb-6">
-                <BreadcrumbList>
-                  <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
-                      <Link to="/" className="text-primary hover:text-primary-dark transition-colors">Home</Link>
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage className="font-semibold text-text-heading">RelationshipVista User Guide</BreadcrumbPage>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
-            </RevealOnScroll>
+      {/* ── SIDEBAR OVERLAY (mobile) ── */}
+      <div className={`rv-sidebar-overlay ${sidebarOpen ? 'open' : ''}`} onClick={() => setSidebarOpen(false)} />
 
-            <RevealOnScroll delay={0.1}>
-              <h1 className="text-4xl md:text-5xl font-extrabold text-text-heading mb-6 tracking-tight">
-                RelationshipVista <span className="gradient-text">User Guide</span>
-              </h1>
-              <p className="text-xl text-text-body font-medium leading-relaxed max-w-2xl">
-                Master the art of relationship mapping in Salesforce. Learn how to configure, visualize, and analyze your data hierarchies with ease.
+      {/* ── SIDEBAR ── */}
+      <nav className={`rv-sidebar ${sidebarOpen ? 'open' : ''}`}>
+        <div className="rv-sidebar-header">
+          <div className="rv-sidebar-logo">
+            <div className="rv-sidebar-logo-icon">RV</div>
+            <div className="rv-sidebar-logo-text">
+              <span className="rv-sidebar-logo-title">RelationshipVista</span>
+              <span className="rv-sidebar-logo-sub">User Guide</span>
+            </div>
+          </div>
+        </div>
+
+        {tocSections.map(section => (
+          <div className="rv-nav-group" key={section.id}>
+            <a className={`rv-nav-link ${activeSection === section.id ? 'active' : ''}`}
+               onClick={() => scrollTo(section.id)}>
+              {section.label}
+            </a>
+            {section.children?.map(child => (
+              <a key={child.id}
+                 className={`rv-nav-link rv-nav-link-sub ${activeSection === child.id ? 'active' : ''}`}
+                 onClick={() => scrollTo(child.id)}>
+                {child.label}
+              </a>
+            ))}
+          </div>
+        ))}
+      </nav>
+
+      {/* ── MOBILE TOGGLE ── */}
+      <button className="rv-sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
+        {sidebarOpen ? '✕' : '☰'}
+      </button>
+
+      {/* ── MAIN CONTENT ── */}
+      <main className="rv-main">
+
+        {/* ═══ HERO ═══ */}
+        <div className="rv-hero">
+          <div className="rv-hero-badge">
+            <span className="rv-hero-badge-dot" />
+            Ardira User Guide
+          </div>
+          <h1>RelationshipVista<br />User Guide</h1>
+          <p className="rv-hero-subtitle">
+            Visualize and Analyze Salesforce Relationships — Gain Deeper Insights with Simplified Relationship Mapping
+          </p>
+        </div>
+
+        {/* ═══ INTRODUCTION ═══ */}
+        <section className="rv-section" id="introduction">
+          <h2 className="rv-section-h1">Introduction</h2>
+          <p className="rv-paragraph">
+            Ardira RelationshipVista (RVC) is a Lightning Web Component (LWC) that enables users to easily navigate and visualize all records related to a specific record. By adding the component to a record detail page, users can instantly explore its related data in a structured view.
+          </p>
+          <p className="rv-paragraph">
+            Once the RVC component is placed on a record page, it automatically provides the ability to browse and visualize all associated records.
+          </p>
+          <p className="rv-paragraph">
+            Relationship Views (R-Views) allow you to create customized visual representations of related data based on your requirements. These views function similarly to Salesforce List Views.
+          </p>
+          <p className="rv-paragraph">
+            You can provide flexibility to users by allowing them to create and manage their own R-Views, or you can use predefined configurations to ensure consistent and streamlined data analysis.
+          </p>
+        </section>
+
+        {/* ═══ COMPONENT ═══ */}
+        <section className="rv-section" id="component">
+          <h2 className="rv-section-h1">Ardira RelationshipVista Component</h2>
+          <p className="rv-paragraph">
+            To begin using RelationshipVista, open the record detail page in edit mode, create a custom tab, and add the Ardira RelationshipVista component to the page. You can name the tab as needed (for example, RelationshipVista).
+          </p>
+          <p className="rv-paragraph">
+            The component is not restricted to a custom tab, you can place it anywhere on the record page based on your layout preference.
+          </p>
+          <Img n={6} />
+          <div className="rv-image-row">
+            <Img n={7} />
+            <Img n={8} />
+          </div>
+          <p className="rv-paragraph">
+            After adding the component, ensure that you save and activate the page.
+          </p>
+          <p className="rv-paragraph">
+            For example, if the component is added to an Account record page, it will enable you to view and explore all records related to that account.
+          </p>
+          <Img n={9} />
+        </section>
+
+        {/* ═══ COMPONENT PROPERTIES ═══ */}
+        <section className="rv-section" id="properties">
+          <h2 className="rv-section-h1">RVC Component Properties</h2>
+          <p className="rv-paragraph">
+            The RVC component includes the following configurable properties:
+          </p>
+          <Img n={10} />
+
+          <table className="rv-property-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="rv-property-name">Record Id</td>
+                <td>This represents the record whose relationships will be displayed. When the component is added to a record page, the Record Id is automatically populated, so no manual input is required.</td>
+              </tr>
+              <tr>
+                <td className="rv-property-name">Use Configuration</td>
+                <td>When a specific view configuration name is provided, the component renders exclusively using that configuration, and users cannot switch to other views. This behavior applies only when no views within the View Configuration are pinned. (Note: If any view is pinned, it overrides the specified configuration. In such cases, the pinned view is displayed in read-only mode.)</td>
+              </tr>
+              <tr>
+                <td className="rv-property-name">Allow Users to Update View Configuration</td>
+                <td>When enabled, users can create and modify their own view configurations. If disabled, users will not have permission to create or edit any configurations. Note: "Use Configuration" takes priority over "Allow Users to Update View Configuration."</td>
+              </tr>
+              <tr>
+                <td className="rv-property-name">Show</td>
+                <td>This setting determines which records are displayed in the visualization. The available options are "My Records" which shows only the records owned by the currently logged-in user, and "All Records" which displays all records accessible to the user. The default setting is "All Records."</td>
+              </tr>
+              <tr>
+                <td className="rv-property-name">Show Objects</td>
+                <td>This setting allows you to limit which object types can be configured in the Object Node and Root Node settings by providing a comma-separated list of object API names. Only the specified objects will be available for selection during configuration.</td>
+              </tr>
+              <tr>
+                <td className="rv-property-name">Visible Records Limit</td>
+                <td>This setting defines the maximum number of child records displayed under a parent record. Any additional records beyond this limit can be viewed by clicking the "View n more..." option.</td>
+              </tr>
+              <tr>
+                <td className="rv-property-name">View Layout</td>
+                <td>
+                  This setting lets you choose which visualization layouts are available in the component. The options include:
+                  <ul className="rv-list" style={{marginTop: 8}}>
+                    <li><strong>All:</strong> Enables all supported layouts and allows users to switch between them (default).</li>
+                    <li><strong>Explorer:</strong> Displays the relationship view in an indented, hierarchical (explorer-style) format.</li>
+                    <li><strong>Tree:</strong> Displays the relationship view as a graphical tree structure.</li>
+                  </ul>
+                  When Tree or Explorer is selected, the pinned view is displayed. If no pinned view is available, the view with the alphabetically first name is shown; if none exists, the default view is used. In all cases, the view is displayed in read-only mode, without the full-screen button and without the Relationship View dropdown.
+                </td>
+              </tr>
+              <tr>
+                <td className="rv-property-name">Width</td>
+                <td>This setting defines the width of the visualization area. It can be specified in pixels, as a percentage of the container, or set to "auto" to adjust automatically based on the component size. In most cases, the default value of "100%" works best across layouts.</td>
+              </tr>
+              <tr>
+                <td className="rv-property-name">Height</td>
+                <td>This setting defines the height of the visualization area. It can be set in pixels, as a percentage of the container, or "auto" to adjust dynamically based on the component size. The default value of "auto" is generally suitable for most layouts.</td>
+              </tr>
+            </tbody>
+          </table>
+          <Note>These properties can be overridden by view-level configurations.</Note>
+        </section>
+
+        {/* ═══ RELATIONSHIP VIEWS ═══ */}
+        <section className="rv-section" id="r-views">
+          <h2 className="rv-section-h1">Relationship Views ("R-Views")</h2>
+          <p className="rv-paragraph">
+            When the component is first added to a record page, relationships are displayed based on the attributes configured in the page builder. You can further customize these views using the Relationship View Selector.
+          </p>
+          <Img n={10} />
+          <p className="rv-paragraph">
+            Relationship Views (R-Views) allow you to tailor how related records are displayed, helping you focus on the most relevant data. Managing R-Views is similar to working with Salesforce List Views.
+          </p>
+          <p className="rv-paragraph">
+            With R-View configurations, you can define each node in the hierarchy by:
+          </p>
+          <ul className="rv-list">
+            <li>Restricting which types of records are shown</li>
+            <li>Applying filters to refine results</li>
+            <li>Grouping records based on object fields</li>
+            <li>Sort records based on object fields</li>
+            <li>And customizing other aspects of the visualization</li>
+          </ul>
+         
+
+          {/* ── Sample Data ── */}
+          <div id="sample-data">
+            <h3 className="rv-section-h2">Sample Data</h3>
+            <p className="rv-paragraph">
+              When testing RVC in a sandbox or test environment, you can quickly load sample data using the RelationshipVista Getting Started tab.
+            </p>
+            <ol className="rv-steps">
+              <li>Navigate to the "RelationshipVista Getting Started" tab from the App Launcher.</li>
+               <Img n={11} />
+              <li>Click "Load Sample Data" to add sample records, allowing you to explore and experience RelationshipVista functionality.</li>
+              <Img n={12} />
+              <li> The screenshots in the following sections are based on this sample data.</li>
+              <Img n={13} />
+            </ol>
+            
+            
+             
+            
+         
+           
+          </div>
+
+          {/* ── Toolbar Actions ── */}
+          <div id="toolbar">
+            <h3 className="rv-section-h2">Toolbar Actions</h3>
+            <p className="rv-paragraph">
+              The RelationshipVista toolbar includes actions that allow you to manage and interact with the relationship visualization.
+            </p>
+            <Img n={14} />
+
+            {/* Expand All */}
+            <h4 className="rv-section-h3">1. Expand All</h4>
+            <p className="rv-paragraph">
+              The Expand All option allows users to quickly expand the entire relationship hierarchy starting from the root node, making it easier to view related records across multiple levels without manually expanding each node.
+            </p>
+            <p className="rv-paragraph">When this option is used:</p>
+            <ul className="rv-list">
+              <li>All related object nodes under the root node are expanded automatically.</li>
+              <li>The expansion respects the Visible Records Limit defined in the configuration.</li>
+              <li>Any additional records beyond this limit will remain hidden under the "View n more…" link and will not be expanded automatically.</li>
+            </ul>
+            <Img n={15} />
+
+            {/* Collapse All */}
+            <h4 className="rv-section-h3">2. Collapse All</h4>
+            <p className="rv-paragraph">
+              The Collapse All option resets the relationship view by collapsing all expanded nodes. Only the root node and its immediate child objects remain visible.
+            </p>
+            <Img n={16} />
+
+            {/* Two-Panel Layout */}
+            <h4 className="rv-section-h3">3. Two-Panel Layout</h4>
+            <p className="rv-paragraph">
+              RelationshipVista supports a Two-Panel View that allows users to navigate and interact with records on the same page.
+            </p>
+            <Img n={17} />
+            <p className="rv-paragraph">When this mode is enabled, the interface is divided into two sections:</p>
+            <ul className="rv-list">
+              <li>The left panel displays the relationship hierarchy.</li>
+              <li>The right panel displays the corresponding records or record details.</li>
+            </ul>
+            
+            <p className="rv-paragraph"><strong>Behavior:</strong></p>
+            <ul className="rv-list">
+              <li>When a user clicks on an Object Node or Group Node, the related records are displayed in a table list view in the right panel.</li>
+              <Img n={18} />
+              <li>When a Record Node is selected, the detailed view of that record is shown in the right panel.</li>
+              <Img n={19} />
+              <li>Users can also edit the record directly from the right panel, provided they have the necessary permissions.</li>
+            </ul>
+            
+            
+            <p className="rv-paragraph">
+              If the user is not using the Two-Panel View and is in the normal mode, clicking on a record node will open the record detail page in a new browser tab instead of displaying it within the component.
+            </p>
+
+            {/* Full Screen */}
+            <h4 className="rv-section-h3">4. Full Screen</h4>
+            <p className="rv-paragraph">
+              Displays the RelationshipVista component in full-screen mode.
+            </p>
+            <Img n={20} />
+
+            {/* Explorer View */}
+            <h4 className="rv-section-h3">5. Explorer View</h4>
+            <p className="rv-paragraph">
+              Displays the relationship visualization in an indented, hierarchical (Explorer-style) layout, where records and related objects are presented in a structured list format.
+            </p>
+            <Img n={21} />
+
+            {/* Tree View */}
+            <h4 className="rv-section-h3">6. Tree View</h4>
+            <p className="rv-paragraph">
+              Displays the relationship visualization in a graphical tree format, where records and related objects are represented as connected nodes in a visual map.
+            </p>
+            <Img n={22} />
+
+            {/* Relationship View */}
+            <h4 className="rv-section-h3">7. Relationship View</h4>
+            <p className="rv-paragraph">
+              This option allows users to select or switch between available Relationship Views (R-Views).
+            </p>
+            <Img n={23} />
+
+            {/* Settings */}
+            <h4 className="rv-section-h3">8. Settings</h4>
+            <p className="rv-paragraph">
+              This option provides access to additional options for the relationship view.
+            </p>
+            <Img n={24} />
+            <ul className="rv-list">
+              <li><strong>New:</strong> Create a new view.</li>
+              <li><strong>Clone:</strong> Create a copy of an existing view.</li>
+              <li><strong>Edit:</strong> Modify an existing view.</li>
+              <li><strong>Delete:</strong> Remove an existing view.</li>
+              <li><strong>Rename:</strong> Rename an existing view and update its configuration details.</li>
+            </ul>
+          </div>
+
+          {/* ── R-View Configuration ── */}
+          <div id="r-view-config">
+            <h3 className="rv-section-h2">R-View Configuration</h3>
+            <p className="rv-paragraph">
+              A View Configuration allows you to define and manage the settings that control how records are displayed in the relationship view. Using these properties, you can control which records are shown, limit the number of visible records, and manage sharing preferences.
+            </p>
+            <p className="rv-paragraph">
+              If your Salesforce administrator has enabled the required permissions, you can create, update, and manage view configurations as needed.
+            </p>
+            <h4 className="rv-section-h3">Steps to Open the Configuration Modal</h4>
+            <ol className="rv-steps">
+              <li>Click on the Settings (⚙️) icon available in the relationship view.</li>
+              <li>Select either <strong>New</strong> — to create a new view configuration, or <strong>Rename</strong> — to modify an existing view.</li>
+              <li>The Configuration Properties modal will open, allowing you to define or update the settings.</li>
+            </ol>
+            <Img n={25} />
+            <Img n={26} />
+
+            
+
+            <h4 className="rv-section-h3">Configuration Options</h4>
+            <table className="rv-property-table">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="rv-property-name">Name</td>
+                  <td>Specify the name of the R-View.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Show</td>
+                  <td>Determine which records are displayed: <strong>My Records</strong> — Only records owned by the logged-in user. <strong>All Records</strong> — All records accessible to the logged-in user (default).</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Pinned</td>
+                  <td>When enabled, the view becomes the default for the user who created the View Configuration.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Visible Records Limit</td>
+                  <td>Set the maximum number of child records displayed for a parent record. Any additional records can be viewed by clicking the "View n more..." option. Note that this setting overrides any "Auto Expand" configurations on any Node Configuration.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Sharing Setting</td>
+                  <td>Control who can see the R-view: <strong>Only Me</strong> — Visible only to the creator. <strong>All Users</strong> — Visible to every user in the organization.</td>
+                </tr>
+              </tbody>
+            </table>
+            <Img n={26} />
+          </div>
+
+          {/* ── Root Node Configuration ── */}
+          <div id="root-node">
+            <h3 className="rv-section-h2">Root Node Configuration</h3>
+            <p className="rv-paragraph">
+              You can configure the root node in a Relationship View to control how the primary record and its related data are displayed.
+            </p>
+
+            <h4 className="rv-section-h3">Steps to Configure Root Node</h4>
+            <ol className="rv-steps">
+              <li>Click on the Settings (⚙️) icon available in the relationship view.</li>
+              <li>Click Edit.</li>
+              <li>Click the settings icon next to the root node.</li>
+              <li>The Root Node Configuration dialog will open.</li>
+            </ol>
+            <Img n={27} />
+
+            <h4 className="rv-section-h3">Configuration Options</h4>
+            <table className="rv-property-table">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="rv-property-name">Object API Name</td>
+                  <td>Displays the object type of the root node.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Record Node Label Field</td>
+                  <td>Select the field used as the label for the root node in the visualization.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Auto Expand</td>
+                  <td>Automatically expands the root node to show its child records when the view loads.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Show Objects</td>
+                  <td>Set of objects that will be displayed as children of the root node in the visualization.</td>
+                </tr>
+              </tbody>
+            </table>
+            <Note>
+              The list of objects available in Show Objects is controlled by the administrator through RVC component settings. Admins can define a comma-separated list of object API names. Only those objects will be available for selection. If no objects are specified, all related objects are available.
+            </Note>
+          </div>
+
+          {/* ── Object Node Configuration ── */}
+          <div id="object-node">
+            <h3 className="rv-section-h2">Object Node Configuration</h3>
+            <p className="rv-paragraph">
+              You can configure each node in a Relationship View to control how related records are displayed and navigated.
+            </p>
+
+            <h4 className="rv-section-h3">Steps to Configure a Node</h4>
+            <ol className="rv-steps">
+              <li>Click on the Settings (⚙️) icon.</li>
+              <li>Click Edit.</li>
+               <Img n={28} />
+              <li>Click the settings icon next to the required node.</li>
+              <li>The Node Configuration dialog will open with the available configuration options.</li>
+            </ol>
+           
+            <Img n={29} />
+            <Img n={30} />
+
+            <h4 className="rv-section-h3">Configuration Options</h4>
+            <table className="rv-property-table">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="rv-property-name">Object Node Label</td>
+                  <td>Change the label used for the object node in the visualization.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Object Api Name</td>
+                  <td>Displays the object type of the current node.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Record Node Label Field</td>
+                  <td>Select a field whose value will be used as the label for record nodes.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Auto Expand</td>
+                  <td>Automatically expands the node and its immediate child records when the view is loaded.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Display Configuration Node</td>
+                  <td>Show the configuration node itself in the visualization layout.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Cascade Auto Expand</td>
+                  <td>If Auto Expand is enabled, this expands one additional level beyond object records.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Display Record Node</td>
+                  <td>Show or hide record nodes. Useful for junction objects where nodes may not provide relevant information.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Max Node Label Display Length</td>
+                  <td>Limit the number of characters displayed for a node label. Longer labels are truncated with "...".</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Record Icon URL</td>
+                  <td>
+                    Specify any SLDS icon to display for the record node. The URL must follow the SLDS format:
+                    <div className="rv-code-block">/_slds/icons/&lt;category&gt;-sprite/svg/symbols.svg#&lt;icon_name&gt;</div>
+                    Example:
+                    <div className="rv-code-block">/_slds/icons/utility-sprite/svg/symbols.svg#account</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Record Icon Background Color</td>
+                  <td>Specify the background color of the icon using a HEX color code (e.g., #FF5733).</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Show Objects</td>
+                  <td>Set of objects that will be displayed as children of the object node in the visualization.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Filter Records</td>
+                  <td>Apply filters to limit which child records are displayed under the node.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Group Records</td>
+                  <td>Organize child records as sub-nodes under the parent node for easier visualization.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Sort Records By</td>
+                  <td>Define the field used to sort child records.</td>
+                </tr>
+                <tr>
+                  <td className="rv-property-name">Sort Direction</td>
+                  <td>Choose ascending or descending order for the selected sort field.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* ── Junction Object ── */}
+          <div id="junction-object">
+            <h3 className="rv-section-h2">Configuration for Junction Object</h3>
+           
+            <Img n={31} />
+            <Img n={32} />
+            <ol className="rv-steps">
+              <li>Account Contact Relationship is a junction object that can be enabled in Account Settings.</li>
+              <li>Below the junction object, the Id represents the Account Contact Relationship, i.e., the junction record.</li>
+              <li><strong>Cascade Auto Expand:</strong> This setting enables automatic expansion of a node's child nodes. It is especially useful when working with junction objects.</li>
+              <li><strong>Display Record Node:</strong> This setting allows you to hide the record node of a junction object in the visualization. This is helpful when you want to hide record IDs or other related details of the junction object.</li>
+            </ol>
+           
+            <p className="rv-paragraph">
+              The images below demonstrate the use of the Cascade Auto Expand and Display Record Node settings. In this example, Person Accounts are enabled, which allows a contact to be associated with multiple accounts through the AccountContactRelation junction object.
+            </p>
+             <Img n={33} />
+            <p className="rv-paragraph">
+              When "Display Record Node" is set to false, the record node is hidden. The relationship between the 'New Person' Account and other accounts (such as 'Test Account 1, Test Account 2, and so on up to 4) is displayed directly, without showing the intermediate junction object record.
+            </p>
+            <Img n={34} />
+          </div>
+        </section>
+
+        {/* ═══ FEATURES ═══ */}
+        <section className="rv-section" id="features">
+          <h2 className="rv-section-h1">Features</h2>
+
+          {/* Creating Records */}
+          <div id="create-records">
+            <h3 className="rv-section-h2">Creating Records from Object Nodes</h3>
+            <p className="rv-paragraph">
+              RelationshipVista allows users to create records directly from the relationship hierarchy when they have the necessary permissions. A "+" icon appears next to an Object Node for which the user can create records.
+            </p>
+            <h4 className="rv-section-h3">Steps to Create a Record:</h4>
+            <ol className="rv-steps">
+              <li>Locate the Object Node in the hierarchy.</li>
+              <li>Click the "+" icon next to the node.</li>
+              <li>Fill out the form to create a new record.</li>
+            </ol>
+            <p className="rv-paragraph"><strong>Display Behavior:</strong></p>
+            <ul className="rv-list">
+              <li>
+                <strong>Two-Panel View enabled:</strong> the form appears in the right-hand panel.
+                <Img n={35} />
+              </li>
+              <li>
+                <strong>Two-Panel View not open:</strong> the form opens in a modal window.
+                <Img n={36} />
+              </li>
+            </ul>
+          </div>
+
+          {/* Restricting View Selector */}
+          <div id="restrict-view">
+            <h3 className="rv-section-h2">Restricting the Display of View Selector</h3>
+            <p className="rv-paragraph">
+              In some cases, an administrator may want to define a specific view and restrict all users to it. To achieve this, the view name can be configured in the "Use Configuration" component attribute within the page builder. When this attribute is set, the view selector is hidden from users. However, this behavior is overridden if a view is pinned in the View Configuration.
+            </p>
+            <Img n={37} />
+          </div>
+
+          {/* Configuring Views */}
+          <div id="configure-views">
+            <h3 className="rv-section-h2">Configuring Views That a User Can Select</h3>
+            <p className="rv-paragraph">
+              In some cases, the administrator may want to provide users with multiple view options to choose from. To achieve this, the administrator can create multiple views. For each view that should be available to users, the "Sharing Setting" must be set to "All users can see."
+            </p>
+            <Img n={38} />
+          </div>
+
+          {/* Default View */}
+          <div id="default-view">
+            <h3 className="rv-section-h2">Configuring a Default View for the Users</h3>
+            <p className="rv-paragraph">
+              The administrator can pin a view by enabling the "Pinned" attribute, making it the default view for all users. This works similarly to pinning Salesforce list views.
+            </p>
+            <Img n={39} />
+          </div>
+
+          {/* User-Created Views */}
+          <div id="user-views">
+            <h3 className="rv-section-h2">Controlling if the Users Can Create Their Own Views</h3>
+            <p className="rv-paragraph">
+              In some cases, the administrator may want to allow users to create their own views. To enable this, the "Allow Users to Update View Configuration" page attribute must be checked in the page builder. Once enabled, users can create their own views and share them with others.
+            </p>
+            <Img n={40} />
+          </div>
+
+          {/* Action Icons */}
+          <div id="action-icons">
+            <h3 className="rv-section-h2">Displaying Record Action Icons Based on User Permissions</h3>
+            <p className="rv-paragraph">
+              The action icons displayed for each record are based on the permissions of the currently logged-in user. Users will only see icons for the actions they are allowed to perform.
+            </p>
+            <p className="rv-paragraph">
+              For example, if a user has permission to view a record but does not have permission to edit or delete it, only the View icon will be displayed. The Edit and Delete icons will not be shown. This ensures that users can only access actions they are authorized to perform.
+            </p>
+            <h4 className="rv-section-h3">Available Record Actions:</h4>
+            <ul className="rv-list">
+              <li><strong>View:</strong> Opens the record to display its details.</li>
+              <li><strong>Edit:</strong> Allows the user to modify the record.</li>
+              <li><strong>Clone:</strong> Creates a copy of the selected record with the same field values.</li>
+              <li><strong>Delete:</strong> Removes the record from the system.</li>
+            </ul>
+            <Img n={41} />
+
+            
+          </div>
+
+          {/* RTL Support */}
+          <div id="rtl">
+            <h3 className="rv-section-h2">Right-to-Left Language Compatible</h3>
+            <p className="rv-paragraph">
+              RelationshipVista fully supports Right-to-Left (RTL) language layouts, ensuring a seamless experience for users working in languages such as Hebrew and Arabic.
+            </p>
+            <p className="rv-paragraph">
+              The component automatically adjusts its visual orientation to align with RTL reading direction, maintaining usability and consistency across global deployments.
+            </p>
+            <Img n={42} />
+            <Img n={43} />
+          </div>
+        </section>
+
+        {/* ═══ HOW TO CREATE R-VIEW ═══ */}
+        <section className="rv-section" id="howto-rview">
+          <h2 className="rv-section-h1">How to Create R-View</h2>
+          <p className="rv-paragraph">
+            Configure how child records are displayed by creating a new view and applying sorting, filtering, and grouping options on the Opportunity object node.
+          </p>
+          <p className="rv-paragraph">
+            Refer to the example below, where these configurations are applied to Opportunity records.
+          </p>
+
+          <h3 className="rv-section-h3">Configure View</h3>
+          <ol className="rv-steps">
+            <li>Click on the Settings (⚙️) icon in the relationship view.</li>
+            <li>Click New.</li>
+            <li>The Configuration Properties modal will open.</li>
+          </ol>
+          <p className="rv-paragraph">Configure the following fields values as shown:</p>
+          <Img n={44} />
+
+          <h3 className="rv-section-h3">Configure Root Node</h3>
+          <p className="rv-paragraph">After creating the view:</p>
+          <ol className="rv-steps">
+            <li>Click Edit.</li>
+            <Img n={45} />
+            <li>Click the settings icon next to the root node.</li>
+            <Img n={46} />
+            <li>The Root Node Configuration dialog will open.</li>
+            <li> Add Objects from Available to Selected as shown. Example: Opportunity, Case, Contact</li>
+            <Img n={47} />
+            <li>Save the view.</li>
+          </ol>
+          <h3 className="rv-section-h3">Configure Object Node</h3>
+          <ol className="rv-steps">
+            <li>Click on the setting icon next to the Object Node.</li>
+            <Img n={48} />
+            <li>The Object Node Configuration dialog will open.</li>
+            <li>Configure the following fields values as shown:</li>
+            <Img n={49} />
+          </ol>
+
+          <p className="rv-paragraph">
+            Opportunity records are displayed based on the applied filter conditions, grouped by the selected fields, and sorted according to the defined field and direction.
+          </p>
+          <Img n={50} />
+           <ul>
+            <li>Records Sorted by Amount</li> 
+            <Img n={51} />
+            <Img n={52} />
+            <li>Records Grouped by Lead Source</li>
+            <Img n={53} />
+          </ul>
+          
+        
+        </section>
+
+        {/* ═══ CHANGE RECORD ICONS ═══ */}
+        <section className="rv-section" id="change-icons">
+          <h2 className="rv-section-h1">How to Change Record URL Icons from Lightning Design System</h2>
+          <p className="rv-paragraph">
+            Go to the official Lightning Design System website, navigate to Icons or use the following link:{' '}
+            <a href="https://www.lightningdesignsystem.com/icons/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--rv-primary-light)'}}>
+              https://www.lightningdesignsystem.com/icons/
+            </a>
+          </p>
+          <Img n={54} />
+          <p className="rv-paragraph">Select the name of the icon file:</p>
+          <ul className="rv-list">
+            <li>
+              For <strong>Standard Icons</strong>, copy the icon name and use it in the URL format:
+              <div className="rv-code-block">/_slds/icons/standard-sprite/svg/symbols.svg#slds_icon_name</div>
+            </li>
+            <Img n={55} />
+            <li>
+              For <strong>Custom Icons</strong>, get the icon name from the Custom Icons section on the same site and use it in the URL as:
+              <div className="rv-code-block">/_slds/icons/custom-sprite/svg/symbols.svg#slds_icon_name</div>
+            </li>
+            <Img n={56} />
+          </ul>
+          
+        
+        </section>
+
+        {/* ═══ ICON BACKGROUND COLOR ═══ */}
+        <section className="rv-section" id="icon-bg-color">
+          <h2 className="rv-section-h1">How to Set Record Icon Background Color</h2>
+          <p className="rv-paragraph">
+            Use a color picker or the standard Inspect Element tool to obtain the color code and update it as follows:
+          </p>
+          <ol className="rv-steps">
+            <li>Right-click and select Inspect to open Developer Tools, or press F12.</li>
+            <li>Use the color picker available in the Developer Tools to select a color.</li>
+            <li>Click on any desired color, and its hex code will be copied to the clipboard.</li>
+             <Img n={57} />
+            <li>Paste the selected color into the record icon background color field and click Save to apply it to the icon.</li>
+          </ol>
+         
+          <Img n={58} />
+        </section>
+
+        {/* ═══ WHY RVC? ═══ */}
+        <section className="rv-section" id="why-rvc">
+          <h2 className="rv-section-h1">Why RVC?</h2>
+
+          <div className="rv-feature-grid">
+            <div className="rv-card">
+              <div className="rv-card-title">
+                <div className="rv-card-icon">🧭</div>
+                1. Optimized Data Navigation
+              </div>
+              <ul className="rv-list">
+                <li><strong>Reduced Click-Path:</strong> Eliminates tab fatigue by consolidating multiple Related Lists into a single, interactive Lightning Web Component.</li>
+                <li><strong>Immediate Context:</strong> Provides a 360-degree view of Standard and Custom Object hierarchies without navigating away from the primary record.</li>
+                <li><strong>Visual Data Scannability:</strong> Uses Explorer and Graphical Tree layouts to make complex One-to-Many and Junction Object relationships instantly understandable.</li>
+              </ul>
+            </div>
+
+            <div className="rv-card">
+              <div className="rv-card-title">
+                <div className="rv-card-icon">⚡</div>
+                2. Increased Productivity
+              </div>
+              <ul className="rv-list">
+                <li><strong>Inline Record Actions:</strong> Accelerates data entry and updates by allowing users to manage related records directly within the component.</li>
+                <li><strong>Dynamic Data Segmentation:</strong> Uses R-Views to group, sort, and filter records, allowing users to focus only on actionable data.</li>
+                <li><strong>On-the-Fly Creation:</strong> Simplifies business processes by enabling new record creation directly from the relationship map.</li>
+              </ul>
+            </div>
+
+            <div className="rv-card">
+              <div className="rv-card-title">
+                <div className="rv-card-icon">🔒</div>
+                3. Native Salesforce Integration &amp; Security
+              </div>
+              <ul className="rv-list">
+                <li><strong>Security Alignment:</strong> Inherits existing Salesforce Security Models, including Object-Level Security, Field-Level Security, and Sharing Rules.</li>
+                <li><strong>SLDS Compliance:</strong> Maintains a consistent look and feel with the Salesforce Lightning Design System, ensuring a seamless user experience.</li>
+                <li><strong>Admin Governance:</strong> Provides centralized control via the Lightning App Builder, allowing admins to lock configurations, pin default views, and restrict user-level modifications.</li>
+              </ul>
+            </div>
+
+            <div className="rv-card">
+              <div className="rv-card-title">
+                <div className="rv-card-icon">🌐</div>
+                4. Scalability &amp; Global Support
+              </div>
+              <ul className="rv-list">
+                <li><strong>Performance Stability:</strong> Manages high record volumes efficiently using Visible Records Limits to prevent page performance degradation.</li>
+                <li><strong>Localization Ready:</strong> Fully supports Translation Workbench and RTL (Right-to-Left) layouts for global orgs.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ USE CASES ═══ */}
+        <section className="rv-section" id="use-cases">
+          <h2 className="rv-section-h1">Use Cases</h2>
+
+          {/* Use Case 1 */}
+          <div id="usecase1" className="rv-usecase-card">
+            <h3 className="rv-usecase-title">Use Case 1: Sales Leadership — ROI &amp; Pipeline Analysis</h3>
+
+            <div className="rv-usecase-scenario">
+              <div className="rv-usecase-scenario-label">Scenario</div>
+              A Sales VP at a tech company wants to audit "Closed Won" Opportunities on an Account to see which Lead Sources (e.g., Referral, Web, Partner) are driving the most revenue, sorted by the largest deals first.
+            </div>
+
+            <p className="rv-paragraph">
+              <strong>How RelationshipVista Helps:</strong><br />
+              Instead of navigating multiple Reports or Related Lists, the manager can visualize all Opportunities directly from the Account record page.
+            </p>
+
+            <p className="rv-paragraph"><strong>Steps:</strong></p>
+
+            <h4 className="rv-section-h4">Configure View</h4>
+            <ol className="rv-steps">
+              <li>Click on the Settings (⚙️) icon in the relationship view.</li>
+              <li>Click New.</li>
+              <li>The Configuration Properties modal will open.</li>
+            </ol>
+            <p className="rv-paragraph">Configure the following fields values as shown:</p>
+            <Img n={59} />
+
+            <h4 className="rv-section-h4">Configure Root Node</h4>
+            <p className="rv-paragraph">After creating the view:</p>
+            <ol className="rv-steps">
+              <li>Click Edit.</li>
+               <Img n={60} />
+              <li>Click the settings icon next to the root node.</li>
+              <Img n={46} />
+              <li>The Root Node Configuration dialog will open.</li>
+              <li>In the Show Objects, add Opportunities Object to Selected Objects as shown:</li>
+            </ol>
+            <Img n={61} />
+
+            <h4 className="rv-section-h4">Configure Object Node</h4>
+            <ol className="rv-steps">
+              <li>Click on the setting icon next to the Object Node.</li>
+               <Img n={62} />
+              <li>The Object Node Configuration dialog will open.</li>
+              <li> Configure the following fields values as below:</li>
+            </ol>
+           
+           
+            <Img n={63} />
+
+            <div className="rv-outcome-box">
+              <div className="rv-outcome-label">✅ Outcome</div>
+              <p className="rv-paragraph" style={{marginBottom: 0}}>
+                The Sales VP can now see all "Closed Won" Opportunities grouped by Lead Source and sorted by Amount — directly from the Account record page. This eliminates the need to run separate reports, making it easy to identify top-performing channels and largest deals at a glance.
               </p>
-            </RevealOnScroll>
+            </div>
+            <Img n={64} />
+          </div>
+
+          {/* Use Case 2 */}
+          <div id="usecase2" className="rv-usecase-card">
+            <h3 className="rv-usecase-title">Use Case 2: Case Impact Analysis</h3>
+
+            <div className="rv-usecase-scenario">
+              <div className="rv-usecase-scenario-label">Scenario</div>
+              A Customer Success Manager (CSM) wants to make sure big deals aren't lost because of unhappy customers. Often, a customer might have a major support problem (Case) at the same time they are supposed to sign a new deal (Opportunity). If the CSM doesn't know about the problem, they might lose the sale.
+            </div>
+
+            <p className="rv-paragraph">
+              <strong>How RelationshipVista Helps:</strong><br />
+              Instead of jumping between different lists and pages, RelationshipVista shows everything in one map. It connects the problem of the Person to the Money. This lets the CSM see the risk immediately and fix the support issue before asking the customer for a renewal.
+            </p>
+
+            <p className="rv-paragraph"><strong>Steps:</strong></p>
+
+            <h4 className="rv-section-h4">Configure View</h4>
+            <ol className="rv-steps">
+              <li>Click on the Settings (⚙️) icon in the relationship view.</li>
+              <li>Click New.</li>
+              <li>The Configuration Properties modal will open.</li>
+            </ol>
+            <p className="rv-paragraph">Configure the following fields values as shown:</p>
+            <Img n={65} />
+
+            <h4 className="rv-section-h4">Configure Root Node</h4>
+            <p className="rv-paragraph">After creating the view:</p>
+            <ol className="rv-steps">
+              <li>Click Edit.</li>
+              <li>Click the settings icon next to the root node.</li>
+               <Img n={46} />
+              <li>The Root Node Configuration dialog will open.</li>
+              <li>  In Show Objects, move Cases to the Selected list.</li>
+              <li>Set Auto Expand as True.</li>
+              <li>Click Save.</li>
+            </ol>
+          
+           
+            <Img n={66} />
+
+            <h4 className="rv-section-h4">Configure Object Node</h4>
+            <ol className="rv-steps">
+              <li>Click on the setting icon next to the Case Node.</li>
+              <Img n={67} />
+              <li>The Object Node Configuration dialog will open</li>
+              <li>Configure the following fields values as below:</li>
+               <Img n={68} />
+               <li> Click Save.</li>
+               <li>Click the settings icon next to the Contact node.</li>
+               <li>Configure the following fields values as below:</li>
+                <Img n={69} />
+                <li>Click Save.</li>
+                <li> Click the settings icon next to the Opportunity node. </li>
+                <Img n={70} />
+                <li>Configure the following fields values as below:</li>
+                 <Img n={71} />
+                 <li>  Click Save.</li>
+            </ol>
+            <div className="rv-outcome-box">
+              <div className="rv-outcome-label">✅ Outcome</div>
+              <p className="rv-paragraph" style={{marginBottom: 0}}>
+                The CSM can now see a connected view of Cases, Contacts, and Opportunities all from a single Account record. If a high-value Opportunity is at risk due to an open critical Case, the CSM can spot it immediately and take action — without jumping between multiple pages. This reduces the chance of losing a renewal due to an unresolved support issue.
+              </p>
+            </div>
+            <Img n={72} />
           </div>
         </section>
 
-        <section className="px-4 md:px-8 mb-12">
-          <div className="max-w-4xl mx-auto">
-            <RevealOnScroll delay={0.2}>
-              <div className="premium-card p-8 bg-white border-sky-100 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <div className="icon-box-lg bg-primary/10">
-                    <Info className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-text-heading mb-4">Introduction</h2>
-                    <div className="space-y-4 text-text-body leading-relaxed">
-                      <p>
-                        <strong>Ardira RelationshipVista (“RVC”)</strong> is a Lightning Web Component (LWC) that enables users to easily navigate and visualize all records related to a specific record. By adding the component to a record detail page, users can instantly explore its related data in a structured view.
-                      </p>
-                      <p>
-                        Once the RVC component is placed on a record page, it automatically provides the ability to browse and visualize all associated records. Relationship Views (R-Views) allow you to create customized visual representations of related data based on your requirements.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </RevealOnScroll>
+        {/* ═══ HAVE QUESTIONS? ═══ */}
+        <section className="rv-section" id="contact">
+          <div className="rv-contact">
+            <h2>Have Questions?</h2>
+            <p>
+              For any questions related to RelationshipVista and how to configure to visualize your Salesforce records' relationships &amp; hierarchies, feel free to contact us.
+            </p>
+            <a href="mailto:support@ardira.com" className="rv-contact-email">
+              ✉️ support@ardira.com
+            </a>
           </div>
         </section>
 
-        <section className="px-4 md:px-8">
-          <div className="max-w-4xl mx-auto space-y-4">
-            <GuideAccordionItem 
-              title="Get Started" 
-              icon={Laptop} 
-              isOpen={openSection === 'get-started'} 
-              onClick={() => toggleSection('get-started')}
-            >
-              <p>Installing RelationshipVista is the first step toward gaining deep visibility into your Salesforce data mapping.</p>
-              <ul className="space-y-4 list-none pl-0 mt-6">
-                <li className="flex gap-4 items-start">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-primary">1</div>
-                  <span>Click <strong>Get It Now</strong> on AppExchange or use the package link provided by Ardira.</span>
-                </li>
-                <li className="flex gap-4 items-start">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-primary">2</div>
-                  <span>When installing, select <strong>Install for All Users</strong> to ensure your entire team can benefit.</span>
-                </li>
-                <li className="flex gap-4 items-start">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-primary">3</div>
-                  <span>Once installed, follow the "Ardira RelationshipVista Component" setup steps below.</span>
-                </li>
-              </ul>
-            </GuideAccordionItem>
-
-            <GuideAccordionItem 
-              title="Key Features" 
-              icon={Layout} 
-              isOpen={openSection === 'features'} 
-              onClick={() => toggleSection('features')}
-            >
-              <ul className="grid md:grid-cols-2 gap-4 list-none pl-0">
-                {[
-                  "Rich, interactive and engaging visualization.",
-                  "Embed data maps directly into standard and custom object record details.",
-                  "Map relationships of multiple records across your org onto a single canvas!",
-                  "Visualize One-to-one, One-to-many, and Junction relationships.",
-                  "Explorer (indented tree) and Graphical Tree layouts.",
-                  "Filter out unimportant related records dynamically.",
-                  "Group related records using any field (e.g., Opportunities by Stage).",
-                  "Configure record-level limits for parent-child displays.",
-                  "Navigate hierarchy by clicking record and group nodes.",
-                  "Full Right-to-Left (RTL) and Translation support."
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-3 items-start">
-                    <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <span className="text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </GuideAccordionItem>
-
-            <GuideAccordionItem 
-              title="Why RelationshipVista?" 
-              icon={ArrowRight} 
-              isOpen={openSection === 'why-rvc'} 
-              onClick={() => toggleSection('why-rvc')}
-            >
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
-                  <p className="font-bold text-text-heading mb-1 text-base">Optimized Data Navigation</p>
-                  <p className="text-xs">Eliminates tab fatigue by consolidating multiple Related Lists into a single view.</p>
-                </div>
-                <div className="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
-                  <p className="font-bold text-text-heading mb-1 text-base">Increased Productivity</p>
-                  <p className="text-xs">Inline record actions and dynamic segmentation allow users to focus on actionable data.</p>
-                </div>
-              </div>
-            </GuideAccordionItem>
-
-            <GuideAccordionItem 
-              title="Component Setup" 
-              icon={Box} 
-              isOpen={openSection === 'setup'} 
-              onClick={() => toggleSection('setup')}
-            >
-              <p>To begin using RelationshipVista, open the record detail page in <strong>Edit Page</strong> mode. You can then add the <strong>Ardira RelationshipVista</strong> component to any tab or section.</p>
-              <div className="bg-sky-50 p-4 rounded-xl border border-sky-100 flex gap-4 mt-6">
-                <div className="shrink-0 h-10 w-10 bg-white rounded-lg flex items-center justify-center border border-sky-200">
-                  <Settings className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-text-heading">Pro Tip</p>
-                  <p className="text-xs">Create a dedicated "RelationshipVista" tab for hierarchy exploration.</p>
-                </div>
-              </div>
-            </GuideAccordionItem>
-
-            <GuideAccordionItem 
-              title="Detailed Use Cases" 
-              icon={Layers} 
-              isOpen={openSection === 'use-cases'} 
-              onClick={() => toggleSection('use-cases')}
-            >
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <div className="pill-badge bg-primary/5 text-primary border-primary/10">Scenario 1: Sales ROI Audit</div>
-                  <p className="text-sm">Identify lead sources driving revenue for a specific account, sorted by deal size.</p>
-                </div>
-                <div className="h-px bg-sky-100" />
-                <div className="space-y-3">
-                  <div className="pill-badge bg-primary/5 text-primary border-primary/10">Scenario 2: CSM Risk Analysis</div>
-                  <p className="text-sm">Identify critical Support Cases open for an account before a renewal pitch.</p>
-                </div>
-              </div>
-            </GuideAccordionItem>
-
-            <GuideAccordionItem 
-              title="Icons & Branding" 
-              icon={ImageIcon} 
-              isOpen={openSection === 'styling'} 
-              onClick={() => toggleSection('styling')}
-            >
-              <div className="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
-                <h4 className="font-bold text-text-heading mb-2">SLDS Custom Icon Format</h4>
-                <div className="bg-white p-3 rounded border border-sky-200 font-mono text-xs overflow-x-auto text-primary">
-                  /_slds/icons/category-sprite/svg/symbols.svg#icon_name
-                </div>
-              </div>
-            </GuideAccordionItem>
-
-            <GuideAccordionItem 
-              title="Questions & Support" 
-              icon={HelpCircle} 
-              isOpen={openSection === 'faq'} 
-              onClick={() => toggleSection('faq')}
-            >
-              <p className="mb-6">Our team is dedicated to ensuring you get the most out of RelationshipVista.</p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="mailto:support@ardira.com" className="btn-cta text-sm py-2 px-6">
-                  Email Support <ArrowRight className="h-4 w-4 ml-2 inline" />
-                </a>
-              </div>
-            </GuideAccordionItem>
-          </div>
-        </section>
       </main>
 
+      {/* ── BACK TO TOP ── */}
+      <button
+        className={`rv-back-top ${showBackTop ? 'visible' : ''}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
+      </div>
       <Footer />
     </div>
   );
 };
+export default RVUserGuide;
 
-export default Guide;
+
