@@ -118,7 +118,7 @@ export default function UseCasesSection() {
                    <svg viewBox="0 0 800 600" className="absolute inset-0 w-full h-full pointer-events-none z-0">
                       <defs>
                         <linearGradient id="activeEdgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                           <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
+                           <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="1" />
                            <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="1" />
                         </linearGradient>
                         <style>
