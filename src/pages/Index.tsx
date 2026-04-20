@@ -1,4 +1,5 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
@@ -53,6 +54,30 @@ const SectionSkeleton = () => (
 );
 
 const Index = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      let attempts = 0;
+      const scrollToHash = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          const offset = 120;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        } else if (attempts < 20) {
+          attempts++;
+          setTimeout(scrollToHash, 200);
+        }
+      };
+      scrollToHash();
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location.hash]);
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -86,3 +111,5 @@ const Index = () => {
 };
 
 export default Index;
+
+

@@ -1,9 +1,10 @@
 import React from "react";
 import logo from "@/assets/logo.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Globe, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
+  const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -51,7 +52,7 @@ const Footer = () => {
                               behavior: "smooth",
                             });
                           } else {
-                            window.location.href = "/" + link.href;
+                            navigate("/" + link.href);
                           }
                         }}
                         className="transition-colors duration-300 bg-none border-none cursor-pointer p-0 block text-left"
@@ -150,3 +151,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
