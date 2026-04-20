@@ -120,7 +120,7 @@ const RVUserGuide = () => {
       <nav className={`rv-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="rv-sidebar-header">
           <div className="rv-sidebar-logo">
-            <div className="rv-sidebar-logo-icon">RV</div>
+            <img src={logoIcon} alt="RV Logo" className="w-10 h-10 object-contain" />
             <div className="rv-sidebar-logo-text">
               <span className="rv-sidebar-logo-title">RelationshipVista</span>
               <span className="rv-sidebar-logo-sub">User Guide</span>
@@ -1038,6 +1038,7 @@ const RVUserGuide = () => {
   );
 };
 export default RVUserGuide;
+
 
 
 

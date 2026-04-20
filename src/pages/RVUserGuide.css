@@ -98,7 +98,7 @@ body {
 }
 
 .rv-sidebar-header {
-  padding: 8px 24px 24px;
+  padding: 8px 24px 16px;
   border-bottom: 1px solid var(--rv-border);
   margin-bottom: 16px;
 }
@@ -822,6 +822,8 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
 
 
 
