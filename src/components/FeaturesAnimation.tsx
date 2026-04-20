@@ -126,7 +126,7 @@ export default function FeaturesAnimation() {
   const connCount = visibleEdges.filter(e => e.label && e.style !== 'gray').length;
 
   return (
-    <div className="relative w-full h-[600px] bg-white rounded-xl shadow-xl flex flex-col overflow-hidden font-sans border border-border/40">
+    <div className="relative w-full h-[450px] md:h-[600px] bg-white rounded-xl shadow-xl flex flex-col overflow-hidden font-sans border border-border/40">
         <style dangerouslySetInnerHTML={{__html: `
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 

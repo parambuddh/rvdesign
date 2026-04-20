@@ -12,13 +12,7 @@ const WhatIsSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="h-full relative w-full aspect-video lg:aspect-square"
-          >
-            <HeroAnimation />
-          </motion.div>
-
-          {/* Text */}
-          <div className="space-y-5">
+            className="relative w-full min-h-[400px] md:aspect-square mb-8 lg:mb-0"    
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
