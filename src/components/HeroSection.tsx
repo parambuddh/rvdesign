@@ -19,7 +19,7 @@ const HeroSection = () => {
       <div className="container-narrow relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Text */}
-          <div className="space-y-6">
+          <div className="space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -35,11 +35,12 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
+              className="w-full"
             >
-              <h1 className="text-[36px] md:text-[44px] lg:text-[52px] font-extrabold leading-[1.1] font-heading tracking-tight">
+              <h1 className="text-[32px] sm:text-[36px] md:text-[44px] lg:text-[52px] font-extrabold leading-[1.1] font-heading tracking-tight">
                 <span className="relative inline-block z-10">
                   RelationshipVista
-                  <svg className="absolute -bottom-7 left-0 w-[102%] -translate-x-[1%] -z-10 overflow-visible" viewBox="0 0 200 24" fill="none" preserveAspectRatio="none">
+                  <svg className="absolute -bottom-4 sm:-bottom-7 left-0 w-[102%] -translate-x-[1%] -z-10 overflow-visible" viewBox="0 0 200 24" fill="none" preserveAspectRatio="none">
                     <defs>
                       <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stopColor="hsl(var(--primary))" />
@@ -57,7 +58,7 @@ const HeroSection = () => {
                     />
                   </svg>
                 </span>
-                <br />
+                <br className="hidden sm:block" />
                 <span className="gradient-text mt-2 block">
                   for Intelligent Relationship Mapping & Visualization
                 </span>
@@ -69,9 +70,9 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <p className="text-xl md:text-[22px] font-semibold text-text-heading leading-snug">
+              <p className="text-lg sm:text-xl md:text-[22px] font-semibold text-text-heading leading-snug">
                 Interactive Data Exploration for
-                <br />
+                <br className="hidden sm:block" />
                 Account Hierarchies & Connected Records.
               </p>
             </motion.div>
@@ -81,7 +82,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <p className="text-base text-text-light leading-relaxed max-w-lg">
+              <p className="text-sm sm:text-base text-text-light leading-relaxed max-w-lg mx-auto lg:mx-0">
                 See deeper insights into your account hierarchies, opportunity
                 pipelines, and connected records — all within Salesforce.
                 No code required.
@@ -92,17 +93,18 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
+              className="w-full flex flex-col items-center lg:items-start"
             >
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
                 <button
                   onClick={() => setIsCalendlyOpen(true)}
-                  className="btn-cta"
+                  className="btn-cta text-sm sm:text-base px-6 sm:px-7"
                 >
                   Book a Demo <ArrowRight className="h-5 w-5" />
                 </button>
                 <button
                   onClick={() => setIsGetNowOpen(true)}
-                  className="btn-outline"
+                  className="btn-outline text-sm sm:text-base px-6 sm:px-7"
                 >
                   View on AppExchange <ExternalLink className="h-4 w-4" />
                 </button>
@@ -112,7 +114,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="flex flex-wrap gap-6 pt-4"
+                className="flex flex-wrap justify-center lg:justify-start gap-4 sm:gap-6 pt-4"
               >
                 <Link 
                   to="/user-guide" 

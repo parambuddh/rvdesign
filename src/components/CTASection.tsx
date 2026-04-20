@@ -7,7 +7,7 @@ const CTASection = () => {
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
   return (
-    <section className="py-12 md:py-16 lg:py-20 relative overflow-hidden" style={{ background: "linear-gradient(90deg, #4D9A3F 0%, #49983E 30%, #2a8b7e 70%, #1a9b8e 100%)" }}>
+    <section id="cta-section" className="py-12 md:py-16 lg:py-20 relative overflow-hidden" style={{ background: "linear-gradient(90deg, #4D9A3F 0%, #49983E 30%, #2a8b7e 70%, #1a9b8e 100%)" }}>
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute w-[600px] h-[600px] rounded-full -top-60 -left-60 bg-white/10 blur-3xl" />

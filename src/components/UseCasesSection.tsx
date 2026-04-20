@@ -262,23 +262,23 @@ export default function UseCasesSection() {
                     </div>
 
                     {/* Faux Metric Grid */}
-                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-2">
                        <div className="premium-card p-4 rounded-xl bg-white border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-all hover:border-primary/30">
-                          <div className="text-[11px] font-bold text-slate-500 mb-1 tracking-wider uppercase">Core Entity</div>
-                          <div className="text-[16px] font-bold text-slate-900 leading-tight">{metrics.a}</div>
+                          <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 mb-1 tracking-wider uppercase">Core Entity</div>
+                          <div className="text-[14px] sm:text-[16px] font-bold text-slate-900 leading-tight">{metrics.a}</div>
                        </div>
                        <div className="premium-card p-4 rounded-xl bg-white border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-all hover:border-primary/30">
-                          <div className="text-[11px] font-bold text-slate-500 mb-1 tracking-wider uppercase">Visualization</div>
-                          <div className="text-[16px] font-bold text-slate-900 leading-tight">{metrics.b}</div>
+                          <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 mb-1 tracking-wider uppercase">Visualization</div>
+                          <div className="text-[14px] sm:text-[16px] font-bold text-slate-900 leading-tight">{metrics.b}</div>
                        </div>
                        <div className="premium-card p-4 rounded-xl bg-white border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-all hover:border-primary/30">
-                          <div className="text-[11px] font-bold text-slate-500 mb-1 tracking-wider uppercase">Mapping Type</div>
-                          <div className="text-[16px] font-bold text-slate-900 leading-tight">{metrics.c}</div>
+                          <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 mb-1 tracking-wider uppercase">Mapping Type</div>
+                          <div className="text-[14px] sm:text-[16px] font-bold text-slate-900 leading-tight">{metrics.c}</div>
                        </div>
                        <div className="premium-card p-4 rounded-xl bg-white border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-all hover:border-primary/30 relative overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
-                          <div className="text-[11px] font-bold text-slate-500 mb-1 tracking-wider uppercase relative z-10">Data Sync</div>
-                          <div className="text-[16px] font-bold text-primary flex items-center gap-1.5 relative z-10">
+                          <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 mb-1 tracking-wider uppercase relative z-10">Data Sync</div>
+                          <div className="text-[14px] sm:text-[16px] font-bold text-primary flex items-center gap-1.5 relative z-10">
                              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Native Real-time
                           </div>
                        </div>

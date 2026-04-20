@@ -34,35 +34,33 @@ const Footer = () => {
                 <h3 className="font-bold text-white mb-4 sm:mb-6 text-sm sm:text-base tracking-wider font-heading">Quick Links</h3>
                 <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
                   {[
-                    { label: "Home", href: "/" },
-                    { label: "Overview", href: "/#overview" },
-                    { label: "Features", href: "/#features" },
-                    { label: "Benefits", href: "/#benefits" },
-                    { label: "Use Cases", href: "/#use-cases" },
-                    { label: "Contact Us", href: "/#contact" },
+                    { label: "Home", href: "#home" },
+                    { label: "Overview", href: "#overview" },
+                    { label: "Features", href: "#features" },
+                    { label: "Benefits", href: "#benefits" },
+                    { label: "Use Cases", href: "#use-cases" },
+                    { label: "Contact Us", href: "#contact" },
                   ].map((link) => (
                     <li key={link.label}>
-                      {link.href.startsWith("/") && !link.href.includes("#") ? (
-                        <Link
-                          to={link.href}
-                          className="transition-colors duration-300 bg-none border-none cursor-pointer p-0 block"
-                          style={{ color: "hsl(210, 8%, 65%)" }}
-                          onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
-                          onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
-                        >
-                          {link.label}
-                        </Link>
-                      ) : (
-                        <a
-                          href={link.href}
-                          className="transition-colors duration-300 bg-none border-none cursor-pointer p-0 block"
-                          style={{ color: "hsl(210, 8%, 65%)" }}
-                          onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
-                          onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
-                        >
-                          {link.label}
-                        </a>
-                      )}
+                      <button
+                        onClick={() => {
+                          const el = document.getElementById(link.href.slice(1));
+                          if (el) {
+                            window.scrollTo({
+                              top: el.getBoundingClientRect().top + window.pageYOffset - 120,
+                              behavior: "smooth",
+                            });
+                          } else {
+                            window.location.href = "/" + link.href;
+                          }
+                        }}
+                        className="transition-colors duration-300 bg-none border-none cursor-pointer p-0 block text-left"
+                        style={{ color: "hsl(210, 8%, 65%)" }}
+                        onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
+                        onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
+                      >
+                        {link.label}
+                      </button>
                     </li>
                   ))}
                 </ul>

@@ -61,9 +61,9 @@ const PrivacyPolicy = () => {
                 <h2 className="text-xl md:text-2xl font-bold text-foreground">Privacy Notice</h2>
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                   The website located at www.relationshipvista.com, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("RelationshipVista," "the Company," "we," "us," and "our"). RelationshipVista respects your privacy and is committed to protecting your privacy through our compliance with this website privacy policy (the "Policy"). This Policy should be read in conjunction with our website{" "}
-                  <a href="/terms-of-use" className="text-primary hover:underline">
+                  <Link to="/terms-of-use" className="text-primary hover:underline">
                     Terms of Use
-                  </a>
+                  </Link>
                   , into which this Policy is incorporated by reference.
                 </p>
               </section>

@@ -53,9 +53,9 @@ const HeroAnimation = () => {
         .ha-scene { position:relative; z-index:1; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
         .ha-dashboard {
           position:relative;
-          width:clamp(300px, 90%, 1400px);
-          height:clamp(200px, 80%, 800px);
-          perspective:1200px;
+          width:clamp(260px, 95%, 1400px);
+          height:clamp(180px, 70vh, 800px);
+          perspective:1000px;
         }
         .ha-dashboard-inner {
           width:100%; height:100%;
