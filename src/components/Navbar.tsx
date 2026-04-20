@@ -130,15 +130,7 @@ const Navbar = () => {
       >
         <nav className={`flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16' : 'h-20'}`}>
           <a href="/" onClick={handleLogoClick} className="flex items-center gap-2 transition-all duration-500">
-            <img 
-              src={logo} 
-              alt="RelationshipVista Logo" 
-              className={`transition-all duration-500 w-auto ${scrolled ? 'h-8 md:h-9' : 'h-9 md:h-11'} ${isOverColoredSection && scrolled ? "brightness-0 invert" : ""}`} 
-            />
-          </a>
-
-          <div className="hidden lg:flex items-center justify-end gap-1 ml-auto">
-            {navLinks.map((link) => (
+            <img src={logo} alt="RelationshipVista Logo" className={`transition-all duration-500 w-auto ${scrolled ? 'h-8 md:h-9' : 'h-9 md:h-11'}`} /></a><div className="hidden lg:flex items-center justify-end gap-1 ml-auto">{navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
@@ -162,13 +154,9 @@ const Navbar = () => {
 
             <button
               onClick={() => setIsCalendlyOpen(true)}
-              className={`ml-4 flex items-center gap-2 rounded-full font-semibold overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer ${
-                isOverColoredSection && scrolled 
-                  ? "bg-white text-primary px-6 py-2.5 text-sm" 
-                  : "bg-primary text-primary-foreground px-6 py-2.5 text-sm"
-              } ${scrolled ? "px-5 py-2 text-xs" : "px-6 py-2.5 text-sm"}`}
+              className="btn-cta text-sm sm:text-base px-6 sm:px-7 ml-4 cursor-pointer"
             >
-              Book Demo <ArrowRight className="h-4 w-4" />
+              Book a Demo <ArrowRight className="h-5 w-5" />
             </button>
           </div>
 
@@ -217,9 +205,9 @@ const Navbar = () => {
               <div className="pt-4 mt-2 border-t border-slate-100">
                 <button
                   onClick={() => { setMobileOpen(false); setIsCalendlyOpen(true); }}
-                  className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-primary-foreground rounded-xl font-semibold shadow-md cursor-pointer"
+                  className="btn-cta w-full flex justify-center text-sm sm:text-base cursor-pointer"
                 >
-                  Book Demo <ArrowRight className="h-4 w-4" />
+                  Book a Demo <ArrowRight className="h-5 w-5" />
                 </button>
               </div>
             </div>
@@ -257,4 +245,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
