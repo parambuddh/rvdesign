@@ -132,14 +132,14 @@ const HeroSection = () => {
               {/* Floating glassmorphism badges */}
               <div
                 className="absolute -top-4 -right-4 glass-card shadow-xl px-5 py-3 hidden lg:block"
-                style={{ animation: "blob-float 6s ease-in-out infinite", animationDelay: "0s" }}
+                style={{ animation: "badge-float 6s ease-in-out infinite", animationDelay: "0s" }}
               >
                 <p className="text-sm font-bold text-text-heading">Relationships Mapped</p>
                 <p className="text-xs text-text-muted">1,247 records • 3 sec</p>
               </div>
               <div
                 className="absolute -bottom-4 -left-4 glass-card shadow-xl px-5 py-3 hidden lg:block"
-                style={{ animation: "blob-float 12s ease-in-out infinite", animationDelay: "-6s" }}
+                style={{ animation: "badge-float 12s ease-in-out infinite", animationDelay: "-6s" }}
               >
                 <p className="text-sm font-bold text-primary">Hierarchy: 5 Levels</p>
                 <p className="text-xs text-text-muted">Real-time visualization</p>

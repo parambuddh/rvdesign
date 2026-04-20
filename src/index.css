@@ -252,6 +252,12 @@
   66% { transform: translate(-10px, 10px) scale(0.95); }
 }
 
+@keyframes badge-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(3px, -3px) scale(1.01); }
+  66% { transform: translate(-2px, 2px) scale(0.99); }
+}
+
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4); }
   50% { box-shadow: 0 0 0 8px hsl(var(--primary) / 0); }

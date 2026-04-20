@@ -9,16 +9,16 @@ import {
 // The complete relationship network dataset
 // The complete relationship network dataset
 const useCases = [
-  { id: 0, parent: null, x: 100, y: 250, icon: Building2, label: "Accounts", title: "Account Management", desc: "Visualize complex master-detail account hierarchies, parent-child structures, and all related contacts in a single view." },
+  { id: 0, parent: null, x: 100, y: 300, icon: Building2, label: "Accounts", title: "Account Management", desc: "Visualize complex master-detail account hierarchies, parent-child structures, and all related contacts in a single view." },
   
-  { id: 1, parent: 0, x: 400, y: 150, icon: TrendingUp, label: "Opportunities", title: "Opportunity Pipeline", desc: "Group and explore opportunities by stage, source, or amount. Spot roadblocks early with a clear visual sales pipeline hierarchy." },
-  { id: 2, parent: 0, x: 400, y: 250, icon: Contact, label: "Contacts", title: "Contact Mapping", desc: "Map out who reports to whom. Uncover hidden decision-makers and key influencers across multi-org networks." },
-  { id: 3, parent: 0, x: 400, y: 350, icon: Headphones, label: "Cases", title: "Case Management", desc: "Accelerate resolution times by visualizing case histories, related escalations, and support chains at a glance." },
+  { id: 1, parent: 0, x: 400, y: 160, icon: TrendingUp, label: "Opportunities", title: "Opportunity Pipeline", desc: "Group and explore opportunities by stage, source, or amount. Spot roadblocks early with a clear visual sales pipeline hierarchy." },
+  { id: 2, parent: 0, x: 400, y: 300, icon: Contact, label: "Contacts", title: "Contact Mapping", desc: "Map out who reports to whom. Uncover hidden decision-makers and key influencers across multi-org networks." },
+  { id: 3, parent: 0, x: 400, y: 440, icon: Headphones, label: "Cases", title: "Case Management", desc: "Accelerate resolution times by visualizing case histories, related escalations, and support chains at a glance." },
 
-  { id: 4, parent: 1, x: 700, y: 100, icon: Package, label: "Assets", title: "Asset Tracking", desc: "Connect the dots between physical assets, software products, and active contracts assigned to your accounts." },
-  { id: 5, parent: 1, x: 700, y: 200, icon: FileText, label: "Contracts", title: "Contract Management", desc: "See the exact relationships between master service agreements, amendments, and software license dependencies." },
-  { id: 6, parent: 2, x: 700, y: 300, icon: GitBranch, label: "Partners", title: "Partner Management", desc: "Explore extensive partner hierarchies, channel distribution relationships, and complex tiered reseller structures." },
-  { id: 7, parent: 3, x: 700, y: 400, icon: Database, label: "Custom", title: "Custom Objects", desc: "Don't settle for standard objects. Build stunning visual maps for absolutely any custom object relationship in your org." },
+  { id: 4, parent: 1, x: 700, y: 90, icon: Package, label: "Assets", title: "Asset Tracking", desc: "Connect the dots between physical assets, software products, and active contracts assigned to your accounts." },
+  { id: 5, parent: 1, x: 700, y: 230, icon: FileText, label: "Contracts", title: "Contract Management", desc: "See the exact relationships between master service agreements, amendments, and software license dependencies." },
+  { id: 6, parent: 2, x: 700, y: 370, icon: GitBranch, label: "Partners", title: "Partner Management", desc: "Explore extensive partner hierarchies, channel distribution relationships, and complex tiered reseller structures." },
+  { id: 7, parent: 3, x: 700, y: 510, icon: Database, label: "Custom", title: "Custom Objects", desc: "Don't settle for standard objects. Build stunning visual maps for absolutely any custom object relationship in your org." },
 ];
 
 const mockMetrics = [
@@ -64,9 +64,9 @@ export default function UseCasesSection() {
   return (
     <section id="use-cases" className="py-24 bg-background relative overflow-hidden font-sans border-t border-border/40">
       
-      {/* Floating Glares */}
-      <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* Floating Glares - hardware accelerated to prevent scroll lag */}
+      <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />
+      <div className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none transform-gpu" />
 
       <div className="container-narrow relative z-20 mb-8 lg:mb-12 text-center">
         <motion.div
@@ -115,7 +115,7 @@ export default function UseCasesSection() {
                 <div className="w-full relative aspect-[16/10] mx-auto overflow-hidden">
                    
                    {/* Connections SVG Layer */}
-                   <svg viewBox="0 0 800 500" className="absolute inset-0 w-full h-full pointer-events-none z-0">
+                   <svg viewBox="0 0 800 600" className="absolute inset-0 w-full h-full pointer-events-none z-0">
                       <defs>
                         <linearGradient id="activeEdgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                            <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
@@ -201,7 +201,7 @@ export default function UseCasesSection() {
                             <div 
                                key={node.title}
                                className="absolute transform -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
-                               style={{ left: `${(node.x / 800) * 100}%`, top: `${(node.y / 500) * 100}%` }}
+                               style={{ left: `${(node.x / 800) * 100}%`, top: `${(node.y / 600) * 100}%` }}
                             >
                                <div 
                                  onClick={() => setActiveId(node.id)}
