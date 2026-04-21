@@ -253,6 +253,11 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: (navLinks.length + 2) * 0.05 }}
                         onClick={() => { setMobileOpen(false); navigate("/resources/installation-guide"); }}
+                        className="block w-full text-left px-4 py-2 hover:bg-slate-50 rounded-xl text-[15px] font-medium text-slate-600 focus:text-primary transition-colors"
+                    >
+                      Installation Guide
+                    </motion.button>
+                  </div>
 
                 <div className="pt-4 mt-2 border-t border-slate-100 flex flex-col">
                   <motion.button
