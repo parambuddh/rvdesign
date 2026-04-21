@@ -42,12 +42,22 @@ const Footer = () => {
                     { label: "Features", href: "#features" },
                     { label: "Benefits", href: "#benefits" },
                     { label: "Use Cases", href: "#use-cases" },
+                    { label: "Resources", href: "/resources/user-guide" },
                     { label: "Contact Us", href: "#contact" },
                   ].map((link) => (
                     <li key={link.label}>
                       <button
                         onClick={() => {
-                          if (window.location.pathname !== '/') { window.location.href = '/' + link.href; } else { const el = document.getElementById(link.href.slice(1)); if (el) { window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 120, behavior: 'smooth' }); } }
+                          if (link.href.startsWith('/')) {
+                            navigate(link.href);
+                          } else if (window.location.pathname !== '/') { 
+                            window.location.href = '/' + link.href; 
+                          } else { 
+                            const el = document.getElementById(link.href.slice(1)); 
+                            if (el) { 
+                              window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 120, behavior: 'smooth' }); 
+                            } 
+                          }
                         }}
                         className="transition-colors duration-300 bg-none border-none cursor-pointer p-0 block text-left"
                         style={{ color: "hsl(210, 8%, 65%)" }}
