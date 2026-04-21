@@ -97,9 +97,7 @@ const Navbar = () => {
     setTimeout(() => setMobileOpen(false), 150);
 
     if (isIndependentPage && href.startsWith("#")) {
-      navigate("/", { replace: false });
-      // Wait for navigation and mount
-      setTimeout(() => scrollToSection(href), 150);
+      window.location.href = "/" + href;
     } else if (href.startsWith("#")) {
       setActiveSection(href.slice(1));
       scrollToSection(href);
@@ -311,6 +309,7 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
 };
 
 export default Navbar;
+
 
 
 

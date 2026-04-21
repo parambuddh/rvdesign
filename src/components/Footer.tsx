@@ -47,15 +47,7 @@ const Footer = () => {
                     <li key={link.label}>
                       <button
                         onClick={() => {
-                          const el = document.getElementById(link.href.slice(1));
-                          if (el) {
-                            window.scrollTo({
-                              top: el.getBoundingClientRect().top + window.pageYOffset - 120,
-                              behavior: "smooth",
-                            });
-                          } else {
-                            navigate("/" + link.href);
-                          }
+                          if (window.location.pathname !== '/') { window.location.href = '/' + link.href; } else { const el = document.getElementById(link.href.slice(1)); if (el) { window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 120, behavior: 'smooth' }); } }
                         }}
                         className="transition-colors duration-300 bg-none border-none cursor-pointer p-0 block text-left"
                         style={{ color: "hsl(210, 8%, 65%)" }}
@@ -153,6 +145,7 @@ const Footer = () => {
 };
 
 export default Footer;
+
 
 
 

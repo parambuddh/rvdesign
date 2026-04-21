@@ -39,10 +39,10 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/user-guide" element={<UserGuide />} />
+              <Route path="/resources/user-guide" element={<UserGuide />} />
               <Route path="/terms-of-use" element={<TermsOfUse />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/installation-guide" element={<InstallationGuide />} />
+              <Route path="/resources/installation-guide" element={<InstallationGuide />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
