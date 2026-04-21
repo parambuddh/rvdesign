@@ -181,11 +181,17 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
 
               <button
                 onClick={() => setIsCalendlyOpen(true)}
-                className="btn-cta text-sm sm:text-base px-6 h-10 ml-4 
-cursor-pointer"
+                aria-label="Book a product demo"
+                className={`ml-4 ${
+                  !scrolled
+                    ? "bg-gradient-to-r from-primary to-secondary-blue text-white"
+                    : "bg-gradient-to-r from-primary to-secondary-blue text-primary-foreground"
+                } rounded-full font-semibold overflow-hidden shadow-xl hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-1 ${
+                  scrolled ? "px-5 py-2 text-xs" : "px-6 py-2.5 text-sm"
+                }`}
               >
-                Book Demo <ArrowRight className="h-5 w-5" />
-            </button>
+                Book Demo
+              </button>
           </div>
 
           <button
@@ -259,13 +265,24 @@ cursor-pointer"
                   </motion.button>
                 </div>
 
-                <div className="pt-4 mt-2 border-t border-slate-100">
-                  <button
-                    onClick={() => { setMobileOpen(false); setIsCalendlyOpen(true); }}
-                    className="btn-cta w-full flex justify-center text-sm sm:text-base cursor-pointer !h-10 items-center"
+                <div className="pt-4 mt-2 border-t border-slate-100 flex flex-col">
+                  <motion.button
+                    onClick={() => {
+                      setTimeout(() => setMobileOpen(false), 150);
+                      setIsCalendlyOpen(true);
+                    }}
+                    aria-label="Book a product demo"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navLinks.length * 0.08, duration: 0.3, ease: "easeOut" }}
+                    className={`${
+                      !scrolled
+                        ? "bg-gradient-to-r from-primary to-secondary-blue text-white"
+                        : "bg-gradient-to-r from-primary to-secondary-blue text-white/90"
+                    } px-5 py-3 rounded-xl text-sm font-semibold mt-2 text-center w-full shadow-lg`}
                   >
-                    Book Demo <ArrowRight className="h-5 w-5 ml-1" />
-                </button>
+                    Book Demo
+                  </motion.button>
               </div>
             </div>
           </motion.div>
