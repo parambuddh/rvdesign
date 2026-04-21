@@ -72,20 +72,23 @@ body {
 
 
 
+.rv-sidebar::-webkit-scrollbar { width: 10px; }
 
-
-
-.rv-sidebar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.rv-sidebar::-webkit-scrollbar-track {
-  background: transparent;
+.rv-sidebar::-webkit-scrollbar-track { 
+  background: transparent; 
+  margin: 12px 0; 
 }
 
 .rv-sidebar::-webkit-scrollbar-thumb {
   background: var(--rv-primary);
-  border-radius: 4px;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.rv-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--rv-primary-dark);
+  background-clip: content-box;
 }
 
 .rv-sidebar-header {

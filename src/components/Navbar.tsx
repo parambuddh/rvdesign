@@ -154,16 +154,16 @@ const Navbar = () => {
                 )}               </button>
               ))}
 
-              <DropdownMenu>
+              <DropdownMenu modal={false}>
                 <DropdownMenuTrigger
-                  className={`relative px-4 py-2 text-[15px] font-medium 
+                  className={`relative px-4 py-2 text-[15px] font-medium        
 rounded-lg transition-all duration-300 flex items-center gap-1 ${
                     isOverColoredSection && scrolled ? "text-white/80 hover:text-white" : "text-slate-800 hover:bg-slate-800/5"
                   }`}
                 >
-                  Resources <ChevronDown className="h-4 w-4 opacity-50" />
+                  Resources <ChevronDown className="h-4 w-4 opacity-50" />      
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 bg-white shadow-xl border border-primary/10 rounded-xl p-2 z-[9999]">
+                <DropdownMenuContent align="end" className="w-56 bg-white/80 backdrop-blur-xl shadow-[0_12px_48px_rgba(0,0,0,0.2)] border border-white/40 rounded-2xl p-2 z-[9999]">
                   <DropdownMenuItem asChild className="cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors focus:bg-sky-50 outline-none rounded-lg focus:text-primary">
                       <Link to="/resources/user-guide" className="w-full">
                         User Guide
