@@ -113,7 +113,7 @@ const RVUserGuide = () => {
 
   /* ════════════════════════════════════════════════════════════ */
   return (
-    <div className="min-h-screen flex flex-col w-full bg-background mt-20">
+    <div className="min-h-screen flex flex-col w-full bg-background mt-20 gradient-mesh">
       <Navbar />
       <div className="rv-guide flex-grow">
 

@@ -126,8 +126,8 @@ const Navbar = () => {
         className={`mx-auto transition-all duration-500 max-w-7xl ${
           scrolled
             ? isOverColoredSection
-              ? "mt-4 rounded-[2.5rem] bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_48px_rgba(0,0,0,0.4)] border border-white/10 px-4 md:px-8"
-              : "mt-4 rounded-[2.5rem] bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 px-4 md:px-8"
+              ? "md:mt-4 md:rounded-[2.5rem] bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_48px_rgba(0,0,0,0.4)] border border-white/10 px-4 md:px-8"
+              : "md:mt-4 md:rounded-[2.5rem] bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 px-4 md:px-8"
             : "mt-0 rounded-none bg-transparent px-4 md:px-8"
         }`}
       >

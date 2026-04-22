@@ -98,7 +98,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body antialiased gradient-mesh;
+    @apply bg-background text-foreground font-body antialiased;
     overflow-x: hidden;
   }
 

@@ -27,14 +27,14 @@ const fadeUp = {
 
 export default function RelationshipVistaInstallationGuide() {
   return (
-    <div className="min-h-screen bg-white text-text-heading font-body">
+    <div className="min-h-screen bg-white text-text-heading font-body gradient-mesh">
       
       
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-12 px-6 bg-sky-50/30 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-5%,rgba(14,165,233,0.08),transparent)] pointer-events-none" />
+      <section className="pt-32 pb-12 px-6 bg-primary/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-5%,rgba(77,154,63,0.08),transparent)] pointer-events-none" />
         <div className="max-w-4xl mx-auto relative z-10">
           <Link
             to="/"
@@ -124,7 +124,7 @@ export default function RelationshipVistaInstallationGuide() {
                 </div>
               </div>
               <div className="my-8 flex justify-center">
-                <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                   <img loading="lazy"
                     src={rvInstallImage1}
                     alt="Click Get It Now button"
@@ -152,7 +152,7 @@ export default function RelationshipVistaInstallationGuide() {
                 </div>
               </div>
               <div className="my-8 flex justify-center">
-                <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                   <img loading="lazy"
                     src={rvInstallImage2}
                     alt="Login to Salesforce"
@@ -179,7 +179,7 @@ export default function RelationshipVistaInstallationGuide() {
                 </div>
               </div>
               <div className="my-8 flex justify-center">
-                <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                   <img loading="lazy"
                     src={rvInstallImage3}
                     alt="Choose Installation Org"
@@ -206,7 +206,7 @@ export default function RelationshipVistaInstallationGuide() {
                 </div>
               </div>
               <div className="my-8 flex justify-center">
-                <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                   <img loading="lazy"
                     src={rvInstallImage4}
                     alt="Accept Terms & Install"
@@ -216,7 +216,7 @@ export default function RelationshipVistaInstallationGuide() {
               </div>
             </div>
 
-            <div className="bg-sky-50 border border-sky-200 rounded-xl p-6 my-10 border-l-4 border-l-sky-600">
+            <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 my-10 border-l-4 border-l-primary/60">
               <p className="text-sm text-slate-700 leading-relaxed">
                 <strong className="text-primary-dark">📌 Important:</strong> When
                 installing RelationshipVista, we recommend that you select{" "}
@@ -226,7 +226,7 @@ export default function RelationshipVistaInstallationGuide() {
               </p>
             </div>
             <div className="my-8 flex justify-center">
-              <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+              <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                 <img loading="lazy"
                   src={rvInstallImage5}
                   alt="Install for Admins Only option"
@@ -252,7 +252,7 @@ export default function RelationshipVistaInstallationGuide() {
               This is the recommended approach as it's simpler and more
               maintainable.
             </p>
-            <div className="bg-sky-50 border border-sky-200 rounded-xl p-5 mb-10">
+            <div className="bg-primary/5 border border-primary/20 rounded-xl p-5 mb-10">
               <p className="text-sm text-slate-700 flex items-start gap-3 leading-relaxed">
                 <CheckCircle2
                   size={18}
@@ -266,7 +266,7 @@ export default function RelationshipVistaInstallationGuide() {
             </div>
             <div className="space-y-8">
               <div className="flex justify-center">
-                <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                   <img loading="lazy"
                     src={rvInstallImage6}
                     alt="Permission Set Assignment"
@@ -275,7 +275,7 @@ export default function RelationshipVistaInstallationGuide() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                   <img loading="lazy"
                     src={rvInstallImage7}
                     alt="Permission Set Confirmation"
@@ -294,17 +294,17 @@ export default function RelationshipVistaInstallationGuide() {
             </p>
 
             {/* Apex Class Access */}
-            <div className="mb-12 border-l-4 border-primary/30 pl-6 bg-sky-50/50 p-6 rounded-lg">
+            <div className="mb-12 border-l-4 border-primary/30 pl-6 bg-primary/10 p-6 rounded-lg">
               <h4 className="text-lg font-semibold font-heading text-text-heading mb-4">
                 Apex Class Access
               </h4>
-              <div className="bg-white border border-sky-200 rounded-lg p-4 mb-8 inline-block">
+              <div className="bg-white border border-primary/20 rounded-lg p-4 mb-8 inline-block">
                 <p className="text-sm text-slate-700 font-mono font-medium">
                   RVController
                 </p>
               </div>
               <div className="flex justify-center">
-                <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                   <img loading="lazy"
                     src={rvInstallImage8}
                     alt="Apex Class Access Configuration"
@@ -315,7 +315,7 @@ export default function RelationshipVistaInstallationGuide() {
             </div>
 
             {/* Object Access */}
-            <div className="mb-12 border-l-4 border-primary/30 pl-6 bg-sky-50/50 p-6 rounded-lg">
+            <div className="mb-12 border-l-4 border-primary/30 pl-6 bg-primary/10 p-6 rounded-lg">
               <h4 className="text-lg font-semibold font-heading text-text-heading mb-4">
                 Object Access
               </h4>
@@ -323,7 +323,7 @@ export default function RelationshipVistaInstallationGuide() {
                 Grant the following permissions on the{" "}
                 <strong>RV Configuration</strong> custom object:
               </p>
-              <div className="bg-white border border-sky-200 rounded-lg p-5 mb-8 space-y-3">
+              <div className="bg-white border border-primary/20 rounded-lg p-5 mb-8 space-y-3">
                 <p className="text-slate-700 flex items-center gap-3 text-sm">
                   <CheckCircle2 size={18} className="text-primary shrink-0" />{" "}
                   <span>Read</span>
@@ -346,7 +346,7 @@ export default function RelationshipVistaInstallationGuide() {
                 </p>
               </div>
               <div className="flex justify-center">
-                <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                   <img loading="lazy"
                     src={rvInstallImage9}
                     alt="Object Access Configuration"
@@ -357,7 +357,7 @@ export default function RelationshipVistaInstallationGuide() {
             </div>
 
             {/* Fields Access */}
-            <div className="mb-12 border-l-4 border-primary/30 pl-6 bg-sky-50/50 p-6 rounded-lg">
+            <div className="mb-12 border-l-4 border-primary/30 pl-6 bg-primary/10 p-6 rounded-lg">
               <h4 className="text-lg font-semibold font-heading text-text-heading mb-4">
                 Fields Access
               </h4>
@@ -365,7 +365,7 @@ export default function RelationshipVistaInstallationGuide() {
                 Grant Read/Write access on the following{" "}
                 <strong>RV Configuration</strong> fields:
               </p>
-              <div className="bg-white border border-sky-200 rounded-lg p-5 mb-8 space-y-3">
+              <div className="bg-white border border-primary/20 rounded-lg p-5 mb-8 space-y-3">
                 <p className="text-slate-700 text-sm">• Auto Expand Levels</p>
                 <p className="text-slate-700 text-sm">• Configuration</p>
                 <p className="text-slate-700 text-sm">
@@ -377,7 +377,7 @@ export default function RelationshipVistaInstallationGuide() {
               </div>
               <div className="space-y-8">
                 <div className="flex justify-center">
-                  <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                  <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                     <img loading="lazy"
                       src={rvInstallImage10}
                       alt="Fields Access Configuration"
@@ -386,7 +386,7 @@ export default function RelationshipVistaInstallationGuide() {
                   </div>
                 </div>
                 <div className="flex justify-center">
-                  <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                  <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                     <img loading="lazy"
                       src={rvInstallImage11}
                       alt="Additional Fields Configuration"
@@ -395,7 +395,7 @@ export default function RelationshipVistaInstallationGuide() {
                   </div>
                 </div>
                 <div className="flex justify-center">
-                  <div className="rounded-xl overflow-hidden border border-sky-200 shadow-md max-w-2xl">
+                  <div className="rounded-xl overflow-hidden border border-primary/20 shadow-md max-w-2xl">
                     <img loading="lazy"
                       src={rvInstallImage12}
                       alt="Complete Fields Configuration"
@@ -409,11 +409,11 @@ export default function RelationshipVistaInstallationGuide() {
             <h2 className="text-3xl font-semibold font-heading text-text-heading mb-6 mt-16">
               Next Steps
             </h2>
-            <div className="bg-gradient-to-br from-sky-50 to-sky-100 border border-sky-200 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 rounded-xl p-6">
               <p className="text-base text-text-body mb-6 leading-relaxed">
                 After installation and configuration, refer to the{" "}
                 <Link
-                  href="/relationship-vista-user-guide"
+                  to="/resources/user-guide"
                   className="text-primary hover:text-primary-dark font-semibold underline"
                 >
                   User Guide
@@ -427,7 +427,7 @@ export default function RelationshipVistaInstallationGuide() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-6 bg-sky-50 border-t border-sky-200">
+      <section className="py-16 px-6 bg-primary/5 border-t border-primary/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-semibold font-heading text-text-heading mb-4">
             Ready to Install?
@@ -437,8 +437,8 @@ export default function RelationshipVistaInstallationGuide() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
-              href="/relationship-vista-user-guide"
-              className="inline-flex items-center gap-2 border border-primary/30 text-primary-dark bg-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-sky-50 transition-colors"
+              to="/resources/user-guide"
+              className="inline-flex items-center gap-2 border border-primary/30 text-primary-dark bg-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary/5 transition-colors"
             >
               User Guide
             </Link>

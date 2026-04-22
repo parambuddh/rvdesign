@@ -79,7 +79,7 @@ const Index = () => {
   }, [location.hash]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen gradient-mesh">
       <Navbar />
       <main>
         <HeroSection />
