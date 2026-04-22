@@ -50,13 +50,14 @@ const HeroAnimation = () => {
           --glass-strong: rgba(255,255,255,0.95);
         }
         
-        .ha-scene { position:relative; z-index:1; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+        .ha-scene { position:relative; z-index:1; width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:40px 0; }
         .ha-dashboard {
           position:relative;
           width: 100%;
           aspect-ratio: 4 / 3;
           max-height: 600px;
           perspective:1000px;
+          padding: 20px 0;
         }
         .ha-dashboard-inner {
           width:100%; height:100%;
@@ -80,11 +81,11 @@ const HeroAnimation = () => {
         }
 
         .ha-panel-main {
-          top:0; left:5%; width:90%; height:100%;
+          top:10px; left:5%; width:90%; height:100%;
           z-index:2;
           animation:haFloatMain 6s ease-in-out infinite;
         }
-        @keyframes haFloatMain { 0%,100%{transform:translateY(0) translateZ(0)} 50%{transform:translateY(-8px) translateZ(10px)} }
+        @keyframes haFloatMain { 0%,100%{transform:translateY(0) translateZ(0)} 50%{transform:translateY(-12px) translateZ(15px)} }
 
         .ha-panel-bottom {
           bottom:0; left:20%; width:clamp(250px, 45%, 400px); height:18%;
@@ -96,7 +97,7 @@ const HeroAnimation = () => {
         @keyframes haFloatBottom { 0%,100%{transform:translateZ(20px) translateY(0)} 50%{transform:translateZ(20px) translateY(-6px)} }
 
         .ha-panel-top-right {
-          top:-3%; right:clamp(1%, 4vw, 5%); width:clamp(160px, 28%, 220px); height:15%;
+          top:2%; right:clamp(1%, 4vw, 5%); width:clamp(160px, 28%, 220px); height:15%;
           min-height:60px;
           z-index:3;
           transform:translateZ(15px);

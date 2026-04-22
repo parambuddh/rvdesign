@@ -68,6 +68,10 @@ const RVUserGuide = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('introduction');
   const [showBackTop, setShowBackTop] = useState(false);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   /* ── Intersection observer to highlight active TOC item ── */
   useEffect(() => {
@@ -118,23 +122,23 @@ const RVUserGuide = () => {
 
       {/* ── SIDEBAR ── */}
       <nav className={`rv-sidebar ${sidebarOpen ? 'open' : ''}`}>
-        
-
-        {tocSections.map(section => (
-          <div className="rv-nav-group" key={section.id}>
-            <a className={`rv-nav-link ${activeSection === section.id ? 'active' : ''}`}
-               onClick={() => scrollTo(section.id)}>
-              {section.label}
-            </a>
-            {section.children?.map(child => (
-              <a key={child.id}
-                 className={`rv-nav-link rv-nav-link-sub ${activeSection === child.id ? 'active' : ''}`}
-                 onClick={() => scrollTo(child.id)}>
-                {child.label}
+        <div className="rv-sidebar-content">
+          {tocSections.map(section => (
+            <div className="rv-nav-group" key={section.id}>
+              <a className={`rv-nav-link ${activeSection === section.id ? 'active' : ''}`}
+                 onClick={() => scrollTo(section.id)}>
+                {section.label}
               </a>
-            ))}
-          </div>
-        ))}
+              {section.children?.map(child => (
+                <a key={child.id}
+                   className={`rv-nav-link rv-nav-link-sub ${activeSection === child.id ? 'active' : ''}`}
+                   onClick={() => scrollTo(child.id)}>
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          ))}
+        </div>
       </nav>
 
       {/* ── MOBILE TOGGLE ── */}

@@ -11,7 +11,7 @@ const HeroSection = () => {
   const [isGetNowOpen, setIsGetNowOpen] = useState(false);
 
   return (
-    <section id="home" className="section-padding relative overflow-hidden gradient-mesh">
+    <section id="home" className="section-padding relative overflow-hidden">
       {/* Animated gradient blobs */}
       <div className="blob blob-1 w-[500px] h-[500px] -top-40 -left-40" />
       <div className="blob blob-2 w-[400px] h-[400px] -bottom-20 -right-20" />
@@ -48,7 +48,7 @@ const HeroSection = () => {
                       </linearGradient>
                     </defs>
                     <motion.path
-                      d="M6 14 Q 100 8 194 18"
+                      d="M6 18 Q 100 24 194 18"
                       stroke="url(#hero-gradient)" 
                       strokeWidth="3"
                       strokeLinecap="round"
