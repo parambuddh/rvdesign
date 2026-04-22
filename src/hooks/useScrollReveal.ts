@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export const useScrollReveal = (threshold = 0.15) => {
+export const useScrollReveal = (threshold = 0.05) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -12,7 +12,7 @@ export const useScrollReveal = (threshold = 0.15) => {
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold: 0, rootMargin: '50px 0px -50px 0px' }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -22,7 +22,7 @@ export const useScrollReveal = (threshold = 0.15) => {
 };
 
 // Staggered children animation
-export const useStaggerReveal = (count: number, threshold = 0.1) => {
+export const useStaggerReveal = (count: number, threshold = 0.05) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visibleItems, setVisibleItems] = useState<boolean[]>(new Array(count).fill(false));
 
@@ -33,7 +33,7 @@ export const useStaggerReveal = (count: number, threshold = 0.1) => {
           // Stagger each item by 100ms
           for (let i = 0; i < count; i++) {
             setTimeout(() => {
-              setVisibleItems(prev => {
+              setVisibleItems((prev) => {
                 const next = [...prev];
                 next[i] = true;
                 return next;
@@ -43,7 +43,7 @@ export const useStaggerReveal = (count: number, threshold = 0.1) => {
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold: 0, rootMargin: '50px 0px -50px 0px' }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
