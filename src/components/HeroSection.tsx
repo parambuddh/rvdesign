@@ -152,7 +152,7 @@ const HeroSection = () => {
                   width={1280}
                   height={800}
                   fetchPriority="high"
-                  className="w-full h-auto"
+                  className="w-full h-auto object-contain"
                 />
                 {/* Glassmorphism overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
