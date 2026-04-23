@@ -12,7 +12,7 @@ const img = (n: number) => `/images/image${n}.png`;
 /* ─── Reusable sub-components ─── */
 const Img = ({ n, className }: { n: number; className?: string }) => (
   <div className={`rv-image-wrapper ${className || ''}`}>
-    <img src={img(n)} alt={`Figure ${n}`} loading="lazy" />
+    <img src={img(n)} alt={`Figure ${n}`} width={1200} height={800} loading="lazy" />
   </div>
 );
 
