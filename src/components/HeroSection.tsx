@@ -48,7 +48,7 @@ const HeroSection = () => {
                       </linearGradient>
                     </defs>
                     <motion.path
-                      d="M6 18 Q 100 24 194 18"
+                      d="M3,14 Q90,7 200,17"
                       stroke="url(#hero-gradient)" 
                       strokeWidth="3"
                       strokeLinecap="round"

@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <footer style={{ background: "linear-gradient(180deg, hsl(210, 14%, 16%), hsl(210, 14%, 12%))" }} className="relative overflow-hidden pt-6 sm:pt-8 pb-0">
-      <div className="container relative pb-0 px-4 md:px-8 mx-auto max-w-7xl">
+      <div className="container relative pb-0 px-4 md:px-8 mx-auto max-w-6xl">
         <div className="pt-4 sm:pt-6 pb-1">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-0 mb-8 sm:mb-10">
             {/* Company Info - Left (Col 1) */}
@@ -22,9 +22,7 @@ const Footer = () => {
                 <img src={logo} alt="RelationshipVista" className="h-10 sm:h-12 w-auto" loading="lazy" decoding="async" width={180} height={48} />
               </Link>
               <p className="text-sm leading-relaxed max-w-xs text-left" style={{ color: "hsl(210, 8%, 65%)" }}>
-                Turn complex relationships into<br />
-                clear, actionable insights natively<br />
-                within Salesforce.
+                Turn complex relationships into clear, actionable insights natively within Salesforce.
               </p>
             </div>
 
