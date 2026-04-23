@@ -71,7 +71,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <p className="text-lg sm:text-xl md:text-[22px] font-semibold text-text-heading leading-snug">
-                Interactive Data Exploration for
+                Interactive Data Exploration for{" "}
                 <br className="hidden sm:block" />
                 Account Hierarchies & Connected Records.
               </p>

@@ -102,7 +102,12 @@
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading;
     color: hsl(var(--text-heading));
   }
@@ -114,7 +119,7 @@
 
 @layer components {
   .section-padding {
-    @apply py-16 md:py-20 lg:py-28;
+    @apply py-12 md:py-20 lg:py-28;
   }
 
   .section-alt {
@@ -273,25 +278,53 @@
 }
 
 @keyframes blob-float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(15px, -15px) scale(1.05); }
-  66% { transform: translate(-10px, 10px) scale(0.95); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(15px, -15px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-10px, 10px) scale(0.95);
+  }
 }
 
 @keyframes badge-float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(3px, -3px) scale(1.01); }
-  66% { transform: translate(-2px, 2px) scale(0.99); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(3px, -3px) scale(1.01);
+  }
+
+  66% {
+    transform: translate(-2px, 2px) scale(0.99);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4); }
-  50% { box-shadow: 0 0 0 8px hsl(var(--primary) / 0); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px hsl(var(--primary) / 0);
+  }
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 7.5rem; /* Offset for fixed navbar when scrolling to anchors */
+  scroll-padding-top: 7.5rem;
+  /* Offset for fixed navbar when scrolling to anchors */
   scrollbar-gutter: stable;
 }
 
@@ -308,22 +341,28 @@ body[data-scroll-locked] {
 }
 
 /* Ensure images/iframes don't overflow */
-img, iframe, video {
+img,
+iframe,
+video {
   max-width: 100%;
 }
 
 /* Layer promotion only when necessary or hovered for smoother animations */
 .blob {
   will-change: transform, opacity;
-  transform: translateZ(0); /* Force GPU acceleration */
+  transform: translateZ(0);
+  /* Force GPU acceleration */
 }
 
-.glass-card:hover, .premium-card:hover, .icon-box:hover {
+.glass-card:hover,
+.premium-card:hover,
+.icon-box:hover {
   will-change: transform;
 }
 
 /* Performance Optimizations for Mobile */
 @media (max-width: 768px) {
+
   /* Disable heavy floating animations on mobile to save CPU */
   .blob {
     animation: none !important;
@@ -338,7 +377,12 @@ img, iframe, video {
 
 /* Better touch targets on mobile */
 @media (max-width: 640px) {
-  button, a, input, textarea, select {
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
     min-height: 36px;
   }
 }
@@ -361,4 +405,11 @@ img, iframe, video {
 
 .grecaptcha-badge:hover {
   width: 256px !important;
+}
+
+/* Mobile reCAPTCHA badge fix to prevent overlapping content */
+@media (max-width: 768px) {
+  .grecaptcha-badge {
+    bottom: 85px !important;
+  }
 }

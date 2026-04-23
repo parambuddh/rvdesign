@@ -289,12 +289,12 @@ export default function FeaturesAnimation() {
         </div>
 
         {/* ── LEGEND ── */}
-        <div className="px-4 py-2 border-t border-border/40 bg-slate-50 flex items-center gap-3 shrink-0 shrink flex-wrap justify-between md:justify-start">
-            <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 rounded-sm bg-green-600"></div><span className="text-[10px] text-slate-500">Parent / Child</span></div>
-            <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 rounded-sm bg-blue-500"></div><span className="text-[10px] text-slate-500">Partner</span></div>
-            <div className="flex items-center gap-1.5"><div className="w-4 h-0 border-t-2 border-dashed border-amber-600"></div><span className="text-[10px] text-slate-500">Competitor</span></div>
-            <div className="flex items-center gap-1.5"><div className="w-4 h-0 border-t-2 border-dashed border-purple-400"></div><span className="text-[10px] text-slate-500">Influencer</span></div>
-            <div className="ml-auto text-[9.5px] text-slate-300 tracking-wider hidden md:block" style={{fontVariantNumeric: 'tabular-nums', letterSpacing: '0.1em'}}>REAL-TIME · SALESFORCE</div>
+        <div className="px-4 py-2.5 border-t border-border/40 bg-slate-50 flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 justify-between md:justify-start">
+            <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 rounded-sm bg-green-600"></div><span className="text-[10px] font-medium text-slate-500">Parent / Child</span></div>
+            <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 rounded-sm bg-blue-500"></div><span className="text-[10px] font-medium text-slate-500">Partner</span></div>
+            <div className="flex items-center gap-1.5"><div className="w-4 h-0 border-t-2 border-dashed border-amber-600"></div><span className="text-[10px] font-medium text-slate-500">Competitor</span></div>
+            <div className="flex items-center gap-1.5"><div className="w-4 h-0 border-t-2 border-dashed border-purple-400"></div><span className="text-[10px] font-medium text-slate-500">Influencer</span></div>
+            <div className="ml-auto text-[9px] font-bold text-slate-300 tracking-wider hidden lg:block" style={{fontVariantNumeric: 'tabular-nums', letterSpacing: '0.1em'}}>REAL-TIME · SALESFORCE</div>
         </div>
     </div>
   );

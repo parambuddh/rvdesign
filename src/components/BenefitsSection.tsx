@@ -45,9 +45,9 @@ const BenefitsSection = () => {
             <p className="text-sm font-bold tracking-widest uppercase gradient-text mb-3 inline-block">
               Benefits
             </p>
-            <h2 className="text-3xl md:text-[40px] font-extrabold font-heading leading-tight mb-4">
-              Built for Enterprise. Designed for
-              <br />
+            <h2 className="text-2xl sm:text-3xl md:text-[40px] font-extrabold font-heading leading-tight mb-4">
+              Built for Enterprise. Designed for{" "}
+              <br className="hidden sm:block" />
               <span className="gradient-text">Everyone.</span>
             </h2>
             <p className="text-text-body text-lg leading-relaxed">
