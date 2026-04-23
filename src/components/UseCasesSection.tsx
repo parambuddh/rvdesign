@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Building2, TrendingUp, Contact, Headphones, 
@@ -35,15 +35,29 @@ const mockMetrics = [
 export default function UseCasesSection() {
   const [activeId, setActiveId] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Auto-play map explorer
+  // Only run autoplay when section is visible in viewport
   useEffect(() => {
-    if (isHovered) return;
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-play map explorer (only when visible and not hovered)
+  useEffect(() => {
+    if (isHovered || !isVisible) return;
     const interval = setInterval(() => {
       setActiveId(prev => (prev + 1) % useCases.length);
     }, 4500);
     return () => clearInterval(interval);
-  }, [isHovered]);
+  }, [isHovered, isVisible]);
 
   // Recursively find path to root for active edge highlighting
   const getPathToRoot = (nodeId: number) => {
@@ -62,7 +76,7 @@ export default function UseCasesSection() {
   const metrics = mockMetrics[activeId];
 
   return (
-    <section id="use-cases" className="py-24 bg-background relative overflow-hidden font-sans border-t border-border/40">
+    <section ref={sectionRef} id="use-cases" className="py-24 bg-background relative overflow-hidden font-sans border-t border-border/40">
       
       {/* Floating Glares - hardware accelerated to prevent scroll lag */}
       <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />

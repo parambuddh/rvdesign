@@ -311,10 +311,14 @@ img, iframe, video {
   max-width: 100%;
 }
 
-/* Layer promotion for smoother animations without forced reflows */
-.blob, .glass-card, .premium-card, .icon-box {
+/* Layer promotion only when necessary or hovered for smoother animations */
+.blob {
   will-change: transform, opacity;
   transform: translateZ(0); /* Force GPU acceleration */
+}
+
+.glass-card:hover, .premium-card:hover, .icon-box:hover {
+  will-change: transform;
 }
 
 /* Performance Optimizations for Mobile */

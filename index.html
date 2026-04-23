@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#4D9A3F" />
 
-    <!-- Defer loading of non-critical fonts to after initial render -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload critical LCP image for faster rendering -->
+    <link rel="preload" as="image" href="/src/assets/hero-dashboard.webp" type="image/webp">
 
-    <!-- Preload critical resources -->
-    <link rel="preload" as="image" href="/favicon.png">
+    <!-- DNS prefetch for lazy-loaded third-party resources -->
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
 
     <!-- Primary Meta Tags -->
     <title>RelationshipVista — Intelligent Relationship Mapping & Visualization | Salesforce</title>

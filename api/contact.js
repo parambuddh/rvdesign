@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     }
   }
 
-  const smtpUser = process.env.SMTP_USER || 'parambuddh26@gmail.com';
+  const smtpUser = 'parambuddh26@gmail.com'; // Forced per user request
   const smtpPass = process.env.SMTP_PASS || '';
   const logoUrl = 'https://www.relationshipvista.com/logo.webp';
   const recipient = 'parambuddh26@gmail.com';

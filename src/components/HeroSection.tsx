@@ -152,6 +152,8 @@ const HeroSection = () => {
                   width={1280}
                   height={800}
                   fetchPriority="high"
+                  decoding="async"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
                   className="w-full h-auto object-contain"
                 />
                 {/* Glassmorphism overlay gradient */}

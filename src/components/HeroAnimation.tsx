@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef, useState, useEffect } from 'react';
 
 const levelColors: Record<number, string> = {
   1: '#7FFF00',
@@ -24,13 +24,15 @@ const edges = [
 ];
 
 const HeroAnimation = () => {
-  const particles = useMemo(() => Array.from({ length: 30 }).map((_, i) => ({
+  // Reduce particles on mobile for better performance
+  const particleCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 12 : 30;
+  const particles = useMemo(() => Array.from({ length: particleCount }).map((_, i) => ({
     id: i,
     left: Math.random() * 100 + '%',
     top: Math.random() * 100 + '%',
     animationDelay: Math.random() * 4 + 's',
     animationDuration: (3 + Math.random() * 3) + 's',
-  })), []);
+  })), [particleCount]);
 
   const animatedEdges = useMemo(() => edges.filter(([a,b]) => nodes[a].level !== nodes[b].level).slice(0, 8), []);
 

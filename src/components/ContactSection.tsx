@@ -4,6 +4,52 @@ import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { useRecaptcha } from "@/hooks/useRecaptcha";
 
+const LazyMap = () => {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const el = mapRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" } // Load slightly before it comes into view
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={mapRef} className="rounded-xl overflow-hidden border border-border/50 h-64 md:h-80 w-full mt-2 bg-muted/20 flex items-center justify-center relative" style={{ minHeight: "224px", flexShrink: 0 }}>
+      {!isLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted/10 animate-pulse">
+          <MapPin className="w-8 h-8 text-muted-foreground/30" />
+        </div>
+      )}
+      {isLoaded && (
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6342.08172427285!2d-121.96206399999998!3d37.36521!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fca3b29bd16bd%3A0x1b7e4bbf55b3700b!2s2040%20Martin%20Ave%2C%20Santa%20Clara%2C%20CA%2095050%2C%20USA!5e0!3m2!1sen!2sin!4v1775548501571!5m2!1sen!2sin"
+          width="100%"
+          height="100%"
+          frameBorder="0"
+          allowFullScreen={true}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Office Map - Santa Clara, CA"
+          style={{ border: "none", width: "100%", height: "100%" }}
+        />
+      )}
+    </div>
+  );
+};
+
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -259,20 +305,8 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              {/* Google Maps - BOTTOM */}
-              <div className="rounded-xl overflow-hidden border border-border/50 h-64 md:h-80 w-full mt-2" style={{ minHeight: "224px", flexShrink: 0 }}>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6342.08172427285!2d-121.96206399999998!3d37.36521!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fca3b29bd16bd%3A0x1b7e4bbf55b3700b!2s2040%20Martin%20Ave%2C%20Santa%20Clara%2C%20CA%2095050%2C%20USA!5e0!3m2!1sen!2sin!4v1775548501571!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Office Map - Santa Clara, CA"
-                  style={{ border: "none", width: "100%", height: "100%" }}
-                />
-              </div>
+              {/* Google Maps - BOTTOM (Lazy loaded) */}
+              <LazyMap />
             </div>
           </motion.div>
         </div>

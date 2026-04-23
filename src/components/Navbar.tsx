@@ -33,49 +33,67 @@ const Navbar = () => {
   const isIndependentPage = location.pathname !== "/" && location.pathname !== "";
 
   useEffect(() => {
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+    
     const onScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrolled(currentScrollY > 50);
-      setShowScrollTop(currentScrollY > 300);
+      if (scrollTimeout) return;
       
-      // Detect if navbar is over a colored section (like CTA section)
-      const ctaElement = document.getElementById("cta-section");
-      
-      let overColored = false;
-      
-      if (ctaElement) {
-        const rect = ctaElement.getBoundingClientRect();
-        if (rect.top < 80 && rect.bottom > 0) {
-          overColored = true;
-        }
-      }
-      
-      setIsOverColoredSection(overColored);
-
-      // Reliable scroll-based section detection
-      if (!isIndependentPage) {
-        // Evaluate in reverse order (bottom to top)
-        const sectionIds = ["contact", "faq", "use-cases", "benefits", "features", "overview", "home"];
-        let currentSection = "home";
+      scrollTimeout = setTimeout(() => {
+        const currentScrollY = window.scrollY;
+        setScrolled(currentScrollY > 50);
+        setShowScrollTop(currentScrollY > 300);
         
-        for (const id of sectionIds) {
-          const el = document.getElementById(id);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 140) {
-              currentSection = id === "faq" ? "contact" : id;
-              break;
-            }
+        // Detect if navbar is over a colored section (like CTA section)
+        const ctaElement = document.getElementById("cta-section");
+        
+        let overColored = false;
+        
+        if (ctaElement) {
+          const rect = ctaElement.getBoundingClientRect();
+          if (rect.top < 80 && rect.bottom > 0) {
+            overColored = true;
           }
         }
+        
+        setIsOverColoredSection(overColored);
 
-        setActiveSection(currentSection);
-      }
+        // Reliable scroll-based section detection
+        if (!isIndependentPage) {
+          // Evaluate in reverse order (bottom to top)
+          const sectionIds = ["contact", "faq", "use-cases", "benefits", "features", "overview", "home"];
+          let currentSection = "home";
+          
+          for (const id of sectionIds) {
+            const el = document.getElementById(id);
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= 140) {
+                currentSection = id === "faq" ? "contact" : id;
+                break;
+              }
+            }
+          }
+
+          setActiveSection(currentSection);
+        }
+        scrollTimeout = null;
+      }, 100);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    setTimeout(onScroll, 100);
-    return () => window.removeEventListener("scroll", onScroll);
+    setTimeout(() => {
+        onScroll();
+        // force one immediate check
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = null;
+            onScroll();
+        }
+    }, 100);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+    };
   }, [isIndependentPage]);
 
   const scrollToSection = (targetId: string) => {

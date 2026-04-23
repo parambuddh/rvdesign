@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 
 // ── NODE DEFINITIONS ──
 const NODES: Record<string, any> = {
@@ -128,10 +128,8 @@ export default function FeaturesAnimation() {
   return (
     <div className="relative w-full h-[450px] md:h-[600px] bg-white rounded-xl shadow-xl flex flex-col overflow-hidden font-sans border border-border/40">
         <style dangerouslySetInnerHTML={{__html: `
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
             .features-anim {
-                font-family: 'Inter', sans-serif;
+                font-family: var(--font-sans), sans-serif;
             }
 
             @keyframes popIn {
@@ -165,11 +163,11 @@ export default function FeaturesAnimation() {
                 <div>
                     <div className="text-[14px] font-semibold text-slate-900 tracking-tight">Relationship Map</div>
                 </div>
-                <div className="ml-auto px-2.5 py-1 rounded-xl bg-blue-50 border border-blue-200 text-[9.5px] font-medium text-blue-700 tracking-wider" style={{fontFamily: "'JetBrains Mono', monospace"}}>
+                <div className="ml-auto px-2.5 py-1 rounded-xl bg-blue-50 border border-blue-200 text-[9.5px] font-medium text-blue-700 tracking-wider" style={{fontVariantNumeric: 'tabular-nums'}}>
                     <span>{connCount}</span> CONNECTIONS
                 </div>
             </div>
-            <div className="text-[11px] text-slate-400 tracking-wider" style={{fontFamily: "'JetBrains Mono', monospace"}}>ACCOUNT NETWORK · LIVE GRAPH · SALESFORCE</div>
+            <div className="text-[11px] text-slate-400 tracking-wider" style={{fontVariantNumeric: 'tabular-nums', letterSpacing: '0.1em'}}>ACCOUNT NETWORK · LIVE GRAPH · SALESFORCE</div>
         </div>
 
         {/* ── CANVAS ── */}
@@ -296,7 +294,7 @@ export default function FeaturesAnimation() {
             <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 rounded-sm bg-blue-500"></div><span className="text-[10px] text-slate-500">Partner</span></div>
             <div className="flex items-center gap-1.5"><div className="w-4 h-0 border-t-2 border-dashed border-amber-600"></div><span className="text-[10px] text-slate-500">Competitor</span></div>
             <div className="flex items-center gap-1.5"><div className="w-4 h-0 border-t-2 border-dashed border-purple-400"></div><span className="text-[10px] text-slate-500">Influencer</span></div>
-            <div className="ml-auto text-[9.5px] text-slate-300 tracking-wider hidden md:block" style={{fontFamily: "'JetBrains Mono', monospace"}}>REAL-TIME · SALESFORCE</div>
+            <div className="ml-auto text-[9.5px] text-slate-300 tracking-wider hidden md:block" style={{fontVariantNumeric: 'tabular-nums', letterSpacing: '0.1em'}}>REAL-TIME · SALESFORCE</div>
         </div>
     </div>
   );
