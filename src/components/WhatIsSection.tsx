@@ -3,9 +3,9 @@ import HeroAnimation from "./HeroAnimation";
 
 const WhatIsSection = () => {
   return (
-    <section id="overview" className="section-padding">
-      <div className="container-narrow">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section id="overview" className="py-16 md:py-24">
+      <div className="container px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
