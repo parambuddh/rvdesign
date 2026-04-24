@@ -12,7 +12,7 @@ const HeroSection = () => {
   const [isGetNowOpen, setIsGetNowOpen] = useState(false);
 
   return (
-    <section id="home" className="section-padding relative overflow-hidden">
+    <section id="home" className="pt-28 md:pt-36 pb-12 md:pb-20 lg:pb-28 relative overflow-hidden">
       {/* Animated gradient blobs */}
       <div className="blob blob-1 w-[500px] h-[500px] -top-40 -left-40" />
       <div className="blob blob-2 w-[400px] h-[400px] -bottom-20 -right-20" />
@@ -144,9 +144,11 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="w-full lg:w-[130%] lg:-ml-[15%] xl:w-[140%] xl:-ml-[20%] flex justify-center items-center overflow-visible"
+            className="w-full flex justify-center items-center relative"
           >
-            <HeroInfographic />
+            <div className="w-full max-w-[580px] lg:max-w-none">
+              <HeroInfographic />
+            </div>
           </motion.div>
         </div>
       </div>

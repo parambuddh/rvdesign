@@ -7,12 +7,17 @@ const HeroInfographic = () => {
   
   
 
-  .scene{position:relative;width:100%;aspect-ratio:16/11;max-height:850px;display:flex;align-items:center;justify-content:center;container-type:inline-size;}
+  .scene{
+    position:relative;width:100%;aspect-ratio:16/9;max-height:750px;
+    display:flex;align-items:center;justify-content:center;
+    container-type:inline-size;
+    overflow:visible;
+  }
 
   /* ===== MAIN DASHBOARD PANEL (STATIC) ===== */
   .main-panel{
     position:absolute;
-    top:5%;left:8%;width:84%;height:78%;
+    top:10%;left:7%;width:86%;height:75%;
     background:rgba(255,255,255,0.95);
     border-radius:clamp(12px, 1.5vw, 16px);
     box-shadow:0 20px 60px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.06);
@@ -166,7 +171,7 @@ const HeroInfographic = () => {
 
   /* ===== FLOATING BAR CHART (top-right) ===== */
   .float-bar-chart{
-    position:absolute;top:-6%;right:-4%;z-index:10;
+    position:absolute;top:0%;right:4%;z-index:10;
     animation:floatBar 4s ease-in-out infinite;
     background:rgba(255,255,255,0.85);
     backdrop-filter:blur(10px);
@@ -185,7 +190,7 @@ const HeroInfographic = () => {
 
   /* ===== FLOATING PIE CHART (bottom-left) ===== */
   .float-pie-chart{
-    position:absolute;bottom:8%;left:4%;z-index:10;
+    position:absolute;bottom:12%;left:10%;z-index:10;
     animation:floatPie 5s ease-in-out infinite;
     background:#fff;
     padding:1cqw 1.4cqw;
