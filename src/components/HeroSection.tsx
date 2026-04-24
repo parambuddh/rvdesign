@@ -144,7 +144,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="w-full flex justify-center items-center"
+            className="w-full lg:w-[130%] lg:-ml-[15%] xl:w-[140%] xl:-ml-[20%] flex justify-center items-center overflow-visible"
           >
             <HeroInfographic />
           </motion.div>

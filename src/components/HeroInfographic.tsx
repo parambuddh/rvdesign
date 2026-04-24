@@ -7,7 +7,7 @@ const HeroInfographic = () => {
   
   
 
-  .scene{position:relative;width:100%;aspect-ratio:16/11;max-height:550px;display:flex;align-items:center;justify-content:center}
+  .scene{position:relative;width:100%;aspect-ratio:16/11;max-height:750px;display:flex;align-items:center;justify-content:center}
 
   /* ===== MAIN DASHBOARD PANEL (STATIC) ===== */
   .main-panel{
