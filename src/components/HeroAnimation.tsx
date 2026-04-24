@@ -4,14 +4,6 @@ const HeroAnimation = () => {
   return (
     <div className="hero-anim-root relative w-full h-auto overflow-visible bg-transparent font-sans flex justify-center py-10">
       <style>{`
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{
-    width:100vw;height:100vh;overflow:hidden;
-    background:linear-gradient(160deg,#f0f2f5 0%,#e8ecf1 40%,#dfe4eb 100%);
-    font-family:'Inter','Segoe UI',system-ui,sans-serif;
-    display:flex;align-items:center;justify-content:center;
-  }
-
   .scene{position:relative;width:clamp(320px, 94vw, 1200px);height:clamp(450px, 85vh, 700px);display:flex;align-items:center;justify-content:center}
 
   /* ===== MAIN DASHBOARD PANEL (STATIC) ===== */
