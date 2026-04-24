@@ -7,7 +7,7 @@ const HeroInfographic = () => {
   
   
 
-  .scene{position:relative;width:100%;aspect-ratio:16/11;max-height:750px;display:flex;align-items:center;justify-content:center}
+  .scene{position:relative;width:100%;aspect-ratio:16/11;max-height:850px;display:flex;align-items:center;justify-content:center;container-type:inline-size;}
 
   /* ===== MAIN DASHBOARD PANEL (STATIC) ===== */
   .main-panel{
@@ -22,26 +22,26 @@ const HeroInfographic = () => {
 
   /* Left sidebar icons */
   .sidebar{
-    width:52px;background:#f7f8fa;
+    width:4.5cqw;background:#f7f8fa;
     border-right:1px solid #eaedf0;
     display:flex;flex-direction:column;align-items:center;
-    padding:16px 0;gap:6px;flex-shrink:0;
+    padding:1.4cqw 0;gap:0.5cqw;flex-shrink:0;
   }
   .sidebar-icon{
-    width:36px;height:36px;border-radius:10px;
+    width:3cqw;height:3cqw;border-radius:0.8cqw;
     display:flex;align-items:center;justify-content:center;
     color:#8e99a8;cursor:pointer;transition:all 0.2s;
   }
   .sidebar-icon:hover,.sidebar-icon.active{background:#e8ecf1;color:#4a5568}
-  .sidebar-icon svg{width:18px;height:18px}
+  .sidebar-icon svg{width:1.5cqw;height:1.5cqw}
 
   /* Visual Relationship Tree (left half) */
   .tree-section{flex:1.1;display:flex;flex-direction:column;border-right:1px solid #eaedf0;min-width:0}
   .section-header{
-    padding:14px 20px;
+    padding:1.2cqw 1.8cqw;
     border-bottom:1px solid #eaedf0;
-    font-size:13px;font-weight:600;color:#1a202c;
-    letter-spacing:0.2px;
+    font-size:1.1cqw;font-weight:600;color:#1a202c;
+    letter-spacing:0.02cqw;
   }
   .tree-canvas{
     flex:1;position:relative;overflow:hidden;padding:20px;
@@ -53,39 +53,40 @@ const HeroInfographic = () => {
   /* Relationship Explorer (right half) */
   .explorer-section{flex:0.9;display:flex;flex-direction:column;min-width:0}
   .explorer-toolbar{
-    padding:10px 16px;border-bottom:1px solid #eaedf0;
-    display:flex;align-items:center;gap:8px;
+    padding:0.8cqw 1.4cqw;border-bottom:1px solid #eaedf0;
+    display:flex;align-items:center;gap:0.7cqw;
   }
   .search-box{
-    flex:1;height:32px;border-radius:8px;border:1px solid #dde1e6;
-    padding:0 10px 0 32px;font-size:12px;color:#64748b;
-    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7' stroke='%2394a3b8' stroke-width='2'/%3E%3Cpath d='M16 16l4 4' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") 10px center no-repeat;
+    flex:1;height:2.8cqw;border-radius:0.7cqw;border:1px solid #dde1e6;
+    padding:0 0.8cqw 0 2.8cqw;font-size:1cqw;color:#64748b;
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7' stroke='%2394a3b8' stroke-width='2'/%3E%3Cpath d='M16 16l4 4' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") 0.8cqw center no-repeat;
+    background-size:1.2cqw;
   }
   .toolbar-btn{
-    width:30px;height:30px;border-radius:6px;border:1px solid #dde1e6;
+    width:2.6cqw;height:2.6cqw;border-radius:0.5cqw;border:1px solid #dde1e6;
     background:#fff;display:flex;align-items:center;justify-content:center;
-    color:#64748b;cursor:pointer;font-size:14px;
+    color:#64748b;cursor:pointer;font-size:1.2cqw;
   }
-  .explorer-tree{flex:1;overflow:hidden;padding:12px 16px;font-size:12.5px;color:#334155}
+  .explorer-tree{flex:1;overflow:hidden;padding:1cqw 1.4cqw;font-size:1.1cqw;color:#334155}
 
   /* Tree items */
-  .tree-item{display:flex;align-items:center;gap:6px;padding:4px 0;cursor:pointer;position:relative;}
+  .tree-item{display:flex;align-items:center;gap:0.5cqw;padding:0.3cqw 0;cursor:pointer;position:relative;}
   .tree-item.parent{font-weight:600;color:#1e293b}
-  .tree-item .arrow{width:14px;color:#94a3b8;font-size:10px;flex-shrink:0;text-align:center}
-  .tree-item .icon{width:18px;height:18px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px}
-  .tree-children{padding-left:14px; margin-left:7px; border-left:1px dashed #cbd5e1; margin-bottom:4px;}
-  .tree-sub{padding-left:14px; margin-left:7px; border-left:1px dashed #cbd5e1;}
-  .tree-sub-item{display:flex;align-items:center;gap:6px;padding:3px 0;font-size:12px;color:#475569;position:relative;}
-  .tree-sub-item::before{content:'';position:absolute;left:-14px;top:50%;width:10px;height:1px;background:#cbd5e1;}
-  .tree-sub-item .dot{width:6px;height:6px;border-radius:2px;flex-shrink:0}
+  .tree-item .arrow{width:1.2cqw;color:#94a3b8;font-size:0.9cqw;flex-shrink:0;text-align:center}
+  .tree-item .icon{width:1.6cqw;height:1.6cqw;border-radius:0.4cqw;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.9cqw}
+  .tree-children{padding-left:1.2cqw; margin-left:0.6cqw; border-left:1px dashed #cbd5e1; margin-bottom:0.4cqw;}
+  .tree-sub{padding-left:1.2cqw; margin-left:0.6cqw; border-left:1px dashed #cbd5e1;}
+  .tree-sub-item{display:flex;align-items:center;gap:0.5cqw;padding:0.25cqw 0;font-size:1cqw;color:#475569;position:relative;}
+  .tree-sub-item::before{content:'';position:absolute;left:-1.2cqw;top:50%;width:0.8cqw;height:1px;background:#cbd5e1;}
+  .tree-sub-item .dot{width:0.5cqw;height:0.5cqw;border-radius:0.15cqw;flex-shrink:0}
 
   /* ===== NODE MAP SVG ELEMENTS ===== */
   .node-card{
     position:absolute;
     transform:translate(-50%,-50%);
-    border-radius:14px;
+    border-radius:clamp(8px, 1.5cqw, 16px);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:6px;
+    gap:clamp(4px, 0.8cqw, 8px);
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
     transition:transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -93,25 +94,25 @@ const HeroInfographic = () => {
   }
   .node-card:hover{transform:translate(-50%,-50%) scale(1.05);z-index:10;}
   .node-card .node-icon{
-    width:32px;height:32px;
+    width:clamp(24px, 3.5cqw, 40px);height:clamp(24px, 3.5cqw, 40px);
     display:flex;align-items:center;justify-content:center;
-    border-radius:10px;
+    border-radius:clamp(6px, 1cqw, 12px);
   }
-  .node-card .node-label{font-size:10.5px;font-weight:600;color:#1e293b;white-space:nowrap}
+  .node-card .node-label{font-size:clamp(8px, 1.1cqw, 13px);font-weight:600;color:#1e293b;white-space:nowrap}
 
   /* Center node (Acme Corporation) */
   .node-center{
     left:50%;top:50%;
-    width:130px;height:84px;
+    width:clamp(100px, 16cqw, 160px);height:clamp(65px, 10cqw, 100px);
     background:linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(255,255,255,0.85));
     border:1px solid rgba(76, 175, 80, 0.25);
     box-shadow:0 8px 32px rgba(76, 175, 80, 0.1), inset 0 1px 0 rgba(255,255,255,1);
     z-index:5;
   }
-  .node-center .node-icon{background:linear-gradient(135deg, #4caf50, #2e7d32); color:#fff; box-shadow:0 4px 12px rgba(76,175,80,0.3);}
+  .node-center .node-icon{background:linear-gradient(135deg, #4caf50, #2e7d32); color:#fff; box-shadow:0 4px 12px rgba(76,175,80,0.3); width:clamp(30px, 4.5cqw, 50px); height:clamp(30px, 4.5cqw, 50px);}
 
   /* Opportunities */
-  .node-opp{left:42%;top:18%;width:116px;height:70px;
+  .node-opp{left:42%;top:18%;width:clamp(90px, 14cqw, 140px);height:clamp(55px, 8.5cqw, 85px);
     background:linear-gradient(135deg, rgba(139, 195, 74, 0.05), rgba(255,255,255,0.85));
     border:1px solid rgba(139, 195, 74, 0.25);
     box-shadow:0 8px 24px rgba(139, 195, 74, 0.1), inset 0 1px 0 rgba(255,255,255,1);
@@ -119,7 +120,7 @@ const HeroInfographic = () => {
   .node-opp .node-icon{background:linear-gradient(135deg, #8bc34a, #558b2f); color:#fff; box-shadow:0 4px 12px rgba(139,195,74,0.3);}
   
   /* Assets */
-  .node-assets{left:82%;top:32%;width:100px;height:70px;
+  .node-assets{left:82%;top:32%;width:clamp(80px, 12cqw, 120px);height:clamp(55px, 8.5cqw, 85px);
     background:linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(255,255,255,0.85));
     border:1px solid rgba(76, 175, 80, 0.25);
     box-shadow:0 8px 24px rgba(76, 175, 80, 0.1), inset 0 1px 0 rgba(255,255,255,1);
@@ -127,7 +128,7 @@ const HeroInfographic = () => {
   .node-assets .node-icon{background:linear-gradient(135deg, #4caf50, #2e7d32); color:#fff; box-shadow:0 4px 12px rgba(76,175,80,0.3);}
   
   /* Contacts */
-  .node-contacts{left:18%;top:38%;width:106px;height:70px;
+  .node-contacts{left:18%;top:38%;width:clamp(85px, 13cqw, 130px);height:clamp(55px, 8.5cqw, 85px);
     background:linear-gradient(135deg, rgba(121, 134, 203, 0.05), rgba(255,255,255,0.85));
     border:1px solid rgba(121, 134, 203, 0.25);
     box-shadow:0 8px 24px rgba(121, 134, 203, 0.1), inset 0 1px 0 rgba(255,255,255,1);
@@ -135,7 +136,7 @@ const HeroInfographic = () => {
   .node-contacts .node-icon{background:linear-gradient(135deg, #7986cb, #3f51b5); color:#fff; box-shadow:0 4px 12px rgba(121,134,203,0.3);}
   
   /* Cases */
-  .node-cases{left:22%;top:78%;width:100px;height:70px;
+  .node-cases{left:22%;top:78%;width:clamp(80px, 12cqw, 120px);height:clamp(55px, 8.5cqw, 85px);
     background:linear-gradient(135deg, rgba(255, 183, 77, 0.05), rgba(255,255,255,0.85));
     border:1px solid rgba(255, 183, 77, 0.25);
     box-shadow:0 8px 24px rgba(255, 183, 77, 0.1), inset 0 1px 0 rgba(255,255,255,1);
@@ -143,7 +144,7 @@ const HeroInfographic = () => {
   .node-cases .node-icon{background:linear-gradient(135deg, #ffb74d, #ef6c00); color:#fff; box-shadow:0 4px 12px rgba(255,183,77,0.3);}
   
   /* Activities */
-  .node-activities{left:50%;top:86%;width:106px;height:70px;
+  .node-activities{left:50%;top:86%;width:clamp(85px, 13cqw, 130px);height:clamp(55px, 8.5cqw, 85px);
     background:linear-gradient(135deg, rgba(239, 83, 80, 0.05), rgba(255,255,255,0.85));
     border:1px solid rgba(239, 83, 80, 0.25);
     box-shadow:0 8px 24px rgba(239, 83, 80, 0.1), inset 0 1px 0 rgba(255,255,255,1);
@@ -151,7 +152,7 @@ const HeroInfographic = () => {
   .node-activities .node-icon{background:linear-gradient(135deg, #ef5350, #c62828); color:#fff; box-shadow:0 4px 12px rgba(239,83,80,0.3);}
   
   /* Contracts */
-  .node-contracts{left:82%;top:72%;width:106px;height:70px;
+  .node-contracts{left:82%;top:72%;width:clamp(85px, 13cqw, 130px);height:clamp(55px, 8.5cqw, 85px);
     background:linear-gradient(135deg, rgba(77, 208, 225, 0.05), rgba(255,255,255,0.85));
     border:1px solid rgba(77, 208, 225, 0.25);
     box-shadow:0 8px 24px rgba(77, 208, 225, 0.1), inset 0 1px 0 rgba(255,255,255,1);
@@ -160,8 +161,8 @@ const HeroInfographic = () => {
 
   /* Connection lines via SVG overlay */
   .connections-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
-  .conn-line{fill:none;stroke-width:2.5;opacity:0.75;animation:pulseOpacity 3s ease-in-out infinite alternate;}
-  @keyframes pulseOpacity { 0% { opacity:0.3; stroke-width:1.5; } 100% { opacity:0.85; stroke-width:3; } }
+  .conn-line{fill:none;stroke-width:0.25cqw;opacity:0.75;animation:pulseOpacity 3s ease-in-out infinite alternate;}
+  @keyframes pulseOpacity { 0% { opacity:0.3; stroke-width:0.15cqw; } 100% { opacity:0.85; stroke-width:0.3cqw; } }
 
   /* ===== FLOATING BAR CHART (top-right) ===== */
   .float-bar-chart{
@@ -170,16 +171,16 @@ const HeroInfographic = () => {
     background:rgba(255,255,255,0.85);
     backdrop-filter:blur(10px);
     border:1px solid rgba(255,255,255,0.5);
-    padding:16px 20px;
-    border-radius:16px;
-    box-shadow:0 12px 30px rgba(0,0,0,0.1);
+    padding:1.4cqw 1.8cqw;
+    border-radius:1.4cqw;
+    box-shadow:0 1cqw 2.5cqw rgba(0,0,0,0.1);
   }
-  @keyframes floatBar{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  @keyframes floatBar{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.2cqw)}}
 
-  .bar-chart-3d{display:flex;align-items:flex-end;gap:8px;height:80px;}
+  .bar-chart-3d{display:flex;align-items:flex-end;gap:0.7cqw;height:7cqw;}
   .bar-col{
-    width:24px;border-radius:4px 4px 0 0;
-    box-shadow:inset -2px 0 0 rgba(0,0,0,0.1);
+    width:2cqw;border-radius:0.4cqw 0.4cqw 0 0;
+    box-shadow:inset -0.2cqw 0 0 rgba(0,0,0,0.1);
   }
 
   /* ===== FLOATING PIE CHART (bottom-left) ===== */
@@ -187,28 +188,21 @@ const HeroInfographic = () => {
     position:absolute;bottom:8%;left:4%;z-index:10;
     animation:floatPie 5s ease-in-out infinite;
     background:#fff;
-    padding:12px 16px;
-    border-radius:14px;
-    box-shadow:0 10px 24px rgba(0,0,0,0.08);
-    display:flex;align-items:center;gap:12px;
+    padding:1cqw 1.4cqw;
+    border-radius:1.2cqw;
+    box-shadow:0 0.8cqw 2cqw rgba(0,0,0,0.08);
+    display:flex;align-items:center;gap:1cqw;
     border:1px solid #eaedf0;
   }
-  @keyframes floatPie{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes floatPie{0%,100%{transform:translateY(0)}50%{transform:translateY(-1cqw)}}
 
-  .pie-details{display:flex;flex-direction:column;gap:6px;}
-  .pie-line{height:6px;border-radius:3px;background:#e2e8f0;width:30px;}
-  .pie-line:nth-child(1){width:40px;background:#94a3b8}
+  .pie-details{display:flex;flex-direction:column;gap:0.5cqw;}
+  .pie-line{height:0.5cqw;border-radius:0.25cqw;background:#e2e8f0;width:2.6cqw;}
+  .pie-line:nth-child(1){width:3.5cqw;background:#94a3b8}
 
 
 
-  /* Responsive */
-  @media(max-width:768px){
-    .explorer-section{display:none}
-    .sidebar{width:40px}
-    .node-card{transform:scale(0.8)!important}
-    .node-center{transform:translate(-50%,-50%) scale(0.8)!important}
-    .float-bar-chart,.float-pie-chart{transform:scale(0.7)}
-  }
+  /* Removed legacy media queries as UI is now fully cqw-dynamic */
 `}</style>
       <div className="scene">
   {/*  ===== MAIN STATIC DASHBOARD =====  */}
@@ -216,19 +210,19 @@ const HeroInfographic = () => {
     {/*  Sidebar  */}
     <div className="sidebar">
       <div className="sidebar-icon active">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
       </div>
       <div className="sidebar-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
       </div>
       <div className="sidebar-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       </div>
       <div className="sidebar-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
       </div>
       <div className="sidebar-icon" style={{marginTop: 'auto'}}>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
       </div>
     </div>
 
@@ -259,31 +253,31 @@ const HeroInfographic = () => {
 
         {/*  Node Cards  */}
         <div className="node-card node-center">
-          <div className="node-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18 M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16 M9 7h2 M9 11h2 M9 15h2 M13 7h2 M13 11h2 M13 15h2"/></svg></div>
+          <div className="node-icon"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18 M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16 M9 7h2 M9 11h2 M9 15h2 M13 7h2 M13 11h2 M13 15h2"/></svg></div>
           <div className="node-label">Acme Corporation</div>
         </div>
         <div className="node-card node-opp">
-          <div className="node-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3 6 6 .5-4.5 4 1.5 6-6-3.5L6 18.5l1.5-6L3 8.5 9 8z"/></svg></div>
+          <div className="node-icon"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3 6 6 .5-4.5 4 1.5 6-6-3.5L6 18.5l1.5-6L3 8.5 9 8z"/></svg></div>
           <div className="node-label">Opportunities</div>
         </div>
         <div className="node-card node-assets">
-          <div className="node-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+          <div className="node-icon"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
           <div className="node-label">Assets</div>
         </div>
         <div className="node-card node-contacts">
-          <div className="node-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div className="node-icon"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div className="node-label">Contacts</div>
         </div>
         <div className="node-card node-cases">
-          <div className="node-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+          <div className="node-icon"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
           <div className="node-label">Cases</div>
         </div>
         <div className="node-card node-activities">
-          <div className="node-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div className="node-icon"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
           <div className="node-label">Activities</div>
         </div>
         <div className="node-card node-contracts">
-          <div className="node-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div className="node-icon"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
           <div className="node-label">Contracts</div>
         </div>
       </div>
@@ -301,14 +295,14 @@ const HeroInfographic = () => {
       </div>
       <div className="explorer-tree">
         {/*  Acme Corporation (Level 1)  */}
-        <div className="tree-item parent"><span className="arrow">▾</span><span className="icon" style={{background: '#e8f5e9', color: '#2e7d32'}}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18 M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16 M9 7h2 M9 11h2 M9 15h2 M13 7h2 M13 11h2 M13 15h2"/></svg></span>Acme Corporation</div>
+        <div className="tree-item parent"><span className="arrow">▾</span><span className="icon" style={{background: '#e8f5e9', color: '#2e7d32'}}><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18 M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16 M9 7h2 M9 11h2 M9 15h2 M13 7h2 M13 11h2 M13 15h2"/></svg></span>Acme Corporation</div>
         <div className="tree-children">
           
           {/*  Opportunities (Level 2)  */}
-          <div className="tree-item parent"><span className="arrow">▾</span><span className="icon" style={{background: '#f1f8e9', color: '#558b2f'}}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3 6 6 .5-4.5 4 1.5 6-6-3.5L6 18.5l1.5-6L3 8.5 9 8z"/></svg></span>Opportunities</div>
+          <div className="tree-item parent"><span className="arrow">▾</span><span className="icon" style={{background: '#f1f8e9', color: '#558b2f'}}><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3 6 6 .5-4.5 4 1.5 6-6-3.5L6 18.5l1.5-6L3 8.5 9 8z"/></svg></span>Opportunities</div>
           <div className="tree-sub">
             {/*  Deals (Level 3)  */}
-            <div className="tree-item parent" style={{paddingTop: '2px', fontSize: '12px', color: '#475569'}}><span className="arrow">▾</span><span className="icon" style={{background: '#fff7ed', color: '#ea580c'}}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>Enterprise Deals</div>
+            <div className="tree-item parent" style={{paddingTop: '2px', fontSize: '12px', color: '#475569'}}><span className="arrow">▾</span><span className="icon" style={{background: '#fff7ed', color: '#ea580c'}}><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>Enterprise Deals</div>
             <div className="tree-sub">
               <div className="tree-sub-item"><span className="dot" style={{background: '#66bb6a'}}></span>Closed Won</div>
               <div className="tree-sub-item"><span className="dot" style={{background: '#42a5f5'}}></span>Proposal</div>
@@ -317,23 +311,23 @@ const HeroInfographic = () => {
           </div>
           
           {/*  Contacts (Level 2)  */}
-          <div className="tree-item" style={{paddingTop: '6px'}}><span className="arrow">▸</span><span className="icon" style={{background: '#e8eaf6', color: '#3f51b5'}}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>Key Contacts</div>
+          <div className="tree-item" style={{paddingTop: '6px'}}><span className="arrow">▸</span><span className="icon" style={{background: '#e8eaf6', color: '#3f51b5'}}><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>Key Contacts</div>
           
           {/*  Cases (Level 2)  */}
-          <div className="tree-item parent" style={{paddingTop: '6px'}}><span className="arrow">▾</span><span className="icon" style={{background: '#fff3e0', color: '#ef6c00'}}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>Support Cases</div>
+          <div className="tree-item parent" style={{paddingTop: '6px'}}><span className="arrow">▾</span><span className="icon" style={{background: '#fff3e0', color: '#ef6c00'}}><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>Support Cases</div>
           <div className="tree-sub">
             <div className="tree-sub-item"><span className="dot" style={{background: '#ef4444'}}></span>Critical Issues</div>
             <div className="tree-sub-item"><span className="dot" style={{background: '#f59e0b'}}></span>High Priority</div>
           </div>
           
           {/*  Assets (Level 2)  */}
-          <div className="tree-item" style={{paddingTop: '6px'}}><span className="arrow">▸</span><span className="icon" style={{background: '#e8f5e9', color: '#2e7d32'}}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>Assets</div>
+          <div className="tree-item" style={{paddingTop: '6px'}}><span className="arrow">▸</span><span className="icon" style={{background: '#e8f5e9', color: '#2e7d32'}}><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>Assets</div>
           
           {/*  Contracts (Level 2)  */}
-          <div className="tree-item" style={{paddingTop: '6px'}}><span className="arrow">▸</span><span className="icon" style={{background: '#e0f7fa', color: '#00838f'}}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Contracts</div>
+          <div className="tree-item" style={{paddingTop: '6px'}}><span className="arrow">▸</span><span className="icon" style={{background: '#e0f7fa', color: '#00838f'}}><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Contracts</div>
           
           {/*  Activities (Level 2)  */}
-          <div className="tree-item" style={{paddingTop: '6px'}}><span className="arrow">▸</span><span className="icon" style={{background: '#ffebee', color: '#c62828'}}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>Activities</div>
+          <div className="tree-item" style={{paddingTop: '6px'}}><span className="arrow">▸</span><span className="icon" style={{background: '#ffebee', color: '#c62828'}}><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>Activities</div>
           
         </div>
       </div>
@@ -353,7 +347,7 @@ const HeroInfographic = () => {
 
   {/*  ===== FLOATING PIE/DONUT CHART (top-left diagonally opposite) =====  */}
   <div className="float-pie-chart">
-    <svg width="46" height="46" viewBox="0 0 100 100">
+    <svg width="100%" height="100%" viewBox="0 0 100 100" style={{maxWidth: '4cqw', maxHeight: '4cqw'}}>
       <circle cx="50" cy="50" r="40" fill="none" stroke="#f1f5f9" strokeWidth="20"/>
       <circle cx="50" cy="50" r="40" fill="none" stroke="#42a5f5" strokeWidth="20"
         strokeDasharray="140 251.2" strokeDashoffset="0" transform="rotate(-90 50 50)"/>
