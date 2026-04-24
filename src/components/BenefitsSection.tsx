@@ -1,4 +1,4 @@
-import { Zap, Users, Lightbulb, CheckCircle, Blocks, Shield } from "lucide-react";
+import { Zap, Users, Shield, Globe, MousePointerClick, LayoutDashboard } from "lucide-react";
 import { motion } from "framer-motion";
 
 const benefits = [
@@ -13,20 +13,25 @@ const benefits = [
     description: "Enable non-technical users to build, assign, and analyze relationships using a natural, visual interface.",
   },
   {
-    icon: Lightbulb,
-    title: "Drive deeper insights",
-    description: "Uncover trends and connection patterns across responses, cases, and conversations with built-in visualization.",
+    icon: MousePointerClick,
+    title: "Optimized Data Navigation",
+    description: "Eliminates tab fatigue by consolidating multiple Related Lists into a single interactive Lightning Web Component, providing a 360-degree view with Explorer and Graphical Tree layouts for instantly understandable One-to-Many and Junction Object relationships.",
   },
   {
-    icon: CheckCircle,
-    title: "Close feedback loops faster",
-    description: "Let RelationshipVista detect urgency and trigger follow-ups or CRM actions in real time.",
+    icon: LayoutDashboard,
+    title: "Increased Productivity",
+    description: "Accelerates data entry with inline record actions, dynamic R-Views for grouping and filtering actionable data, and on-the-fly record creation directly from the relationship map.",
   },
   {
-    icon: Blocks,
-    title: "Boost data quality and relevance",
-    description: "Dynamically explore relationships with AI-generated clarifying connections and recommendations.",
-  }
+    icon: Shield,
+    title: "Native Salesforce Integration & Security",
+    description: "Inherits Salesforce Security Models including OLS, FLS, and Sharing Rules, maintains SLDS compliance for a seamless UX, and provides centralized admin governance via Lightning App Builder.",
+  },
+  {
+    icon: Globe,
+    title: "Scalability & Global Support",
+    description: "Manages high record volumes efficiently with Visible Records Limits to prevent performance degradation, with full support for Translation Workbench and RTL layouts for global orgs.",
+  },
 ];
 
 const BenefitsSection = () => {
