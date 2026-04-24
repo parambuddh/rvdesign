@@ -15,22 +15,22 @@ const benefits = [
   {
     icon: MousePointerClick,
     title: "Optimized Data Navigation",
-    description: "Eliminates tab fatigue by consolidating multiple Related Lists into a single interactive Lightning Web Component, providing a 360-degree view with Explorer and Graphical Tree layouts for instantly understandable One-to-Many and Junction Object relationships.",
+    description: "Consolidates multiple Related Lists into a single LWC, delivering a 360-degree record view with Explorer and Graphical Tree layouts for instant relationship clarity.",
   },
   {
     icon: LayoutDashboard,
     title: "Increased Productivity",
-    description: "Accelerates data entry with inline record actions, dynamic R-Views for grouping and filtering actionable data, and on-the-fly record creation directly from the relationship map.",
+    description: "Speeds up workflows with inline record actions, dynamic R-Views for focused data segmentation, and direct record creation from the relationship map.",
   },
   {
     icon: Shield,
     title: "Native Salesforce Integration & Security",
-    description: "Inherits Salesforce Security Models including OLS, FLS, and Sharing Rules, maintains SLDS compliance for a seamless UX, and provides centralized admin governance via Lightning App Builder.",
+    description: "Inherits OLS, FLS, and Sharing Rules natively, stays SLDS-compliant, and gives admins centralized control via Lightning App Builder.",
   },
   {
     icon: Globe,
     title: "Scalability & Global Support",
-    description: "Manages high record volumes efficiently with Visible Records Limits to prevent performance degradation, with full support for Translation Workbench and RTL layouts for global orgs.",
+    description: "Handles high record volumes via Visible Records Limits and fully supports Translation Workbench and RTL layouts for global deployments.",
   },
 ];
 
