@@ -775,13 +775,13 @@ const RVUserGuide = () => {
           <p className="rv-paragraph">
             Opportunity records are displayed based on the applied filter conditions, grouped by the selected fields, and sorted according to the defined field and direction.
           </p>
-          <Img n={50} />
+          <Img n={50} maxWidth="70%"/>
            <ul>
             <li>Records Sorted by Amount</li> 
-            <Img n={51} />
-            <Img n={52} />
+            <Img n={51} maxWidth="70%" />
+            <Img n={52} maxWidth="70%" />
             <li>Records Grouped by Lead Source</li>
-            <Img n={53} />
+            <Img n={53} maxWidth="70%" />
           </ul>
           
         
