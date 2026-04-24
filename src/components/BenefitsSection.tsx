@@ -15,22 +15,22 @@ const benefits = [
   {
     icon: MousePointerClick,
     title: "Optimized Data Navigation",
-    description: "Consolidates multiple Related Lists into a single LWC, delivering a 360-degree record view with Explorer and Graphical Tree layouts for instant relationship clarity.",
+    description: "See every related record at a glance — no tab switching, no navigation away from the primary record.",
   },
   {
     icon: LayoutDashboard,
     title: "Increased Productivity",
-    description: "Speeds up workflows with inline record actions, dynamic R-Views for focused data segmentation, and direct record creation from the relationship map.",
+    description: "Create, update, and segment records inline without ever leaving the relationship view.",
   },
   {
     icon: Shield,
     title: "Native Salesforce Integration & Security",
-    description: "Inherits OLS, FLS, and Sharing Rules natively, stays SLDS-compliant, and gives admins centralized control via Lightning App Builder.",
+    description: "Respects your existing Salesforce security model and fits seamlessly into the Lightning experience.",
   },
   {
     icon: Globe,
     title: "Scalability & Global Support",
-    description: "Handles high record volumes via Visible Records Limits and fully supports Translation Workbench and RTL layouts for global deployments.",
+    description: "Scales effortlessly across high-volume orgs with built-in localization and RTL language support.",
   },
 ];
 
