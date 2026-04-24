@@ -1,4 +1,4 @@
-import { Zap, Users, Lightbulb, CheckCircle, Blocks, Shield } from "lucide-react";
+import { Zap, Users, Shield, Globe, MousePointerClick, LayoutDashboard } from "lucide-react";
 import { motion } from "framer-motion";
 
 const benefits = [
@@ -13,20 +13,25 @@ const benefits = [
     description: "Enable non-technical users to build, assign, and analyze relationships using a natural, visual interface.",
   },
   {
-    icon: Lightbulb,
-    title: "Drive deeper insights",
-    description: "Uncover trends and connection patterns across responses, cases, and conversations with built-in visualization.",
+    icon: MousePointerClick,
+    title: "Optimized Data Navigation",
+    description: "See every related record at a glance — no tab switching, no navigation away from the primary record.",
   },
   {
-    icon: CheckCircle,
-    title: "Close feedback loops faster",
-    description: "Let RelationshipVista detect urgency and trigger follow-ups or CRM actions in real time.",
+    icon: LayoutDashboard,
+    title: "Increased Productivity",
+    description: "Create, update, and segment records inline without ever leaving the relationship view.",
   },
   {
-    icon: Blocks,
-    title: "Boost data quality and relevance",
-    description: "Dynamically explore relationships with AI-generated clarifying connections and recommendations.",
-  }
+    icon: Shield,
+    title: "Native Salesforce Integration & Security",
+    description: "Respects your existing Salesforce security model and fits seamlessly into the Lightning experience.",
+  },
+  {
+    icon: Globe,
+    title: "Scalability & Global Support",
+    description: "Scales effortlessly across high-volume orgs with built-in localization and RTL language support.",
+  },
 ];
 
 const BenefitsSection = () => {
