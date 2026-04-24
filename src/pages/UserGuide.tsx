@@ -39,13 +39,25 @@ const Tip = ({ children }: { children: React.ReactNode }) => (
 );
 
 /* ─── Table of Contents data ─── */
-const tocSections = [
+type TocChild = { id: string; label: string; children?: TocChild[] };
+type TocSection = { id: string; label: string; children?: TocChild[] };
+
+const tocSections: TocSection[] = [
   { id: 'introduction', label: 'Introduction' },
   { id: 'component', label: 'RVC Component' },
   { id: 'properties', label: 'Component Properties' },
   { id: 'r-views', label: 'Relationship Views (R-Views)', children: [
     { id: 'sample-data', label: 'Sample Data' },
-    { id: 'toolbar', label: 'Toolbar Actions' },
+    { id: 'toolbar', label: 'Toolbar Actions', children: [
+      { id: 'toolbar-expand', label: 'Expand All' },
+      { id: 'toolbar-collapse', label: 'Collapse All' },
+      { id: 'toolbar-two-panel', label: 'Two-Panel Layout' },
+      { id: 'toolbar-fullscreen', label: 'Full Screen' },
+      { id: 'toolbar-explorer', label: 'Explorer View' },
+      { id: 'toolbar-tree', label: 'Tree View' },
+      { id: 'toolbar-rview', label: 'Relationship View' },
+      { id: 'toolbar-settings', label: 'Settings' },
+    ]},
     { id: 'r-view-config', label: 'R-View Configuration' },
     { id: 'root-node', label: 'Root Node Configuration' },
     { id: 'object-node', label: 'Object Node Configuration' },
@@ -60,10 +72,19 @@ const tocSections = [
     { id: 'action-icons', label: 'Action Icons & Permissions' },
     { id: 'rtl', label: 'RTL Language Support' },
   ]},
-  { id: 'howto-rview', label: 'How to Create R-View' },
+  { id: 'howto-rview', label: 'How to Create R-View', children: [
+    { id: 'howto-configure-view', label: 'Configure View' },
+    { id: 'howto-configure-root', label: 'Configure Root Node' },
+    { id: 'howto-configure-object', label: 'Configure Object Node' },
+  ]},
   { id: 'change-icons', label: 'Change Record Icons' },
   { id: 'icon-bg-color', label: 'Icon Background Color' },
-  { id: 'why-rvc', label: 'Why RVC?' },
+  { id: 'why-rvc', label: 'Why RVC?', children: [
+    { id: 'why-navigation', label: 'Optimized Data Navigation' },
+    { id: 'why-productivity', label: 'Increased Productivity' },
+    { id: 'why-security', label: 'Native SF Integration & Security' },
+    { id: 'why-scalability', label: 'Scalability & Global Support' },
+  ]},
   { id: 'use-cases', label: 'Use Cases', children: [
     { id: 'usecase1', label: 'Sales Leadership' },
     { id: 'usecase2', label: 'Case Impact Analysis' },
@@ -75,7 +96,6 @@ const tocSections = [
 const RVUserGuide = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('introduction');
-  const [showBackTop, setShowBackTop] = useState(false);
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -83,7 +103,7 @@ const RVUserGuide = () => {
 
   /* ── Intersection observer to highlight active TOC item ── */
   useEffect(() => {
-    const ids = tocSections.flatMap(s => [s.id, ...(s.children?.map(c => c.id) || [])]);
+    const ids = tocSections.flatMap(s => [s.id, ...(s.children?.flatMap(c => [c.id, ...(c.children?.map(gc => gc.id) || [])]) || [])]);
     const visibleSections = new Map<string, IntersectionObserverEntry>();
     const observer = new IntersectionObserver(
       entries => {
@@ -107,12 +127,14 @@ const RVUserGuide = () => {
     return () => observer.disconnect();
   }, []);
 
-  /* ── Show / hide "back to top" button ── */
-  useEffect(() => {
-    const onScroll = () => setShowBackTop(window.scrollY > 500);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  /* ── Check if a section or any of its descendants is active ── */
+  const isActive = (id: string) => activeSection === id;
+  const isParentActive = (section: TocSection | TocChild) => {
+    if (activeSection === section.id) return true;
+    if (section.children?.some(c => c.id === activeSection)) return true;
+    if (section.children?.some(c => c.children?.some(gc => gc.id === activeSection))) return true;
+    return false;
+  };
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -133,16 +155,24 @@ const RVUserGuide = () => {
         <div className="rv-sidebar-content">
           {tocSections.map(section => (
             <div className="rv-nav-group" key={section.id}>
-              <a className={`rv-nav-link ${activeSection === section.id ? 'active' : ''}`}
+              <a className={`rv-nav-link ${isActive(section.id) ? 'active' : ''} ${!isActive(section.id) && isParentActive(section) ? 'parent-active' : ''}`}
                  onClick={() => scrollTo(section.id)}>
                 {section.label}
               </a>
               {section.children?.map(child => (
-                <a key={child.id}
-                   className={`rv-nav-link rv-nav-link-sub ${activeSection === child.id ? 'active' : ''}`}
-                   onClick={() => scrollTo(child.id)}>
-                  {child.label}
-                </a>
+                <div key={child.id}>
+                  <a className={`rv-nav-link rv-nav-link-sub ${isActive(child.id) ? 'active' : ''} ${!isActive(child.id) && isParentActive(child) ? 'parent-active' : ''}`}
+                     onClick={() => scrollTo(child.id)}>
+                    {child.label}
+                  </a>
+                  {child.children?.map(gc => (
+                    <a key={gc.id}
+                       className={`rv-nav-link rv-nav-link-sub rv-nav-link-sub-sub ${isActive(gc.id) ? 'active' : ''}`}
+                       onClick={() => scrollTo(gc.id)}>
+                      {gc.label}
+                    </a>
+                  ))}
+                </div>
               ))}
             </div>
           ))}
@@ -321,7 +351,7 @@ const RVUserGuide = () => {
             <Img n={14} maxWidth="100%"/>
 
             {/* Expand All */}
-            <h4 className="rv-section-h3">1. Expand All</h4>
+            <h4 id="toolbar-expand" className="rv-section-h3">1. Expand All</h4>
             <p className="rv-paragraph">
               The Expand All option allows users to quickly expand the entire relationship hierarchy starting from the root node, making it easier to view related records across multiple levels without manually expanding each node.
             </p>
@@ -334,14 +364,14 @@ const RVUserGuide = () => {
             <Img n={15} />
 
             {/* Collapse All */}
-            <h4 className="rv-section-h3">2. Collapse All</h4>
+            <h4 id="toolbar-collapse" className="rv-section-h3">2. Collapse All</h4>
             <p className="rv-paragraph">
               The Collapse All option resets the relationship view by collapsing all expanded nodes. Only the root node and its immediate child objects remain visible.
             </p>
             <Img n={16} />
 
             {/* Two-Panel Layout */}
-            <h4 className="rv-section-h3">3. Two-Panel Layout</h4>
+            <h4 id="toolbar-two-panel" className="rv-section-h3">3. Two-Panel Layout</h4>
             <p className="rv-paragraph">
               RelationshipVista supports a Two-Panel View that allows users to navigate and interact with records on the same page.
             </p>
@@ -367,35 +397,35 @@ const RVUserGuide = () => {
             </p>
 
             {/* Full Screen */}
-            <h4 className="rv-section-h3">4. Full Screen</h4>
+            <h4 id="toolbar-fullscreen" className="rv-section-h3">4. Full Screen</h4>
             <p className="rv-paragraph">
               Displays the RelationshipVista component in full-screen mode.
             </p>
             <Img n={20} maxWidth="100%" />
 
             {/* Explorer View */}
-            <h4 className="rv-section-h3">5. Explorer View</h4>
+            <h4 id="toolbar-explorer" className="rv-section-h3">5. Explorer View</h4>
             <p className="rv-paragraph">
               Displays the relationship visualization in an indented, hierarchical (Explorer-style) layout, where records and related objects are presented in a structured list format.
             </p>
             <Img n={21} maxWidth="100%" />
 
             {/* Tree View */}
-            <h4 className="rv-section-h3">6. Tree View</h4>
+            <h4 id="toolbar-tree" className="rv-section-h3">6. Tree View</h4>
             <p className="rv-paragraph">
               Displays the relationship visualization in a graphical tree format, where records and related objects are represented as connected nodes in a visual map.
             </p>
             <Img n={22} maxWidth="100%" />
 
             {/* Relationship View */}
-            <h4 className="rv-section-h3">7. Relationship View</h4>
+            <h4 id="toolbar-rview" className="rv-section-h3">7. Relationship View</h4>
             <p className="rv-paragraph">
               This option allows users to select or switch between available Relationship Views (R-Views).
             </p>
             <Img n={23} />
 
             {/* Settings */}
-            <h4 className="rv-section-h3">8. Settings</h4>
+            <h4 id="toolbar-settings" className="rv-section-h3">8. Settings</h4>
             <p className="rv-paragraph">
               This option provides access to additional options for the relationship view.
             </p>
@@ -742,7 +772,7 @@ const RVUserGuide = () => {
             Refer to the example below, where these configurations are applied to Opportunity records.
           </p>
 
-          <h3 className="rv-section-h3">Configure View</h3>
+          <h3 id="howto-configure-view" className="rv-section-h3">Configure View</h3>
           <ol className="rv-steps">
             <li>Click on the Settings (⚙️) icon in the relationship view.</li>
             <li>Click New.</li>
@@ -751,7 +781,7 @@ const RVUserGuide = () => {
           <p className="rv-paragraph">Configure the following fields values as shown:</p>
           <Img n={44} maxWidth="100%"/>
 
-          <h3 className="rv-section-h3">Configure Root Node</h3>
+          <h3 id="howto-configure-root" className="rv-section-h3">Configure Root Node</h3>
           <p className="rv-paragraph">After creating the view:</p>
           <ol className="rv-steps">
             <li>Click Edit.</li>
@@ -763,7 +793,7 @@ const RVUserGuide = () => {
             <Img n={47} maxWidth="100%"/>
             <li>Save the view.</li>
           </ol>
-          <h3 className="rv-section-h3">Configure Object Node</h3>
+          <h3 id="howto-configure-object" className="rv-section-h3">Configure Object Node</h3>
           <ol className="rv-steps">
             <li>Click on the setting icon next to the Object Node.</li>
             <Img n={48} maxWidth="100%" />
@@ -836,7 +866,7 @@ const RVUserGuide = () => {
           <h2 className="rv-section-h1">Why RVC?</h2>
 
           <div className="rv-feature-grid">
-            <div className="rv-card">
+            <div className="rv-card" id="why-navigation">
               <div className="rv-card-title">
                 <div className="rv-card-icon">🧭</div>
                 1. Optimized Data Navigation
@@ -848,7 +878,7 @@ const RVUserGuide = () => {
               </ul>
             </div>
 
-            <div className="rv-card">
+            <div className="rv-card" id="why-productivity">
               <div className="rv-card-title">
                 <div className="rv-card-icon">⚡</div>
                 2. Increased Productivity
@@ -860,7 +890,7 @@ const RVUserGuide = () => {
               </ul>
             </div>
 
-            <div className="rv-card">
+            <div className="rv-card" id="why-security">
               <div className="rv-card-title">
                 <div className="rv-card-icon">🔒</div>
                 3. Native Salesforce Integration &amp; Security
@@ -872,7 +902,7 @@ const RVUserGuide = () => {
               </ul>
             </div>
 
-            <div className="rv-card">
+            <div className="rv-card" id="why-scalability">
               <div className="rv-card-title">
                 <div className="rv-card-icon">🌐</div>
                 4. Scalability &amp; Global Support

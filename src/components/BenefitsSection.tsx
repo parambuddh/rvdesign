@@ -24,7 +24,7 @@ const benefits = [
   },
   {
     icon: Shield,
-    title: "Native Salesforce Integration & Security",
+    title: "Native Salesforce & Security",
     description: "Respects your existing Salesforce security model and fits seamlessly into the Lightning experience.",
   },
   {

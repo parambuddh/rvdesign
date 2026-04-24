@@ -177,9 +177,16 @@ body {
 
 .rv-nav-link.active { color: var(--rv-primary); background: transparent; font-weight: 700; position: relative; } .rv-nav-link.active::after { content: ''; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 6px solid var(--rv-primary); }
 
+.rv-nav-link.parent-active { color: var(--rv-primary-dark); font-weight: 600; }
+
 .rv-nav-link-sub {
   padding-left: 44px;
   font-size: 12px;
+}
+
+.rv-nav-link-sub-sub {
+  padding-left: 60px;
+  font-size: 11px;
 }
 
 /* ─── MOBILE SIDEBAR TOGGLE ─── */
@@ -276,6 +283,12 @@ body {
 .rv-section {
   margin-bottom: 56px;
   scroll-margin-top: 32px;
+}
+
+[id^="toolbar-"],
+[id^="howto-"],
+[id^="why-"] {
+  scroll-margin-top: 100px;
 }
 
 .rv-section-h1 {
@@ -715,39 +728,6 @@ body {
   box-shadow: 0 8px 24px rgba(67, 175, 87, 0.4);
 }
 
-/* ─── BACK TO TOP ─── */
-.rv-back-top {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 44px;
-  height: 44px;
-  background: var(--rv-bg-card);
-  border: 1px solid var(--rv-border);
-  border-radius: 12px;
-  color: var(--rv-primary);
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all var(--rv-transition);
-  z-index: 80;
-}
-
-.rv-back-top.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.rv-back-top:hover {
-  background: var(--rv-primary);
-  color: white;
-  box-shadow: 0 4px 16px rgba(67, 175, 87, 0.3);
-}
-
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
   .rv-sidebar { transform: translateX(-100%); width: 300px; background: rgba(255, 255, 255, 0.95); opacity: 1; }
@@ -773,9 +753,7 @@ body {
   .rv-feature-grid {
     grid-template-columns: 1fr;
   }
-  .rv-back-top {
-    bottom: 90px;
-  }
+
 }
 
 @media (max-width: 640px) {
