@@ -19,7 +19,7 @@ const Img = ({
   className?: string; 
   maxWidth?: string;
 }) => (
-  <div className={`rv-image-wrapper ${className || ''}`} style={{ maxWidth }}>
+  <div className={`rv-image-wrapper ${className || ''}`} style={{ width: '100%', maxWidth }}>
     <img src={img(n)} alt={`Figure ${n}`} width={1200} height={800} loading="lazy" />
   </div>
 );
@@ -189,11 +189,11 @@ const RVUserGuide = () => {
 
         {/* ═══ HERO ═══ */}
         <div className="rv-hero">
-          <div className="rv-hero-badge">
+          {/* <div className="rv-hero-badge">
             <span className="rv-hero-badge-dot" />
             Ardira User Guide
-          </div>
-          <h1>RelationshipVista<br />User Guide</h1>
+          </div> */}
+          <h1>RelationshipVista User Guide</h1>
           <p className="rv-hero-subtitle">
             Visualize and Analyze Salesforce Relationships — Gain Deeper Insights with Simplified Relationship Mapping
           </p>
@@ -334,11 +334,11 @@ const RVUserGuide = () => {
             </p>
             <ol className="rv-steps">
               <li>Navigate to the "RelationshipVista Getting Started" tab from the App Launcher.</li>
-               <Img n={11}/>
+               <Img n={11} maxWidth="30%"/>
               <li>Click "Load Sample Data" to add sample records, allowing you to explore and experience RelationshipVista functionality.</li>
               <Img n={12} maxWidth="100%"/>
               <li> The screenshots in the following sections are based on this sample data.</li>
-              <Img n={13}/>
+              <Img n={13} maxWidth="40%"/>
             </ol>                    
           </div>
 
@@ -455,7 +455,7 @@ const RVUserGuide = () => {
               <li>The Configuration Properties modal will open, allowing you to define or update the settings.</li>
             </ol>
             <Img n={25} maxWidth="100%" />
-            <Img n={26} maxWidth="100%" />
+            <Img n={26} maxWidth="80%" />
 
             
 
@@ -490,7 +490,7 @@ const RVUserGuide = () => {
                 </tr>
               </tbody>
             </table>
-            <Img n={26} maxWidth="100%" />
+            <Img n={26} maxWidth="80%" />
           </div>
 
           {/* ── Root Node Configuration ── */}
@@ -507,7 +507,7 @@ const RVUserGuide = () => {
               <li>Click the settings icon next to the root node.</li>
               <li>The Root Node Configuration dialog will open.</li>
             </ol>
-            <Img n={27} maxWidth="100%" />
+            <Img n={27} maxWidth="80%" />
 
             <h4 className="rv-section-h3">Configuration Options</h4>
             <table className="rv-property-table">
@@ -558,7 +558,7 @@ const RVUserGuide = () => {
             </ol>
            
             <Img n={29} />
-            <Img n={30} maxWidth="100%" />
+            <Img n={30} maxWidth="70%" />
 
             <h4 className="rv-section-h3">Configuration Options</h4>
             <table className="rv-property-table">
@@ -642,8 +642,8 @@ const RVUserGuide = () => {
           <div id="junction-object">
             <h3 className="rv-section-h2">Configuration for Junction Object</h3>
            
-            <Img n={31} />
-            <Img n={32} maxWidth="100%" />
+            <Img n={31} maxWidth="40%"/>
+            <Img n={32} maxWidth="80%" />
             <ol className="rv-steps">
               <li>Account Contact Relationship is a junction object that can be enabled in Account Settings.</li>
               <li>Below the junction object, the Id represents the Account Contact Relationship, i.e., the junction record.</li>
@@ -697,7 +697,7 @@ const RVUserGuide = () => {
             <p className="rv-paragraph">
               In some cases, an administrator may want to define a specific view and restrict all users to it. To achieve this, the view name can be configured in the "Use Configuration" component attribute within the page builder. When this attribute is set, the view selector is hidden from users. However, this behavior is overridden if a view is pinned in the View Configuration.
             </p>
-            <Img n={37} maxWidth="40%" />
+            <Img n={37} maxWidth="35%" />
           </div>
 
           {/* Configuring Views */}
@@ -706,7 +706,7 @@ const RVUserGuide = () => {
             <p className="rv-paragraph">
               In some cases, the administrator may want to provide users with multiple view options to choose from. To achieve this, the administrator can create multiple views. For each view that should be available to users, the "Sharing Setting" must be set to "All users can see."
             </p>
-            <Img n={38} maxWidth="100%" />
+            <Img n={38} maxWidth="80%" />
           </div>
 
           {/* Default View */}
@@ -715,7 +715,7 @@ const RVUserGuide = () => {
             <p className="rv-paragraph">
               The administrator can pin a view by enabling the "Pinned" attribute, making it the default view for all users. This works similarly to pinning Salesforce list views.
             </p>
-            <Img n={39} maxWidth="100%" />
+            <Img n={39} maxWidth="80%" />
           </div>
 
           {/* User-Created Views */}
@@ -724,7 +724,7 @@ const RVUserGuide = () => {
             <p className="rv-paragraph">
               In some cases, the administrator may want to allow users to create their own views. To enable this, the "Allow Users to Update View Configuration" page attribute must be checked in the page builder. Once enabled, users can create their own views and share them with others.
             </p>
-            <Img n={40} maxWidth="40%" />
+            <Img n={40} maxWidth="35%" />
           </div>
 
           {/* Action Icons */}
@@ -779,27 +779,27 @@ const RVUserGuide = () => {
             <li>The Configuration Properties modal will open.</li>
           </ol>
           <p className="rv-paragraph">Configure the following fields values as shown:</p>
-          <Img n={44} maxWidth="100%"/>
+          <Img n={44} maxWidth="80%"/>
 
           <h3 id="howto-configure-root" className="rv-section-h3">Configure Root Node</h3>
           <p className="rv-paragraph">After creating the view:</p>
           <ol className="rv-steps">
             <li>Click Edit.</li>
-            <Img n={45} maxWidth="100%"/>
+            <Img n={45} maxWidth="80%"/>
             <li>Click the settings icon next to the root node.</li>
             <Img n={46} />
             <li>The Root Node Configuration dialog will open.</li>
             <li> Add Objects from Available to Selected as shown. Example: Opportunity, Case, Contact</li>
-            <Img n={47} maxWidth="100%"/>
+            <Img n={47} maxWidth="80%"/>
             <li>Save the view.</li>
           </ol>
           <h3 id="howto-configure-object" className="rv-section-h3">Configure Object Node</h3>
           <ol className="rv-steps">
             <li>Click on the setting icon next to the Object Node.</li>
-            <Img n={48} maxWidth="100%" />
+            <Img n={48} maxWidth="80%" />
             <li>The Object Node Configuration dialog will open.</li>
             <li>Configure the following fields values as shown:</li>
-            <Img n={49} maxWidth="100%" />
+            <Img n={49} maxWidth="70%" />
           </ol>
 
           <p className="rv-paragraph">
@@ -942,19 +942,19 @@ const RVUserGuide = () => {
               <li>The Configuration Properties modal will open.</li>
             </ol>
             <p className="rv-paragraph">Configure the following fields values as shown:</p>
-            <Img n={59} maxWidth="100%"/>
+            <Img n={59} maxWidth="80%"/>
 
             <h4 className="rv-section-h4">Configure Root Node</h4>
             <p className="rv-paragraph">After creating the view:</p>
             <ol className="rv-steps">
               <li>Click Edit.</li>
-               <Img n={60} maxWidth="100%"/>
+               <Img n={60} maxWidth="80%"/>
               <li>Click the settings icon next to the root node.</li>
               <Img n={46} />
               <li>The Root Node Configuration dialog will open.</li>
               <li>In the Show Objects, add Opportunities Object to Selected Objects as shown:</li>
             </ol>
-            <Img n={61} maxWidth="100%" />
+            <Img n={61} maxWidth="80%" />
 
             <h4 className="rv-section-h4">Configure Object Node</h4>
             <ol className="rv-steps">
@@ -965,7 +965,7 @@ const RVUserGuide = () => {
             </ol>
            
            
-            <Img n={63} maxWidth="100%" />
+            <Img n={63} maxWidth="70%" />
 
             <div className="rv-outcome-box">
               <div className="rv-outcome-label">✅ Outcome</div>
@@ -973,7 +973,7 @@ const RVUserGuide = () => {
                 The Sales VP can now see all "Closed Won" Opportunities grouped by Lead Source and sorted by Amount — directly from the Account record page. This eliminates the need to run separate reports, making it easy to identify top-performing channels and largest deals at a glance.
               </p>
             </div>
-            <Img n={64} maxWidth="100%"/>
+            <Img n={64} maxWidth="70%"/>
           </div>
 
           {/* Use Case 2 */}
@@ -1014,7 +1014,7 @@ const RVUserGuide = () => {
             </ol>
           
            
-            <Img n={66} maxWidth="100%"/>
+            <Img n={66} maxWidth="80%"/>
 
             <h4 className="rv-section-h4">Configure Object Node</h4>
             <ol className="rv-steps">
@@ -1022,16 +1022,16 @@ const RVUserGuide = () => {
               <Img n={67} maxWidth="100%"/>
               <li>The Object Node Configuration dialog will open</li>
               <li>Configure the following fields values as below:</li>
-               <Img n={68} maxWidth="100%"/>
+               <Img n={68} maxWidth="70%"/>
                <li> Click Save.</li>
                <li>Click the settings icon next to the Contact node.</li>
                <li>Configure the following fields values as below:</li>
-                <Img n={69} maxWidth="100%" />
+                <Img n={69} maxWidth="70%" />
                 <li>Click Save.</li>
                 <li> Click the settings icon next to the Opportunity node. </li>
                 <Img n={70} maxWidth="100%" />
                 <li>Configure the following fields values as below:</li>
-                 <Img n={71} maxWidth="100%" />
+                 <Img n={71} maxWidth="70%" />
                  <li>  Click Save.</li>
             </ol>
             <div className="rv-outcome-box">
