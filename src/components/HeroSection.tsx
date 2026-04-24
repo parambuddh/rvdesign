@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import CalendlyModal from "./CalendlyModal";
 import GetNowModal from "./GetNowModal";
+import HeroInfographic from "./HeroInfographic";
 
 const HeroSection = () => {
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
@@ -138,44 +139,14 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Hero Image with glassmorphism floating cards */}
+          {/* Hero Infographic with glassmorphism */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
+            className="w-full flex justify-center items-center"
           >
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/30 relative">
-                <img
-                  src={heroDashboard}
-                  alt="Interactive Relationship Mapping with RelationshipVista — Salesforce account hierarchy visualization dashboard"
-                  width={1280}
-                  height={800}
-                  fetchPriority="high"
-                  decoding="async"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
-                  className="w-full h-auto object-contain"
-                />
-                {/* Glassmorphism overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
-              </div>
-
-              {/* Floating glassmorphism badges */}
-              <div
-                className="absolute -top-4 -right-4 glass-card shadow-xl px-5 py-3 hidden lg:block"
-                style={{ animation: "badge-float 6s ease-in-out infinite", animationDelay: "0s" }}
-              >
-                <p className="text-sm font-bold text-text-heading">Relationships Mapped</p>
-                <p className="text-xs text-text-muted">1,247 records • 3 sec</p>
-              </div>
-              <div
-                className="absolute -bottom-4 -left-4 glass-card shadow-xl px-5 py-3 hidden lg:block"
-                style={{ animation: "badge-float 12s ease-in-out infinite", animationDelay: "-6s" }}
-              >
-                <p className="text-sm font-bold text-primary">Hierarchy: 5 Levels</p>
-                <p className="text-xs text-text-muted">Real-time visualization</p>
-              </div>
-            </div>
+            <HeroInfographic />
           </motion.div>
         </div>
       </div>

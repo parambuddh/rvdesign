@@ -2,7 +2,8 @@ const fs = require('fs');
 let html = fs.readFileSync('public/hero-infographic.html', 'utf-8');
 
 const styleMatch = html.match(/<style>([\s\S]*?)<\/style>/);
-const css = styleMatch ? styleMatch[1] : '';
+let css = styleMatch ? styleMatch[1] : '';
+css = css.replace(/\*\{[^}]+\}/g, '').replace(/body\{[^}]+\}/g, '');
 
 const sceneMatch = html.match(/<div class="scene">([\s\S]*?)<\/div>\s*\n\s*<\/body>/);
 let jsx = sceneMatch ? '<div className="scene">' + sceneMatch[1] + '</div>' : '';
@@ -29,10 +30,11 @@ svgAttrs.forEach(attr => {
 });
 
 jsx = jsx.replace(/readonly>/g, 'readOnly />');
+jsx = jsx.replace(/<!--([\s\S]*?)-->/g, '{/* $1 */}');
 
 const reactComponent = `import React from 'react';
 
-const HeroAnimation = () => {
+const HeroInfographic = () => {
   return (
     <div className="hero-anim-root relative w-full h-auto overflow-visible bg-transparent font-sans flex justify-center py-10">
       <style>{\`${css}\`}</style>
@@ -41,8 +43,8 @@ const HeroAnimation = () => {
   );
 };
 
-export default HeroAnimation;
+export default HeroInfographic;
 `;
 
-fs.writeFileSync('src/components/HeroAnimation.tsx', reactComponent);
-console.log('Successfully updated HeroAnimation.tsx');
+fs.writeFileSync('src/components/HeroInfographic.tsx', reactComponent);
+console.log('Successfully created HeroInfographic.tsx');
