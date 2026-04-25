@@ -4,7 +4,7 @@ import HeroAnimation from "./HeroAnimation";
 const WhatIsSection = () => {
   return (
     <section id="overview" className="py-16 md:py-24">
-      <div className="container px-4 sm:px-6">
+      <div className="container">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image */}
           <motion.div

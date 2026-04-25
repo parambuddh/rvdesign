@@ -39,7 +39,7 @@ const BenefitsSection = () => {
     <section id="benefits" className="section-padding section-alt relative overflow-hidden">
       <div className="absolute inset-0 gradient-mesh opacity-30" />
 
-      <div className="container-narrow relative z-10">
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

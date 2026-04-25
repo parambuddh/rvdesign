@@ -59,7 +59,7 @@ const FeaturesSection = () => {
       {/* Subtle gradient mesh */}
       <div className="absolute inset-0 gradient-mesh opacity-50" />
 
-      <div className="container-narrow relative z-10">
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

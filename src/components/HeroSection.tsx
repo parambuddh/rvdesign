@@ -17,7 +17,7 @@ const HeroSection = () => {
       <div className="blob blob-1 w-[500px] h-[500px] -top-40 -left-40" />
       <div className="blob blob-2 w-[400px] h-[400px] -bottom-20 -right-20" />
 
-      <div className="container-narrow relative z-10">
+      <div className="container relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Text */}
           <div className="space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">

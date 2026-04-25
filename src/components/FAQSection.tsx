@@ -43,7 +43,7 @@ const FAQs = () => {
     <section className="section-padding section-alt relative overflow-hidden" id="faq">
       <div className="absolute inset-0 gradient-mesh opacity-20" />
 
-      <div className="container-narrow max-w-3xl relative z-10">
+      <div className="container max-w-3xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

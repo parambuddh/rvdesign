@@ -18,7 +18,7 @@ const CTASection = () => {
         backgroundSize: "40px 40px"
       }} />
 
-      <div className="container-narrow text-center max-w-3xl relative z-10">
+      <div className="container text-center max-w-3xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
