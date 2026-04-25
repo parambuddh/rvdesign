@@ -12,7 +12,7 @@ const HeroSection = () => {
   const [isGetNowOpen, setIsGetNowOpen] = useState(false);
 
   return (
-    <section id="home" className="pt-28 md:pt-36 pb-12 md:pb-20 lg:pb-28 relative overflow-hidden">
+    <section id="home" className="pt-24 md:pt-28 pb-12 md:pb-20 lg:pb-24 relative overflow-hidden">
       {/* Animated gradient blobs */}
       <div className="blob blob-1 w-[500px] h-[500px] -top-40 -left-40" />
       <div className="blob blob-2 w-[400px] h-[400px] -bottom-20 -right-20" />

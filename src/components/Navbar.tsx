@@ -151,7 +151,7 @@ const Navbar = () => {
       >
         <nav className={`flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16' : 'h-20'}`}>
           <a href="/" onClick={handleLogoClick} className="flex items-center gap-2 transition-all duration-500">
-            <img src={logo} alt="RelationshipVista Logo" width={180} height={48} className={`transition-all duration-500 w-auto ${scrolled ? 'h-8 md:h-9' : 'h-9 md:h-11'}`} /></a><div className="hidden lg:flex items-center justify-end gap-1 ml-auto">{navLinks.map((link) => (
+            <img src={logo} alt="RelationshipVista Logo" width={200} height={54} className={`transition-all duration-500 w-auto ${scrolled ? 'h-9 md:h-10' : 'h-10 md:h-12'}`} /></a><div className="hidden lg:flex items-center justify-end gap-1 ml-auto">{navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
@@ -305,12 +305,7 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
-            className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300"
-            style={{
-              background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)))",
-              boxShadow: "0 4px 20px hsl(var(--primary) / 0.4)",
-              color: "white",
-            }}
+            className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-primary to-secondary-blue text-primary-foreground shadow-[0_4px_15px_hsl(var(--primary)/0.3)] hover:shadow-[0_6px_25px_hsl(var(--primary)/0.45)] transition-all duration-300 hover:-translate-y-0.5"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Scroll to top"
