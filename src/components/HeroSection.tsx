@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, BookOpen, Download } from "lucide-react";
+import { ArrowRight, ExternalLink, BookOpen, Download, Sparkles } from "lucide-react";
 import heroDashboard from "@/assets/hero-dashboard.webp";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -12,13 +12,13 @@ const HeroSection = () => {
   const [isGetNowOpen, setIsGetNowOpen] = useState(false);
 
   return (
-    <section id="home" className="pt-24 md:pt-28 pb-12 md:pb-20 lg:pb-24 relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center pt-24 md:pt-28 pb-12 md:pb-20 lg:pb-24 relative overflow-hidden">
       {/* Animated gradient blobs */}
       <div className="blob blob-1 w-[500px] h-[500px] -top-40 -left-40" />
       <div className="blob blob-2 w-[400px] h-[400px] -bottom-20 -right-20" />
 
-      <div className="container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div className="container relative z-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center justify-items-center">
           {/* Text */}
           <div className="space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
             <motion.div
@@ -27,8 +27,8 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0 }}
             >
               <div className="pill-badge">
-                <span className="w-2 h-2 rounded-full bg-primary" style={{ animation: "pulse-glow 2s infinite" }} />
-                100% Native Salesforce
+                <Sparkles className="h-4 w-4 text-primary" />
+                Salesforce-Native Solution
               </div>
             </motion.div>
 

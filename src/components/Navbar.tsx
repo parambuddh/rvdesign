@@ -146,12 +146,12 @@ const Navbar = () => {
             ? isOverColoredSection
               ? "md:mt-4 md:rounded-[2.5rem] bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_48px_rgba(0,0,0,0.4)] border border-white/10"
               : "md:mt-4 md:rounded-[2.5rem] bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50"
-            : "mt-0 rounded-none bg-transparent"
+            : "mt-3 rounded-none bg-transparent"
         }`}
       >
         <nav className={`flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16' : 'h-20'}`}>
           <a href="/" onClick={handleLogoClick} className="flex items-center gap-2 transition-all duration-500">
-            <img src={logo} alt="RelationshipVista Logo" width={200} height={54} className={`transition-all duration-500 w-auto ${scrolled ? 'h-9 md:h-10' : 'h-10 md:h-12'}`} /></a><div className="hidden lg:flex items-center justify-end gap-1 ml-auto">{navLinks.map((link) => (
+            <img src={logo} alt="RelationshipVista Logo" width={200} height={54} className={`transition-all duration-500 w-auto ${scrolled ? 'h-14 md:h-16' : 'h-14 md:h-20'}`} /></a><div className="hidden lg:flex items-center justify-end gap-1 ml-auto">{navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
