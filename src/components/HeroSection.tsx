@@ -26,9 +26,9 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0 }}
             >
-              <div className="pill-badge">
+              <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-white rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-gray-100">
                 <Sparkles className="h-4 w-4 text-primary" />
-                Salesforce-Native Solution
+                <span className="text-sm font-medium text-gray-700">Salesforce-Native Solution</span>
               </div>
             </motion.div>
 
