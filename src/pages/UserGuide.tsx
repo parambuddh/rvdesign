@@ -104,26 +104,72 @@ const RVUserGuide = () => {
   /* ── Intersection observer to highlight active TOC item ── */
   useEffect(() => {
     const ids = tocSections.flatMap(s => [s.id, ...(s.children?.flatMap(c => [c.id, ...(c.children?.map(gc => gc.id) || [])]) || [])]);
-    const visibleSections = new Map<string, IntersectionObserverEntry>();
+    
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          visibleSections.set(entry.target.id, entry);
-        });
-        // Find the topmost visible section
-        let topSection = '';
-        let topY = Infinity;
-        visibleSections.forEach((entry, id) => {
-          if (entry.isIntersecting && entry.boundingClientRect.top < topY) {
-            topY = entry.boundingClientRect.top;
-            topSection = id;
+      (entries) => {
+        const visibleEntries = entries.filter(entry => entry.isIntersecting);
+        
+        if (visibleEntries.length === 0) return;
+
+        // Calculate depth for each visible entry
+        const entriesWithDepth = visibleEntries.map(entry => {
+          let depth = 0;
+          let found = false;
+          
+          for (const section of tocSections) {
+            if (section.id === entry.target.id) {
+              depth = 0;
+              found = true;
+              break;
+            }
+            if (section.children) {
+              for (const child of section.children) {
+                if (child.id === entry.target.id) {
+                  depth = 1;
+                  found = true;
+                  break;
+                }
+                if (child.children) {
+                  for (const gc of child.children) {
+                    if (gc.id === entry.target.id) {
+                      depth = 2;
+                      found = true;
+                      break;
+                    }
+                  }
+                }
+                if (found) break;
+              }
+            }
+            if (found) break;
           }
+          
+          return {
+            entry,
+            depth,
+            top: entry.boundingClientRect.top,
+            id: entry.target.id
+          };
         });
-        if (topSection) setActiveSection(topSection);
+
+        // Sort by depth (descending) then by top position (ascending)
+        entriesWithDepth.sort((a, b) => {
+          if (b.depth !== a.depth) {
+            return b.depth - a.depth; // Higher depth first
+          }
+          return a.top - b.top; // Then topmost
+        });
+
+        setActiveSection(entriesWithDepth[0].id);
       },
-      { rootMargin: '-20px 0px -60% 0px', threshold: [0, 0.1, 0.25, 0.5] }
+      { rootMargin: '-10% 0px -70% 0px', threshold: [0, 0.5, 1] }
     );
-    ids.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
     return () => observer.disconnect();
   }, []);
 
@@ -167,7 +213,7 @@ const RVUserGuide = () => {
                   </a>
                   {child.children?.map(gc => (
                     <a key={gc.id}
-                       className={`rv-nav-link rv-nav-link-sub rv-nav-link-sub-sub ${isActive(gc.id) ? 'active' : ''}`}
+                       className={`rv-nav-link rv-nav-link-sub rv-nav-link-sub-sub ${isActive(gc.id) ? 'active' : ''} ${!isActive(gc.id) && isParentActive(gc) ? 'parent-active' : ''}`}
                        onClick={() => scrollTo(gc.id)}>
                       {gc.label}
                     </a>
