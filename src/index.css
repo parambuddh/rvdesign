@@ -119,7 +119,7 @@
 
 @layer components {
   .section-padding {
-    @apply pt-6 md:pt-8 lg:pt-10 pb-10 md:pb-18 lg:pb-26;
+    @apply pt-6 md:pt-8 lg:pt-10 pb-12 md:pb-20 lg:pb-28;
   }
 
   .section-alt {
