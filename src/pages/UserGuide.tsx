@@ -191,13 +191,14 @@ const RVUserGuide = () => {
   return (
     <div className="min-h-screen flex flex-col w-full bg-background mt-20 gradient-mesh">
       <Navbar />
-      <div className="rv-guide flex-grow">
+      <div className="rv-guide flex-grow flex justify-center w-full">
+        <div className="flex w-full max-w-7xl px-4">
 
       {/* ── SIDEBAR OVERLAY (mobile) ── */}
       <div className={`rv-sidebar-overlay ${sidebarOpen ? 'open' : ''}`} onClick={() => setSidebarOpen(false)} />
 
       {/* ── SIDEBAR ── */}
-      <nav className={`rv-sidebar ${sidebarOpen ? 'open' : ''}`}>
+      <nav className={`rv-sidebar flex-shrink-0 sticky top-20 ${sidebarOpen ? 'open' : ''}`}>
         <div className="rv-sidebar-content">
           {tocSections.map(section => (
             <div className="rv-nav-group" key={section.id}>
@@ -231,7 +232,7 @@ const RVUserGuide = () => {
       </button>
 
       {/* ── MAIN CONTENT ── */}
-      <main className="rv-main">
+      <main className="rv-main flex-1">
 
         {/* ═══ HERO ═══ */}
         <div className="rv-hero">
@@ -1105,7 +1106,7 @@ const RVUserGuide = () => {
 
       </main>
 
-
+      </div>
       </div>
       <Footer />
     </div>
