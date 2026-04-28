@@ -53,7 +53,7 @@ const Footer = () => {
                           } else { 
                             const el = document.getElementById(link.href.slice(1)); 
                             if (el) { 
-                              window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 120, behavior: 'smooth' }); 
+                              window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }); 
                             } 
                           }
                         }}

@@ -63,7 +63,7 @@ const Index = () => {
       const scrollToHash = () => {
         const el = document.getElementById(id);
         if (el) {
-          const offset = 120;
+          const offset = 100;
           const elementPosition = el.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });

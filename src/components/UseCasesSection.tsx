@@ -61,7 +61,7 @@ export default function UseCasesSection() {
 
   // Recursively find path to root for active edge highlighting
   const getPathToRoot = (nodeId: number) => {
-    let path = [];
+    const path = [];
     let currentId: number | null = nodeId;
     while (currentId !== null) {
       path.push(currentId);
@@ -76,7 +76,7 @@ export default function UseCasesSection() {
   const metrics = mockMetrics[activeId];
 
   return (
-    <section ref={sectionRef} id="use-cases" className="py-24 bg-background relative overflow-hidden font-sans border-t border-border/40">
+    <section ref={sectionRef} id="use-cases" className="section-padding bg-background relative overflow-hidden font-sans border-t border-border/40">
       
       {/* Floating Glares - hardware accelerated to prevent scroll lag */}
       <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />
