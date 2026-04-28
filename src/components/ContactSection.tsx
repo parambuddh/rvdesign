@@ -236,10 +236,10 @@ const ContactSection = () => {
               </div>
 
               {/* reCAPTCHA Badge Notice */}
-              <p className="text-xs text-text-muted text-center mt-3 leading-relaxed">
+              <p className="text-xs text-center mt-3 leading-relaxed">
                 This site is protected by reCAPTCHA and the Google
                 <br />
-                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Terms of Service</a> apply.
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="font-semibold text-text-heading hover:text-secondary-blue hover:underline transition-all duration-300">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="font-semibold text-text-heading hover:text-secondary-blue hover:underline transition-all duration-300">Terms of Service</a> apply.
               </p>
             </form>
           </motion.div>
@@ -270,10 +270,10 @@ const ContactSection = () => {
                     <div className="icon-box shrink-0">
                       <MapPin className="w-5 h-5 text-primary" />
                     </div>
-                    <div className="text-sm leading-relaxed">
-                      <p className="font-bold text-text-heading">2040 Martin Ave, Santa Clara, CA</p>
-                      <p className="text-text-muted">95050 United States</p>
-                    </div>
+                    <a href="https://maps.google.com/?q=2040+Martin+Ave+Santa+Clara+CA+95050" target="_blank" rel="noopener noreferrer" className="text-sm leading-relaxed hover:opacity-80 transition-opacity">
+                      <p className="font-bold text-text-heading hover:text-secondary-blue hover:underline transition-all duration-300">2040 Martin Ave, Santa Clara, CA</p>
+                      <p className="text-text-muted hover:text-secondary-blue transition-all duration-300">95050 United States</p>
+                    </a>
                   </div>
 
                   {/* Phone */}
@@ -281,7 +281,7 @@ const ContactSection = () => {
                     <div className="icon-box shrink-0">
                       <Phone className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="text-sm font-bold text-text-heading">1.669.777.6838</span>
+                    <a href="tel:1.669.777.6838" className="text-sm font-bold text-text-heading hover:text-secondary-blue hover:underline transition-all duration-300">1.669.777.6838</a>
                   </div>
 
                   {/* Email */}
@@ -289,7 +289,7 @@ const ContactSection = () => {
                     <div className="icon-box shrink-0">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="text-sm font-bold text-text-heading">info@ardira.com</span>
+                    <a href="mailto:info@ardira.com" className="text-sm font-bold text-text-heading hover:text-secondary-blue hover:underline transition-all duration-300">info@ardira.com</a>
                   </div>
 
                   {/* Support Note */}
@@ -299,7 +299,7 @@ const ContactSection = () => {
                     </div>
                     <div className="text-sm">
                       <p className="text-text-muted">For customer support, email us directly at</p>
-                      <p><span className="text-text-heading font-bold">support@ardira.com</span></p>
+                      <p><a href="mailto:support@ardira.com" className="font-bold text-text-heading hover:text-secondary-blue hover:underline transition-all duration-300">support@ardira.com</a></p>
                     </div>
                   </div>
                 </div>

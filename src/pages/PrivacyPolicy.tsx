@@ -32,17 +32,21 @@ const PrivacyPolicy = () => {
             className="space-y-6 md:space-y-8"
           >
             {/* Header */}
-            <div className="space-y-4">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold gradient-text">Privacy Policy</h1>
+            <div className="space-y-4 relative">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <div>
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold gradient-text">Privacy Policy</h1>
+                </div>
+              </div>
             </div>
 
             {/* Content Sections */}
             <div className="prose prose-invert max-w-none space-y-6 md:space-y-8 text-base text-justify">
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Privacy Notice</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Privacy Notice</h2>
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                  The website located at www.RelationshipVista.com, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("RelationshipVista," "the Company," "we," "us," and "our"). RelationshipVista respects your privacy and is committed to protecting your privacy through our compliance with this website privacy policy (the "Policy"). This Policy should be read in conjunction with our website{" "}
-                  <a href="/terms-of-use" className="text-primary hover:underline">
+                  The website located at <a href="https://www.relationshipvista.com" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-secondary-blue transition-all duration-300">www.RelationshipVista.com</a>, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("RelationshipVista," "the Company," "we," "us," and "our"). RelationshipVista respects your privacy and is committed to protecting your privacy through our compliance with this website privacy policy (the "Policy"). This Policy should be read in conjunction with our website{" "}
+                  <a href="/terms-of-use" className="text-primary underline hover:text-secondary-blue transition-all duration-300">
                     Terms of Use
                   </a>
                   , into which this Policy is incorporated by reference.
@@ -50,9 +54,9 @@ const PrivacyPolicy = () => {
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">This Policy Describes:</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">This Policy Describes:</h2>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground text-sm md:text-base">
-                  <li>The types of information we collect from you or that you may provide when you visit our website available at: RelationshipVista.com ("our Website")</li>
+                  <li>The types of information we collect from you or that you may provide when you visit our website available at: <a href="https://www.relationshipvista.com" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-secondary-blue transition-all duration-300">RelationshipVista.com</a> ("our Website")</li>
                   <li>Our practices for collecting, using, maintaining, protecting, and disclosing that information</li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mt-4">
@@ -61,14 +65,14 @@ const PrivacyPolicy = () => {
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">What We Collect and How We Collect It</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">What We Collect and How We Collect It</h2>
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                   To ensure that we provide you with the best possible experience, we will store, use, and share information about you in accordance with this Policy.
                 </p>
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Information You Provide to Us</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Information You Provide to Us</h2>
                 <p className="text-muted-foreground leading-relaxed mb-3 text-sm md:text-base">
                   Personal Information is any information that can be used to individually identify you from a larger group, such as data including, but not limited to, your:
                 </p>
@@ -89,7 +93,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">You may provide us Personal Information when you:</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">You may provide us Personal Information when you:</h2>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                   <li>Request information</li>
                   <li>Provide requested services</li>
@@ -105,7 +109,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Automated Information Collection</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Automated Information Collection</h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   In addition to the information that you provide to us, we may also collect information about you during your visit to our Website. We collect this information using automated tools that are detailed below. These tools may collect information about your behavior and your computer system, such as your internet address (IP Address), the pages you have viewed, and the actions you have taken while using our Website. Some of the tools we use to automatically collect information about you may include:
                 </p>
@@ -153,14 +157,14 @@ const PrivacyPolicy = () => {
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Do Not Track Disclosure</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Do Not Track Disclosure</h2>
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                   We may use cookies or other technologies to enable us to serve RelationshipVista advertisements to you on trusted third party websites. However, no Personal Information is shared in such advertisement placements. Our Website recognizes and responds to Do Not Track ("DNT") signals from your internet web browser. If you choose to enable such DNT features, you will not receive such advertisements on third party websites.
                 </p>
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Your Choices and Selecting Your Privacy Preferences</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Your Choices and Selecting Your Privacy Preferences</h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   We want to provide you with relevant information that you have requested. When you initially make contact with us, such as through requesting a white paper or requesting a demonstration of a product, we will add your information to our communications list. If we provide subscription-based services, such as email newsletters, we will always allow you to make choices about what information you provide at the point of information collection or at any time after you have received a communication from us while you are subscribed to the service.
                 </p>
@@ -170,13 +174,13 @@ const PrivacyPolicy = () => {
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Accuracy and Access to Your Personal Information</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Accuracy and Access to Your Personal Information</h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   We strive to maintain and process your information accurately. We have processes in place to maintain all of our information in accordance with relevant data governance frameworks and legal requirements. We employ technologies designed to help us maintain information accuracy on input and processing.
                 </p>
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                   Should you have any questions about your Personal Information, please e-mail us at{" "}
-                  <a href="mailto:legal@ardira.com" className="text-primary hover:underline">
+                  <a href="mailto:legal@ardira.com" className="text-primary underline hover:text-secondary-blue transition-all duration-300">
                     legal@ardira.com
                   </a>
                   .
@@ -184,14 +188,14 @@ const PrivacyPolicy = () => {
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Information of Minors</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Information of Minors</h2>
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                   We do not actively seek to gather information from individuals under the age of eighteen (18). We do not target our Website to minors, and would not expect them to be engaging with our websites or services. We encourage parents and guardians to provide adequate protection measures to prevent minors from providing information unwillingly on the internet. If we are aware of any Personal Information that we have collected about minors, we will take steps to securely remove it from our systems.
                 </p>
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">How We Use Your Information</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">How We Use Your Information</h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   The information we gather and that you provide is collected to provide you information and the services you request, in addition to various other purposes, including, but not limited to:
                 </p>
@@ -208,13 +212,13 @@ const PrivacyPolicy = () => {
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">How We Share Your Information</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">How We Share Your Information</h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   We do not sell or lease your information to any third party. We may disclose your Personal Information to our trusted third-party business partners in accordance with this Policy. We work with a number of partners that help us process your requests, deliver customer service and support, send email marketing communications, and provide experiences that you have come to expect from us. We also work with a select group of trusted third-party business partners for sales and marketing purposes and to offer added value to our customers. We will share your information with these third parties in order to fulfill the service that they provide to us. These third-party partners are under contract to keep your information secure and not to use it for any reason other than to fulfill the service we have requested from them.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   One such trusted third-party partner is Google Analytics. The Website sends aggregated, non-Personal Information to Google Analytics for the purpose of providing us with the ability to conduct technical and statistical analysis on the Website's performance. For more information on how Google Analytics supports the Website and uses information sent from the Website, please review Google's privacy policy available at{" "}
-                  <a href="https://policies.google.com/technologies/partner-sites" className="text-primary hover:underline">
+                  <a href="https://policies.google.com/technologies/partner-sites" className="text-primary underline hover:text-secondary-blue transition-all duration-300">
                     https://policies.google.com/technologies/partner-sites
                   </a>
                   .
@@ -238,28 +242,28 @@ const PrivacyPolicy = () => {
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Third-Party Websites</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Third-Party Websites</h2>
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                   This Policy does not apply to websites or other domains that are maintained or operated by third parties or our affiliates. Our Website may link to third-party websites and services, but these links are not endorsements of these sites, and this Policy does not extend to them. Because this Policy is not enforced on these third-party websites, we encourage you to read any posted privacy policy of the third-party website before using the service or site and providing any information.
                 </p>
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">International</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">International</h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   We do not currently market or sell our goods and services to customers outside the United States or Canada. Accordingly, we do not warrant or represent our use of your Personal Information as described in this Policy will necessarily comply with laws of countries other than the United States or Canada. However, we understand many visitors to our Website may be located outside the United States or Canada. To provide you with our Website services or to operate our Website, please be advised we may store, process, and transmit information in the United States, Canada, and other countries that may not have the same privacy and security laws as the country in which you live. Regardless of the country in which such information is stored or from which you access our Website, we will process your Personal Information in accordance with this Policy.
                 </p>
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Safeguarding the Information We Collect</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Safeguarding the Information We Collect</h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   We take reasonable technical, administrative, and physical safeguards in order to protect your Personal Information against accidental loss and from unauthorized access, use, alteration, and disclosure. However, we can never promise 100% security. You have a responsibility, as well, to safeguard your information through the proper use and security of any online credentials used to access your Personal Information, such as a username and password. If you believe your credentials have been compromised, please change your password. Please also notify us of any unauthorized use.
                 </p>
               </section>
 
               <section className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Changes to this Policy</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">Changes to this Policy</h2>
                 <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                   If we make any changes to this Policy, a revised Policy will be posted on this webpage and the date of the change will be reported in the "Last Revised" block. You can get to this page from our Website by clicking on the "Privacy Policy" link (usually at the bottom of the screen).
                 </p>
@@ -270,19 +274,16 @@ const PrivacyPolicy = () => {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   We value your opinions and welcome your feedback. To contact us about this Policy or your Personal Information, please contact us at:
                 </p>
-                <div className="glass-strong rounded-xl p-4 space-y-3">
-                  <p className="text-foreground font-semibold">Legal Department</p>
-                  <p className="text-muted-foreground">Ardira Corporation</p>
+                <div className="glass-strong rounded-xl p-4 pl-0 ">
+                  <p className="text-foreground">Legal, RelationshipVista</p>
+                  <p className="text-muted-foreground">2040 Martin Ave</p>
+                  <p className="text-muted-foreground">Santa Clara, CA 95050</p>
                   <p className="text-muted-foreground">
-                    Legal Email:{" "}
-                    <a href="mailto:legal@ardira.com" className="text-primary hover:underline">
-                      legal@ardira.com
-                    </a>
+                    1-669-777-6838
                   </p>
                   <p className="text-muted-foreground">
-                    Support Email:{" "}
-                    <a href="mailto:support@ardira.com" className="text-primary hover:underline">
-                      support@ardira.com
+                    <a href="mailto:legal@ardira.com" className="text-primary underline hover:text-secondary-blue transition-all duration-300">
+                      legal@ardira.com
                     </a>
                   </p>
                 </div>
