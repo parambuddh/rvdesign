@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import './RVUserGuide.css';
@@ -94,13 +95,34 @@ const tocSections: TocSection[] = [
 
 /* ═══════════════════════════════════════════════════════════════ */
 const RVUserGuide = () => {
+  const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('introduction');
   const sidebarContentRef = useRef<HTMLDivElement>(null);
   
+  // Scroll to top whenever this page is navigated to
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    // Check if we're on the user guide page
+    if (location.pathname.includes('user-guide')) {
+      // Immediate scroll
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      
+      // Reset sidebar scroll
+      if (sidebarContentRef.current) {
+        sidebarContentRef.current.scrollTop = 0;
+      }
+      setActiveSection('introduction');
+      
+      // Ensure scroll happens after DOM settles
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 50);
+    }
+  }, [location.pathname]);
 
   /* ── Intersection observer to highlight active TOC item ── */
   useEffect(() => {
