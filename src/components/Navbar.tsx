@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Menu, X, ArrowUp, ArrowRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -28,6 +28,7 @@ const Navbar = () => {
   const [isOverColoredSection, setIsOverColoredSection] = useState(false);
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const isProgrammaticScroll = useRef(false);
 
   // Determine if we're on an independent page (not the home page)
   const isIndependentPage = location.pathname !== "/" && location.pathname !== "";
@@ -58,7 +59,7 @@ const Navbar = () => {
         setIsOverColoredSection(overColored);
 
         // Reliable scroll-based section detection
-        if (!isIndependentPage) {
+        if (!isIndependentPage && !isProgrammaticScroll.current) {
           // Evaluate in reverse order (bottom to top)
           const sectionIds = ["contact", "faq", "use-cases", "benefits", "features", "overview", "home"];
           let currentSection = "home";
@@ -104,6 +105,19 @@ const Navbar = () => {
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
+      isProgrammaticScroll.current = true;
+      let scrollStopTimeout: ReturnType<typeof setTimeout> | null = null;
+      
+      const handleScrollStop = () => {
+        if (scrollStopTimeout) clearTimeout(scrollStopTimeout);
+        scrollStopTimeout = setTimeout(() => {
+          isProgrammaticScroll.current = false;
+          window.removeEventListener("scroll", handleScrollStop);
+        }, 150);
+      };
+      
+      window.addEventListener("scroll", handleScrollStop, { passive: true });
+      
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
@@ -146,10 +160,10 @@ const Navbar = () => {
             ? isOverColoredSection
               ? "md:mt-4 md:rounded-[2.5rem] bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_48px_rgba(0,0,0,0.4)] border border-white/10"
               : "md:mt-4 md:rounded-[2.5rem] bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50"
-            : "mt-3 rounded-none bg-transparent"
+            : "mt-3 rounded-none bg-transparent border border-transparent"
         }`}
       >
-        <nav className={`flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16' : 'h-20'}`}>
+        <nav className={`flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16 py-9' : 'h-20'}`}>
           <a href="/" onClick={handleLogoClick} className="flex items-center gap-2 transition-all duration-500">
             <img src={logo} alt="RelationshipVista Logo" width={200} height={54} className={`transition-all duration-500 w-auto ${scrolled ? 'h-14 md:h-16' : 'h-14 md:h-20'}`} /></a><div className="hidden lg:flex items-center justify-end gap-1 ml-auto">{navLinks.map((link) => (
               <button
@@ -181,14 +195,14 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
                 >
                   Resources <ChevronDown className="h-4 w-4 opacity-50" />      
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 bg-white/80 backdrop-blur-xl shadow-[0_12px_48px_rgba(0,0,0,0.2)] border border-white/40 rounded-2xl p-2 z-[9999]">
-                  <DropdownMenuItem asChild className="cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors focus:bg-sky-50 outline-none rounded-lg focus:text-primary">
-                      <Link to="/resources/user-guide" className="w-full">
+                <DropdownMenuContent align="end" className="w-56 bg-slate-50/80 backdrop-blur-xl shadow-[0_12px_48px_rgba(0,0,0,0.2)] border border-white/40 rounded-2xl p-2 z-[9999]">
+                  <DropdownMenuItem asChild className="!bg-transparent hover:!bg-slate-800/5 p-0 rounded-lg focus:!bg-slate-800/5">
+                      <Link to="/resources/user-guide" className="w-full cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors outline-none rounded-lg">
                         User Guide
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem asChild className="cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors focus:bg-sky-50 outline-none rounded-lg focus:text-primary">
-                      <Link to="/resources/installation-guide" className="w-full">
+                    <DropdownMenuItem asChild className="!bg-transparent hover:!bg-slate-800/5 p-0 rounded-lg focus:!bg-slate-800/5">
+                      <Link to="/resources/installation-guide" className="w-full cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors outline-none rounded-lg">
                       Installation Guide
                     </Link>
                   </DropdownMenuItem>
@@ -199,7 +213,7 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
                 onClick={() => setIsCalendlyOpen(true)}
                 aria-label="Book a product demo"
                 className={`ml-4 bg-gradient-to-r from-primary to-secondary-blue text-primary-foreground rounded-full font-semibold overflow-hidden shadow-[0_4px_15px_hsl(var(--primary)/0.3)] hover:shadow-[0_6px_25px_hsl(var(--primary)/0.45)] transition-all duration-300 hover:-translate-y-0.5 ${
-                  scrolled ? "px-5 py-2 text-xs" : "px-6 py-2.5 text-sm"
+                  scrolled ? "px-6 py-3 text-xs" : "px-7 py-3.5 text-sm"
                 }`}
               >
                 Book Demo
