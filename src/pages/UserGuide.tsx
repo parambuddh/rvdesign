@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import './RVUserGuide.css';
@@ -96,6 +96,7 @@ const tocSections: TocSection[] = [
 const RVUserGuide = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('introduction');
+  const sidebarContentRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -173,6 +174,32 @@ const RVUserGuide = () => {
     return () => observer.disconnect();
   }, []);
 
+  /* ── Auto-scroll sidebar to keep active item visible with 3-4 items below ── */
+  useEffect(() => {
+    if (!sidebarContentRef.current) return;
+
+    const activeElement = sidebarContentRef.current.querySelector('[data-active-id="' + activeSection + '"]') as HTMLElement;
+    if (activeElement) {
+      const sidebarContent = sidebarContentRef.current;
+      const activeRect = activeElement.getBoundingClientRect();
+      const sidebarRect = sidebarContent.getBoundingClientRect();
+      
+      // Calculate the position of the active element relative to the sidebar
+      const activeTop = activeElement.offsetTop;
+      const sidebarScrollTop = sidebarContent.scrollTop;
+      const sidebarHeight = sidebarContent.clientHeight;
+      const activeHeight = activeElement.offsetHeight;
+      
+      // Scroll so that the active item is positioned with ~40% from top, showing items below
+      const targetScrollTop = activeTop - (sidebarHeight * 0.35);
+      
+      sidebarContent.scrollTo({
+        top: Math.max(0, targetScrollTop),
+        behavior: 'smooth'
+      });
+    }
+  }, [activeSection]);
+
   /* ── Check if a section or any of its descendants is active ── */
   const isActive = (id: string) => activeSection === id;
   const isParentActive = (section: TocSection | TocChild) => {
@@ -199,22 +226,25 @@ const RVUserGuide = () => {
 
       {/* ── SIDEBAR ── */}
       <nav className={`rv-sidebar flex-shrink-0 sticky top-20 ${sidebarOpen ? 'open' : ''}`}>
-        <div className="rv-sidebar-content">
+        <div className="rv-sidebar-content" ref={sidebarContentRef}>
           {tocSections.map(section => (
             <div className="rv-nav-group" key={section.id}>
               <a className={`rv-nav-link ${isActive(section.id) ? 'active' : ''} ${!isActive(section.id) && isParentActive(section) ? 'parent-active' : ''}`}
+                 data-active-id={section.id}
                  onClick={() => scrollTo(section.id)}>
                 {section.label}
               </a>
               {section.children?.map(child => (
                 <div key={child.id}>
                   <a className={`rv-nav-link rv-nav-link-sub ${isActive(child.id) ? 'active' : ''} ${!isActive(child.id) && isParentActive(child) ? 'parent-active' : ''}`}
+                     data-active-id={child.id}
                      onClick={() => scrollTo(child.id)}>
                     {child.label}
                   </a>
                   {child.children?.map(gc => (
                     <a key={gc.id}
                        className={`rv-nav-link rv-nav-link-sub rv-nav-link-sub-sub ${isActive(gc.id) ? 'active' : ''} ${!isActive(gc.id) && isParentActive(gc) ? 'parent-active' : ''}`}
+                       data-active-id={gc.id}
                        onClick={() => scrollTo(gc.id)}>
                       {gc.label}
                     </a>
