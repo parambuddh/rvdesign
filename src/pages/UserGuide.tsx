@@ -238,10 +238,11 @@ const RVUserGuide = () => {
 
   /* ════════════════════════════════════════════════════════════ */
   return (
-    <div className="min-h-screen flex flex-col w-full bg-background mt-20 gradient-mesh">
+    <div className="relative min-h-screen">
+      <div className="fixed inset-0 gradient-mesh z-[-1]" aria-hidden="true" />
       <Navbar />
-      <div className="rv-guide flex-grow flex justify-center w-full">
-        <div className="flex w-full max-w-7xl px-4">
+      <div className="rv-guide flex-grow flex justify-center w-full pt-20">
+        <div className="flex w-full max-w-7xl px-4 relative">
 
       {/* ── SIDEBAR OVERLAY (mobile) ── */}
       <div className={`rv-sidebar-overlay ${sidebarOpen ? 'open' : ''}`} onClick={() => setSidebarOpen(false)} />
