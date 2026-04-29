@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const HeroInfographic = () => {
   return (
@@ -12,6 +12,7 @@ const HeroInfographic = () => {
     display:flex;align-items:center;justify-content:center;
     container-type:inline-size;
     overflow:visible;
+    contain: layout style;
   }
 
   /* ===== MAIN DASHBOARD PANEL (STATIC) ===== */
@@ -88,16 +89,16 @@ const HeroInfographic = () => {
   /* ===== NODE MAP SVG ELEMENTS ===== */
   .node-card{
     position:absolute;
-    transform:translate(-50%,-50%);
+    transform:translate3d(-50%,-50%,0);
     border-radius:clamp(8px, 1.5cqw, 16px);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     gap:clamp(4px, 0.8cqw, 8px);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
     transition:transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index:2;
+    will-change: transform;
+    border: 1px solid rgba(0,0,0,0.05);
   }
-  .node-card:hover{transform:translate(-50%,-50%) scale(1.05);z-index:10;}
+  .node-card:hover{transform:translate3d(-50%,-50%,0) scale(1.05);z-index:10;}
   .node-card .node-icon{
     width:clamp(18px, 2.8cqw, 32px);height:clamp(18px, 2.8cqw, 32px);
     display:flex;align-items:center;justify-content:center;
@@ -166,21 +167,22 @@ const HeroInfographic = () => {
 
   /* Connection lines via SVG overlay */
   .connections-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
-  .conn-line{fill:none;stroke-width:0.25cqw;opacity:0.75;animation:pulseOpacity 3s ease-in-out infinite alternate;}
-  @keyframes pulseOpacity { 0% { opacity:0.3; stroke-width:0.15cqw; } 100% { opacity:0.85; stroke-width:0.3cqw; } }
+  .conn-line{fill:none;stroke-width:0.25cqw;opacity:0.75;animation:pulseOpacity 3s ease-in-out infinite alternate;will-change: opacity;}
+  @keyframes pulseOpacity { 0% { opacity:0.2; } 100% { opacity:0.8; } }
 
   /* ===== FLOATING BAR CHART (top-right) ===== */
   .float-bar-chart{
     position:absolute;top:0%;right:4%;z-index:10;
     animation:floatBar 4s ease-in-out infinite;
     background:rgba(255,255,255,0.85);
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(8px);
     border:1px solid rgba(255,255,255,0.5);
     padding:1.4cqw 1.8cqw;
     border-radius:1.4cqw;
     box-shadow:0 1cqw 2.5cqw rgba(0,0,0,0.1);
+    will-change: transform;
   }
-  @keyframes floatBar{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.2cqw)}}
+
 
   .bar-chart-3d{display:flex;align-items:flex-end;gap:0.6cqw;height:5.5cqw;}
   .bar-col{
@@ -198,8 +200,10 @@ const HeroInfographic = () => {
     box-shadow:0 0.8cqw 2cqw rgba(0,0,0,0.08);
     display:flex;align-items:center;gap:1cqw;
     border:1px solid #eaedf0;
+    will-change: transform;
   }
-  @keyframes floatPie{0%,100%{transform:translateY(0)}50%{transform:translateY(-1cqw)}}
+  @keyframes floatPie{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-1cqw,0)}}
+  @keyframes floatBar{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-1.2cqw,0)}}
 
   .pie-details{display:flex;flex-direction:column;gap:0.5cqw;}
   .pie-line{height:0.5cqw;border-radius:0.25cqw;background:#e2e8f0;width:2.6cqw;}
@@ -372,4 +376,4 @@ const HeroInfographic = () => {
   );
 };
 
-export default HeroInfographic;
+export default memo(HeroInfographic);
