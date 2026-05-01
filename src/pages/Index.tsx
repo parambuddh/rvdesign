@@ -79,9 +79,10 @@ const Index = () => {
   }, [location.hash]);
 
   return (
-    <div className="min-h-screen gradient-mesh">
+    <div className="relative min-h-screen">
+      <div className="fixed inset-0 gradient-mesh z-[-1]" aria-hidden="true" />
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <HeroSection />
         <Suspense fallback={<SectionSkeleton />}>
           <WhatIsSection />

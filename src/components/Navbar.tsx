@@ -34,66 +34,53 @@ const Navbar = () => {
   const isIndependentPage = location.pathname !== "/" && location.pathname !== "";
 
   useEffect(() => {
-    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
-    
     const onScroll = () => {
-      if (scrollTimeout) return;
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 50);
+      setShowScrollTop(currentScrollY > 300);
       
-      scrollTimeout = setTimeout(() => {
-        const currentScrollY = window.scrollY;
-        setScrolled(currentScrollY > 50);
-        setShowScrollTop(currentScrollY > 300);
-        
-        // Detect if navbar is over a colored section (like CTA section)
-        const ctaElement = document.getElementById("cta-section");
-        
-        let overColored = false;
-        
-        if (ctaElement) {
-          const rect = ctaElement.getBoundingClientRect();
-          if (rect.top < 80 && rect.bottom > 0) {
-            overColored = true;
-          }
+      // Detect if navbar is over a colored section (like CTA section)
+      const ctaElement = document.getElementById("cta-section");
+      
+      let overColored = false;
+      
+      if (ctaElement) {
+        const rect = ctaElement.getBoundingClientRect();
+        if (rect.top < 80 && rect.bottom > 0) {
+          overColored = true;
         }
-        
-        setIsOverColoredSection(overColored);
+      }
+      
+      setIsOverColoredSection(overColored);
 
-        // Reliable scroll-based section detection
-        if (!isIndependentPage && !isProgrammaticScroll.current) {
-          // Evaluate in reverse order (bottom to top)
-          const sectionIds = ["contact", "faq", "use-cases", "benefits", "features", "overview", "home"];
-          let currentSection = "home";
-          
-          for (const id of sectionIds) {
-            const el = document.getElementById(id);
-            if (el) {
-              const rect = el.getBoundingClientRect();
-              if (rect.top <= 140) {
-                currentSection = id === "faq" ? "contact" : id;
-                break;
-              }
+      // Reliable scroll-based section detection
+      if (!isIndependentPage && !isProgrammaticScroll.current) {
+        // Evaluate in reverse order (bottom to top)
+        const sectionIds = ["contact", "faq", "use-cases", "benefits", "features", "overview", "home"];
+        let currentSection = "home";
+        
+        for (const id of sectionIds) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 140) {
+              currentSection = id === "faq" ? "contact" : id;
+              break;
             }
           }
-
-          setActiveSection(currentSection);
         }
-        scrollTimeout = null;
-      }, 100);
+
+        setActiveSection(currentSection);
+      }
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    setTimeout(() => {
-        onScroll();
-        // force one immediate check
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = null;
-            onScroll();
-        }
-    }, 100);
+    
+    // Initial check
+    onScroll();
+    
     return () => {
       window.removeEventListener("scroll", onScroll);
-      if (scrollTimeout) clearTimeout(scrollTimeout);
     };
   }, [isIndependentPage]);
 

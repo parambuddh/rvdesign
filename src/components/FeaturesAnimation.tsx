@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useRef } from "react";
+import React, { useEffect, useState, useMemo, useRef, memo } from "react";
 
 // ── NODE DEFINITIONS ──
 const NODES: Record<string, any> = {
@@ -74,7 +74,7 @@ const STEPS = [
   },
 ];
 
-export default function FeaturesAnimation() {
+const FeaturesAnimation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [fadingOut, setFadingOut] = useState(false);
 
@@ -298,4 +298,6 @@ export default function FeaturesAnimation() {
         </div>
     </div>
   );
-}
+};
+
+export default memo(FeaturesAnimation);

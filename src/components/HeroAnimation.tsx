@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useEffect } from 'react';
+import React, { useMemo, useRef, useState, useEffect, memo } from 'react';
 
 const levelColors: Record<number, string> = {
   1: '#7FFF00',
@@ -72,8 +72,8 @@ const HeroAnimation = () => {
           background:var(--glass);
           border:1px solid var(--glass-border);
           border-radius:clamp(10px, 2vw, 20px);
-          backdrop-filter:blur(24px);
-          -webkit-backdrop-filter:blur(24px);
+          backdrop-filter:blur(10px);
+          -webkit-backdrop-filter:blur(10px);
           box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
           overflow:hidden;
         }
@@ -258,4 +258,4 @@ const HeroAnimation = () => {
   );
 };
 
-export default HeroAnimation;
+export default React.memo(HeroAnimation);

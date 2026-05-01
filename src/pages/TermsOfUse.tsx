@@ -21,9 +21,10 @@ const TermsOfUse = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <>
+    <div className="relative min-h-screen">
+      <div className="fixed inset-0 gradient-mesh z-[-1]" aria-hidden="true" />
       <Navbar />
-      <main className="min-h-screen pt-24 md:pt-32 pb-12 md:pb-16 bg-gradient-to-b from-surface-light to-background">
+      <main className="relative z-10 pt-24 md:pt-32 pb-12 md:pb-16">
         <div className="container max-w-4xl md:max-w-6xl px-4 md:px-6">          <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-primary font-medium hover:underline transition-all">            <ArrowLeft className="w-4 h-4 mr-2" /> Go Back          </button>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -209,7 +210,7 @@ const TermsOfUse = () => {
       </AnimatePresence>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

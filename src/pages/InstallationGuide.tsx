@@ -43,9 +43,8 @@ export default function RelationshipVistaInstallationGuide() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-white text-text-heading font-body gradient-mesh">
-      
-      
+    <div className="relative min-h-screen">
+      <div className="fixed inset-0 gradient-mesh z-[-1]" aria-hidden="true" />
       <Navbar />
 
       {/* Hero Section */}
