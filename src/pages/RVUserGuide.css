@@ -164,7 +164,7 @@ body {
 
 .rv-nav-link {
   display: block;
-  padding: 8px 24px 8px 28px;
+  padding: 8px 24px 8px 24px;
   color: var(--rv-text-muted);
   text-decoration: none;
   font-size: 13px;
@@ -172,11 +172,12 @@ body {
   transition: all var(--rv-transition);
   border-left: 3px solid transparent;
   cursor: pointer;
+  border-radius: 0 8px 8px 0;
 }
 
-.rv-nav-link:hover { color: var(--rv-primary); background: transparent; }
+.rv-nav-link:hover { color: var(--rv-primary); background: rgba(77, 154, 63, 0.04); }
 
-.rv-nav-link.active { color: var(--rv-primary); background: transparent; font-weight: 700; position: relative; } .rv-nav-link.active::after { content: ''; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 6px solid var(--rv-primary); }
+.rv-nav-link.active { color: var(--rv-primary); background: rgba(77, 154, 63, 0.1); font-weight: 700; border-left-color: var(--rv-primary); }
 
 .rv-nav-link.parent-active { color: var(--rv-primary-dark); font-weight: 600; }
 
@@ -283,13 +284,13 @@ body {
 /* ─── SECTION HEADINGS ─── */
 .rv-section {
   margin-bottom: 56px;
-  scroll-margin-top: 32px;
+  scroll-margin-top: 0px;
 }
 
 [id^="toolbar-"],
 [id^="howto-"],
 [id^="why-"] {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 0px;
 }
 
 .rv-section-h1 {
