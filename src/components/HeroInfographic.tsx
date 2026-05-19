@@ -46,7 +46,7 @@ const HeroInfographic = () => {
   .section-header{
     padding:1.4cqw 2cqw;
     border-bottom:1px solid #eaedf0;
-    font-size:1.3cqw;font-weight:600;color:#1a202c;
+    font-size:2cqw;font-weight:600;color:#1a202c;
     letter-spacing:0.02cqw;
   }
   .tree-canvas{
@@ -79,7 +79,7 @@ const HeroInfographic = () => {
   .tree-item{display:flex;align-items:center;gap:1cqw;padding:0.6cqw 0;cursor:pointer;position:relative;}
   .tree-item.parent{font-weight:600;color:#1e293b}
   .tree-item .arrow{width:1.8cqw;color:#94a3b8;font-size:1.5cqw;flex-shrink:0;text-align:center}
-  .tree-item .icon{width:2.8cqw;height:2.8cqw;border-radius:0.6cqw;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.5cqw}
+  .tree-item .icon{width:2.8cqw;height:2.8cqw;border-radius:0.6cqw;padding:0.5cqw;box-sizing:border-box;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.5cqw}
   .tree-children{padding-left:2.2cqw; margin-left:1cqw; border-left:1px dashed #cbd5e1; margin-bottom:0.8cqw;}
   .tree-sub{padding-left:2.2cqw; margin-left:1cqw; border-left:1px dashed #cbd5e1;}
   .tree-sub-item{display:flex;align-items:center;gap:1cqw;padding:0.4cqw 0;font-size:1.6cqw;color:#475569;position:relative;}
@@ -92,11 +92,12 @@ const HeroInfographic = () => {
     transform:translate3d(-50%,-50%,0);
     background:rgba(255,255,255,0.92);
     border-radius:clamp(12px, 1.8cqw, 24px);
+    padding:0.5cqw 0.8cqw;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:clamp(5px, 0.8cqw, 10px);
+    gap:1px;
     border:1px solid rgba(255,255,255,0.8);
     box-shadow:0 0.8cqw 2.5cqw rgba(0,0,0,0.06);
     transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -106,7 +107,8 @@ const HeroInfographic = () => {
   .node-card:hover{transform:translate3d(-50%,-50%,0) scale(1.05);z-index:10;}
   .node-card .node-icon{
     width:clamp(22px, 3.6cqw, 42px);height:clamp(22px, 3.6cqw, 42px);
-    border-radius:50%;
+    border-radius:6px;
+    padding:0.4cqw;box-sizing:border-box;
     display:flex;align-items:center;justify-content:center;
     font-weight:bold;color:#fff;
     font-size:clamp(10px, 1.6cqw, 18px);
@@ -225,6 +227,30 @@ const HeroInfographic = () => {
 
 
   /* Removed legacy media queries as UI is now fully cqw-dynamic */
+
+  /* Mobile responsive adjustments */
+  @media (max-width: 768px) {
+    .section-header{font-size:1.2cqw;padding:0.8cqw 1cqw;}
+    .tree-item{gap:0.4cqw;padding:0.2cqw 0;font-size:1.1cqw;}
+    .tree-item .arrow{font-size:1cqw;}
+    .tree-item .icon{width:1.8cqw;height:1.8cqw;padding:0.3cqw;font-size:0.9cqw;}
+    .tree-sub-item{gap:0.4cqw;padding:0.15cqw 0;font-size:1cqw;}
+    .tree-children{padding-left:1.5cqw;margin-left:0.6cqw;}
+    .tree-sub{padding-left:1.5cqw;margin-left:0.6cqw;}
+    .explorer-tree{padding:0.8cqw 1.2cqw;font-size:1.1cqw;}
+    .explorer-toolbar{padding:0.5cqw 0.8cqw;gap:0.4cqw;}
+    .search-box{font-size:1cqw;}
+    .node-card{width:clamp(65px, 11cqw, 110px);height:clamp(42px, 6.5cqw, 75px);padding:0.3cqw 0.4cqw;gap:0px;}
+    .node-card .node-icon{width:clamp(16px, 2.4cqw, 28px);height:clamp(16px, 2.4cqw, 28px);padding:0.2cqw;}
+    .node-card .node-label{font-size:clamp(7px, 0.9cqw, 11px);}
+    .node-center{left:50%;top:50%;width:clamp(75px, 12cqw, 110px);height:clamp(50px, 7.5cqw, 85px);}
+    .node-opp{left:35%;top:15%;}
+    .node-assets{left:75%;top:28%;}
+    .node-contacts{left:15%;top:35%;}
+    .node-cases{left:18%;top:75%;}
+    .node-activities{left:50%;top:82%;}
+    .node-contracts{left:75%;top:68%;}
+  }
 `}</style>
       <div className="scene">
   {/*  ===== MAIN STATIC DASHBOARD =====  */}
@@ -276,7 +302,7 @@ const HeroInfographic = () => {
         {/*  Node Cards  */}
         <div className="node-card node-center">
           <div className="node-icon"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18 M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16 M9 7h2 M9 11h2 M9 15h2 M13 7h2 M13 11h2 M13 15h2"/></svg></div>
-          <div className="node-label">Acme Corporation</div>
+          <div className="node-label"><span className="hidden md:inline">Acme Corporation</span><span className="md:hidden">Acme Corp.</span></div>
         </div>
         <div className="node-card node-opp">
           <div className="node-icon"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3 6 6 .5-4.5 4 1.5 6-6-3.5L6 18.5l1.5-6L3 8.5 9 8z"/></svg></div>
@@ -356,7 +382,7 @@ const HeroInfographic = () => {
     </div>
   </div>
 
-  {/*  ===== FLOATING BAR CHART (bottom-right) =====  */}
+  {/*  ===== FLOATING BAR CHART (bottom-right) - COMMENTED OUT =====  
   <div className="float-bar-chart">
     <div className="bar-chart-3d">
       <div className="bar-col" style={{height: '40%', background: 'linear-gradient(to top,#5c6bc0,#7986cb)'}}></div>
@@ -366,8 +392,9 @@ const HeroInfographic = () => {
       <div className="bar-col" style={{height: '55%', background: 'linear-gradient(to top,#5c6bc0,#7986cb)'}}></div>
     </div>
   </div>
+  */}
 
-  {/*  ===== FLOATING PIE/DONUT CHART (top-left diagonally opposite) =====  */}
+  {/*  ===== FLOATING PIE/DONUT CHART (top-left diagonally opposite) - COMMENTED OUT =====  
   <div className="float-pie-chart">
     <svg width="100%" height="100%" viewBox="0 0 100 100" style={{maxWidth: '4cqw', maxHeight: '4cqw'}}>
       <circle cx="50" cy="50" r="40" fill="none" stroke="#f1f5f9" strokeWidth="20"/>
@@ -384,6 +411,7 @@ const HeroInfographic = () => {
       <div className="pie-line"></div>
     </div>
   </div>
+  */}
 </div>
     </div>
   );
