@@ -53,6 +53,12 @@ const HeroAnimation = () => {
         }
         
         .ha-scene { position:relative; z-index:1; width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:40px 0; }
+        @media (max-width: 768px) {
+          .ha-scene { padding:30px 0; }
+        }
+        @media (max-width: 640px) {
+          .ha-scene { padding:20px 0; }
+        }
         .ha-dashboard {
           position:relative;
           width: 100%;
@@ -60,6 +66,20 @@ const HeroAnimation = () => {
           max-height: 600px;
           perspective:1000px;
           padding: 20px 0;
+        }
+        @media (max-width: 768px) {
+          .ha-dashboard {
+            aspect-ratio: 16 / 10;
+            max-height: 350px;
+            padding: 15px 0;
+          }
+        }
+        @media (max-width: 640px) {
+          .ha-dashboard {
+            aspect-ratio: 16 / 9;
+            max-height: 300px;
+            padding: 10px 0;
+          }
         }
         .ha-dashboard-inner {
           width:100%; height:100%;
@@ -87,6 +107,9 @@ const HeroAnimation = () => {
           z-index:2;
           animation:haFloatMain 6s ease-in-out infinite;
         }
+        @media (max-width: 640px) {
+          .ha-panel-main { top:8px; left:5%; width:90%; }
+        }
         @keyframes haFloatMain { 0%,100%{transform:translateY(0) translateZ(0)} 50%{transform:translateY(-12px) translateZ(15px)} }
 
         .ha-panel-bottom {
@@ -95,6 +118,9 @@ const HeroAnimation = () => {
           z-index:3;
           transform:translateZ(20px);
           animation:haFloatBottom 5s ease-in-out infinite;
+        }
+        @media (max-width: 768px) {
+          .ha-panel-bottom { display:none; }
         }
         @keyframes haFloatBottom { 0%,100%{transform:translateZ(20px) translateY(0)} 50%{transform:translateZ(20px) translateY(-6px)} }
 
@@ -105,15 +131,30 @@ const HeroAnimation = () => {
           transform:translateZ(15px);
           animation:haFloatTopR 6.5s ease-in-out infinite;
         }
+        @media (max-width: 768px) {
+          .ha-panel-top-right { display:none; }
+        }
         @keyframes haFloatTopR { 0%,100%{transform:translateZ(15px) translateY(0)} 50%{transform:translateZ(15px) translateY(-10px)} }
 
         .ha-node-map { width:100%; height:calc(100% - 40px); min-height: 250px; }
+        @media (max-width: 768px) {
+          .ha-node-map { min-height: 180px; }
+        }
+        @media (max-width: 640px) {
+          .ha-node-map { min-height: 150px; }
+        }
         .ha-panel-header {
           padding:clamp(6px, 1vw, 12px) clamp(10px, 1.5vw, 16px);
           border-bottom:1px solid var(--glass-border);
           display:flex; align-items:center; gap:8px;
         }
+        @media (max-width: 640px) {
+          .ha-panel-header { padding:6px 8px; gap:6px; }
+        }
         .ha-dot { width:clamp(4px, 1vw, 8px); height:clamp(4px, 1vw, 8px); border-radius:50%; }
+        @media (max-width: 640px) {
+          .ha-dot { width:4px; height:4px; }
+        }
         .ha-dot-r { background:#FF5F57; } .ha-dot-y { background:#FEBC2E; } .ha-dot-g { background:#28C840; }
         .ha-panel-title {
           font-size:clamp(8px, 1vw, 11px);
@@ -121,6 +162,9 @@ const HeroAnimation = () => {
           letter-spacing:1px;
           text-transform:uppercase;
           margin-left:4px;
+        }
+        @media (max-width: 640px) {
+          .ha-panel-title { font-size:8px; letter-spacing:0.5px; margin-left:2px; }
         }
 
 

@@ -126,7 +126,7 @@ const FeaturesAnimation = () => {
   const connCount = visibleEdges.filter(e => e.label && e.style !== 'gray').length;
 
   return (
-    <div className="relative w-full h-[350px] md:h-[480px] bg-white rounded-xl shadow-xl flex flex-col overflow-hidden font-sans border border-border/40">
+    <div className="relative w-full bg-white rounded-xl shadow-xl flex flex-col overflow-hidden font-sans border border-border/40" style={{ height: 'clamp(280px, 60vh, 580px)' }}>
         <style dangerouslySetInnerHTML={{__html: `
             .features-anim {
                 font-family: var(--font-sans), sans-serif;
@@ -148,10 +148,10 @@ const FeaturesAnimation = () => {
         `}} />
 
         {/* ── HEADER ── */}
-        <div className="px-5 py-4 border-b border-border/40 bg-gradient-to-b from-white to-slate-50 shrink-0">
+        <div className="border-b border-border/40 bg-gradient-to-b from-white to-slate-50 shrink-0" style={{ padding: 'clamp(6px, 1.5vw, 16px)' }}>
             <div className="flex items-center gap-2.5 mb-1.5">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 border-[1.5px] border-blue-200 flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4">
+                <div className="rounded-full bg-gradient-to-br from-blue-100 to-blue-50 border-[1.5px] border-blue-200 flex items-center justify-center shrink-0" style={{ width: 'clamp(28px, 5vw, 32px)', height: 'clamp(28px, 5vw, 32px)' }}>
+                    <svg viewBox="0 0 16 16" fill="none" style={{ width: 'clamp(14px, 3vw, 18px)', height: 'clamp(14px, 3vw, 18px)' }}>
                         <circle cx="8" cy="8" r="6" stroke="#3b82f6" strokeWidth="1.2"/>     
                         <circle cx="8" cy="8" r="2.5" fill="#3b82f6" opacity="0.7"/>
                         <line x1="8" y1="2" x2="8" y2="4" stroke="#3b82f6" strokeWidth="1.2"/>
@@ -161,13 +161,13 @@ const FeaturesAnimation = () => {
                     </svg>
                 </div>
                 <div>
-                    <div className="text-[14px] font-semibold text-slate-900 tracking-tight">Relationship Map</div>
+                    <div className="font-semibold text-slate-900 tracking-tight" style={{ fontSize: 'clamp(12px, 2.5vw, 14px)' }}>Relationship Map</div>
                 </div>
-                <div className="ml-auto px-2.5 py-1 rounded-xl bg-blue-50 border border-blue-200 text-[9.5px] font-medium text-blue-700 tracking-wider" style={{fontVariantNumeric: 'tabular-nums'}}>
+                <div className="ml-auto rounded-lg bg-blue-50 border border-blue-200 font-medium text-blue-700 tracking-wider" style={{ padding: 'clamp(3px, 1vw, 6px) clamp(6px, 1.5vw, 10px)', fontSize: 'clamp(7px, 1.8vw, 9.5px)', fontVariantNumeric: 'tabular-nums' }}>
                     <span>{connCount}</span> CONNECTIONS
                 </div>
             </div>
-            <div className="text-[11px] text-slate-400 tracking-wider" style={{fontVariantNumeric: 'tabular-nums', letterSpacing: '0.1em'}}>ACCOUNT NETWORK · LIVE GRAPH · SALESFORCE</div>
+            <div className="text-slate-400 tracking-wider" style={{ fontSize: 'clamp(8px, 1.8vw, 11px)', fontVariantNumeric: 'tabular-nums', letterSpacing: '0.1em' }}>ACCOUNT NETWORK · LIVE GRAPH · SALESFORCE</div>
         </div>
 
         {/* ── CANVAS ── */}
@@ -289,12 +289,12 @@ const FeaturesAnimation = () => {
         </div>
 
         {/* ── LEGEND ── */}
-        <div className="px-4 py-2.5 border-t border-border/40 bg-slate-50 flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 justify-between md:justify-start">
-            <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 rounded-sm bg-green-600"></div><span className="text-[10px] font-medium text-slate-500">Parent / Child</span></div>
-            <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 rounded-sm bg-blue-500"></div><span className="text-[10px] font-medium text-slate-500">Partner</span></div>
-            <div className="flex items-center gap-1.5"><div className="w-4 h-0 border-t-2 border-dashed border-amber-600"></div><span className="text-[10px] font-medium text-slate-500">Competitor</span></div>
-            <div className="flex items-center gap-1.5"><div className="w-4 h-0 border-t-2 border-dashed border-purple-400"></div><span className="text-[10px] font-medium text-slate-500">Influencer</span></div>
-            <div className="ml-auto text-[9px] font-bold text-slate-300 tracking-wider hidden lg:block" style={{fontVariantNumeric: 'tabular-nums', letterSpacing: '0.1em'}}>REAL-TIME · SALESFORCE</div>
+        <div className="border-t border-border/40 bg-slate-50 flex flex-wrap items-center shrink-0 justify-start" style={{ padding: 'clamp(6px, 1.5vw, 10px)', gap: 'clamp(8px, 2vw, 16px)' }}>
+            <div className="flex items-center" style={{ gap: 'clamp(4px, 1vw, 6px)' }}><div className="h-0.5 rounded-sm bg-green-600" style={{ width: 'clamp(12px, 2vw, 16px)' }}></div><span className="font-medium text-slate-500" style={{ fontSize: 'clamp(7px, 1.8vw, 10px)' }}>Parent/Child</span></div>
+            <div className="flex items-center" style={{ gap: 'clamp(4px, 1vw, 6px)' }}><div className="h-0.5 rounded-sm bg-blue-500" style={{ width: 'clamp(12px, 2vw, 16px)' }}></div><span className="font-medium text-slate-500" style={{ fontSize: 'clamp(7px, 1.8vw, 10px)' }}>Partner</span></div>
+            <div className="flex items-center" style={{ gap: 'clamp(4px, 1vw, 6px)' }}><div className="h-0 border-t-2 border-dashed border-amber-600" style={{ width: 'clamp(12px, 2vw, 16px)' }}></div><span className="font-medium text-slate-500" style={{ fontSize: 'clamp(7px, 1.8vw, 10px)' }}>Competitor</span></div>
+            <div className="flex items-center" style={{ gap: 'clamp(4px, 1vw, 6px)' }}><div className="h-0 border-t-2 border-dashed border-purple-400" style={{ width: 'clamp(12px, 2vw, 16px)' }}></div><span className="font-medium text-slate-500" style={{ fontSize: 'clamp(7px, 1.8vw, 10px)' }}>Influencer</span></div>
+            <div className="ml-auto font-bold text-slate-300 tracking-wider hidden lg:block" style={{ fontSize: 'clamp(7px, 1.8vw, 9px)', fontVariantNumeric: 'tabular-nums', letterSpacing: '0.1em' }}>REAL-TIME · SALESFORCE</div>
         </div>
     </div>
   );
