@@ -37,7 +37,7 @@ const Footer = () => {
 
   return (
     <footer style={{ background: "linear-gradient(180deg, hsl(210, 14%, 16%), hsl(210, 14%, 12%))" }} className="relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 lg:px-10 pt-8 pb-6 md:pt-12">
+      <div className="container pt-8 pb-6 md:pt-12">
         {/* Main Footer Content - Flexbox with wrap for side-by-side layout on mobile */}
         <div className="flex flex-wrap justify-between lg:flex-nowrap lg:justify-between gap-8 md:gap-12 lg:gap-0">
           {/* Brand Column - full width, stays on top */}
@@ -50,7 +50,8 @@ const Footer = () => {
               <img src={logo} alt="RelationshipVista" className="h-16 sm:h-20 w-auto" loading="lazy" decoding="async" />
             </Link>
             <p className="text-sm leading-relaxed" style={{ color: "hsl(210, 8%, 65%)" }}>
-              Turn complex relationships into clear, actionable insights natively inside Salesforce.
+              Turn complex relationships into clear,<br />
+              actionable insights natively inside Salesforce.
             </p>
           </div>
 
@@ -126,7 +127,7 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div style={{ borderTop: "1px solid hsl(210, 8%, 22%)" }}>
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 py-3.5">
+        <div className="container py-3.5">
           {/* Mobile layout: Links on top, copyright below */}
           <div className="md:hidden flex flex-col items-center justify-center gap-3 text-center">
             <div className="flex items-center gap-4 py-0 h-fit">
