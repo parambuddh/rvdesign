@@ -55,7 +55,7 @@ export default function UseCasesSection() {
     if (isHovered || !isVisible) return;
     const interval = setInterval(() => {
       setActiveId(prev => (prev + 1) % useCases.length);
-    }, 4500);
+    }, 2000);
     return () => clearInterval(interval);
   }, [isHovered, isVisible]);
 

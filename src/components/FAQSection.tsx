@@ -12,7 +12,7 @@ const faqItems = [
   {
     id: "faq-1",
     q: "Is RelationshipVista 100% native to Salesforce?",
-    a: "Yes. RelationshipVista is built as a Lightning Web Component that lives entirely within Salesforce. No external tools, integrations, or data syncing required.",
+    a: "Yes. RelationshipVista is built as a Lightning Web Component that lives entirely inside Salesforce. No external tools, integrations, or data syncing required.",
   },
   {
     id: "faq-2",

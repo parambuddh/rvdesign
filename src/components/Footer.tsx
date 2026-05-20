@@ -22,7 +22,7 @@ const Footer = () => {
                 <img src={logo} alt="RelationshipVista" className="h-10 sm:h-12 w-auto" loading="lazy" decoding="async" width={180} height={48} />
               </Link>
               <p className="text-sm leading-relaxed max-w-xs text-left" style={{ color: "hsl(210, 8%, 65%)" }}>
-                Turn complex relationships into clear, actionable insights natively within Salesforce.
+                Turn complex relationships into clear, actionable insights natively inside Salesforce.
               </p>
             </div>
 
@@ -123,7 +123,7 @@ const Footer = () => {
 
           <div className="py-3 flex flex-col gap-2 sm:gap-3 md:flex-row md:items-center md:justify-between" style={{ borderTop: "1px solid hsl(210, 8%, 22%)" }}>
             <p className="text-xs order-2 md:order-1" style={{ color: "hsl(210, 8%, 65%)" }}>
-              © {currentYear} RelationshipVista. All Rights Reserved.
+              © {currentYear} Ardira Corporation. All Rights Reserved.
             </p>
             <div className="flex gap-4 sm:gap-6 text-[10px] sm:text-xs order-1 md:order-2">
               <Link

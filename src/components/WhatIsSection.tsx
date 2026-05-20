@@ -29,7 +29,7 @@ const WhatIsSection = () => {
                 Overview
               </p>
               <h2 className="text-3xl md:text-[36px] font-bold leading-tight font-heading">
-                The Intelligent Relationship Visualization Tool Built within Salesforce
+                The Intelligent Relationship Visualization Tool Built inside Salesforce
               </h2>
             </motion.div>
             <motion.div
