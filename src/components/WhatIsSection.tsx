@@ -62,7 +62,7 @@ const WhatIsSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <div className="relative pl-5 mt-6">
-                <div className="absolute left-0 top-0 bottom-0 w-1 rounded-full" style={{ background: "linear-gradient(180deg, hsl(113, 42%, 42%), hsl(202, 35%, 62%))" }} />
+                <div className="absolute left-0 top-0 bottom-0 w-1 rounded-full" style={{ background: "hsl(var(--primary))" }} />
                 <p className="text-primary font-semibold italic text-lg">
                   "Visualize any relationship. Customize any view. Explore any hierarchy."
                 </p>

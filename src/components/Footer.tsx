@@ -1,134 +1,169 @@
 import React from "react";
 import logo from "@/assets/logo.webp";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Globe, Mail, Phone } from "lucide-react";
+
+const quickLinks = [
+  { label: "Overview", href: "#overview" },
+  { label: "Features", href: "#features" },
+  { label: "Benefits", href: "#benefits" },
+  { label: "Use Cases", href: "#use-cases" },
+  { label: "Contact Us", href: "#contact" },
+  { label: "Resources", href: "/resources/user-guide", target: "_blank" },
+];
 
 const Footer = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const currentYear = new Date().getFullYear();
+  const isHome = location.pathname === "/";
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const id = href.replace("#", "");
+
+    if (!isHome) {
+      // If not on home page, use window.location to navigate with hash
+      window.location.href = "/" + href;
+      return;
+    }
+
+    // On home page, scroll to section smoothly
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <footer style={{ background: "linear-gradient(180deg, hsl(210, 14%, 16%), hsl(210, 14%, 12%))" }} className="relative overflow-hidden pt-6 sm:pt-8 pb-4">
-      <div className="container relative pb-0">
-        <div className="pt-4 sm:pt-6 pb-1">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-0 mb-8 sm:mb-10">
-            {/* Company Info - Left (Col 1) */}
-            <div className="flex flex-col items-start md:col-span-1">
-              <Link
-                to="/"
-                aria-label="RelationshipVista - Return to Home"
-                className="flex items-center gap-2.5 mb-6 hover:opacity-80 transition-opacity bg-none border-none cursor-pointer p-0"
-              >
-                <img src={logo} alt="RelationshipVista" className="h-18 sm:h-22 w-auto" loading="lazy" decoding="async" width={180} height={48} />
-              </Link>
-              <p className="text-sm leading-relaxed max-w-xs text-left" style={{ color: "hsl(210, 8%, 65%)" }}>
-                Turn complex relationships into clear, actionable insights natively inside Salesforce.
-              </p>
-            </div>
-
-            {/* Spacer (Col 2) */}
-            <div className="hidden md:block md:col-span-1"></div>
-
-            {/* Quick Links - Center (Col 3) */}
-            <div className="flex flex-col md:items-center md:col-span-1">
-              <div className="w-fit">
-                <h3 className="font-bold text-white mb-4 sm:mb-6 text-sm sm:text-base tracking-wider font-heading">Quick Links</h3>
-                <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-                  {[
-
-                    { label: "Overview", href: "#overview" },
-                    { label: "Features", href: "#features" },
-                    { label: "Benefits", href: "#benefits" },
-                    { label: "Use Cases", href: "#use-cases" },
-                    { label: "Resources", href: "/resources/user-guide" },
-                    { label: "Contact Us", href: "#contact" },
-                  ].map((link) => (
-                    <li key={link.label}>
-                      <button
-                        onClick={() => {
-                          if (link.href.startsWith('/')) {
-                            navigate(link.href);
-                          } else if (window.location.pathname !== '/') { 
-                            window.location.href = '/' + link.href; 
-                          } else { 
-                            const el = document.getElementById(link.href.slice(1)); 
-                            if (el) { 
-                              window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }); 
-                            } 
-                          }
-                        }}
-                        className="transition-colors duration-300 bg-none border-none cursor-pointer p-0 block text-left"
-                        style={{ color: "hsl(210, 8%, 65%)" }}
-                        onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
-                        onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
-                      >
-                        {link.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Spacer (Col 4) */}
-            <div className="hidden md:block md:col-span-1"></div>
-
-            {/* Contact Info - Right (Col 5) */}
-            <div className="flex flex-col md:items-end md:col-span-1">
-              <div className="w-fit">
-                <h3 className="font-bold text-white mb-4 sm:mb-6 text-sm sm:text-base tracking-wider font-heading">Contact Info</h3>
-                <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-                  <li className="flex items-center gap-2">
-                    <Globe className="h-4 w-4 shrink-0" style={{ color: "hsl(113, 42%, 60%)" }} aria-hidden="true" />
-                    <a
-                      href="https://www.relationshipvista.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-colors duration-300"
-                      style={{ color: "hsl(210, 8%, 65%)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
-                    >
-                      www.relationshipvista.com
-                    </a>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 shrink-0" style={{ color: "hsl(113, 42%, 60%)" }} aria-hidden="true" />
-                    <a
-                      href="mailto:support@ardira.com"
-                      className="transition-colors duration-300"
-                      style={{ color: "hsl(210, 8%, 65%)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
-                    >
-                      support@ardira.com
-                    </a>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Phone className="h-4 w-4 shrink-0" style={{ color: "hsl(113, 42%, 60%)" }} aria-hidden="true" />
-                    <a
-                      href="tel:+16697776838"
-                      className="transition-colors duration-300"
-                      style={{ color: "hsl(210, 8%, 65%)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
-                    >
-                      1.669.777.6838
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+    <footer style={{ background: "linear-gradient(180deg, hsl(210, 14%, 16%), hsl(210, 14%, 12%))" }} className="relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 lg:px-10 pt-8 pb-6 md:pt-12">
+        {/* Main Footer Content - Flexbox with wrap for side-by-side layout on mobile */}
+        <div className="flex flex-wrap justify-between lg:flex-nowrap lg:justify-between gap-8 md:gap-12 lg:gap-0">
+          {/* Brand Column - full width, stays on top */}
+          <div className="w-full lg:w-[35%] flex-shrink-0">
+            <Link
+              to="/"
+              className="cursor-pointer hover:opacity-80 transition-opacity mb-4 flex items-center bg-none border-none p-0"
+              aria-label="RelationshipVista - Return to Home"
+            >
+              <img src={logo} alt="RelationshipVista" className="h-16 sm:h-20 w-auto" loading="lazy" decoding="async" />
+            </Link>
+            <p className="text-sm leading-relaxed" style={{ color: "hsl(210, 8%, 65%)" }}>
+              Turn complex relationships into clear, actionable insights natively inside Salesforce.
+            </p>
           </div>
 
-          <div className="py-3 flex flex-col gap-2 sm:gap-3 md:flex-row md:items-center md:justify-between" style={{ borderTop: "1px solid hsl(210, 8%, 22%)" }}>
-            <p className="text-xs order-2 md:order-1" style={{ color: "hsl(210, 8%, 65%)" }}>
-              © {currentYear} Ardira Corporation. All Rights Reserved.
-            </p>
-            <div className="flex gap-4 sm:gap-6 text-[10px] sm:text-xs order-1 md:order-2">
+          {/* Quick Links Column - 30% width on mobile, 15% on lg */}
+          <div className="w-[30%] lg:w-[15%] flex-shrink-0">
+            <h4 className="font-bold text-white mb-4 text-sm tracking-wider font-heading">Quick Links</h4>
+            <ul className="space-y-2.5">
+              {quickLinks.map((l) => (
+                <li key={l.label} className="py-0">
+                  <a
+                    href={l.href}
+                    onClick={(e) => !l.target && handleNavClick(e, l.href)}
+                    target={l.target}
+                    rel={l.target ? "noopener noreferrer" : undefined}
+                    className="relative text-sm transition-colors duration-300 inline leading-none"
+                    style={{ color: "hsl(210, 8%, 65%)" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info Column - 60% width on mobile, 50% on md, 18% on lg */}
+          <div className="w-[60%] md:w-[50%] lg:w-[18%] flex-shrink-0">
+            <h4 className="font-bold text-white mb-4 text-sm tracking-wider font-heading">Contact Info</h4>
+            <ul className="space-y-2.5 text-sm">
+              <li className="py-0">
+                <a
+                  href="https://www.relationshipvista.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative transition-colors duration-300 inline leading-none"
+                  style={{ color: "hsl(210, 8%, 65%)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
+                >
+                  <Globe size={18} className="inline flex-shrink-0 mr-2" style={{ color: "hsl(113, 42%, 60%)" }} />
+                  www.relationshipvista.com
+                </a>
+              </li>
+              <li className="py-0">
+                <a
+                  href="mailto:support@ardira.com"
+                  className="relative transition-colors duration-300 inline leading-none"
+                  style={{ color: "hsl(210, 8%, 65%)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
+                >
+                  <Mail size={18} className="inline flex-shrink-0 mr-2" style={{ color: "hsl(113, 42%, 60%)" }} />
+                  support@ardira.com
+                </a>
+              </li>
+              <li className="py-0">
+                <a
+                  href="tel:+16697776838"
+                  className="relative transition-colors duration-300 inline leading-none"
+                  style={{ color: "hsl(210, 8%, 65%)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
+                >
+                  <Phone size={18} className="inline flex-shrink-0 mr-2" style={{ color: "hsl(113, 42%, 60%)" }} />
+                  1.669.777.6838
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div style={{ borderTop: "1px solid hsl(210, 8%, 22%)" }}>
+        <div className="mx-auto max-w-7xl px-4 lg:px-8 py-3.5">
+          {/* Mobile layout: Links on top, copyright below */}
+          <div className="md:hidden flex flex-col items-center justify-center gap-3 text-center">
+            <div className="flex items-center gap-4 py-0 h-fit">
               <Link
                 to="/terms-of-use"
-                className="transition-colors duration-300"
+                className="relative text-sm transition-colors duration-300 leading-none py-0 align-middle inline-flex items-center"
+                style={{ color: "hsl(210, 8%, 65%)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
+              >
+                Terms of Use
+              </Link>
+              <span className="text-sm py-0 leading-none align-middle" style={{ color: "hsl(210, 8%, 65%)" }}>|</span>
+              <Link
+                to="/privacy-policy"
+                className="relative text-sm transition-colors duration-300 leading-none py-0 align-middle inline-flex items-center"
+                style={{ color: "hsl(210, 8%, 65%)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
+              >
+                Privacy Policy
+              </Link>
+            </div>
+            <p className="text-sm py-0 leading-none" style={{ color: "hsl(210, 8%, 65%)" }}>
+              © {currentYear} Ardira Corporation. All Rights Reserved.
+            </p>
+          </div>
+
+          {/* Desktop layout: Copyright on left, links on right */}
+          <div className="hidden md:flex items-center justify-between gap-3">
+            <p className="text-sm" style={{ color: "hsl(210, 8%, 65%)" }}>
+              © {currentYear} Ardira Corporation. All Rights Reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link
+                to="/terms-of-use"
+                className="relative text-sm transition-colors duration-300"
                 style={{ color: "hsl(210, 8%, 65%)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
@@ -137,7 +172,7 @@ const Footer = () => {
               </Link>
               <Link
                 to="/privacy-policy"
-                className="transition-colors duration-300"
+                className="relative text-sm transition-colors duration-300"
                 style={{ color: "hsl(210, 8%, 65%)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(113, 42%, 60%)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(210, 8%, 65%)")}
