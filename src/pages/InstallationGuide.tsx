@@ -424,7 +424,7 @@ export default function RelationshipVistaInstallationGuide() {
             <h2 className="text-3xl font-semibold font-heading text-text-heading mb-6 mt-16">
               Next Steps
             </h2>
-            <div className="bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 rounded-xl p-6">
+            <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
               <p className="text-base text-text-body mb-6 leading-relaxed">
                 After installation and configuration, refer to the{" "}
                 <Link

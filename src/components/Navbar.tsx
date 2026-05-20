@@ -199,7 +199,7 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
               <button
                 onClick={() => setIsCalendlyOpen(true)}
                 aria-label="Book a product demo"
-                className={`ml-4 bg-gradient-to-r from-primary to-secondary-blue text-primary-foreground rounded-full font-semibold overflow-hidden shadow-[0_4px_15px_hsl(var(--primary)/0.3)] hover:shadow-[0_6px_25px_hsl(var(--primary)/0.45)] transition-all duration-300 hover:-translate-y-0.5 ${
+                className={`ml-4 bg-primary text-primary-foreground rounded-full font-semibold overflow-hidden shadow-[0_4px_15px_hsl(var(--primary)/0.3)] hover:shadow-[0_6px_25px_hsl(var(--primary)/0.45)] transition-all duration-300 hover:-translate-y-0.5 ${
                   scrolled ? "px-6 py-3 text-xs" : "px-7 py-3.5 text-sm"
                 }`}
               >
@@ -288,7 +288,7 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: navLinks.length * 0.08, duration: 0.3, ease: "easeOut" }}
-                    className="bg-gradient-to-r from-primary to-secondary-blue text-primary-foreground px-5 py-3 rounded-xl text-sm font-semibold mt-2 text-center w-full shadow-[0_4px_15px_hsl(var(--primary)/0.3)] transition-all duration-300 hover:shadow-[0_6px_25px_hsl(var(--primary)/0.45)] hover:-translate-y-0.5"
+                    className="bg-primary text-primary-foreground px-5 py-3 rounded-xl text-sm font-semibold mt-2 text-center w-full shadow-[0_4px_15px_hsl(var(--primary)/0.3)] transition-all duration-300 hover:shadow-[0_6px_25px_hsl(var(--primary)/0.45)] hover:-translate-y-0.5"
                   >
                     Book Demo
                   </motion.button>
@@ -306,7 +306,7 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
-            className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-primary to-secondary-blue text-primary-foreground shadow-[0_4px_15px_hsl(var(--primary)/0.3)] hover:shadow-[0_6px_25px_hsl(var(--primary)/0.45)] transition-all duration-300 hover:-translate-y-0.5"
+            className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full flex items-center justify-center bg-primary text-primary-foreground shadow-[0_4px_15px_hsl(var(--primary)/0.3)] hover:shadow-[0_6px_25px_hsl(var(--primary)/0.45)] transition-all duration-300 hover:-translate-y-0.5"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Scroll to top"

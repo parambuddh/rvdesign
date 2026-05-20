@@ -53,7 +53,7 @@ const BenefitsSection = () => {
             <h2 className="text-2xl sm:text-3xl md:text-[40px] font-extrabold font-heading leading-tight mb-4">
               Built for Enterprise. Designed for{" "}
               <br className="hidden sm:block" />
-              <span className="gradient-text">Everyone.</span>
+              <span className="text-primary">Everyone.</span>
             </h2>
             <p className="text-text-body text-lg leading-relaxed">
               Not just a visualization tool. A relationship intelligence layer that turns every

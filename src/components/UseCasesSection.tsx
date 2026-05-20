@@ -93,11 +93,12 @@ export default function UseCasesSection() {
             Use Cases
           </p>
           <h2 className="text-3xl md:text-[40px] font-extrabold font-heading leading-tight mb-4 text-slate-900">
-            Interactive Relationship <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">Mapping</span>
+            Interactive Relationship <span className="text-primary">Mapping</span>
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed max-w-2xl mx-auto">
             Experience your Salesforce data like never before. Navigate any complex relationship model dynamically within our embedded interactive canvases.
           </p>
+          <div className="section-divider mt-6" />
         </motion.div>
       </div>
 
@@ -125,7 +126,7 @@ export default function UseCasesSection() {
              </div>
 
              {/* Graph Canvas */}
-             <div className="w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent">
+             <div className="w-full bg-primary/5">
                 <div className="w-full relative aspect-[16/10] mx-auto overflow-hidden">
                    
                    {/* Connections SVG Layer */}
@@ -290,7 +291,7 @@ export default function UseCasesSection() {
                           <div className="text-[14px] sm:text-[16px] font-bold text-slate-900 leading-tight">{metrics.c}</div>
                        </div>
                        <div className="premium-card p-4 rounded-xl bg-white border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-all hover:border-primary/30 relative overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+                          <div className="absolute inset-0 bg-primary/5"></div>
                           <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 mb-1 tracking-wider uppercase relative z-10">Data Sync</div>
                           <div className="text-[14px] sm:text-[16px] font-bold text-primary flex items-center gap-1.5 relative z-10">
                              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Native Real-time

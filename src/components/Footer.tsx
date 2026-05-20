@@ -19,7 +19,7 @@ const Footer = () => {
                 aria-label="RelationshipVista - Return to Home"
                 className="flex items-center gap-2.5 mb-6 hover:opacity-80 transition-opacity bg-none border-none cursor-pointer p-0"
               >
-                <img src={logo} alt="RelationshipVista" className="h-10 sm:h-12 w-auto" loading="lazy" decoding="async" width={180} height={48} />
+                <img src={logo} alt="RelationshipVista" className="h-18 sm:h-22 w-auto" loading="lazy" decoding="async" width={180} height={48} />
               </Link>
               <p className="text-sm leading-relaxed max-w-xs text-left" style={{ color: "hsl(210, 8%, 65%)" }}>
                 Turn complex relationships into clear, actionable insights natively inside Salesforce.

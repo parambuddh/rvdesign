@@ -71,7 +71,7 @@ const FeaturesSection = () => {
               Features
             </p>
             <h2 className="text-3xl md:text-[38px] font-extrabold font-heading leading-tight mb-3">
-              From Scattered Data to Unified Insights
+              From Scattered Data to <span className="text-primary">Unified Insights</span>
             </h2>
             <div className="section-divider mt-4" />
           </div>
