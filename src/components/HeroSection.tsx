@@ -83,7 +83,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <p className="text-sm sm:text-base text-text-light leading-relaxed max-w-lg mx-auto lg:mx-0">
-                See deeper insights into your account hierarchies, opportunity
+                Unlock deeper insights into your record hierarchies, opportunity
                 pipelines, and connected records — all inside Salesforce.
                 No code required.
               </p>
