@@ -44,6 +44,7 @@ const Footer = () => {
           <div className="w-full lg:w-[35%] flex-shrink-0">
             <Link
               to="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="cursor-pointer hover:opacity-80 transition-opacity mb-4 flex items-center bg-none border-none p-0"
               aria-label="RelationshipVista - Return to Home"
             >
