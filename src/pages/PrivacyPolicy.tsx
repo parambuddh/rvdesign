@@ -280,7 +280,9 @@ const PrivacyPolicy = () => {
                   <p className="text-muted-foreground">2040 Martin Ave</p>
                   <p className="text-muted-foreground">Santa Clara, CA 95050</p>
                   <p className="text-muted-foreground">
-                    1-669-777-6838
+                    <a href="tel:1-669-777-6838" className="text-primary hover:text-secondary-blue transition-all duration-300">
+                      1.669.777.6838
+                    </a>
                   </p>
                   <p className="text-muted-foreground">
                     <a href="mailto:legal@ardira.com" className="text-primary underline hover:text-secondary-blue transition-all duration-300">
