@@ -84,11 +84,12 @@ const FeaturesSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="h-full relative"
+            className="sticky flex flex-col justify-center"
+            style={{ top: "100px", height: "calc(100vh - 120px)", zIndex: 10 }}
           >
-            <div className="premium-card overflow-hidden sticky top-28 !border-border/40 shadow-xl">
-              {/* Browser chrome */}
-              <div className="px-5 py-3.5 border-b border-border/60 flex items-center gap-3 bg-muted/30">
+            <div className="bg-card rounded-2xl border border-border/60 relative overflow-hidden w-full !border-border/40 shadow-xl">
+                {/* Browser chrome */}
+                <div className="px-5 py-1.5 border-b border-border/60 flex items-center gap-3 bg-muted/30">
                 <div className="flex gap-1.5">
                   <span className="w-3 h-3 rounded-full bg-destructive/60" />
                   <span className="w-3 h-3 rounded-full" style={{ background: "hsl(45, 80%, 60%)" }} />
