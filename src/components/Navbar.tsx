@@ -184,14 +184,14 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56 bg-slate-50/80 backdrop-blur-xl shadow-[0_12px_48px_rgba(0,0,0,0.2)] border border-white/40 rounded-2xl p-2 z-[9999]">
                   <DropdownMenuItem asChild className="!bg-transparent hover:!bg-slate-800/5 p-0 rounded-lg focus:!bg-slate-800/5">
-                      <Link to="/resources/user-guide" className="w-full cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors outline-none rounded-lg">
+                      <a href="/resources/user-guide" target="_blank" rel="noopener noreferrer" className="w-full cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors outline-none rounded-lg block">
                         User Guide
-                      </Link>
+                      </a>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild className="!bg-transparent hover:!bg-slate-800/5 p-0 rounded-lg focus:!bg-slate-800/5">
-                      <Link to="/resources/installation-guide" className="w-full cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors outline-none rounded-lg">
+                      <a href="/resources/installation-guide" target="_blank" rel="noopener noreferrer" className="w-full cursor-pointer font-medium p-3 text-text-heading hover:text-primary transition-colors outline-none rounded-lg block">
                       Installation Guide
-                    </Link>
+                    </a>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -258,24 +258,28 @@ rounded-lg transition-all duration-300 flex items-center gap-1 ${
                   Resources
                 </motion.div>
                 <div className="flex flex-col pl-4">
-                  <motion.button
+                  <motion.a
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: (navLinks.length + 1) * 0.05 }}
-                        onClick={() => { setMobileOpen(false); navigate("/resources/user-guide"); }}
-                        className="block w-full text-left px-4 py-2 hover:bg-slate-50 rounded-xl text-[15px] font-medium text-slate-600 focus:text-primary transition-colors"
+                      href="/resources/user-guide"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full text-left px-4 py-2 hover:bg-slate-50 rounded-xl text-[15px] font-medium text-slate-600 focus:text-primary transition-colors"
                     >
                       User Guide
-                    </motion.button>
-                    <motion.button
+                    </motion.a>
+                    <motion.a
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: (navLinks.length + 2) * 0.05 }}
-                        onClick={() => { setMobileOpen(false); navigate("/resources/installation-guide"); }}
+                        href="/resources/installation-guide"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="block w-full text-left px-4 py-2 hover:bg-slate-50 rounded-xl text-[15px] font-medium text-slate-600 focus:text-primary transition-colors"
                     >
                       Installation Guide
-                    </motion.button>
+                    </motion.a>
                   </div>
 
                 <div className="pt-4 mt-2 border-t border-slate-100 flex flex-col">
