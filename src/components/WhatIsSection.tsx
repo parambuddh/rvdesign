@@ -5,25 +5,29 @@ const WhatIsSection = () => {
   return (
     <section id="overview" className="py-16 md:py-24">
       <div className="container">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
+          
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="relative w-full flex items-center justify-center h-auto mb-8 lg:mb-0"
+            className="relative w-full flex items-center justify-center h-auto order-2 lg:order-1"
           >
             <HeroAnimation />
           </motion.div>
 
-          {/* Text */}
-          <div className="space-y-5">
+          {/* Text Container: Uses 'contents' on mobile to flatten children into the grid for reordering, but stays a block on desktop to group them. */}
+          <div className="contents lg:block order-1 lg:order-2">
+            
+            {/* Title */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              className="order-1 lg:order-none"
             >
               <p className="text-sm font-bold tracking-widest uppercase gradient-text mb-3 inline-block">
                 Overview
@@ -32,42 +36,46 @@ const WhatIsSection = () => {
                 The Intelligent Relationship Visualization Tool Built inside Salesforce
               </h2>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="space-y-4 text-text-body text-[15px] leading-relaxed">
-                <p>
-                  RelationshipVista is a powerful Lightning Web Component that lives natively
-                  inside Salesforce. It lets you instantly visualize and navigate all related
-                  records with interactive, dynamic relationship maps.
-                </p>
-                <p>
-                  From account hierarchies to opportunity pipelines, from complex multi-level
-                  relationships to custom object connections, RelationshipVista transforms
-                  scattered data into clear, actionable visual insights.
-                </p>
-                <p>
-                  Empower your users to explore relationships faster, understand data connections
-                  deeper, and make better-informed decisions — without writing a single line of code.
-                </p>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <div className="relative pl-5 mt-6">
-                <div className="absolute left-0 top-0 bottom-0 w-1 rounded-full" style={{ background: "hsl(var(--primary))" }} />
-                <p className="text-primary font-semibold italic text-lg">
-                  "Visualize any relationship. Customize any view. Explore any hierarchy."
-                </p>
-              </div>
-            </motion.div>
+
+            {/* Paragraphs */}
+            <div className="space-y-5 order-3 lg:order-none lg:mt-5">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="space-y-4 text-text-body text-[15px] leading-relaxed">
+                  <p>
+                    RelationshipVista is a powerful Lightning Web Component that lives natively
+                    inside Salesforce. It lets you instantly visualize and navigate all related
+                    records with interactive, dynamic relationship maps.
+                  </p>
+                  <p>
+                    From account hierarchies to opportunity pipelines, from complex multi-level
+                    relationships to custom object connections, RelationshipVista transforms
+                    scattered data into clear, actionable visual insights.
+                  </p>
+                  <p>
+                    Empower your users to explore relationships faster, understand data connections
+                    deeper, and make better-informed decisions — without writing a single line of code.
+                  </p>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <div className="relative pl-5 mt-6">
+                  <div className="absolute left-0 top-0 bottom-0 w-1 rounded-full" style={{ background: "hsl(var(--primary))" }} />
+                  <p className="text-primary font-semibold italic text-lg">
+                    "Visualize any relationship. Customize any view. Explore any hierarchy."
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
