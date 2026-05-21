@@ -1,6 +1,17 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 
 const HeroInfographic = () => {
+  const [activeTab, setActiveTab] = useState<'tree' | 'explorer'>('tree');
+  const [userInteracted, setUserInteracted] = useState(false);
+
+  useEffect(() => {
+    if (userInteracted) return;
+    const interval = setInterval(() => {
+      setActiveTab(prev => prev === 'tree' ? 'explorer' : 'tree');
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [userInteracted]);
+
   return (
     <div className="hero-anim-root relative w-full h-auto overflow-visible bg-transparent font-sans flex justify-center py-2">
       <style>{`
@@ -222,38 +233,302 @@ const HeroInfographic = () => {
   .pie-details{display:flex;flex-direction:column;gap:0.7cqw;}
   .pie-line{height:0.7cqw;border-radius:0.3cqw;background:#e2e8f0;width:3.4cqw;}
   .pie-line.short{width:2cqw;}
-  .pie-line:nth-child(1){width:3.5cqw;background:#94a3b8}
+  /* Desktop: tab-content-area acts as flex row container */
+  .tab-content-area{
+    display:flex;
+    flex:1;
+    min-height:0;
+    min-width:0;
+  }
 
+  /* Desktop: explorer-content wrapper */
+  .explorer-content{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    min-height:0;
+    overflow:hidden;
+  }
 
+  /* Hide mobile SVG on desktop */
+  .mobile-svg { display: none; }
 
-  /* Removed legacy media queries as UI is now fully cqw-dynamic */
-
-  /* Mobile responsive adjustments */
+  /* ===== MOBILE RESPONSIVE ===== */
   @media (max-width: 768px) {
-    .section-header{font-size:1.2cqw;padding:0.8cqw 1cqw;}
-    .tree-item{gap:0.4cqw;padding:0.2cqw 0;font-size:1.1cqw;}
-    .tree-item .arrow{font-size:1cqw;}
-    .tree-item .icon{width:1.8cqw;height:1.8cqw;padding:0.3cqw;font-size:0.9cqw;}
-    .tree-sub-item{gap:0.4cqw;padding:0.15cqw 0;font-size:1cqw;}
-    .tree-children{padding-left:1.5cqw;margin-left:0.6cqw;}
-    .tree-sub{padding-left:1.5cqw;margin-left:0.6cqw;}
-    .explorer-tree{padding:0.8cqw 1.2cqw;font-size:1.1cqw;}
-    .explorer-toolbar{padding:0.5cqw 0.8cqw;gap:0.4cqw;}
-    .search-box{font-size:1cqw;}
-    .node-card{width:clamp(65px, 11cqw, 110px);height:clamp(42px, 6.5cqw, 75px);padding:0.3cqw 0.4cqw;gap:0px;}
-    .node-card .node-icon{width:clamp(16px, 2.4cqw, 28px);height:clamp(16px, 2.4cqw, 28px);padding:0.2cqw;}
-    .node-card .node-label{font-size:clamp(7px, 0.9cqw, 11px);}
-    .node-center{left:50%;top:50%;width:clamp(75px, 12cqw, 110px);height:clamp(50px, 7.5cqw, 85px);}
-    .node-opp{left:35%;top:15%;}
-    .node-assets{left:75%;top:28%;}
-    .node-contacts{left:15%;top:35%;}
-    .node-cases{left:18%;top:75%;}
-    .node-activities{left:50%;top:82%;}
-    .node-contracts{left:75%;top:68%;}
+    /* Swap SVGs for correct line coordinates */
+    .desktop-svg { display: none; }
+    .mobile-svg { display: block; }
+
+    .scene{
+      aspect-ratio:auto;
+      max-height:none;
+      min-height:auto;
+      height:auto;
+    }
+
+    /* Hide sidebar on mobile */
+    .sidebar{display:none;}
+
+    /* Stack panels vertically */
+    .main-panel{
+      flex-direction:column;
+      position:relative;
+      top:auto;left:auto;width:100%;height:auto;
+      border-radius:12px;
+      overflow:hidden;
+    }
+
+    /* Tab content area - relative container */
+    .tab-content-area{
+      position:relative;
+      display:block;
+      flex:none;
+      width:100%;
+      height:420px;
+      overflow:hidden;
+    }
+
+    /* Make sections fully overlap as absolute layers */
+    .tree-section,
+    .explorer-section{
+      position:absolute;
+      top:0;left:0;
+      width:100%;height:100%;
+      pointer-events:none; /* Prevent top layer from blocking clicks */
+      border-right:none;
+    }
+    
+    /* Re-enable clicks on interactive parts */
+    .section-header{
+      pointer-events:auto;
+    }
+    .tree-section.tab-active > .tree-canvas,
+    .explorer-section.tab-active > .explorer-content{
+      pointer-events:auto;
+    }
+
+    /* Headers become Chrome-style tabs */
+    .section-header{
+      position:absolute;
+      top:0;
+      height:36px;
+      width:50%;
+      box-sizing:border-box;
+      
+      font-size:11px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      letter-spacing:0.3px;
+      font-weight:600;
+      cursor:pointer;
+      border:none;
+      transition:background 0.2s, color 0.2s;
+      user-select:none;
+      z-index:10;
+    }
+    .tree-section > .section-header{
+      left:0;
+    }
+    .explorer-section > .section-header{
+      left:50%;
+    }
+
+    /* Active tab header */
+    .tree-section.tab-active > .section-header,
+    .explorer-section.tab-active > .section-header{
+      color:#1e293b;
+      background:#ffffff;
+      z-index: 12;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+    }
+    /* Inactive tab header */
+    .tree-section:not(.tab-active) > .section-header,
+    .explorer-section:not(.tab-active) > .section-header{
+      color:#64748b;
+      background:#e9ecf1;
+      z-index: 10;
+      border-radius: 0;
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    /* Content area absolutely positioned below headers */
+    .tree-canvas,
+    .explorer-content{
+      position:absolute;
+      top:36px;
+      bottom:0;
+      left:0;
+      width:100%;
+    }
+
+    /* Hide inactive content */
+    .tree-section:not(.tab-active) > .tree-canvas{
+      display:none;
+    }
+    .explorer-section:not(.tab-active) > .explorer-content{
+      display:none;
+    }
+
+    /* Tree canvas */
+    .tree-canvas{
+      padding:10px;
+      background-size:18px 18px;
+    }
+
+    /* Explorer content wrapper on mobile */
+    .explorer-content{
+      overflow:hidden;
+      background:#fff;
+    }
+
+    /* Node cards - use px for readability */
+    .node-card{
+      padding:4px 6px;
+      gap:1px;
+      border-radius:8px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    }
+    .node-card .node-icon{
+      width:22px;height:22px;
+      border-radius:4px;
+      padding:3px;
+    }
+    .node-card .node-label{
+      font-size:8px;
+      font-weight:600;
+    }
+
+    /* Center node */
+    .node-center{
+      left:50%;top:50%;
+      width:85px;height:55px;
+    }
+    .node-center .node-icon{
+      width:24px;height:24px;
+    }
+    .node-center .node-label{font-size:9px;}
+
+    /* Peripheral nodes - spread them out */
+    .node-opp{left:30%;top:18%;width:72px;height:48px;}
+    .node-assets{left:70%;top:18%;width:68px;height:48px;}
+    .node-contacts{left:18%;top:50%;width:72px;height:48px;}
+    .node-cases{left:30%;top:82%;width:68px;height:48px;}
+    .node-activities{left:70%;top:82%;width:72px;height:48px;}
+    .node-contracts{left:82%;top:50%;width:72px;height:48px;}
+
+    /* SVG connection dots */
+    .connections-svg circle{r:3}
+
+    .explorer-toolbar{
+      padding:6px 10px;
+      gap:5px;
+    }
+    .search-box{
+      height:28px !important;
+      min-height:28px;
+      max-height:28px;
+      margin:0;
+      outline:none;
+      appearance:none;
+      -webkit-appearance:none;
+      box-sizing:border-box;
+      font-size:11px;
+      border-radius:6px;
+      padding:0 8px 0 28px;
+      background-size:12px;
+      background-position:8px center;
+    }
+    .toolbar-btn{
+      width:28px;
+      height:28px !important;
+      min-height:28px;
+      max-height:28px;
+      margin:0;
+      box-sizing:border-box;
+      border-radius:5px;
+      font-size:12px;
+    }
+
+    .explorer-tree{
+      padding:8px 12px;
+      font-size:11px;
+      overflow-y:auto;
+      flex:1;
+    }
+
+    /* Tree items */
+    .tree-item{
+      gap:5px;
+      padding:2px 0;
+      font-size:11px;
+    }
+    .tree-item .arrow{
+      width:12px;
+      font-size:10px;
+    }
+    .tree-item .icon{
+      width:18px;height:18px;
+      border-radius:4px;
+      padding:2px;
+    }
+    .tree-children{
+      padding-left:12px;
+      margin-left:6px;
+      margin-bottom:4px;
+    }
+    .tree-sub{
+      padding-left:12px;
+      margin-left:6px;
+    }
+    .tree-sub-item{
+      gap:5px;
+      padding:1.5px 0;
+      font-size:10px;
+    }
+    .tree-sub-item::before{
+      left:-8px;
+      width:5px;
+    }
+    .tree-sub-item .dot{
+      width:4px;height:4px;
+      border-radius:1px;
+    }
+
+    /* Floating charts */
+    .float-bar-chart{
+      padding:8px 10px;
+      border-radius:8px;
+      right:2%;top:-1%;
+    }
+    .bar-chart-3d{height:30px;gap:3px;}
+    .bar-col{width:6px;border-radius:2px 2px 0 0;}
+
+    .float-pie-chart{
+      padding:6px 8px;
+      border-radius:8px;
+      bottom:8%;left:3%;
+      gap:5px;
+    }
+  }
+
+  /* Extra small phones */
+  @media (max-width: 380px) {
+    .tab-content-area{height:280px;}
+    .section-header{font-size:10px;padding:8px 6px;height:32px;}
+    .tree-canvas, .explorer-content{top:32px;}
+    .node-card .node-label{font-size:7px;}
+    .node-card .node-icon{width:18px;height:18px;}
+    .node-center{width:72px;height:48px;}
+    .node-center .node-icon{width:20px;height:20px;}
+    .node-center .node-label{font-size:8px;}
+    .tree-item{font-size:10px;}
+    .explorer-tree{font-size:10px;padding:6px 10px;}
   }
 `}</style>
       <div className="scene">
-  {/*  ===== MAIN STATIC DASHBOARD =====  */}
   <div className="main-panel">
     {/*  Sidebar  */}
     <div className="sidebar">
@@ -274,11 +549,15 @@ const HeroInfographic = () => {
       </div>
     </div>
 
+    {/*  Tab Content Area (mobile: fixed height container)  */}
+    <div className="tab-content-area">
+
     {/*  Visual Relationship Tree  */}
-    <div className="tree-section">
-      <div className="section-header">Visual Relationship Tree</div>
+    <div className={`tree-section ${activeTab === 'tree' ? 'tab-active' : ''}`}>
+      <div className="section-header" onClick={() => { setActiveTab('tree'); setUserInteracted(true); }}>Visual Relationship Tree</div>
       <div className="tree-canvas">
-        <svg className="connections-svg" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}} preserveAspectRatio="none">
+        {/* Desktop SVG connections */}
+        <svg className="connections-svg desktop-svg" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}} preserveAspectRatio="none">
           {/*  Lines  */}
           <line x1="50%" y1="50%" x2="42%" y2="18%" className="conn-line" stroke="#8bc34a" />
           <line x1="50%" y1="50%" x2="82%" y2="32%" className="conn-line" stroke="#4caf50" />
@@ -294,6 +573,28 @@ const HeroInfographic = () => {
           <circle cx="22%" cy="78%" r="4" fill="#ffb74d" />
           <circle cx="50%" cy="86%" r="4" fill="#ef5350" />
           <circle cx="82%" cy="72%" r="4" fill="#4dd0e1" />
+          
+          {/*  Center dot (main)  */}
+          <circle cx="50%" cy="50%" r="6" fill="#4caf50" opacity="0.8"/>
+        </svg>
+
+        {/* Mobile SVG connections */}
+        <svg className="connections-svg mobile-svg" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}} preserveAspectRatio="none">
+          {/*  Lines  */}
+          <line x1="50%" y1="50%" x2="30%" y2="18%" className="conn-line" stroke="#8bc34a" />
+          <line x1="50%" y1="50%" x2="70%" y2="18%" className="conn-line" stroke="#4caf50" />
+          <line x1="50%" y1="50%" x2="18%" y2="50%" className="conn-line" stroke="#7986cb" />
+          <line x1="50%" y1="50%" x2="30%" y2="82%" className="conn-line" stroke="#ffb74d" />
+          <line x1="50%" y1="50%" x2="70%" y2="82%" className="conn-line" stroke="#ef5350" />
+          <line x1="50%" y1="50%" x2="82%" y2="50%" className="conn-line" stroke="#4dd0e1" />
+          
+          {/*  Connection nodes (small circles)  */}
+          <circle cx="30%" cy="18%" r="4" fill="#8bc34a" />
+          <circle cx="70%" cy="18%" r="4" fill="#4caf50" />
+          <circle cx="18%" cy="50%" r="4" fill="#7986cb" />
+          <circle cx="30%" cy="82%" r="4" fill="#ffb74d" />
+          <circle cx="70%" cy="82%" r="4" fill="#ef5350" />
+          <circle cx="82%" cy="50%" r="4" fill="#4dd0e1" />
           
           {/*  Center dot (main)  */}
           <circle cx="50%" cy="50%" r="6" fill="#4caf50" opacity="0.8"/>
@@ -332,8 +633,9 @@ const HeroInfographic = () => {
     </div>
 
     {/*  Relationship Explorer  */}
-    <div className="explorer-section">
-      <div className="section-header">Relationship Explorer</div>
+    <div className={`explorer-section ${activeTab === 'explorer' ? 'tab-active' : ''}`}>
+      <div className="section-header" onClick={() => { setActiveTab('explorer'); setUserInteracted(true); }}>Relationship Explorer</div>
+      <div className="explorer-content">
       <div className="explorer-toolbar">
         <input className="search-box" type="text" placeholder="Search..." readOnly />
         <div className="toolbar-btn">▽</div>
@@ -380,6 +682,8 @@ const HeroInfographic = () => {
         </div>
       </div>
     </div>
+    </div>{/* end explorer-content */}
+    </div>{/* end tab-content-area */}
   </div>
 
   {/*  ===== FLOATING BAR CHART (bottom-right) - COMMENTED OUT =====  

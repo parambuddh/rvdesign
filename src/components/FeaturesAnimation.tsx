@@ -1,7 +1,29 @@
 import React, { useEffect, useState, useMemo, useRef, memo } from "react";
 
+// ── TYPES ──
+interface Node {
+  x: number;
+  y: number;
+  r: number;
+  label: string;
+  type: 'root' | 'mid' | 'leaf' | 'tiny';
+  color: string;
+  bg: string;
+  border: string;
+  icon: string;
+}
+
+interface EdgeStyle {
+  stroke: string;
+  width: number;
+  dash: string;
+  arrow: string;
+  labelBg: string;
+  labelColor: string;
+}
+
 // ── NODE DEFINITIONS ──
-const NODES: Record<string, any> = {
+const NODES: Record<string, Node> = {
   acme:     { x:78,  y:180, r:28,  label:'Acme',           type:'root',    color:'#1d4ed8', bg:'#eff6ff', border:'#bfdbfe', icon:'A' },
   hvo:      { x:210, y:80,  r:20,  label:'High Value\nOpps', type:'mid',   color:'#6d28d9', bg:'#f5f3ff', border:'#c4b5fd', icon:'O' },
   contacts: { x:210, y:180, r:20,  label:'Contacts',       type:'mid',     color:'#0369a1', bg:'#f0f9ff', border:'#7dd3fc', icon:'C' },
@@ -21,7 +43,7 @@ const NODES: Record<string, any> = {
 };
 
 // ── EDGE DEFINITIONS ──
-const EDGE_STYLES: Record<string, any> = {
+const EDGE_STYLES: Record<string, EdgeStyle> = {
   green:  { stroke:'#16a34a', width:1.8, dash:'',    arrow:'arr-green', labelBg:'#f0fdf4', labelColor:'#15803d' },
   blue:   { stroke:'#3b82f6', width:1.4, dash:'',    arrow:'arr-blue',  labelBg:'#eff6ff', labelColor:'#1d4ed8' },
   amber:  { stroke:'#d97706', width:1.2, dash:'5 3', arrow:'arr-amber', labelBg:'#fffbeb', labelColor:'#92400e' },
